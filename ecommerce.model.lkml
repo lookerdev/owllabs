@@ -9,6 +9,7 @@ include: "/views/*.view.lkml"                # include all views in the views/ f
 #
 
 explore: orders_line_items_view {
+  label: "Orders Explore"
 
   join: orders_view {
     sql_on: ${orders_line_items_view.store}=${orders_view.store}
@@ -26,8 +27,6 @@ explore: orders_line_items_view {
   }
 
 }
-
-explore: orders_fulfillments_view {}
 
 
 # explore: order_items {
