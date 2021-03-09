@@ -40,6 +40,7 @@ view: orders_fulfillments_view {
 
   dimension: product_id {
     type: number
+    hidden:  yes
     sql: ${TABLE}.product_id ;;
   }
 
@@ -61,6 +62,7 @@ view: orders_fulfillments_view {
   dimension: store {
     type: string
     sql: ${TABLE}.store ;;
+    hidden: yes
   }
 
   dimension: tracking_number {
@@ -74,6 +76,7 @@ view: orders_fulfillments_view {
   }
 
   dimension_group: updated {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -88,6 +91,7 @@ view: orders_fulfillments_view {
   }
 
   measure: orders_fulfilled {
+    hidden: yes
     type: count
     drill_fields: []
   }

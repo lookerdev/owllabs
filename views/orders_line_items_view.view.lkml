@@ -108,4 +108,11 @@ view: orders_line_items_view {
     type: count
     drill_fields: [name]
   }
+
+  measure: sum_of_order_value {
+    type: sum
+    sql: ${TABLE}.price ;;
+  }
+
+
 }
