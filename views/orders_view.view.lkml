@@ -61,6 +61,7 @@ view: orders_view {
   dimension: billing_address__zip {
     type: string
     sql: ${TABLE}.billing_address__zip ;;
+    map_layer_name: us_zipcode_tabulation_areas
   }
 
   dimension: cancel_reason {
