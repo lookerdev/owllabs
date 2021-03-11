@@ -82,6 +82,7 @@ view: orders_line_items_view {
   measure: sum_of_ordered_units {
     type: sum
     sql: ${quantity} ;;
+    drill_fields: [store,sum_of_ordered_units]
   }
 
   dimension: store {
@@ -112,6 +113,8 @@ view: orders_line_items_view {
   measure: sum_of_order_value {
     type: sum
     sql: ${TABLE}.price ;;
+    value_format_name: usd
+    drill_fields: [store,sum_of_order_value]
   }
 
 

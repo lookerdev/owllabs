@@ -6,10 +6,10 @@ view: orders_view {
     sql: ${TABLE}.billing_address__address1 ;;
   }
 
-  dimension: billing_address__address2 {
-    type: string
-    sql: ${TABLE}.billing_address__address2 ;;
-  }
+  # dimension: billing_address__address2 {
+  #   type: string
+  #   sql: ${TABLE}.billing_address__address2 ;;
+  # }
 
   dimension: billing_address__city {
     type: string
@@ -41,20 +41,22 @@ view: orders_view {
     sql: ${TABLE}.billing_address__last_name ;;
   }
 
-  dimension: billing_address__name {
-    type: string
-    sql: ${TABLE}.billing_address__name ;;
-  }
+  # dimension: billing_address__name {
+  #   type: string
+  #   sql: ${TABLE}.billing_address__name ;;
+  # }
 
-  dimension: billing_address__province {
+  dimension: state {
+    map_layer_name: us_states
     type: string
     sql: ${TABLE}.billing_address__province ;;
+    drill_fields: [billing_address__zip]
   }
 
-  dimension: billing_address__province_code {
-    type: string
-    sql: ${TABLE}.billing_address__province_code ;;
-  }
+  # dimension: billing_address__province_code {
+  #   type: string
+  #   sql: ${TABLE}.billing_address__province_code ;;
+  # }
 
   dimension: billing_address__zip {
     type: string
@@ -215,6 +217,6 @@ view: orders_view {
 
   measure: orders_count {
     type: count
-    drill_fields: [name, billing_address__first_name, billing_address__last_name, billing_address__name]
+    drill_fields: [name, billing_address__first_name, billing_address__last_name]
   }
 }
