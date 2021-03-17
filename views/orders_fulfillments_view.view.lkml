@@ -49,10 +49,10 @@ view: orders_fulfillments_view {
     sql: ${TABLE}.quantity ;;
   }
 
-  measure: sum_of_fulfilled_units {
-    type: sum
-    sql: ${quantity} ;;
-  }
+ # measure: sum_of_fulfilled_units {
+  #  type: sum
+   # sql: ${quantity} ;;
+  #}
 
   dimension: sku {
     type: string
@@ -94,5 +94,12 @@ view: orders_fulfillments_view {
     hidden: yes
     type: count
     drill_fields: []
+  }
+
+  measure: sum_of_fulfilled_units {
+    type: sum
+    sql: ${TABLE}.quantity ;;
+    filters: [fulfillment_status: "fulfilled"]
+
   }
 }

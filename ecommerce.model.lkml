@@ -8,19 +8,19 @@ include: "/views/*.view.lkml"                # include all views in the views/ f
 # # and define the joins that connect them together.
 #
 
-explore: orders_line_items_view {
+explore: orders_view {
   label: "Orders Explore"
 
-  join: orders_view {
+  join: orders_line_items_view {
     sql_on: ${orders_line_items_view.store}=${orders_view.store}
-            AND ${orders_line_items_view.name}=${orders_view.name};;
+            AND ${orders_line_items_view.name}=${orders_view.shopify_order_number};;
     relationship: many_to_one
     type: left_outer
   }
 
 
   join: orders_fulfillments_view {
-    sql_on: ${orders_view.name}=${orders_fulfillments_view.order_number}
+    sql_on: ${orders_view.shopify_order_number}=${orders_fulfillments_view.order_number}
             AND ${orders_fulfillments_view.store}=${orders_view.store}
             AND ${orders_fulfillments_view.product_id}=${orders_fulfillments_view.product_id}
             ;;
