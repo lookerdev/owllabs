@@ -6,10 +6,10 @@ view: orders_view {
     sql: ${TABLE}.billing_address__address1 ;;
   }
 
-  # dimension: billing_address__address2 {
-  #   type: string
-  #   sql: ${TABLE}.billing_address__address2 ;;
-  # }
+  dimension: billing_address__address2 {
+    type: string
+    sql: ${TABLE}.billing_address__address2 ;;
+  }
 
   dimension: billing_address__city {
     type: string
@@ -41,27 +41,24 @@ view: orders_view {
     sql: ${TABLE}.billing_address__last_name ;;
   }
 
-  # dimension: billing_address__name {
-  #   type: string
-  #   sql: ${TABLE}.billing_address__name ;;
-  # }
-
-  dimension: state {
-    map_layer_name: us_states
+  dimension: billing_address__name {
     type: string
-    sql: ${TABLE}.billing_address__province ;;
-    drill_fields: [billing_address__zip]
+    sql: ${TABLE}.billing_address__name ;;
   }
 
-  # dimension: billing_address__province_code {
-  #   type: string
-  #   sql: ${TABLE}.billing_address__province_code ;;
-  # }
+  dimension: billing_address__province {
+    type: string
+    sql: ${TABLE}.billing_address__province ;;
+  }
+
+  dimension: billing_address__province_code {
+    type: string
+    sql: ${TABLE}.billing_address__province_code ;;
+  }
 
   dimension: billing_address__zip {
     type: string
     sql: ${TABLE}.billing_address__zip ;;
-    map_layer_name: us_zipcode_tabulation_areas
   }
 
   dimension: cancel_reason {
@@ -112,7 +109,7 @@ view: orders_view {
     sql: ${TABLE}.fulfillment_status ;;
   }
 
-  dimension: name {
+  dimension: shopify_order_number {
     type: string
     sql: ${TABLE}.name ;;
   }
@@ -131,6 +128,7 @@ view: orders_view {
   dimension: order_number {
     type: string
     sql: ${TABLE}.order_number ;;
+    hidden: yes
   }
 
   dimension: order_status_url {
@@ -160,6 +158,7 @@ view: orders_view {
   dimension: store {
     type: string
     sql: ${TABLE}.store ;;
+
   }
 
   dimension: subtotal_price {
@@ -175,6 +174,7 @@ view: orders_view {
   dimension: taxes_included {
     type: yesno
     sql: ${TABLE}.taxes_included ;;
+    hidden: yes
   }
 
   dimension: total_discounts {
@@ -190,6 +190,7 @@ view: orders_view {
   dimension: total_line_items_price_set__presentment_money__amount {
     type: number
     sql: ${TABLE}.total_line_items_price_set__presentment_money__amount ;;
+    hidden: yes
   }
 
   dimension: total_price {
@@ -200,6 +201,7 @@ view: orders_view {
   dimension: total_price_set__presentment_money__amount {
     type: number
     sql: ${TABLE}.total_price_set__presentment_money__amount ;;
+    hidden: yes
   }
 
   dimension_group: updated {
@@ -216,8 +218,9 @@ view: orders_view {
     sql: ${TABLE}.updated_at ;;
   }
 
-  measure: orders_count {
-    type: count
-    drill_fields: [name, billing_address__first_name, billing_address__last_name]
+  measure: orders {
+    type: count_distinct
+    sql: concat(${TABLE}.store,${TABLE}.name) ;;
+    drill_fields: [shopify_order_number, billing_address__first_name, billing_address__last_name, billing_address__name]
   }
 }

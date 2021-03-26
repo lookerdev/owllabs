@@ -79,12 +79,6 @@ view: orders_line_items_view {
     sql: ${TABLE}.quantity ;;
   }
 
-  measure: sum_of_ordered_units {
-    type: sum
-    sql: ${quantity} ;;
-    drill_fields: [store,sum_of_ordered_units]
-  }
-
   dimension: store {
     type: string
     sql: ${TABLE}.store ;;
@@ -113,8 +107,24 @@ view: orders_line_items_view {
   measure: sum_of_order_value {
     type: sum
     sql: ${TABLE}.price ;;
-    value_format_name: usd
-    drill_fields: [store,sum_of_order_value]
+  }
+
+  measure: sum_of_ordered_units_excl_cancelled {
+    type: sum
+    sql: ${TABLE}.quantity  ;;
+    filters: [orders_view.cancel_reason: "NULL"]
+  }
+
+
+  measure: sum_of_ordered_units_incl_cancelled {
+    type: sum
+    sql: ${TABLE}.quantity  ;;
+  }
+
+  measure: sum_of_cancelled_units {
+    type: sum
+    sql: ${TABLE}.quantity  ;;
+    filters: [orders_view.cancel_reason: "-NULL"]
   }
 
 
