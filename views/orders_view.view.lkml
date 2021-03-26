@@ -122,7 +122,14 @@ view: orders_view {
   dimension: order_id {
     type: string
     sql: ${TABLE}.order_id ;;
-    primary_key: yes
+  }
+
+
+  dimension: order_primary_key  {
+    type: string
+    sql: CONCAT(${order_id},${store}) ;;
+    primary_key:  yes
+
   }
 
   dimension: order_number {
@@ -223,4 +230,10 @@ view: orders_view {
     sql: concat(${TABLE}.store,${TABLE}.name) ;;
     drill_fields: [shopify_order_number, billing_address__first_name, billing_address__last_name, billing_address__name]
   }
+
+  measure: sum_of_subtotal_price {
+    type: sum
+    sql: ${subtotal_price};;
+  }
+
 }
