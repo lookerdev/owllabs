@@ -4,8 +4,9 @@ view: meeting_records {
 
   dimension: id {
     primary_key: yes
+    hidden: yes
     type: number
-    sql: ${TABLE}.id ;;
+    sql: ${TABLE}.id;;
   }
 
   dimension: avepinnedaoiwidth {
@@ -19,11 +20,12 @@ view: meeting_records {
   }
 
   dimension: crashinmeeting {
-    type: string
+    type: yesno
     sql: ${TABLE}.crashinmeeting ;;
   }
 
   dimension_group: createdat {
+    label: "created at"
     type: time
     timeframes: [
       raw,
@@ -38,6 +40,7 @@ view: meeting_records {
   }
 
   dimension: deviceuuid {
+    label: "Device UUID"
     type: string
     sql: ${TABLE}.deviceuuid ;;
   }
@@ -45,6 +48,11 @@ view: meeting_records {
   dimension: durationseconds {
     type: number
     sql: ${TABLE}.durationseconds ;;
+  }
+
+  dimension: durationminutes {
+    type: number
+    sql: ${TABLE}.durationseconds/60 ;;
   }
 
   dimension: localtalktimeseconds {
@@ -142,5 +150,11 @@ view: meeting_records {
   measure: count {
     type: count
     drill_fields: [id]
+  }
+
+  measure: device_count {
+    type: count_distinct
+    drill_fields: [id]
+    sql: ${TABLE}.deviceuuid;;
   }
 }
