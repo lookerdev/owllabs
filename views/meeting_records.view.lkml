@@ -20,6 +20,8 @@ view: meeting_records {
   }
 
   dimension: crashinmeeting {
+    label: "Crash in Meeting"
+    description: ""
     type: yesno
     sql: ${TABLE}.crashinmeeting ;;
   }
@@ -46,11 +48,15 @@ view: meeting_records {
   }
 
   dimension: durationseconds {
+    label: "Meeting Duration - seconds"
+    description: "The number of seconds the meeting lasted"
     type: number
     sql: ${TABLE}.durationseconds ;;
   }
 
   dimension: durationminutes {
+    label: "Meeting Duration - minutes"
+    description: "The number of mintes the meeting lasted"
     type: number
     sql: ${TABLE}.durationseconds/60 ;;
   }
@@ -61,6 +67,7 @@ view: meeting_records {
   }
 
   dimension: location {
+    hidden: yes
     type: string
     sql: ${TABLE}.location ;;
   }
@@ -81,6 +88,7 @@ view: meeting_records {
   }
 
   dimension_group: originalstartdate {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -95,16 +103,20 @@ view: meeting_records {
   }
 
   dimension: personcount {
+    label: "Person Count"
+    description: ""
     type: number
     sql: ${TABLE}.personcount ;;
   }
 
   dimension: presenteradmin {
+    description: "Whether presenter mode was enabled by admin setting"
     type: string
     sql: ${TABLE}.presenteradmin ;;
   }
 
   dimension: presenterseconds {
+    description: "Seconds of meeting with presenter mode enabled"
     type: string
     sql: ${TABLE}.presenterseconds ;;
   }
@@ -115,6 +127,8 @@ view: meeting_records {
   }
 
   dimension_group: startdate {
+    label: "Meeting Start"
+    description: "The date and time at which a meeting began"
     type: time
     timeframes: [
       raw,
@@ -157,4 +171,12 @@ view: meeting_records {
     drill_fields: [id]
     sql: ${TABLE}.deviceuuid;;
   }
+
+  measure: avg_meeting_length_minutes {
+    type: average
+    drill_fields: [id]
+    sql: ${TABLE}.durationminutes;;
+  }
+
+
 }
