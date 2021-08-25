@@ -63,6 +63,8 @@ view: device_view {
   }
 
   dimension: channel_name {
+    label: "Channel Name"
+    description: ""
     type: string
     sql: ${TABLE}.channel_name ;;
   }
@@ -109,6 +111,7 @@ view: device_view {
   }
 
   dimension: product_name {
+    label: "Product Name"
     type: string
     sql: ${TABLE}.product_name ;;
   }

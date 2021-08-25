@@ -12,6 +12,7 @@ view: meeting_records {
   }
 
   dimension: avepinnedaoiwidth {
+    hidden: yes
     type: number
     sql: ${TABLE}.avepinnedaoiwidth ;;
   }
@@ -88,11 +89,13 @@ view: meeting_records {
   }
 
   dimension: npinnedaoiedits {
+    hidden: yes
     type: number
     sql: ${TABLE}.npinnedaoiedits ;;
   }
 
   dimension: npinnedaoiseconds {
+    hidden: yes
     type: number
     sql: ${TABLE}.npinnedaoiseconds ;;
   }
@@ -183,7 +186,6 @@ view: meeting_records {
     type: count
     drill_fields: [id]
   }
-
 
   measure: crash_count {
     type: sum
