@@ -191,7 +191,7 @@ view: meeting_records {
   }
 
   measure: avg_meeting_length_minutes {
-    label: "Average Meeting Length in minutes"
+    label: "Average Meeting Length - minutes"
     type: average
     drill_fields: [id]
     sql: ${TABLE}.durationminutes;;
