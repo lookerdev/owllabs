@@ -12,7 +12,7 @@ include: "/views/device_view.view.lkml"
  explore: meeting_records {
    join: device_view {
      relationship: many_to_one
-     sql_on: ${device_view.id} = ${meeting_records.deviceuuid} ;;
+     sql_on: ${device_view.uuid} = ${meeting_records.deviceuuid} ;;
   }
 #
 #   join: users {

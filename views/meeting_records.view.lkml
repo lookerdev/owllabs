@@ -47,6 +47,7 @@ view: meeting_records {
   }
 
   dimension: deviceuuid {
+    hidden: yes
     label: "Device UUID"
     description: "Unique identifier for each device"
     type: string
@@ -184,15 +185,21 @@ view: meeting_records {
   }
 
   measure: device_count {
+    hidden: yes
     type: count_distinct
     drill_fields: [id]
     sql: ${TABLE}.deviceuuid;;
   }
 
+  measure: crash_count {
+    type: sum
+    sql: CASE WHEN ${TABLE}.crashinmeeting = 'true' THEN 1 ELSE NULL END;;
+  }
+
   measure: avg_meeting_length_minutes {
     type: average
     drill_fields: [id]
-    sql: ${TABLE}.durationminutes;;
+    sql: ${durationminutes};;
   }
 
 
