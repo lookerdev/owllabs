@@ -6,7 +6,7 @@ view: meeting_records {
     primary_key: yes
     hidden: yes
     label: "Meeting ID"
-    description: "Unique identifier for each meeting"
+    description: "Unique identifier for each meeting record"
     type: number
     sql: ${TABLE}.id;;
   }
@@ -197,5 +197,11 @@ view: meeting_records {
     sql: ${TABLE}.durationminutes;;
   }
 
+  measure: max_number_meetings {
+    label: "Maximum Number of Meetings"
+    type: max
+    drill_fields: [id]
+    sql: ${TABLE}.count;;
+  }
 
 }
