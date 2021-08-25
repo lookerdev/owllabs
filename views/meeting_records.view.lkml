@@ -178,17 +178,20 @@ view: meeting_records {
   }
 
   measure: count {
+    label: "Number of Meetings"
     type: count
     drill_fields: [id]
   }
 
   measure: device_count {
+    label: "Number of Devices"
     type: count_distinct
     drill_fields: [id]
     sql: ${TABLE}.deviceuuid;;
   }
 
   measure: avg_meeting_length_minutes {
+    label: "Average Meeting Length in minutes"
     type: average
     drill_fields: [id]
     sql: ${TABLE}.durationminutes;;
