@@ -17,22 +17,21 @@ view: meeting_records {
   }
 
   dimension: bothtalktimeseconds {
-    label: "Both Talk Time Seconds"
-    description: ""
+    label: "Both Talk Time - seconds"
+    description: "Total second at least one meeting attendee using the device and at least one meeting attendee not using the device spoke at the same time"
     type: number
     sql: ${TABLE}.bothtalktimeseconds ;;
   }
 
   dimension: crashinmeeting {
     label: "Crash in Meeting"
-    description: "Whether the Owl crashed during the meeting"
+    description: "Whether the device crashed during the meeting"
     type: yesno
     sql: ${TABLE}.crashinmeeting ;;
   }
 
   dimension_group: createdat {
-    label: "Meeting Record Creation"
-    description: ""
+    label: "Meeting Record Created"
     type: time
     timeframes: [
       raw,
@@ -68,8 +67,8 @@ view: meeting_records {
   }
 
   dimension: localtalktimeseconds {
-    label: "Local Talk Time - Seconds"
-    description: "Total seconds that the "
+    label: "Local Talk Time - seconds"
+    description: "Total seconds meeting attendee(s) using the device spoke"
     type: number
     sql: ${TABLE}.localtalktimeseconds ;;
   }
@@ -81,8 +80,8 @@ view: meeting_records {
   }
 
   dimension: neithertalktimeseconds {
-    label: "Neither Talk Time - Seconds"
-    description: "Number of total seconds no meeting attendees spoke"
+    label: "Neither Talk Time - seconds"
+    description: "Total seconds no meeting attendees spoke"
     type: number
     sql: ${TABLE}.neithertalktimeseconds ;;
   }
@@ -114,7 +113,7 @@ view: meeting_records {
 
   dimension: personcount {
     label: "Person Count"
-    description: ""
+    description: "The device's count of the number of speakers during the meeting"
     type: number
     sql: ${TABLE}.personcount ;;
   }
@@ -134,8 +133,8 @@ view: meeting_records {
   }
 
   dimension: remotetalktimeseconds {
-    label: "Remote Talk Time - Seconds"
-    description: ""
+    label: "Remote Talk Time - seconds"
+    description: "Total seconds meeting attendee(s) not using the device spoke"
     type: number
     sql: ${TABLE}.remotetalktimeseconds ;;
   }
