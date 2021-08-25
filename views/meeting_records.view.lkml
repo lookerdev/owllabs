@@ -5,6 +5,8 @@ view: meeting_records {
   dimension: id {
     primary_key: yes
     hidden: yes
+    label: "Meeting ID"
+    description: "Unique identifier for each meeting"
     type: number
     sql: ${TABLE}.id;;
   }
@@ -15,19 +17,22 @@ view: meeting_records {
   }
 
   dimension: bothtalktimeseconds {
+    label: "Both Talk Time Seconds"
+    description: ""
     type: number
     sql: ${TABLE}.bothtalktimeseconds ;;
   }
 
   dimension: crashinmeeting {
     label: "Crash in Meeting"
-    description: ""
+    description: "Whether the Owl crashed during the meeting"
     type: yesno
     sql: ${TABLE}.crashinmeeting ;;
   }
 
   dimension_group: createdat {
-    label: "created at"
+    label: "Meeting Record Creation"
+    description: ""
     type: time
     timeframes: [
       raw,
@@ -43,6 +48,7 @@ view: meeting_records {
 
   dimension: deviceuuid {
     label: "Device UUID"
+    description: "Unique identifier for each device"
     type: string
     sql: ${TABLE}.deviceuuid ;;
   }
@@ -56,12 +62,14 @@ view: meeting_records {
 
   dimension: durationminutes {
     label: "Meeting Duration - minutes"
-    description: "The number of mintes the meeting lasted"
+    description: "The number of minutes the meeting lasted"
     type: number
     sql: ${TABLE}.durationseconds/60 ;;
   }
 
   dimension: localtalktimeseconds {
+    label: "Local Talk Time - Seconds"
+    description: "Total seconds that the "
     type: number
     sql: ${TABLE}.localtalktimeseconds ;;
   }
@@ -73,6 +81,8 @@ view: meeting_records {
   }
 
   dimension: neithertalktimeseconds {
+    label: "Neither Talk Time - Seconds"
+    description: "Number of total seconds no meeting attendees spoke"
     type: number
     sql: ${TABLE}.neithertalktimeseconds ;;
   }
@@ -110,25 +120,29 @@ view: meeting_records {
   }
 
   dimension: presenteradmin {
+    label: "Presenter Admin"
     description: "Whether presenter mode was enabled by admin setting"
     type: string
     sql: ${TABLE}.presenteradmin ;;
   }
 
   dimension: presenterseconds {
+    label: "Presenter Seconds"
     description: "Seconds of meeting with presenter mode enabled"
     type: string
     sql: ${TABLE}.presenterseconds ;;
   }
 
   dimension: remotetalktimeseconds {
+    label: "Remote Talk Time - Seconds"
+    description: ""
     type: number
     sql: ${TABLE}.remotetalktimeseconds ;;
   }
 
   dimension_group: startdate {
     label: "Meeting Start"
-    description: "The date and time at which a meeting began"
+    description: "The datetime at which a meeting began"
     type: time
     timeframes: [
       raw,
@@ -143,6 +157,7 @@ view: meeting_records {
   }
 
   dimension_group: updatedat {
+    label: "Meeting Record Updated"
     type: time
     timeframes: [
       raw,
@@ -158,6 +173,8 @@ view: meeting_records {
 
   dimension: waspaired {
     type: yesno
+    label: "Was Paired"
+    description: "Whether this device was paired to another device (MOP or WBO) during meeting"
     sql: ${TABLE}.waspaired ;;
   }
 
