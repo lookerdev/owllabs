@@ -4,61 +4,69 @@ view: device_view {
 
   dimension: id {
     primary_key: yes
-    description: ""
     type: number
     sql: ${TABLE}.id ;;
   }
 
   dimension: 6mth_average_local_talk_time_minutes {
     hidden: yes
+    label: "6 Month Avg. Local Talk Minutes"
     type: number
     sql: ${TABLE}."6mth_average_local_talk_time_minutes" ;;
   }
 
   dimension: 6mth_average_meeting_len_minutes {
     hidden: yes
+    label: "6 Month Avg. Meeting Minutes"
     type: number
     sql: ${TABLE}."6mth_average_meeting_len_minutes" ;;
   }
 
   dimension: 6mth_average_person_count {
     hidden: yes
+    label: "6 Month Avg. Person Count"
     type: number
     sql: ${TABLE}."6mth_average_person_count" ;;
   }
 
   dimension: 6mth_average_remote_talk_time_minutes {
     hidden: yes
+    label: "6 Month Avg. Remote Talk Minutes"
     type: number
     sql: ${TABLE}."6mth_average_remote_talk_time_minutes" ;;
   }
 
   dimension: 6mth_count_crash_meetings {
     hidden: yes
+    label: "6 Month Count Crash Meetings"
     type: number
     sql: ${TABLE}."6mth_count_crash_meetings" ;;
   }
 
   dimension: 6mth_count_of_meetings {
     hidden: yes
+    label: "6 Month Count of Meetings"
     type: number
     sql: ${TABLE}."6mth_count_of_meetings" ;;
   }
 
   dimension: 6mth_count_of_paired_meetings {
     hidden: yes
+    label: "6 Month Count of Paired Meetings"
     type: number
     sql: ${TABLE}."6mth_count_of_paired_meetings" ;;
   }
 
   dimension: 6mth_max_person_count {
     hidden: yes
+    label: "6 Month Maximum Person Count"
     type: number
     sql: ${TABLE}."6mth_max_person_count" ;;
   }
 
   dimension: alias {
     hidden: yes
+    label: "Alias"
     type: string
     sql: ${TABLE}.alias ;;
   }
@@ -102,7 +110,7 @@ view: device_view {
 
   dimension: lastip {
     label: "Last IP Address"
-    description: "IP address recorded at device's most recent check-in"
+    description: "IP address from device's most recent check-in"
     hidden: yes
     type: string
     sql: ${TABLE}.lastip ;;
@@ -120,6 +128,7 @@ view: device_view {
   }
 
   dimension: serial {
+    label: "Software Serial Number"
     type: string
     sql: ${TABLE}.serial ;;
   }
@@ -132,6 +141,7 @@ view: device_view {
   }
 
   dimension: status {
+    label: "Status"
     type: number
     sql: ${TABLE}.status ;;
   }
