@@ -13,6 +13,7 @@ view: device_view {
   dimension: 6mth_average_local_talk_time_minutes {
     hidden: yes
     label: "6 Month Avg. Local Talk Minutes"
+    description: "Average number of minutes that meeting attendee(s) using the device spoke per meeting over the last 6 months"
     type: number
     sql: ${TABLE}."6mth_average_local_talk_time_minutes" ;;
   }
@@ -20,6 +21,7 @@ view: device_view {
   dimension: 6mth_average_meeting_len_minutes {
     hidden: yes
     label: "6 Month Avg. Meeting Minutes"
+    description: "Average meeting length in minutes for device over the last 6 months"
     type: number
     sql: ${TABLE}."6mth_average_meeting_len_minutes" ;;
   }
@@ -27,6 +29,7 @@ view: device_view {
   dimension: 6mth_average_person_count {
     hidden: yes
     label: "6 Month Avg. Person Count"
+    description: "Average number of people device counted per meeting over the last 6 months"
     type: number
     sql: ${TABLE}."6mth_average_person_count" ;;
   }
@@ -34,6 +37,7 @@ view: device_view {
   dimension: 6mth_average_remote_talk_time_minutes {
     hidden: yes
     label: "6 Month Avg. Remote Talk Minutes"
+    description: "Average number of minutes meeting that attendee(s) not using the device spoke per meeting over the last 6 months"
     type: number
     sql: ${TABLE}."6mth_average_remote_talk_time_minutes" ;;
   }
@@ -41,6 +45,7 @@ view: device_view {
   dimension: 6mth_count_crash_meetings {
     hidden: yes
     label: "6 Month Count Crash Meetings"
+    description: "Number of meetings device has crashed during over the last 6 months"
     type: number
     sql: ${TABLE}."6mth_count_crash_meetings" ;;
   }
@@ -48,6 +53,7 @@ view: device_view {
   dimension: 6mth_count_of_meetings {
     hidden: yes
     label: "6 Month Count of Meetings"
+    description: "Total number of meetings device has participated in over the last 6 months"
     type: number
     sql: ${TABLE}."6mth_count_of_meetings" ;;
   }
@@ -55,6 +61,7 @@ view: device_view {
   dimension: 6mth_count_of_paired_meetings {
     hidden: yes
     label: "6 Month Count of Paired Meetings"
+    description: "Number of meetings device has been paired to another device over the last 6 months"
     type: number
     sql: ${TABLE}."6mth_count_of_paired_meetings" ;;
   }
@@ -62,6 +69,7 @@ view: device_view {
   dimension: 6mth_max_person_count {
     hidden: yes
     label: "6 Month Maximum Person Count"
+    description: "Greatest number of people counted by device in a single meeting over the last 6 months"
     type: number
     sql: ${TABLE}."6mth_max_person_count" ;;
   }
@@ -69,14 +77,14 @@ view: device_view {
   dimension: alias {
     hidden: yes
     label: "Alias"
-    description: "Customer's chosen nickname for their device"
+    description: "Customer's chosen nickname for device"
     type: string
     sql: ${TABLE}.alias ;;
   }
 
   dimension: channel_name {
     label: "Channel Name"
-    description: "Name of Barn channel the device belongs to"
+    description: "Name of Barn channel device belongs to"
     type: string
     sql: ${TABLE}.channel_name ;;
   }

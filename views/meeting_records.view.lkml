@@ -13,6 +13,7 @@ view: meeting_records {
 
   dimension: avepinnedaoiwidth {
     hidden: yes
+    label: "Average Pinned AOI Width"
     type: number
     sql: ${TABLE}.avepinnedaoiwidth ;;
   }
@@ -90,12 +91,14 @@ view: meeting_records {
 
   dimension: npinnedaoiedits {
     hidden: yes
+    label: "Number of Pinned AOI Edits"
     type: number
     sql: ${TABLE}.npinnedaoiedits ;;
   }
 
   dimension: npinnedaoiseconds {
     hidden: yes
+    label: "Number of Pinned AOI Seconds"
     type: number
     sql: ${TABLE}.npinnedaoiseconds ;;
   }
@@ -117,7 +120,7 @@ view: meeting_records {
 
   dimension: personcount {
     label: "Person Count"
-    description: "The device's count of the number of speakers during the meeting"
+    description: "Device's count of total people who spoke during the meeting"
     type: number
     sql: ${TABLE}.personcount ;;
   }
