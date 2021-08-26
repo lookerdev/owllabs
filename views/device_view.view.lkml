@@ -90,7 +90,8 @@ view: device_view {
   }
 
   dimension_group: checkedinat {
-    hidden: yes
+    label: "Checked In At"
+    description: "Most recent device check-in date"
     type: time
     timeframes: [
       raw,
@@ -106,6 +107,7 @@ view: device_view {
 
   dimension_group: createdat {
     hidden: yes
+    description: "Device record creation date"
     type: time
     timeframes: [
       raw,
@@ -121,7 +123,7 @@ view: device_view {
 
   dimension: lastip {
     label: "Last IP Address"
-    description: "IP address from device's most recent check-in"
+    description: "Device's most recent IP address, captured during most recent check-in"
     hidden: yes
     type: string
     sql: ${TABLE}.lastip ;;
@@ -148,7 +150,7 @@ view: device_view {
 
   dimension: software_version {
     label: "Software Version"
-    description: "Device's most recent software version"
+    description: "Device's most recent software version, captured during most recent check-in"
     type: string
     sql: ${TABLE}.software_version ;;
   }
