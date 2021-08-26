@@ -4,6 +4,7 @@ view: device_view {
 
   dimension: id {
     primary_key: yes
+    description: ""
     type: number
     sql: ${TABLE}.id ;;
   }
@@ -100,6 +101,8 @@ view: device_view {
   }
 
   dimension: lastip {
+    label: "Last IP Address"
+    description: "IP address recorded at device's most recent check-in"
     hidden: yes
     type: string
     sql: ${TABLE}.lastip ;;
@@ -122,6 +125,8 @@ view: device_view {
   }
 
   dimension: software_version {
+    label: "Software Version"
+    description: "Device's most recent software version"
     type: string
     sql: ${TABLE}.software_version ;;
   }
