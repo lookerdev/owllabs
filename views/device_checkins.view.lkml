@@ -18,7 +18,7 @@ view: device_checkins {
 
   dimension_group: createdat {
     label: "Check-in"
-    description: "Device check-in"
+    description: "Device check-in date and time"
     type: time
     timeframes: [
       raw,
@@ -41,7 +41,7 @@ view: device_checkins {
 
   dimension: needsupdate {
     label: "Needs Update"
-    # description: ""
+    description: "Whether the device software version needs be updated to match the most recent version"
     type: yesno
     sql: ${TABLE}.needsupdate ;;
   }
