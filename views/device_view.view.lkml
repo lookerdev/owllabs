@@ -4,6 +4,8 @@ view: device_view {
 
   dimension: id {
     primary_key: yes
+    label: "Device Record ID"
+    description: "Unique identifier for each device record"
     type: number
     sql: ${TABLE}.id ;;
   }
@@ -67,13 +69,14 @@ view: device_view {
   dimension: alias {
     hidden: yes
     label: "Alias"
+    description: "Customer's chosen nickname for their device"
     type: string
     sql: ${TABLE}.alias ;;
   }
 
   dimension: channel_name {
     label: "Channel Name"
-    description: ""
+    description: "Name of Barn channel the device belongs to"
     type: string
     sql: ${TABLE}.channel_name ;;
   }
@@ -117,12 +120,14 @@ view: device_view {
   }
 
   dimension: name {
+    hidden: yes
     type: string
     sql: ${TABLE}.name ;;
   }
 
   dimension: product_name {
-    label: "Product Name"
+    label: "Product"
+    description: "Device product type"
     type: string
     sql: ${TABLE}.product_name ;;
   }
