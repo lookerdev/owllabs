@@ -17,6 +17,7 @@ view: device_checkins {
   }
 
   dimension_group: createdat {
+    label: "Check-in"
     description: "Device check-in"
     type: time
     timeframes: [
