@@ -2,6 +2,7 @@ connection: "redshift"
 
 include: "/views/meeting_records.view.lkml"
 include: "/views/device_view.view.lkml"
+include: "/views/device_checkins.view.lkml"
 # include all views in the views/ folder in this project
 # include: "/**/*.view.lkml"                 # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
@@ -14,9 +15,9 @@ include: "/views/device_view.view.lkml"
      relationship: many_to_one
      sql_on: ${device_view.uuid} = ${meeting_records.deviceuuid} ;;
   }
-#
-#   join: users {
-#     relationship: many_to_one
-#     sql_on: ${users.id} = ${orders.user_id} ;;
-#   }
+
+   join: device_checkins {
+     relationship: many_to_one
+     sql_on: ${device_checkins.deviceuuid}id} = ${meeting_records.deviceuuid} ;;
+  }
 }
