@@ -205,7 +205,7 @@ view: meeting_records {
   measure: max_number_meetings {
     label: "Maximum Number of Meetings"
     type: max
-    drill_fields: [id]
+    drill_fields: [id,deviceuuid]
     sql: ${TABLE}.count;;
   }
 
