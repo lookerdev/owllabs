@@ -33,6 +33,7 @@ view: meeting_records {
   }
 
   dimension_group: createdat {
+    hidden: yes
     label: "Meeting Record Created"
     type: time
     timeframes: [
@@ -48,7 +49,7 @@ view: meeting_records {
   }
 
   dimension: deviceuuid {
-    hidden: yes
+    # hidden: yes
     label: "Device UUID"
     description: "Unique identifier for each device"
     type: string
@@ -163,6 +164,7 @@ view: meeting_records {
   }
 
   dimension_group: updatedat {
+    hidden: yes
     label: "Meeting Record Updated"
     type: time
     timeframes: [
