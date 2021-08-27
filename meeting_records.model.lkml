@@ -11,12 +11,13 @@ include: "/views/device_checkins.view.lkml"
 # # and define the joins that connect them together.
 #
  explore: meeting_records {
-always_filter: {
-    filters: [device_view.product_name:"-TESTNAME"]
+  always_filter: {
+    filters: [device_view.product_name: "-TESTNAME"]
   }
 
    join: device_view {
      relationship: many_to_one
+     view_label: "Devices"
      sql_on: ${device_view.uuid} = ${meeting_records.deviceuuid} ;;
     # sql_where: ${device_view.product_name} != 'TESTNAME' ;;
   }
