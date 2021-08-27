@@ -18,7 +18,7 @@ always_filter: {
    join: device_view {
      relationship: many_to_one
      sql_on: ${device_view.uuid} = ${meeting_records.deviceuuid} ;;
-     sql_where: ${device_view.product_name} != 'TESTNAME' ;;
+    # sql_where: ${device_view.product_name} != 'TESTNAME' ;;
   }
 
    join: device_checkins {
