@@ -139,7 +139,7 @@ view: device_view {
     label: "Product"
     description: "Device product type"
     type: string
-    sql: ${TABLE}.product_name ;;
+    sql: ${TABLE}.product_name WHERE ${TABLE}.product_name != 'TESTNAME';;
   }
 
   dimension: serial {
