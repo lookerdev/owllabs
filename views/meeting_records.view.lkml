@@ -211,4 +211,11 @@ view: meeting_records {
     sql: ${TABLE}.count;;
   }
 
+  measure: avg_person_count {
+    label: "Average Attendees per Meeting"
+    type: average
+    drill_fields: [id,deviceuuid]
+    sql: ${TABLE}.personcount;;
+  }
+
 }
