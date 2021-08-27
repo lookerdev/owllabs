@@ -212,7 +212,7 @@ view: meeting_records {
   }
 
   measure: avg_person_count {
-    label: "Average Attendees per Meeting"
+    label: "Average Person Count per Meeting"
     type: average
     drill_fields: [id,deviceuuid]
     sql: ${TABLE}.personcount;;
