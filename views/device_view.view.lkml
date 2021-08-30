@@ -1,5 +1,5 @@
 view: device_view {
-  label: "Devices"
+  label: "Devices View"
   sql_table_name: public.device_view ;;
   drill_fields: [id]
 

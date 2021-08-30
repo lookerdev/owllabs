@@ -1,4 +1,5 @@
 view: device_checkins {
+  label: "Device Check-ins"
   # # You can specify the table name if it's different from the view name:
   sql_table_name: public.device_checkins ;;
   #
@@ -41,7 +42,7 @@ view: device_checkins {
 
   dimension: needsupdate {
     label: "Needs Update"
-    description: "Whether the device software version needs be updated to match the most recent version"
+    description: "Whether the device software version needs be updated to match the most recently released version"
     type: yesno
     sql: ${TABLE}.needsupdate ;;
   }

@@ -1,4 +1,5 @@
 view: meeting_records {
+  label: "Meeting Records"
   sql_table_name: public.meeting_records ;;
   drill_fields: [id]
 
