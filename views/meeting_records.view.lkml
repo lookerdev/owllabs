@@ -221,4 +221,11 @@ view: meeting_records {
     sql: ${TABLE}.personcount;;
   }
 
+  measure: count_devices {
+    label: "Number of Owls"
+    type: count_distinct
+    # drill_fields: [id,deviceuuid]
+    sql: ${TABLE}.deviceuuid;;
+  }
+
 }
