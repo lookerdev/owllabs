@@ -3,6 +3,7 @@ view: device_view {
   sql_table_name: public.device_view ;;
   drill_fields: [id]
 
+# Dimensions
   dimension: id {
     primary_key: yes
     label: "Device Record ID"
@@ -169,6 +170,7 @@ view: device_view {
     sql: ${TABLE}.uuid ;;
   }
 
+# Measures
   measure: device_count {
     type: count
     drill_fields: [id, name, product_name, channel_name]

@@ -3,6 +3,7 @@ view: meeting_records {
   sql_table_name: public.meeting_records ;;
   drill_fields: [id]
 
+# Dimensions
   dimension: id {
     primary_key: yes
     hidden: yes
@@ -187,6 +188,7 @@ view: meeting_records {
     sql: ${TABLE}.waspaired ;;
   }
 
+# Measures
   measure: count {
     label: "Number of Meetings"
     type: count

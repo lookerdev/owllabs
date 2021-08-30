@@ -1,9 +1,8 @@
 view: device_checkins {
   label: "Device Check-ins"
-  # # You can specify the table name if it's different from the view name:
   sql_table_name: public.device_checkins ;;
-  #
-  # # Define your dimensions and measures here, like this:
+
+# Dimensions
   dimension: id {
     primary_key: yes
     type: number
@@ -70,7 +69,7 @@ view: device_checkins {
     sql: ${TABLE}.updatedat ;;
   }
 
-
+# Measures
   # measure: total_lifetime_orders {
   #   description: "Use this for counting lifetime orders across many users"
   #   type: sum
