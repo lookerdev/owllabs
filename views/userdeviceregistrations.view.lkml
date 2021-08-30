@@ -12,7 +12,7 @@ view: userdeviceregistrations {
   }
 
   dimension_group: createdat {
-    label: "Device registration date"
+    label: "Device Registration"
     type: time
     timeframes: [
       raw,
@@ -30,7 +30,7 @@ view: userdeviceregistrations {
     # filter out records that have a deletion date
     # capture the number of device registrations that have been deleted?
     hidden: yes
-    description: "Device registration record deletion date"
+    description: "Device Registration Record Deletion Date"
     type: time
     timeframes: [
       raw,
@@ -46,7 +46,7 @@ view: userdeviceregistrations {
 
   dimension: devicehardwareserial {
     type: string
-    label: "Hardware serial number"
+    label: "Hardware Serial Number"
     sql: ${TABLE}.devicehardwareserial ;;
   }
 
