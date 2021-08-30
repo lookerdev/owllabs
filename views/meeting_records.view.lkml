@@ -1,6 +1,6 @@
 view: meeting_records {
   label: "Meeting Records"
-  sql_table_name: public.meeting_records ;;
+  sql_table_name: public.device_meeting_record_view ;;
   drill_fields: [id]
 
 # Dimensions
@@ -188,6 +188,13 @@ view: meeting_records {
     sql: ${TABLE}.waspaired ;;
   }
 
+  dimension: meeting_software_version {
+    label: "Meeting Software Version"
+    sql: ${TABLE}.softwareversion ;;
+    type: string
+
+  }
+
 # Measures
   measure: count {
     label: "Number of Meetings"
@@ -227,5 +234,6 @@ view: meeting_records {
     # drill_fields: [id,deviceuuid]
     sql: ${TABLE}.deviceuuid;;
   }
+
 
 }
