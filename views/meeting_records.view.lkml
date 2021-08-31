@@ -208,6 +208,11 @@ view: meeting_records {
     sql: ${TABLE}.id ;;
   }
 
+  measure: crash_count {
+    type: sum
+    sql: CASE WHEN ${TABLE}.crashinmeeting = 'true' THEN 1 ELSE NULL END;;
+  }
+
   measure: avg_meeting_length_minutes {
     label: "Average Meeting Length - minutes"
     type: average
