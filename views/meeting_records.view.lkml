@@ -223,22 +223,15 @@ view: meeting_records {
   measure: max_number_meetings {
     label: "Maximum Number of Meetings"
     type: max
-    drill_fields: [id,deviceuuid]
     sql: ${TABLE}.count;;
+    drill_fields: [id,deviceuuid]
   }
 
-  measure: avg_person_count_per_mtg_calc {
-    label: "Average Person Count per Meeting calc"
-    type: number
-    drill_fields: [id,deviceuuid]
-    sql: SUM(${TABLE}.personcount) * 1.0 / COUNT(${TABLE}.id);;
-}
-  measure: avg_person_count_per_mtg_agg {
-    label: "Average Person Count per Meeting agg"
+  measure: avg_person_count_per_mtg {
+    label: "Average Person Count per Meeting"
     type: average
-    drill_fields: [id,deviceuuid]
     sql: ${TABLE}.personcount * 1.0 ;;
-
+    drill_fields: [id,deviceuuid]
   }
 
   measure: count_devices {
