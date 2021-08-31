@@ -202,8 +202,8 @@ view: meeting_records {
     drill_fields: [id]
   }
 
-  measure: avg_number_meetings {
-    label: "Average Number of Meetings"
+  measure: avg_number_meetings_per_week {
+    label: "Average Number of Meetings per Week"
     type: average
     sql: ${TABLE}.id ;;
   }
