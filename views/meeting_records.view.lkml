@@ -197,7 +197,7 @@ view: meeting_records {
 
 # Measures
   measure: count {
-    label: "Number of Meetings"
+    label: "Total Meetings"
     type: count
     drill_fields: [id]
   }
@@ -227,12 +227,13 @@ view: meeting_records {
     sql: ${TABLE}.count;;
   }
 
-  measure: avg_person_count {
+  measure: avg_person_count_per_mtg {
     label: "Average Person Count per Meeting"
-    type: average
+    type: number
     drill_fields: [id,deviceuuid]
-    sql: ${TABLE}.personcount;;
-  }
+    sql: SUM(${TABLE}.personcount) / COUNT(${TABLE}.id);;
+
+}
 
   measure: count_devices {
     label: "Number of Devices"
