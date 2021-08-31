@@ -92,8 +92,7 @@ view: device_view {
   }
 
   dimension_group: checkedinat {
-    label: "Checked In At"
-    description: "Most recent device check-in date"
+    label: "Most Recent Device Check-In"
     type: time
     timeframes: [
       raw,
