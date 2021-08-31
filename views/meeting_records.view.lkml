@@ -230,7 +230,7 @@ view: meeting_records {
   }
 
   measure: count_devices {
-    label: "Number of Owls"
+    label: "Number of Devices"
     type: count_distinct
     # drill_fields: [id,deviceuuid]
     sql: ${TABLE}.deviceuuid;;
