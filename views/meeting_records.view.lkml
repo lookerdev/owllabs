@@ -205,7 +205,7 @@ view: meeting_records {
   measure: avg_number_meetings_per_week {
     label: "Average Number of Meetings per Week"
     type: number
-    sql: count(m.id) / nullif(DATEDIFF(week,min(m.startdate::timestamp), max(m.startdate::timestamp)),0);;
+    sql: count(${TABLE}.id) / nullif(DATEDIFF(week,min(${TABLE}.startdate::timestamp), max(${TABLE}.startdate::timestamp)),0);;
   }
 
   measure: crash_count {
