@@ -227,6 +227,12 @@ view: meeting_records {
     drill_fields: [id,deviceuuid]
   }
 
+  measure: total_person_count {
+    label: "Total Person Count"
+    type: sum
+    sql: ${TABLE}.personcount ;;
+  }
+
   measure: avg_person_count_per_mtg {
     label: "Average Person Count per Meeting"
     type: average
