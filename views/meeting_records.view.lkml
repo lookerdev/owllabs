@@ -227,13 +227,19 @@ view: meeting_records {
     sql: ${TABLE}.count;;
   }
 
-  measure: avg_person_count_per_mtg {
-    label: "Average Person Count per Meeting"
+  measure: avg_person_count_per_mtg_calc {
+    label: "Average Person Count per Meeting calc"
     type: number
     drill_fields: [id,deviceuuid]
     sql: SUM(${TABLE}.personcount) * 1.0 / COUNT(${TABLE}.id);;
-
 }
+  measure: avg_person_count_per_mtg_agg {
+    label: "Average Person Count per Meeting agg"
+    type: average
+    drill_fields: [id,deviceuuid]
+    sql: ${TABLE}.personcount * 1.0 ;;
+
+  }
 
   measure: count_devices {
     label: "Number of Devices"
