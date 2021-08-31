@@ -203,6 +203,7 @@ view: meeting_records {
   }
 
   measure: crash_count {
+    label: "Number of Meetings where Device Crashed"
     type: sum
     sql: CASE WHEN ${TABLE}.crashinmeeting = 'true' THEN 1 ELSE NULL END;;
   }
