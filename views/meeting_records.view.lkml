@@ -231,7 +231,7 @@ view: meeting_records {
     label: "Average Person Count per Meeting"
     type: number
     drill_fields: [id,deviceuuid]
-    sql: SUM(${TABLE}.personcount) / COUNT(${TABLE}.id);;
+    sql: SUM(${TABLE}.personcount) * 1.0 / COUNT(${TABLE}.id);;
 
 }
 
