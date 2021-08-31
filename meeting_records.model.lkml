@@ -2,7 +2,9 @@ connection: "redshift"
 
 include: "/views/meeting_records.view.lkml"
 include: "/views/device_view.view.lkml"
-include: "/views/userdeviceregistrations.view.lkml"
+include: "/views/device_registration_user_company_view.view.lkml"
+
+
 
 # include all views in the views/ folder in this project
 # include: "/**/*.view.lkml"                 # include all views in this project
@@ -19,6 +21,12 @@ include: "/views/userdeviceregistrations.view.lkml"
       relationship: many_to_one
       sql_on: ${device_view.uuid} = ${meeting_records.deviceuuid} ;;
      # sql_where: ${device_view.product_name} != 'TESTNAME' ;;
-  }
+   }
+
+    join:  device_registration_user_company_view {
+      type: left_outer
+      relationship: one_to_one
+      sql_on: ${device_view.uuid} = ${device_registration_user_company_view.deviceuuid} ;;
+    }
 
 }
