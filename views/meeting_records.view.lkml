@@ -220,6 +220,12 @@ view: meeting_records {
     sql: ${durationminutes};;
   }
 
+  measure: total_meeting_minutes {
+    label: "Total Meeting Minutes"
+    type: sum
+    sql: ${durationminutes};;
+  }
+
   measure: max_number_meetings {
     label: "Maximum Number of Meetings"
     type: max
