@@ -202,6 +202,11 @@ view: meeting_records {
     drill_fields: [id]
   }
 
+  measure: avg_number_meetings {
+    label: "Average Number of Meetings"
+    type: average
+    sql: ${TABLE}.id ;;
+  }
 
   measure: avg_meeting_length_minutes {
     label: "Average Meeting Length - minutes"
