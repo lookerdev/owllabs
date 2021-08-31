@@ -1,5 +1,5 @@
 view: device_registration_user_company_view {
-  label: "Device Registrations, Users, Comp"
+  label: "Device Registrations"
   sql_table_name: public.device_registration_user_company_view ;;
 
   # # Dimensions
