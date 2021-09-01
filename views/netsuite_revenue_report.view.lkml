@@ -1,0 +1,296 @@
+view: netsuite_revenue_report {
+  label: "Netsuite Monthly Revenue Report"
+  sql_table_name: public.netsuite_revenue_report ;;
+
+  # Dimensions
+  dimension: primary_key {
+    primary_key: yes
+    type: number
+    sql: CONCAT(${TABLE}.sdc_sequence, ${TABLE}.sku) ;;
+  }
+
+  dimension_group: actual_ship_date {
+    label: "Item Ship Date"
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.actual_ship_date ;;
+  }
+
+  dimension: amount {
+    label: "Order Amount"
+    description: "Price of order for the selected items in the original currency of the order"
+    type: number
+    value_format: "#,##0.00"
+    sql: ${TABLE}.amount ;;
+  }
+
+  dimension: amount_usd_conversion {
+    label: "Order Amount - USD Conversion"
+    description: "Price of order for the selected items, converted to USD"
+    type: number
+    value_format: "#,##0.00"
+    sql: ${TABLE}.amount_usd_conversion ;;
+  }
+
+  dimension: asp {
+    label: "Average Selling Price (ASP)"
+      # description: ""
+    type: number
+    value_format: "#,##0.00"
+    sql: ${TABLE}.asp ;;
+  }
+
+  dimension: billing_country {
+    label: "Order Billing Country"
+    # description: ""
+    type: string
+    sql: ${TABLE}.billing_country ;;
+  }
+
+  dimension: class {
+    label: "Class"
+  #   description: "The total number of orders for each user"
+    type: string
+    sql: ${TABLE}.class ;;
+  }
+
+  dimension: cogs_per_item {
+  #   label: "Cost of Goods Sold (COGS) per Item"
+  #   # description: ""
+  #   type: number
+  #   value_format: "#,##0.00"
+  #   sql: ${TABLE}.cogs_total ;;
+  }
+
+  dimension: cogs_total {
+  #   label: "Cost of Goods Sold (COGS) for all items...."
+  #   # description: ""
+  #   type: number
+  #   value_format: "#,##0.00"
+  #   sql: ${TABLE}.cogs_total ;;
+  }
+
+  dimension: currencyname {
+    label: "Currency"
+    description: "Currency used to pay for the order"
+    type: string
+    sql: ${TABLE}.currencyname ;;
+  }
+
+  dimension: customer {
+    label: "Customer Name"
+    # description: ""
+    type: string
+    sql: ${TABLE}.customer ;;
+  }
+
+  dimension: description {
+    label: "Item Description"
+    # description: ""
+    type: string
+    sql: ${TABLE}.description ;;
+  }
+
+  dimension: discountitem__name {
+  #   description: "The total number of orders for each user"
+  #   type: number
+  #   sql: ${TABLE}.lifetime_orders ;;
+  }
+
+  dimension: discountrate {
+  #   label: "Average Selling Price (ASP)"
+  #   # description: ""
+  #   type: number
+  #   value_format: "#,##0.00"
+  #   sql: ${TABLE}.asp ;;
+  }
+
+  dimension: discounttotal {
+  #   label: "Average Selling Price (ASP)"
+  #   # description: ""
+  #   type: number
+  #   value_format: "#,##0.00"
+  #   sql: ${TABLE}.asp ;;
+  }
+
+  dimension: document_number {
+    label: "Document Number"
+    # description: ""
+    type: string
+    sql: ${TABLE}.document_number ;;
+  }
+
+  dimension: invoice_approval_status {
+    label: "Invoice Approval Status"
+  #   description: ""
+    type: string
+    sql: ${TABLE}.invoice_approval_status ;;
+  }
+
+  dimension: invoice_status {
+    label: "Invoice Status"
+    # description: "The total number of orders for each user"
+    type: string
+    sql: ${TABLE}.invoice_status ;;
+  }
+
+  dimension: listprice {
+  #   label: "Average Selling Price (ASP)"
+  #   # description: ""
+  #   type: number
+  #   value_format: "#,##0.00"
+  #   sql: ${TABLE}.asp ;;
+  }
+
+  dimension: marketplace_segment {
+    label: "Marketplace Segment"
+  #   description: "The total number of orders for each user"
+    type: string
+    sql: ${TABLE}.marketplace_segment ;;
+  }
+
+  dimension: memo {
+    hidden: yes
+    label: "Journal Entry Memo"
+    # description: ""
+    type: string
+    sql: ${TABLE}.memo ;;
+  }
+
+  dimension: product_category {
+    label: "Product Category"
+    description: "General groupings of ordered items"
+    type: string
+    sql: ${TABLE}.product_category ;;
+  }
+
+  dimension: product_revenue_usd {
+  #   label: "Average Selling Price (ASP)"
+  #   # description: ""
+  #   type: number
+  #   value_format: "#,##0.00"
+  #   sql: ${TABLE}.asp ;;
+  }
+
+  dimension: quantity {
+    label: "Order Quantity"
+    description: "The number of items ordered"
+    type: number
+    sql: ${TABLE}.quantity ;;
+  }
+
+  dimension: quantityfulfilled {
+    label: "Fulfilled Quantity"
+    description: "The number of items that have been shipped"
+    type: number
+    sql: ${TABLE}.quantityfulfilled ;;
+  }
+
+  dimension: rate {
+  #   label: "Average Selling Price (ASP)"
+  #   # description: ""
+    type: number
+    value_format: "#,##0.00"
+    sql: ${TABLE}.rate ;;
+  }
+
+  dimension: revenue_account {
+    label: "Revenue Account"
+    # description: ""
+    type: string
+    sql: ${TABLE}.revenue_account ;;
+  }
+
+  dimension: sales_order_status {
+    label: "Sales Order Status"
+    description: "Status of the Sales Order"
+    type: string
+    sql: ${TABLE}.sales_order_status ;;
+  }
+
+  dimension: sdc_sequence {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.sdc_sequence ;;
+  }
+
+  dimension: ship_status {
+    label: "Shipping Status"
+    description: "Status of shippinh"
+    type: string
+    sql: ${TABLE}.ship_status ;;
+  }
+
+  dimension: shipping_country {
+    label: "Order Shipping Country"
+    # description: ""
+    type: string
+    sql: ${TABLE}.shipping_country ;;
+  }
+
+  dimension: shippingcost {
+  #   label: "Average Selling Price (ASP)"
+  #   # description: ""
+  #   type: number
+  #   value_format: "#,##0.00"
+  #   sql: ${TABLE}.asp ;;
+  }
+
+  dimension: shopify_order_number {
+    label: "Shopify Order Number"
+    type: string
+    sql: ${TABLE}.shopify_order_number ;;
+  }
+
+  dimension: sku {
+    label: "Product SKU"
+    #   description: ""
+    type: string
+    sql: ${TABLE}.sku ;;
+  }
+
+  dimension: status {
+  label: "Document Status"
+    description: "The status of the document listed in Document Number. If this document is a Sales Order, this value will match the Sales Order Status value. If this document is an Invoice, this value will match the Invoice Status value."
+    type: string
+    sql: ${TABLE}.status ;;
+  }
+
+  dimension_group: transaction_date {
+    label: "Transaction Date"
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.transaction_date ;;
+  }
+
+  dimension: type {
+    label: "Document Type"
+    # description: ""
+    type: string
+    sql: ${TABLE}.type ;;
+  }
+
+
+  # Measures
+  # measure: total_lifetime_orders {
+  #   description: "Use this for counting lifetime orders across many users"
+  #   type: sum
+  #   sql: ${lifetime_orders} ;;
+  # }
+  }
