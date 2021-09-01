@@ -10,6 +10,9 @@ include: "/views/netsuite_revenue_report.view.lkml"                # include all
 
 explore: netsuite_revenue_report {
   label: "Netsuite Monthly Revenue Report"
+  # always_filter: {
+  #     filters: [actual_ship_date: "filter expression", transaction_date: "filter expression"]
+  # }
 #   join: orders {
 #     relationship: many_to_one
 #     sql_on: ${orders.id} = ${order_items.order_id} ;;
@@ -19,7 +22,7 @@ explore: netsuite_revenue_report {
 #     relationship: many_to_one
 #     sql_on: ${users.id} = ${orders.user_id} ;;
 #   }
-}
+
 #
 #
 #
@@ -33,4 +36,4 @@ explore: netsuite_revenue_report {
 #     relationship: many_to_one
 #     sql_on: ${users.id} = ${orders.user_id} ;;
 #   }
-# }
+}
