@@ -326,4 +326,10 @@ view: netsuite_revenue_report {
   #   sql: ${TABLE}.asp ;;
   # }
 
+
+# Filter
+  filter: date_filter {
+    type: date
+    sql: {% condition date_filter %} ${TABLE}.actual_ship_date {% endcondition %} OR {% condition date_filter %} ${TABLE}.transaction_date {% endcondition %} ;;
+  }
   }
