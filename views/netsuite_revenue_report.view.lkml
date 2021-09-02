@@ -36,7 +36,8 @@ view: netsuite_revenue_report {
     label: "Order Amount - USD Conversion"
     description: "Price of order for the selected items, converted to USD"
     type: number
-    value_format: "#,##0.00"
+    # value_format: "#,##0.00"
+    value_format_name: usd
     sql: ${TABLE}.amount_usd_conversion ;;
   }
 
@@ -57,25 +58,25 @@ view: netsuite_revenue_report {
 
   dimension: class {
     label: "Class"
-  #   description: "The total number of orders for each user"
+  #   description: ""
     type: string
     sql: ${TABLE}.class ;;
   }
 
   dimension: cogs_per_item {
-  #   label: "Cost of Goods Sold (COGS) per Item"
+    label: "Cost of Goods Sold (COGS) per Item"
   #   # description: ""
-  #   type: number
-  #   value_format: "#,##0.00"
-  #   sql: ${TABLE}.cogs_total ;;
+    type: number
+    value_format: "#,##0.00"
+    sql: ${TABLE}.cogs_total ;;
   }
 
   dimension: cogs_total {
-  #   label: "Cost of Goods Sold (COGS) for all items...."
-  #   # description: ""
-  #   type: number
-  #   value_format: "#,##0.00"
-  #   sql: ${TABLE}.cogs_total ;;
+    label: "Cost of Goods Sold (COGS) Total Items"
+    description: "Cost of Goods Sold (COGS) per Item multiplied by the total number of items ordered"
+    type: number
+    value_format: "#,##0.00"
+    sql: ${TABLE}.cogs_total ;;
   }
 
   dimension: currencyname {
@@ -100,25 +101,29 @@ view: netsuite_revenue_report {
   }
 
   dimension: discountitem__name {
-  #   description: "The total number of orders for each user"
+    hidden: yes
+    # label: ""
+  #   description: ""
   #   type: number
-  #   sql: ${TABLE}.lifetime_orders ;;
+  #   sql: ${TABLE}.discountitem__name ;;
   }
 
   dimension: discountrate {
-  #   label: "Average Selling Price (ASP)"
+    hidden: yes
+  #   label: "Discount Rate"
   #   # description: ""
   #   type: number
   #   value_format: "#,##0.00"
-  #   sql: ${TABLE}.asp ;;
+  #   sql: ${TABLE}.discountrate ;;
   }
 
   dimension: discounttotal {
-  #   label: "Average Selling Price (ASP)"
+    hidden: yes
+  #   label: ""
   #   # description: ""
   #   type: number
   #   value_format: "#,##0.00"
-  #   sql: ${TABLE}.asp ;;
+  #   sql: ${TABLE}.discounttotal ;;
   }
 
   dimension: document_number {
@@ -143,11 +148,12 @@ view: netsuite_revenue_report {
   }
 
   dimension: listprice {
+    hidden: yes
   #   label: "Average Selling Price (ASP)"
   #   # description: ""
   #   type: number
   #   value_format: "#,##0.00"
-  #   sql: ${TABLE}.asp ;;
+  #   sql: ${TABLE}.listprice ;;
   }
 
   dimension: marketplace_segment {
@@ -173,11 +179,12 @@ view: netsuite_revenue_report {
   }
 
   dimension: product_revenue_usd {
-  #   label: "Average Selling Price (ASP)"
-  #   # description: ""
-  #   type: number
-  #   value_format: "#,##0.00"
-  #   sql: ${TABLE}.asp ;;
+    label: "Product Revenue - USD Conversion"
+    description: "Total revenue captured from this line item based on item fulfillments or return status in USD"
+    type: number
+    # value_format: "#,##0.00"
+    value_format_name: usd
+    sql: ${TABLE}.product_revenue_usd ;;
   }
 
   dimension: quantity {
@@ -195,8 +202,8 @@ view: netsuite_revenue_report {
   }
 
   dimension: rate {
-  #   label: "Average Selling Price (ASP)"
-  #   # description: ""
+    label: "Rate" # add better dimension name
+      description: "List price in original order currency"
     type: number
     value_format: "#,##0.00"
     sql: ${TABLE}.rate ;;
@@ -237,11 +244,11 @@ view: netsuite_revenue_report {
   }
 
   dimension: shippingcost {
-  #   label: "Average Selling Price (ASP)"
+    label: "Shipping Cost"
   #   # description: ""
-  #   type: number
-  #   value_format: "#,##0.00"
-  #   sql: ${TABLE}.asp ;;
+    type: number
+    value_format: "#,##0.00"
+    sql: ${TABLE}.shippingcost ;;
   }
 
   dimension: shopify_order_number {
@@ -293,4 +300,29 @@ view: netsuite_revenue_report {
   #   type: sum
   #   sql: ${lifetime_orders} ;;
   # }
+  # measure: amount {
+  #   label: "Order Amount"
+  #   description: "Price of order for the selected items in the original currency of the order"
+  #   type: number
+  #   value_format: "#,##0.00"
+  #   sql: ${TABLE}.amount ;;
+  # }
+
+  # measure: amount_usd_conversion {
+  #   label: "Order Amount - USD Conversion"
+  #   description: "Price of order for the selected items, converted to USD"
+  #   type: number
+  #   # value_format: "#,##0.00"
+  #   value_format_name: usd
+  #   sql: ${TABLE}.amount_usd_conversion ;;
+  # }
+
+  # measure: asp {
+  #   label: "Average Selling Price (ASP)"
+  #   # description: ""
+  #   type: number
+  #   value_format: "#,##0.00"
+  #   sql: ${TABLE}.asp ;;
+  # }
+
   }
