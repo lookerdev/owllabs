@@ -12,29 +12,7 @@ explore: netsuite_revenue_report {
   label: "Netsuite Monthly Revenue Report"
   # always_filter: {
   #     filters: [actual_ship_date: "filter expression", transaction_date: "filter expression"]
-  # ((( "actual_ship_date" ) >= (TIMESTAMP '2021-08-01') AND ( "actual_ship_date" ) < (TIMESTAMP '2021-09-01'))) OR ((( "transaction_date" ) >= (TIMESTAMP '2021-08-01') AND ( "transaction_date" ) < (TIMESTAMP '2021-09-01')))
+  sql_always_where: (${netsuite_revenue_report."Ship Date"} >= '2021-08-01' AND ${netsuite_revenue_report."Ship Date"} < '2021-09-01')
+                    OR (${netsuite_revenue_report."Transaction Date"} >= '2021-08-01' AND ${netsuite_revenue_report."Transaction Date"} < '2021-09-01');;
 
-#   join: orders {
-#     relationship: many_to_one
-#     sql_on: ${orders.id} = ${order_items.order_id} ;;
-#   }
-#
-#   join: users {
-#     relationship: many_to_one
-#     sql_on: ${users.id} = ${orders.user_id} ;;
-#   }
-
-#
-#
-#
-# explore: order_items {
-#   join: orders {
-#     relationship: many_to_one
-#     sql_on: ${orders.id} = ${order_items.order_id} ;;
-#   }
-#
-#   join: users {
-#     relationship: many_to_one
-#     sql_on: ${users.id} = ${orders.user_id} ;;
-#   }
-}
+  }
