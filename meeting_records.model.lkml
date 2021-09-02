@@ -14,6 +14,18 @@ include: "/views/device_registration_user_company_view.view.lkml"
 # # and define the joins that connect them together.
 #
  explore: meeting_records {
+  sql_always_where: ${device_view.product_name} <> 'TESTNAME' ;;
+
+
+
+
+  # explore: order {
+  #   sql_always_where: ${customer.name} <> 'Periaptly Corporation' ;;
+  #   join: customer {
+  #     sql_on: ${order.customer_id} = ${customer.id} ;;
+  #   }
+
+
 
    join: device_view {
     # view_label: "Devices"
@@ -21,6 +33,7 @@ include: "/views/device_registration_user_company_view.view.lkml"
       relationship: many_to_one
       sql_on: ${device_view.uuid} = ${meeting_records.deviceuuid} ;;
      # sql_where: ${device_view.product_name} != 'TESTNAME' ;;
+
    }
 
     join:  device_registration_user_company_view {

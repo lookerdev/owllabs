@@ -174,7 +174,7 @@ view: netsuite_revenue_report {
 
   dimension: product_category {
     label: "Product Category"
-    description: "General groupings of ordered items"
+    description: "General product groupings"
     type: string
     sql: ${TABLE}.product_category ;;
   }
@@ -189,14 +189,14 @@ view: netsuite_revenue_report {
   }
 
   dimension: quantity {
-    label: "Order Quantity"
+    label: "Quantity Ordered"
     description: "The number of items ordered"
     type: number
     sql: ${TABLE}.quantity ;;
   }
 
   dimension: quantityfulfilled {
-    label: "Fulfilled Quantity"
+    label: "Quantity Fulfilled"
     description: "The number of items that have been shipped"
     type: number
     sql: ${TABLE}.quantityfulfilled ;;
