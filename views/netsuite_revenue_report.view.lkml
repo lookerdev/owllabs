@@ -5,12 +5,13 @@ view: netsuite_revenue_report {
   # Dimensions
   dimension: primary_key {
     primary_key: yes
+    hidden: yes
     type: number
     sql: CONCAT(${TABLE}.sdc_sequence, ${TABLE}.sku) ;;
   }
 
   dimension_group: actual_ship_date {
-    label: "Item Ship Date"
+    label: "Ship Date"
     type: time
     timeframes: [
       raw,
@@ -42,8 +43,8 @@ view: netsuite_revenue_report {
   }
 
   dimension: asp {
-    label: "Average Selling Price (ASP)"
-      # description: ""
+    label: "ASP"
+    description: "Average Selling Price"
     type: number
     value_format: "#,##0.00"
     sql: ${TABLE}.asp ;;
@@ -64,16 +65,16 @@ view: netsuite_revenue_report {
   }
 
   dimension: cogs_per_item {
-    label: "Cost of Goods Sold (COGS) per Item"
-  #   # description: ""
+    label: "COGS per Item"
+    description: "Cost of Goods Sold per item"
     type: number
     value_format: "#,##0.00"
     sql: ${TABLE}.cogs_total ;;
   }
 
   dimension: cogs_total {
-    label: "Cost of Goods Sold (COGS) Total Items"
-    description: "Cost of Goods Sold (COGS) per Item multiplied by the total number of items ordered"
+    label: "COGS Total"
+    description: "Cost of Goods Sold per Item multiplied by the total number of items ordered"
     type: number
     value_format: "#,##0.00"
     sql: ${TABLE}.cogs_total ;;
@@ -94,7 +95,7 @@ view: netsuite_revenue_report {
   }
 
   dimension: description {
-    label: "Item Description"
+    label: "Product Description"
     # description: ""
     type: string
     sql: ${TABLE}.description ;;
