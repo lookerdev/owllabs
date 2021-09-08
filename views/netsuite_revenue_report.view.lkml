@@ -1,6 +1,6 @@
 view: netsuite_revenue_report {
   label: "Netsuite Monthly Revenue Report"
-  sql_table_name: public.netsuite_revenue_report ;;
+  sql_table_name: public.revenue_rpt ;;
 
   # Dimensions
   dimension: primary_key {
@@ -80,11 +80,11 @@ view: netsuite_revenue_report {
     sql: ${TABLE}.cogs_total ;;
   }
 
-  dimension: currencyname {
+  dimension: currency_name {
     label: "Currency"
     description: "Currency used to pay for the order"
     type: string
-    sql: ${TABLE}.currencyname ;;
+    sql: ${TABLE}.currency_name ;;
   }
 
   dimension: customer {
@@ -179,14 +179,14 @@ view: netsuite_revenue_report {
     sql: ${TABLE}.product_category ;;
   }
 
-  dimension: product_revenue_usd {
-    label: "Product Revenue - USD Conversion"
-    description: "Total revenue captured from this line item based on item fulfillments or return status in USD"
-    type: number
-    # value_format: "#,##0.00"
-    value_format_name: usd
-    sql: ${TABLE}.product_revenue_usd ;;
-  }
+  # dimension: product_revenue_usd {
+  #   label: "Product Revenue - USD Conversion"
+  #   description: "Total revenue captured from this line item based on item fulfillments or return status in USD"
+  #   type: number
+  #   # value_format: "#,##0.00"
+  #   value_format_name: usd
+  #   sql: ${TABLE}.product_revenue_usd ;;
+  # }
 
   dimension: quantity {
     label: "Quantity Ordered"
