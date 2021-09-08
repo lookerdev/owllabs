@@ -2,12 +2,33 @@ view: netsuite_revenue_report {
   label: "Netsuite Monthly Revenue Report"
   sql_table_name: public.revenue_rpt ;;
 
+# shopify_order_number
+# document_number
+# document_type
+# shipping_country
+# marketplace_segment
+# transaction_date
+# transaction_status
+# sales_order_status
+# invoice_status
+# ship_status
+# invoice_approval_status
+# sku
+# product_category
+# quantity
+# rate
+# shipping_cost
+# quantityFulfilled
+# product_revenue_usd
+# listprice
+# revenue_account
+
   # Dimensions
   dimension: primary_key {
     primary_key: yes
     hidden: yes
     type: number
-    sql: CONCAT(${TABLE}.sdc_sequence, ${TABLE}.sku) ;;
+    sql: ${TABLE}.row_num ;;
   }
 
   dimension_group: actual_ship_date {
@@ -57,11 +78,11 @@ view: netsuite_revenue_report {
     sql: ${TABLE}.billing_country ;;
   }
 
-  dimension: class {
-    label: "Class"
+  dimension: channel {
+    label: "Channel"
   #   description: ""
     type: string
-    sql: ${TABLE}.class ;;
+    sql: ${TABLE}.channel ;;
   }
 
   dimension: cogs_per_item {
@@ -101,30 +122,30 @@ view: netsuite_revenue_report {
     sql: ${TABLE}.description ;;
   }
 
-  dimension: discountitem__name {
+  dimension: discount_item_name {
     hidden: yes
     # label: ""
   #   description: ""
   #   type: number
-  #   sql: ${TABLE}.discountitem__name ;;
+  #   sql: ${TABLE}.discount_item_name ;;
   }
 
-  dimension: discountrate {
+  dimension: discount_rate {
     hidden: yes
   #   label: "Discount Rate"
   #   # description: ""
   #   type: number
   #   value_format: "#,##0.00"
-  #   sql: ${TABLE}.discountrate ;;
+  #   sql: ${TABLE}.discount_rate ;;
   }
 
-  dimension: discounttotal {
+  dimension: discount_total {
     hidden: yes
   #   label: ""
   #   # description: ""
   #   type: number
   #   value_format: "#,##0.00"
-  #   sql: ${TABLE}.discounttotal ;;
+  #   sql: ${TABLE}.discount_total ;;
   }
 
   dimension: document_number {
