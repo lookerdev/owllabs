@@ -2,28 +2,8 @@ view: netsuite_revenue_report {
   label: "Netsuite Monthly Revenue Report"
   sql_table_name: public.revenue_rpt ;;
 
-# shopify_order_number
-# document_number
-# document_type
-# shipping_country
-# marketplace_segment
-# transaction_date
-# transaction_status
-# sales_order_status
-# invoice_status
-# ship_status
-# invoice_approval_status
-# sku
-# product_category
-# quantity
-# rate
-# shipping_cost
-# quantityFulfilled
-# product_revenue_usd
-# listprice
-# revenue_account
 
-  # Dimensions
+# Dimensions
   dimension: primary_key {
     primary_key: yes
     hidden: yes
@@ -78,7 +58,7 @@ view: netsuite_revenue_report {
     sql: ${TABLE}.billing_country ;;
   }
 
-  dimension: channel {
+  dimension: class {
     label: "Channel"
   #   description: ""
     type: string
@@ -171,7 +151,7 @@ view: netsuite_revenue_report {
 
   dimension: listprice {
     hidden: yes
-  #   label: "Average Selling Price (ASP)"
+  #   label: ""
   #   # description: ""
   #   type: number
   #   value_format: "#,##0.00"
@@ -193,12 +173,12 @@ view: netsuite_revenue_report {
     sql: ${TABLE}.memo ;;
   }
 
-  dimension: product_category {
-    label: "Product Category"
-    description: "General product groupings"
-    type: string
-    sql: ${TABLE}.product_category ;;
-  }
+  # dimension: product_category {
+  #   label: "Product Category"
+  #   description: "General product groupings"
+  #   type: string
+  #   sql: ${TABLE}.product_category ;;
+  # }
 
   # dimension: product_revenue_usd {
   #   label: "Product Revenue - USD Conversion"
@@ -216,12 +196,12 @@ view: netsuite_revenue_report {
     sql: ${TABLE}.quantity ;;
   }
 
-  dimension: quantityfulfilled {
-    label: "Quantity Fulfilled"
-    description: "The number of items that have been shipped"
-    type: number
-    sql: ${TABLE}.quantityfulfilled ;;
-  }
+  # dimension: quantityfulfilled {
+  #   label: "Quantity Fulfilled"
+  #   description: "The number of items that have been shipped"
+  #   type: number
+  #   sql: ${TABLE}.quantity_fulfilled ;;
+  # }
 
   dimension: rate {
     label: "Rate" # add better dimension name
@@ -245,12 +225,6 @@ view: netsuite_revenue_report {
     sql: ${TABLE}.sales_order_status ;;
   }
 
-  dimension: sdc_sequence {
-    hidden: yes
-    type: number
-    sql: ${TABLE}.sdc_sequence ;;
-  }
-
   dimension: ship_status {
     label: "Shipping Status"
     description: "Status of shippinh"
@@ -265,12 +239,12 @@ view: netsuite_revenue_report {
     sql: ${TABLE}.shipping_country ;;
   }
 
-  dimension: shippingcost {
+  dimension: shipping_cost {
     label: "Shipping Cost"
   #   # description: ""
     type: number
     value_format: "#,##0.00"
-    sql: ${TABLE}.shippingcost ;;
+    sql: ${TABLE}.shipping_cost ;;
   }
 
   dimension: shopify_order_number {
@@ -290,7 +264,7 @@ view: netsuite_revenue_report {
   label: "Document Status"
     description: "The status of the document listed in Document Number. If this document is a Sales Order, this value will match the Sales Order Status value. If this document is an Invoice, this value will match the Invoice Status value."
     type: string
-    sql: ${TABLE}.status ;;
+    sql: ${TABLE}.transaction_status ;;
   }
 
   dimension_group: transaction_date {
@@ -308,20 +282,44 @@ view: netsuite_revenue_report {
     sql: ${TABLE}.transaction_date ;;
   }
 
-  dimension: type {
+  dimension: document_type {
     label: "Document Type"
     # description: ""
     type: string
-    sql: ${TABLE}.type ;;
+    sql: ${TABLE}.document_type ;;
+  }
+
+  dimension: product_revenue_usd {
+    label: "Product Revenue - USD"
+    # description: ""
+    type: number
+    value_format: "#,##0.00"
+    sql: coalesce(${TABLE}.item_list_quantity_fulfilled::float * ${TABLE}.rate::float * ${TABLE}.exchange_rate::float, case when ${TABLE}.ship_status is not null then ${TABLE}.item_list_amount::float end * ${TABLE}.exchange_rate::float, ${TABLE}.debit::float * -1 * ${TABLE}.exchange_rate::float, (case when ${TABLE}.document_type = 'CreditMemo' then ${TABLE}.item_list_amount::float * -1 end) * ${TABLE}.exchange_rate::float) ;;
   }
 
 
   # Measures
-  # measure: total_lifetime_orders {
-  #   description: "Use this for counting lifetime orders across many users"
+  measure: total_ordered_quantity {
+    label: "Total Ordered Quantity"
+    # description: "Use this for counting lifetime orders across many users"
+    type: sum
+    sql: ${quantity} ;;
+  }
+
+  # measure: total_fulfilled_quantity {
+  #   label: "Total Fulfilled Quantity"
+  #   # description: "Use this for counting lifetime orders across many users"
   #   type: sum
-  #   sql: ${lifetime_orders} ;;
+  #   sql: ${quantityfulfilled} ;;
   # }
+
+  measure: total_product_revenue {
+    label: "Total Product Revenue - USD"
+    # description: "Use this for counting lifetime orders across many users"
+    type: sum
+    sql: ${product_revenue_usd} ;;
+  }
+
   # measure: amount {
   #   label: "Order Amount"
   #   description: "Price of order for the selected items in the original currency of the order"

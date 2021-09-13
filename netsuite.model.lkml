@@ -1,6 +1,10 @@
 connection: "redshift"
 
-include: "/views/netsuite_revenue_report.view.lkml"                # include all views in the views/ folder in this project
+include: "/views/netsuite_revenue_report.view.lkml"
+include: "/views/netsuite_units_ordered.view.lkml"
+include: "/views/netsuite_units_fulfilled.view.lkml"
+
+# include all views in the views/ folder in this project
 # include: "/**/*.view.lkml"                 # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
@@ -13,5 +17,20 @@ explore: netsuite_revenue_report {
   # always_filter: {
   #     filters: [actual_ship_date: "filter expression", transaction_date: "filter expression"]
   # sql_always_where: (${netsuite_revenue_report."Ship Date"} >= '2021-08-01' AND ${netsuite_revenue_report."Ship Date"} < '2021-09-01') OR (${netsuite_revenue_report."Transaction Date"} >= '2021-08-01' AND ${netsuite_revenue_report."Transaction Date"} < '2021-09-01');;
+
+  }
+
+
+
+
+explore: netsuite_units_ordered {
+
+  join: netsuite_units_fulfilled {
+    # view_label: "Devices"
+    relationship: one_to_many
+    sql_on: ${netsuite_units_fulfilled.internal_id} = ${netsuite_units_ordered.internal_id} and ${netsuite_units_fulfilled.item_internal_id} = ${netsuite_units_ordered.item_internal_id} ;;
+    # sql_where: ${device_view.product_name} != 'TESTNAME' ;;
+  }
+
 
   }
