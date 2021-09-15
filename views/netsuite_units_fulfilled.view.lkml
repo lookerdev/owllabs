@@ -2,6 +2,18 @@ view: netsuite_units_fulfilled {
   sql_table_name: public.netsuite_units_fulfilled ;;
 
 
+
+  dimension: created_from_internal_id {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.created_from_internal_id ;;
+  }
+
+  dimension: created_from_sales_order {
+    type: string
+    sql: ${TABLE}.created_from_sales_order ;;
+  }
+
   dimension: customer {
     type: string
     sql: ${TABLE}.customer ;;
@@ -18,7 +30,7 @@ view: netsuite_units_fulfilled {
   }
 
   dimension_group: deleted_date {
-    hidden: yes
+    # hidden: yes
     type: time
     timeframes: [
       raw,
@@ -31,6 +43,11 @@ view: netsuite_units_fulfilled {
     convert_tz: no
     datatype: date
     sql: ${TABLE}.deleteddate ;;
+  }
+
+  dimension: document_number {
+    type: string
+    sql: ${TABLE}.document_number ;;
   }
 
   dimension_group: fullfillment {
@@ -48,14 +65,10 @@ view: netsuite_units_fulfilled {
     sql: ${TABLE}.fullfillment_date ;;
   }
 
-  dimension: internal_id {
+ dimension: internal_id {
+    hidden: yes
     type: number
     sql: ${TABLE}.internal_id ;;
-  }
-
-  dimension: item_fullfillment_number {
-    type: string
-    sql: ${TABLE}.item_fullfillment_number ;;
   }
 
   dimension: item_internal_id {
@@ -91,6 +104,7 @@ view: netsuite_units_fulfilled {
 
   measure: total_fulfilled {
     type: sum_distinct
+    sql_distinct_key: ${internal_id} ;;
     sql: ${quantity_fulfilled} ;;
     }
 
