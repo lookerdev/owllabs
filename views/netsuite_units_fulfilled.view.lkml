@@ -91,7 +91,7 @@ view: netsuite_units_fulfilled {
 
   measure: total_fulfilled {
     type: sum_distinct
-    sql: ${TABLE}.quantity_fulfilled ;;
+    sql: ${quantity_fulfilled} ;;
     }
 
   # measure: count_fulfillments {

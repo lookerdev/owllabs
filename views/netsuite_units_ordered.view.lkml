@@ -210,12 +210,12 @@ view: netsuite_units_ordered {
   measure: total_ordered {
     # label: "T"
     type: sum_distinct
-    sql: ${TABLE}.quantity_ordered ;;
+    sql: ${quantity_ordered} ;;
   }
 
   measure: order_subtotal {
     # label: ""
     type: sum
-    sql: ${TABLE}.amount ;;
+    sql: ${amount} ;;
   }
 }
