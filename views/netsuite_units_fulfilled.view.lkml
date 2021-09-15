@@ -2,21 +2,6 @@ view: netsuite_units_fulfilled {
   sql_table_name: public.netsuite_units_fulfilled ;;
 
 
-  # dimension_group: actual_ship {
-  #   type: time
-  #   timeframes: [
-  #     raw,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   convert_tz: no
-  #   datatype: date
-  #   sql: ${TABLE}.actual_ship_date ;;
-  # }
-
   dimension: customer {
     type: string
     sql: ${TABLE}.customer ;;

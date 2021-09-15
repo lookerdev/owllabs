@@ -8,6 +8,7 @@ view: netsuite_revenue_report {
   }
 
   dimension: account_name {
+    label: "Revenue Account"
     type: string
     sql: ${TABLE}.account_name ;;
   }
@@ -17,15 +18,38 @@ view: netsuite_revenue_report {
     sql: ${TABLE}.amount ;;
   }
 
-  dimension: bill_country {
-    type: string
-    sql: ${TABLE}.bill_country ;;
-  }
+  # dimension: asp {
+  #   label: "ASP"
+  #   description: "Average Selling Price"
+  #   type: number
+  #   value_format: "#,##0.00"
+  #   sql: ${TABLE}.asp ;;
+  # }
+
+  # dimension: bill_country {
+  #   hidden: yes
+  #   label: "Billing Country"
+  #   type: string
+  #   sql: ${TABLE}.bill_country ;;
+  # }
 
   dimension: channel {
     type: string
     sql: ${TABLE}.channel ;;
   }
+
+  dimension: cogs_per_item {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.cogs_per_item ;;
+  }
+
+  dimension: cogs_total {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.cogs_total ;;
+  }
+
 
   dimension: currency {
     type: string
@@ -43,6 +67,12 @@ view: netsuite_revenue_report {
     sql: ${TABLE}.customer ;;
   }
 
+  dimension: customer_country {
+    hidden: yes
+    type: string
+    sql: ${TABLE}.customer_country ;;
+  }
+
   dimension: deleteddate {
     hidden: yes
     type: string
@@ -50,6 +80,7 @@ view: netsuite_revenue_report {
   }
 
   dimension: description {
+    label: "Item Description"
     type: string
     sql: ${TABLE}.description ;;
   }
@@ -149,16 +180,19 @@ view: netsuite_revenue_report {
   }
 
   dimension: shipping_address_country_value {
+    hidden: yes
     type: string
     sql: ${TABLE}.shipping_address_country_value ;;
   }
 
   dimension: shipping_method {
+    hidden: yes
     type: string
     sql: ${TABLE}.shipping_method ;;
   }
 
   dimension: sku {
+    label: "Item SKU"
     type: string
     sql: ${TABLE}.sku ;;
   }
