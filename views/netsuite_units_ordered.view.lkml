@@ -209,7 +209,7 @@ view: netsuite_units_ordered {
 
   measure: total_ordered {
     # label: "T"
-    type: sum
+    type: sum_distinct
     sql: ${TABLE}.quantity_ordered ;;
   }
 
