@@ -1,6 +1,22 @@
 view: netsuite_units_fulfilled {
   sql_table_name: public.netsuite_units_fulfilled ;;
 
+
+  # dimension_group: actual_ship {
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     year
+  #   ]
+  #   convert_tz: no
+  #   datatype: date
+  #   sql: ${TABLE}.actual_ship_date ;;
+  # }
+
   dimension: customer {
     type: string
     sql: ${TABLE}.customer ;;
@@ -17,7 +33,7 @@ view: netsuite_units_fulfilled {
   }
 
   dimension_group: deleted_date {
-    # hidden: yes
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -93,12 +109,9 @@ view: netsuite_units_fulfilled {
     sql: ${TABLE}.quantity_fulfilled ;;
     }
 
-  measure: count_fulfillments {
-    type: count_distinct
-    sql: ${TABLE}.item_fullfillment_number ;;
-
-
-
-  }
+  # measure: count_fulfillments {
+  #   type: count_distinct
+  #   sql: ${TABLE}.item_fullfillment_number ;;
+  # }
 
 }

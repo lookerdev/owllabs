@@ -14,14 +14,12 @@ include: "/views/dim_calendar.view.lkml"
 #
 
 explore: netsuite_revenue_report {
-  label: "Netsuite Monthly Revenue Report"
+  label: "Netsuite Revenue Report"
   # always_filter: {
   #     filters: [actual_ship_date: "filter expression", transaction_date: "filter expression"]
   # sql_always_where: (${netsuite_revenue_report."Ship Date"} >= '2021-08-01' AND ${netsuite_revenue_report."Ship Date"} < '2021-09-01') OR (${netsuite_revenue_report."Transaction Date"} >= '2021-08-01' AND ${netsuite_revenue_report."Transaction Date"} < '2021-09-01');;
 
   }
-
-
 
 
 explore: netsuite_units_ordered {

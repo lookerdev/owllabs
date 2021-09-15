@@ -1,354 +1,202 @@
 view: netsuite_revenue_report {
-  label: "Netsuite Monthly Revenue Report"
-  sql_table_name: public.revenue_rpt ;;
+  sql_table_name: public.netsuite_revenue_report ;;
 
-
-# Dimensions
-  dimension: primary_key {
-    primary_key: yes
+  dimension: account_id {
     hidden: yes
-    type: number
-    sql: ${TABLE}.row_num ;;
+    type: string
+    sql: ${TABLE}.account_id ;;
   }
 
-  dimension_group: actual_ship_date {
-    label: "Ship Date"
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.actual_ship_date ;;
+  dimension: account_name {
+    type: string
+    sql: ${TABLE}.account_name ;;
   }
 
   dimension: amount {
-    label: "Order Amount"
-    description: "Price of order for the selected items in the original currency of the order"
     type: number
-    value_format: "#,##0.00"
     sql: ${TABLE}.amount ;;
   }
 
-  dimension: amount_usd_conversion {
-    label: "Order Amount - USD Conversion"
-    description: "Price of order for the selected items, converted to USD"
-    type: number
-    # value_format: "#,##0.00"
-    value_format_name: usd
-    sql: ${TABLE}.amount_usd_conversion ;;
-  }
-
-  dimension: asp {
-    label: "ASP"
-    description: "Average Selling Price"
-    type: number
-    value_format: "#,##0.00"
-    sql: ${TABLE}.asp ;;
-  }
-
-  dimension: billing_country {
-    label: "Order Billing Country"
-    # description: ""
+  dimension: bill_country {
     type: string
-    sql: ${TABLE}.billing_country ;;
+    sql: ${TABLE}.bill_country ;;
   }
 
-  dimension: class {
-    label: "Channel"
-  #   description: ""
+  dimension: channel {
     type: string
     sql: ${TABLE}.channel ;;
   }
 
-  dimension: cogs_per_item {
-    label: "COGS per Item"
-    description: "Cost of Goods Sold per item"
-    type: number
-    value_format: "#,##0.00"
-    sql: ${TABLE}.cogs_total ;;
-  }
-
-  dimension: cogs_total {
-    label: "COGS Total"
-    description: "Cost of Goods Sold per Item multiplied by the total number of items ordered"
-    type: number
-    value_format: "#,##0.00"
-    sql: ${TABLE}.cogs_total ;;
-  }
-
-  dimension: currency_name {
-    label: "Currency"
-    description: "Currency used to pay for the order"
+  dimension: currency {
     type: string
-    sql: ${TABLE}.currency_name ;;
+    sql: ${TABLE}.currency ;;
+  }
+
+  dimension: customer_id {
+    hidden: yes
+    type: string
+    sql: ${TABLE}.customer_id ;;
   }
 
   dimension: customer {
-    label: "Customer Name"
-    # description: ""
     type: string
     sql: ${TABLE}.customer ;;
   }
 
+  dimension: deleteddate {
+    hidden: yes
+    type: string
+    sql: ${TABLE}.deleteddate ;;
+  }
+
   dimension: description {
-    label: "Product Description"
-    # description: ""
     type: string
     sql: ${TABLE}.description ;;
   }
 
   dimension: discount_item_name {
     hidden: yes
-    # label: ""
-  #   description: ""
-  #   type: number
-  #   sql: ${TABLE}.discount_item_name ;;
+    type: string
+    sql: ${TABLE}.discount_item_name ;;
   }
 
   dimension: discount_rate {
     hidden: yes
-  #   label: "Discount Rate"
-  #   # description: ""
-  #   type: number
-  #   value_format: "#,##0.00"
-  #   sql: ${TABLE}.discount_rate ;;
+    type: number
+    sql: ${TABLE}.discount_rate ;;
   }
 
   dimension: discount_total {
     hidden: yes
-  #   label: ""
-  #   # description: ""
-  #   type: number
-  #   value_format: "#,##0.00"
-  #   sql: ${TABLE}.discount_total ;;
+    type: number
+    sql: ${TABLE}.discount_total ;;
   }
 
   dimension: document_number {
-    label: "Document Number"
-    # description: ""
     type: string
     sql: ${TABLE}.document_number ;;
   }
 
-  dimension: invoice_approval_status {
-    label: "Invoice Approval Status"
-  #   description: ""
+  dimension: document_type {
     type: string
-    sql: ${TABLE}.invoice_approval_status ;;
+    sql: ${TABLE}.document_type ;;
   }
 
-  dimension: invoice_status {
-    label: "Invoice Status"
-    # description: "The total number of orders for each user"
-    type: string
-    sql: ${TABLE}.invoice_status ;;
+  dimension: exchange_rate {
+    type: number
+    sql: ${TABLE}.exchange_rate ;;
   }
 
-  dimension: listprice {
+  dimension: internal_id {
     hidden: yes
-  #   label: ""
-  #   # description: ""
-  #   type: number
-  #   value_format: "#,##0.00"
-  #   sql: ${TABLE}.listprice ;;
+    type: string
+    sql: ${TABLE}.internal_id ;;
+  }
+
+  dimension: item_internal_id {
+    hidden: yes
+    type: string
+    sql: ${TABLE}.item_internal_id ;;
   }
 
   dimension: marketplace_segment {
-    label: "Marketplace Segment"
-  #   description: "The total number of orders for each user"
     type: string
     sql: ${TABLE}.marketplace_segment ;;
   }
 
   dimension: memo {
     hidden: yes
-    label: "Journal Entry Memo"
-    # description: ""
     type: string
     sql: ${TABLE}.memo ;;
   }
 
-  # dimension: product_category {
-  #   label: "Product Category"
-  #   description: "General product groupings"
-  #   type: string
-  #   sql: ${TABLE}.product_category ;;
-  # }
+  dimension: posting_period {
+    type: string
+    sql: ${TABLE}.posting_period ;;
+  }
 
-  # dimension: product_revenue_usd {
-  #   label: "Product Revenue - USD Conversion"
-  #   description: "Total revenue captured from this line item based on item fulfillments or return status in USD"
-  #   type: number
-  #   # value_format: "#,##0.00"
-  #   value_format_name: usd
-  #   sql: ${TABLE}.product_revenue_usd ;;
-  # }
+  dimension: product_category {
+    type: string
+    sql: ${TABLE}.product_category ;;
+  }
 
   dimension: quantity {
-    label: "Quantity Ordered"
-    description: "The number of items ordered"
     type: number
     sql: ${TABLE}.quantity ;;
   }
 
-  # dimension: quantityfulfilled {
-  #   label: "Quantity Fulfilled"
-  #   description: "The number of items that have been shipped"
-  #   type: number
-  #   sql: ${TABLE}.quantity_fulfilled ;;
-  # }
-
   dimension: rate {
-    label: "Rate" # add better dimension name
-      description: "List price in original order currency"
-    type: number
-    value_format: "#,##0.00"
+    type: string
     sql: ${TABLE}.rate ;;
   }
 
-  dimension: revenue_account {
-    label: "Revenue Account"
-    # description: ""
-    type: string
-    sql: ${TABLE}.revenue_account ;;
+  dimension: revenue {
+    type: number
+    sql: ${TABLE}.revenue ;;
   }
 
-  dimension: sales_order_status {
-    label: "Sales Order Status"
-    description: "Status of the Sales Order"
-    type: string
-    sql: ${TABLE}.sales_order_status ;;
-  }
-
-  dimension: ship_status {
-    label: "Shipping Status"
-    description: "Status of shippinh"
-    type: string
-    sql: ${TABLE}.ship_status ;;
-  }
-
-  dimension: shipping_country {
-    label: "Order Shipping Country"
-    # description: ""
-    type: string
-    sql: ${TABLE}.shipping_country ;;
-  }
-
-  dimension: shipping_cost {
-    label: "Shipping Cost"
-  #   # description: ""
+  dimension: revenue_usd {
     type: number
     value_format: "#,##0.00"
-    sql: ${TABLE}.shipping_cost ;;
+    sql: ${TABLE}.revenue_usd ;;
   }
 
-  dimension: shopify_order_number {
-    label: "Shopify Order Number"
+  dimension: row_num {
+    primary_key: yes
+    hidden: yes
+    type: number
+    sql: ${TABLE}.row_num ;;
+  }
+
+  dimension: shipping_address_country_value {
     type: string
-    sql: ${TABLE}.shopify_order_number ;;
+    sql: ${TABLE}.shipping_address_country_value ;;
+  }
+
+  dimension: shipping_method {
+    type: string
+    sql: ${TABLE}.shipping_method ;;
   }
 
   dimension: sku {
-    label: "Product SKU"
-    #   description: ""
     type: string
     sql: ${TABLE}.sku ;;
   }
 
-  dimension: status {
-  label: "Document Status"
-    description: "The status of the document listed in Document Number. If this document is a Sales Order, this value will match the Sales Order Status value. If this document is an Invoice, this value will match the Invoice Status value."
-    type: string
-    sql: ${TABLE}.transaction_status ;;
-  }
-
-  dimension_group: transaction_date {
-    label: "Transaction Date"
+  dimension_group: transaction {
     type: time
     timeframes: [
       raw,
-      time,
       date,
       week,
       month,
       quarter,
       year
     ]
+    convert_tz: no
+    datatype: date
     sql: ${TABLE}.transaction_date ;;
   }
 
-  dimension: document_type {
-    label: "Document Type"
-    # description: ""
+  dimension: transaction_status {
     type: string
-    sql: ${TABLE}.document_type ;;
+    sql: ${TABLE}.transaction_status ;;
   }
 
-  dimension: product_revenue_usd {
-    label: "Product Revenue - USD"
-    # description: ""
-    type: number
-    value_format: "#,##0.00"
-    sql: coalesce(${TABLE}.item_list_quantity_fulfilled::float * ${TABLE}.rate::float * ${TABLE}.exchange_rate::float, case when ${TABLE}.ship_status is not null then ${TABLE}.item_list_amount::float end * ${TABLE}.exchange_rate::float, ${TABLE}.debit::float * -1 * ${TABLE}.exchange_rate::float, (case when ${TABLE}.document_type = 'CreditMemo' then ${TABLE}.item_list_amount::float * -1 end) * ${TABLE}.exchange_rate::float) ;;
+  measure: count {
+    type: count
+    drill_fields: [account_name, discount_item_name]
   }
 
-
-  # Measures
-  measure: total_ordered_quantity {
-    label: "Total Ordered Quantity"
-    # description: "Use this for counting lifetime orders across many users"
+  measure: total_revenue_usd {
     type: sum
-    sql: ${quantity} ;;
+    # value_format: "#,##0.00"
+    value_format_name: usd
+    sql: ${revenue_usd} ;;
   }
 
-  # measure: total_fulfilled_quantity {
-  #   label: "Total Fulfilled Quantity"
-  #   # description: "Use this for counting lifetime orders across many users"
-  #   type: sum
-  #   sql: ${quantityfulfilled} ;;
-  # }
-
-  measure: total_product_revenue {
-    label: "Total Product Revenue - USD"
-    # description: "Use this for counting lifetime orders across many users"
+  measure: total_revenue {
     type: sum
-    sql: ${product_revenue_usd} ;;
+    sql: ${revenue} ;;
   }
-
-  # measure: amount {
-  #   label: "Order Amount"
-  #   description: "Price of order for the selected items in the original currency of the order"
-  #   type: number
-  #   value_format: "#,##0.00"
-  #   sql: ${TABLE}.amount ;;
-  # }
-
-  # measure: amount_usd_conversion {
-  #   label: "Order Amount - USD Conversion"
-  #   description: "Price of order for the selected items, converted to USD"
-  #   type: number
-  #   # value_format: "#,##0.00"
-  #   value_format_name: usd
-  #   sql: ${TABLE}.amount_usd_conversion ;;
-  # }
-
-  # measure: asp {
-  #   label: "Average Selling Price (ASP)"
-  #   # description: ""
-  #   type: number
-  #   value_format: "#,##0.00"
-  #   sql: ${TABLE}.asp ;;
-  # }
-
-
-# Filter
-  filter: date_filter {
-    type: date
-    sql: {% condition date_filter %} ${TABLE}.actual_ship_date {% endcondition %} OR {% condition date_filter %} ${TABLE}.transaction_date {% endcondition %} ;;
-  }
-  }
+}
