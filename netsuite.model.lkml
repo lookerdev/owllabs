@@ -3,6 +3,7 @@ connection: "redshift"
 include: "/views/netsuite_revenue_report.view.lkml"
 include: "/views/netsuite_units_ordered.view.lkml"
 include: "/views/netsuite_units_fulfilled.view.lkml"
+include: "/views/dim_calendar.view.lkml"
 
 # include all views in the views/ folder in this project
 # include: "/**/*.view.lkml"                 # include all views in this project
@@ -24,6 +25,7 @@ explore: netsuite_revenue_report {
 
 
 explore: netsuite_units_ordered {
+  label: "Netsuite Units Ordered/Fulfilled"
 
   join: netsuite_units_fulfilled {
     # view_label: "Devices"
@@ -32,5 +34,13 @@ explore: netsuite_units_ordered {
     # sql_where: ${device_view.product_name} != 'TESTNAME' ;;
   }
 
+  join:  dim_calendar {
+    relationship: many_to_one
+    sql_on: ${dim_calendar.date_date} = ${netsuite_units_ordered.sales_order_date} or ${dim_calendar.date_date} = ${netsuite_units_fulfilled.fullfillment_date} ;;
+
+
+
+
+  }
 
   }

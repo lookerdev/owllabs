@@ -16,6 +16,22 @@ view: netsuite_units_fulfilled {
     sql: ${TABLE}.description ;;
   }
 
+  dimension_group: deleted_date {
+    # hidden: yes
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}.deleteddate ;;
+  }
+
   dimension_group: fullfillment {
     type: time
     timeframes: [
@@ -75,6 +91,14 @@ view: netsuite_units_fulfilled {
   measure: total_fulfilled {
     type: sum
     sql: ${TABLE}.quantity_fulfilled ;;
+    }
+
+  measure: count_fulfillments {
+    type: count_distinct
+    sql: ${TABLE}.item_fullfillment_number ;;
+
+
 
   }
+
 }
