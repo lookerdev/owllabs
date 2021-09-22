@@ -58,6 +58,7 @@ view: revenue_by_item_looker {
   }
 
   dimension: marketplace_segment_name {
+    hidden: yes
     type: string
     sql: ${TABLE}.marketplace_segment_name ;;
   }
