@@ -5,6 +5,7 @@ include: "/views/netsuite_units_ordered.view.lkml"
 include: "/views/netsuite_units_fulfilled.view.lkml"
 include: "/views/dim_calendar.view.lkml"
 include: "/views/item_fulfillments_looker.view.lkml"
+include: "/views/revenue_by_item_looker.view.lkml"
 
 # include all views in the views/ folder in this project
 # include: "/**/*.view.lkml"                 # include all views in this project
@@ -14,13 +15,12 @@ include: "/views/item_fulfillments_looker.view.lkml"
 # # and define the joins that connect them together.
 #
 
-explore: netsuite_revenue_report {
-  label: "Netsuite Revenue Report"
-  # always_filter: {
-  #     filters: [actual_ship_date: "filter expression", transaction_date: "filter expression"]
-  # sql_always_where: (${netsuite_revenue_report."Ship Date"} >= '2021-08-01' AND ${netsuite_revenue_report."Ship Date"} < '2021-09-01') OR (${netsuite_revenue_report."Transaction Date"} >= '2021-08-01' AND ${netsuite_revenue_report."Transaction Date"} < '2021-09-01');;
-
-  }
+# explore: netsuite_revenue_report {
+#   label: "Netsuite Revenue Report"
+#   # always_filter: {
+#   #     filters: [actual_ship_date: "filter expression", transaction_date: "filter expression"]
+#   # sql_always_where: (${netsuite_revenue_report."Ship Date"} >= '2021-08-01' AND ${netsuite_revenue_report."Ship Date"} < '2021-09-01') OR (${netsuite_revenue_report."Transaction Date"} >= '2021-08-01' AND ${netsuite_revenue_report."Transaction Date"} < '2021-09-01');;
+#   }
 
 
 explore: netsuite_units_ordered {
@@ -36,24 +36,19 @@ explore: netsuite_units_ordered {
   join:  dim_calendar {
     relationship: many_to_one
     sql_on: ${dim_calendar.date_date} = ${netsuite_units_ordered.sales_order_date} or ${dim_calendar.date_date} = ${netsuite_units_fulfilled.fullfillment_date} ;;
-
   }
+}
 
-  }
 
 explore: netsuite_units_fulfilled {
   label: "Netsuite Units Fulfilled"
-  # always_filter: {
-  #     filters: [actual_ship_date: "filter expression", transaction_date: "filter expression"]
-  # sql_always_where: (${netsuite_revenue_report."Ship Date"} >= '2021-08-01' AND ${netsuite_revenue_report."Ship Date"} < '2021-09-01') OR (${netsuite_revenue_report."Transaction Date"} >= '2021-08-01' AND ${netsuite_revenue_report."Transaction Date"} < '2021-09-01');;
-
 }
 
 
 explore: item_fulfillments_looker {
   label: "Revenue Item Fulfillments"
-  # always_filter: {
-  #     filters: [actual_ship_date: "filter expression", transaction_date: "filter expression"]
-  # sql_always_where: (${netsuite_revenue_report."Ship Date"} >= '2021-08-01' AND ${netsuite_revenue_report."Ship Date"} < '2021-09-01') OR (${netsuite_revenue_report."Transaction Date"} >= '2021-08-01' AND ${netsuite_revenue_report."Transaction Date"} < '2021-09-01');;
+}
 
+explore: revenue_by_item_looker {
+  label: "Revenue by Item"
 }

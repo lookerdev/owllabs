@@ -1,10 +1,10 @@
 view: item_fulfillments_looker {
   sql_table_name: public.item_fulfillments_looker ;;
 
-  dimension: actual_ship_date {
-    type: string
-    sql: ${TABLE}.actual_ship_date ;;
-  }
+  # dimension: actual_ship_date {
+  #   type: string
+  #   sql: ${TABLE}.actual_ship_date ;;
+  # }
 
   dimension: channel {
     type: string
@@ -17,7 +17,7 @@ view: item_fulfillments_looker {
   }
 
   dimension: cogs_amount {
-    type: string
+    type: number
     sql: ${TABLE}.cogs_amount ;;
   }
 
@@ -36,15 +36,25 @@ view: item_fulfillments_looker {
     sql: ${TABLE}.customer_internal_id ;;
   }
 
-  dimension: date {
-    type: string
+  dimension_group: date {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
     sql: ${TABLE}.date ;;
   }
 
-  dimension: date_created {
-    type: string
-    sql: ${TABLE}.date_created ;;
-  }
+  # dimension: date_created {
+  #   type: string
+  #   sql: ${TABLE}.date_created ;;
+  # }
 
   dimension: document_number {
     type: string
@@ -52,6 +62,7 @@ view: item_fulfillments_looker {
   }
 
   dimension: item {
+    label: "SKU"
     type: string
     sql: ${TABLE}.item ;;
   }
@@ -78,6 +89,7 @@ view: item_fulfillments_looker {
   }
 
   dimension: product_category {
+    label: "Product"
     type: string
     sql: ${TABLE}.product_category ;;
   }
@@ -88,19 +100,15 @@ view: item_fulfillments_looker {
   }
 
   dimension: quantity {
-    type: string
+    description: "Absolute quantity"
+    type: number
     sql: ${TABLE}.quantity ;;
   }
 
-  dimension: quantity_absolute {
-    type: string
-    sql: ${TABLE}.quantity_absolute ;;
-  }
-
-  dimension: sales_effective_date {
-    type: string
-    sql: ${TABLE}.sales_effective_date ;;
-  }
+  # dimension: sales_effective_date {
+  #   type: string
+  #   sql: ${TABLE}.sales_effective_date ;;
+  # }
 
   measure: count {
     type: count
@@ -109,6 +117,13 @@ view: item_fulfillments_looker {
 
   measure: total_quantity{
     type: sum
-    sql: ${TABLE}.quantity_absolute  ;;
+    sql: ${TABLE}.quantity  ;;
   }
+
+  measure: total_cogs{
+    type: sum
+    sql: ${TABLE}.cogs_amount  ;;
+    value_format_name: usd
+  }
+
 }
