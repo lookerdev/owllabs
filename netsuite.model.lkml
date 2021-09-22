@@ -4,6 +4,7 @@ include: "/views/netsuite_revenue_report.view.lkml"
 include: "/views/netsuite_units_ordered.view.lkml"
 include: "/views/netsuite_units_fulfilled.view.lkml"
 include: "/views/dim_calendar.view.lkml"
+include: "/views/item_fulfillments_looker.view.lkml"
 
 # include all views in the views/ folder in this project
 # include: "/**/*.view.lkml"                 # include all views in this project
@@ -42,6 +43,15 @@ explore: netsuite_units_ordered {
 
 explore: netsuite_units_fulfilled {
   label: "Netsuite Units Fulfilled"
+  # always_filter: {
+  #     filters: [actual_ship_date: "filter expression", transaction_date: "filter expression"]
+  # sql_always_where: (${netsuite_revenue_report."Ship Date"} >= '2021-08-01' AND ${netsuite_revenue_report."Ship Date"} < '2021-09-01') OR (${netsuite_revenue_report."Transaction Date"} >= '2021-08-01' AND ${netsuite_revenue_report."Transaction Date"} < '2021-09-01');;
+
+}
+
+
+explore: item_fulfillments_looker {
+  label: "Revenue Item Fulfillments"
   # always_filter: {
   #     filters: [actual_ship_date: "filter expression", transaction_date: "filter expression"]
   # sql_always_where: (${netsuite_revenue_report."Ship Date"} >= '2021-08-01' AND ${netsuite_revenue_report."Ship Date"} < '2021-09-01') OR (${netsuite_revenue_report."Transaction Date"} >= '2021-08-01' AND ${netsuite_revenue_report."Transaction Date"} < '2021-09-01');;
