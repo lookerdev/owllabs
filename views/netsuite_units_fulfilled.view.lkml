@@ -2,7 +2,6 @@ view: netsuite_units_fulfilled {
   sql_table_name: public.netsuite_units_fulfilled ;;
 
 
-
   dimension: created_from_internal_id {
     hidden: yes
     type: number
@@ -76,6 +75,11 @@ view: netsuite_units_fulfilled {
     sql: ${TABLE}.item_internal_id ;;
   }
 
+  dimension: fulfillment_posting_period {
+    type: string
+    sql: ${TABLE}.posting_period ;;
+  }
+
   dimension: quantity_fulfilled {
     type: number
     sql: ${TABLE}.quantity_fulfilled ;;
@@ -103,9 +107,9 @@ view: netsuite_units_fulfilled {
   }
 
   measure: total_fulfilled {
-    type: sum_distinct
-    sql_distinct_key: ${internal_id} ;;
-    sql: ${quantity_fulfilled} ;;
+    type: sum
+    sql_distinct_key: ${row_num} ;;
+    sql: ${TABLE}.quantity_fulfilled  ;;
     }
 
   # measure: count_fulfillments {

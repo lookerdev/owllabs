@@ -106,6 +106,12 @@ view: netsuite_units_ordered {
     sql: ${TABLE}.order_total_tax ;;
   }
 
+  dimension: order_posting_period {
+    type: string
+    sql: ${TABLE}.posting_period ;;
+  }
+
+
   dimension: quantity_ordered {
     type: number
     sql: ${TABLE}.quantity_ordered ;;

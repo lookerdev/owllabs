@@ -23,12 +23,12 @@ explore: netsuite_revenue_report {
 
 
 explore: netsuite_units_ordered {
-  label: "Netsuite Units Ordered/Fulfilled"
+  label: "Netsuite Units Ordered"
 
   join: netsuite_units_fulfilled {
     # view_label: "Devices"
     relationship: one_to_many
-    sql_on: ${netsuite_units_fulfilled.internal_id} = ${netsuite_units_ordered.internal_id} and ${netsuite_units_fulfilled.item_internal_id} = ${netsuite_units_ordered.item_internal_id} ;;
+    sql_on: ${netsuite_units_fulfilled.created_from_internal_id} = ${netsuite_units_ordered.internal_id} and ${netsuite_units_fulfilled.item_internal_id} = ${netsuite_units_ordered.item_internal_id} ;;
     # sql_where: ${device_view.product_name} != 'TESTNAME' ;;
   }
 
@@ -36,9 +36,14 @@ explore: netsuite_units_ordered {
     relationship: many_to_one
     sql_on: ${dim_calendar.date_date} = ${netsuite_units_ordered.sales_order_date} or ${dim_calendar.date_date} = ${netsuite_units_fulfilled.fullfillment_date} ;;
 
-
-
-
   }
 
   }
+
+explore: netsuite_units_fulfilled {
+  label: "Netsuite Units Fulfilled"
+  # always_filter: {
+  #     filters: [actual_ship_date: "filter expression", transaction_date: "filter expression"]
+  # sql_always_where: (${netsuite_revenue_report."Ship Date"} >= '2021-08-01' AND ${netsuite_revenue_report."Ship Date"} < '2021-09-01') OR (${netsuite_revenue_report."Transaction Date"} >= '2021-08-01' AND ${netsuite_revenue_report."Transaction Date"} < '2021-09-01');;
+
+}

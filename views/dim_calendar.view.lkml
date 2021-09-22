@@ -54,6 +54,7 @@ view: dim_calendar {
     sql: ${TABLE}.month_name ;;
   }
 
+
   dimension: quarter {
     label: "Quarter Number"
     type: number
