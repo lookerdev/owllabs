@@ -1,6 +1,7 @@
 view: revenue_by_item_looker {
   sql_table_name: public.revenue_by_item_looker ;;
 
+
   dimension: account_name {
     type: string
     sql: ${TABLE}.account_name ;;
@@ -40,6 +41,13 @@ view: revenue_by_item_looker {
     sql: ${TABLE}.entity_billing_address_country ;;
   }
 
+  dimension: entity_internal_id {
+    hidden: yes
+    type: string
+    sql: ${TABLE}.entity_internal_id ;;
+  }
+
+
   dimension: entity_name {
     label: "Customer"
     type: string
@@ -57,11 +65,11 @@ view: revenue_by_item_looker {
     sql: ${TABLE}.marketplace_segment ;;
   }
 
-  dimension: marketplace_segment_name {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.marketplace_segment_name ;;
-  }
+  # dimension: marketplace_segment_name {
+  #   hidden: yes
+  #   type: string
+  #   sql: ${TABLE}.marketplace_segment_name ;;
+  # }
 
   dimension: memo {
     hidden: yes
@@ -102,15 +110,15 @@ view: revenue_by_item_looker {
     sql: ${TABLE}.source_rev_rec_document_type ;;
   }
 
-  dimension: transaction_number_2 {
+  dimension: transaction_number {
     hidden: yes
     type: string
-    sql: ${TABLE}.transaction_number_2 ;;
+    sql: ${TABLE}.transaction_number ;;
   }
 
   measure: count {
     type: count
-    drill_fields: [account_name, marketplace_segment_name, entity_name]
+    drill_fields: [account_name, marketplace_segment, entity_name]
   }
 
   measure: total_revenue {
