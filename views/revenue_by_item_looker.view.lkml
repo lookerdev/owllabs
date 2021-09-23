@@ -2,6 +2,7 @@ view: revenue_by_item_looker {
   sql_table_name: public.revenue_by_item_looker ;;
 
 
+
 # dimensions
   dimension: account_name {
     label: "old acct name"
@@ -9,10 +10,10 @@ view: revenue_by_item_looker {
     sql: ${TABLE}.old_account_name ;;
   }
 
-  dimension: account_line_internal_id {
+  dimension: account_id {
     hidden: yes
     type: string
-    sql: ${TABLE}.account_line_internal_id ;;
+    sql: ${TABLE}.account_id ;;
   }
 
   dimension: account_line_name {
@@ -45,6 +46,11 @@ view: revenue_by_item_looker {
   dimension: channel {
     type: string
     sql: ${TABLE}.channel ;;
+  }
+
+  dimension: coalesce {
+    type: number
+    sql: ${TABLE}.coalesce ;;
   }
 
   dimension: customer_country {
@@ -140,12 +146,12 @@ view: revenue_by_item_looker {
 
   measure: count {
     type: count
-    drill_fields: [account_name, marketplace_segment, entity_name]
+    # drill_fields: [account_name, marketplace_segment, entity_name]
   }
 
   measure: total_revenue {
     type: sum
-    sql: ${TABLE}.amount ;;
+    sql: ${TABLE}.coalesce ;;
     value_format_name: usd
   }
 }
