@@ -2,6 +2,7 @@ view: revenue_by_item_looker {
   sql_table_name: public.revenue_by_item_looker ;;
 
 
+# dimensions
   dimension: account_name {
     type: string
     sql: ${TABLE}.account_name ;;
@@ -47,7 +48,6 @@ view: revenue_by_item_looker {
     sql: ${TABLE}.entity_internal_id ;;
   }
 
-
   dimension: entity_name {
     label: "Customer"
     type: string
@@ -65,7 +65,7 @@ view: revenue_by_item_looker {
     sql: ${TABLE}.marketplace_segment ;;
   }
 
-  # dimension: marketplace_segment_name {
+   # dimension: marketplace_segment_name {
   #   hidden: yes
   #   type: string
   #   sql: ${TABLE}.marketplace_segment_name ;;
