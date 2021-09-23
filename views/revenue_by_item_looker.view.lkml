@@ -4,8 +4,31 @@ view: revenue_by_item_looker {
 
 # dimensions
   dimension: account_name {
+    label: "old acct name"
     type: string
-    sql: ${TABLE}.account_name ;;
+    sql: ${TABLE}.old_account_name ;;
+  }
+
+  dimension: account_line_internal_id {
+    hidden: yes
+    type: string
+    sql: ${TABLE}.account_line_internal_id ;;
+  }
+
+  dimension: account_line_name {
+    label: "Account Name"
+    type: string
+    sql: ${TABLE}.account_line_name ;;
+  }
+
+  dimension: account_line_name_glstyle {
+    type: string
+    sql: ${TABLE}.account_line_name_glstyle ;;
+  }
+
+  dimension: account_line_number {
+    type: string
+    sql: ${TABLE}.account_line_number ;;
   }
 
   dimension: accounting_period_name {
@@ -65,12 +88,6 @@ view: revenue_by_item_looker {
     sql: ${TABLE}.marketplace_segment ;;
   }
 
-   # dimension: marketplace_segment_name {
-  #   hidden: yes
-  #   type: string
-  #   sql: ${TABLE}.marketplace_segment_name ;;
-  # }
-
   dimension: memo {
     hidden: yes
     type: string
@@ -82,6 +99,11 @@ view: revenue_by_item_looker {
     type: string
     sql: ${TABLE}.memo_1 ;;
   }
+
+  # dimension: old_account_name {
+  #   type: string
+  #   sql: ${TABLE}.old_account_name ;;
+  # }
 
   dimension: primary_key {
     primary_key: yes
