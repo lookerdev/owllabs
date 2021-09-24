@@ -114,12 +114,6 @@ view: revenue_by_item_looker {
   #   sql: ${TABLE}.old_account_name ;;
   # }
 
-  dimension: primary_key {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.primary_key ;;
-  }
-
   dimension: product_category {
     type: string
     sql: ${TABLE}.product_category ;;
@@ -141,6 +135,7 @@ view: revenue_by_item_looker {
 
   dimension: source_rev_rec_document_number {
     label: "Source Document Number"
+    hidden: yes
     type: string
     sql: ${TABLE}.source_rev_rec_document_number ;;
   }
@@ -158,11 +153,6 @@ view: revenue_by_item_looker {
     sql: ${TABLE}.transaction_number ;;
   }
 
-  dimension: uuid {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.uuid ;;
-  }
 
   measure: count {
     type: count
