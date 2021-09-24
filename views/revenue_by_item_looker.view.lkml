@@ -4,12 +4,6 @@ view: revenue_by_item_looker {
 
 
 # dimensions
-  dimension: account_name {
-    label: "old acct name"
-    type: string
-    sql: ${TABLE}.old_account_name ;;
-  }
-
   dimension: account_id {
     hidden: yes
     type: string
@@ -38,7 +32,6 @@ view: revenue_by_item_looker {
   }
 
   dimension: amount {
-    hidden: yes
     type: string
     sql: ${TABLE}.amount ;;
   }
@@ -48,20 +41,24 @@ view: revenue_by_item_looker {
     sql: ${TABLE}.channel ;;
   }
 
-  dimension: coalesce {
-    type: number
-    sql: ${TABLE}.coalesce ;;
-  }
+  # dimension: customer_country {
+  #   hidden: yes
+  #   type: string
+  #   sql: ${TABLE}.customer_country ;;
+  # }
 
-  dimension: customer_country {
+  dimension_group: date {
     hidden: yes
-    type: string
-    sql: ${TABLE}.customer_country ;;
-  }
-
-  dimension: date {
-    hidden: yes
-    type: string
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
     sql: ${TABLE}.date ;;
   }
 
@@ -100,11 +97,11 @@ view: revenue_by_item_looker {
     sql: ${TABLE}.memo ;;
   }
 
-  dimension: memo_1 {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.memo_1 ;;
-  }
+  # dimension: memo_1 {
+  #   hidden: yes
+  #   type: string
+  #   sql: ${TABLE}.memo_1 ;;
+  # }
 
   # dimension: old_account_name {
   #   type: string
@@ -115,7 +112,7 @@ view: revenue_by_item_looker {
     primary_key: yes
     hidden: yes
     type: string
-    sql: ${TABLE}.primary_key ;;
+    sql: ${TABLE}.uuid, ${TABLE}.primary_key, ${TABLE}.entity_internal_id, ${TABLE}.amount) ;;
   }
 
   dimension: product_category {
@@ -144,6 +141,12 @@ view: revenue_by_item_looker {
     sql: ${TABLE}.transaction_number ;;
   }
 
+  dimension: uuid {
+    hidden: yes
+    type: string
+    sql: ${TABLE}.uuid ;;
+  }
+
   measure: count {
     type: count
     # drill_fields: [account_name, marketplace_segment, entity_name]
@@ -151,7 +154,7 @@ view: revenue_by_item_looker {
 
   measure: total_revenue {
     type: sum
-    sql: ${TABLE}.coalesce ;;
+    sql: ${TABLE}.amount ;;
     value_format_name: usd
   }
 }
