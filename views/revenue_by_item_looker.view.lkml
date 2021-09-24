@@ -5,6 +5,7 @@ view: revenue_by_item_looker {
 
 # dimensions
   dimension: account_id {
+    label: "Account internal id"
     hidden: yes
     type: string
     sql: ${TABLE}.account_id ;;
@@ -17,21 +18,25 @@ view: revenue_by_item_looker {
   }
 
   dimension: account_line_name_glstyle {
+    hidden: yes
     type: string
     sql: ${TABLE}.account_line_name_glstyle ;;
   }
 
   dimension: account_line_number {
+    label: "Account Number"
     type: string
     sql: ${TABLE}.account_line_number ;;
   }
 
   dimension: accounting_period_name {
+    label: "Accounting Period"
     type: string
     sql: ${TABLE}.accounting_period_name ;;
   }
 
   dimension: amount {
+    hidden: yes
     type: number
     sql: ${TABLE}.amount ;;
   }
@@ -135,16 +140,19 @@ view: revenue_by_item_looker {
   }
 
   dimension: source_rev_rec_document_number {
+    label: "Source Document Number"
     type: string
     sql: ${TABLE}.source_rev_rec_document_number ;;
   }
 
   dimension: source_rev_rec_document_type {
+    label: "Document Type"
     type: string
     sql: ${TABLE}.source_rev_rec_document_type ;;
   }
 
   dimension: transaction_number {
+    label: "Document Number"
     # hidden: yes
     type: string
     sql: ${TABLE}.transaction_number ;;
