@@ -117,7 +117,7 @@ view: revenue_by_item_looker {
   dimension: product_category {
     type: string
     sql: ${TABLE}.product_category ;;
-    drill_fields: [account_line_name, channel, entity_name, transaction_number, marketplace_segment, item]
+    drill_fields: [account_line_name, channel, entity_name, transaction_number, marketplace_segment, item, product_line]
   }
 
   dimension: product_line {
