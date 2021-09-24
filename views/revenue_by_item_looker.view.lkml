@@ -1,5 +1,5 @@
 view: revenue_by_item_looker {
-  sql_table_name: public.revenue_by_item_looker ;;
+  sql_table_name: public.revenue_by_item_looker_primkey ;;
   drill_fields: [account_line_name, channel, entity_name, transaction_number, marketplace_segment,item]
 
 
@@ -32,7 +32,7 @@ view: revenue_by_item_looker {
   }
 
   dimension: amount {
-    type: string
+    type: number
     sql: ${TABLE}.amount ;;
   }
 
@@ -89,6 +89,7 @@ view: revenue_by_item_looker {
   dimension: marketplace_segment {
     type: string
     sql: ${TABLE}.marketplace_segment ;;
+    drill_fields: [entity_name]
   }
 
   dimension: memo {
@@ -109,20 +110,28 @@ view: revenue_by_item_looker {
   # }
 
   dimension: primary_key {
-    primary_key: yes
     hidden: yes
     type: string
-    sql: ${TABLE}.uuid, ${TABLE}.primary_key, ${TABLE}.entity_internal_id, ${TABLE}.amount) ;;
+    sql: ${TABLE}.primary_key ;;
   }
 
   dimension: product_category {
     type: string
     sql: ${TABLE}.product_category ;;
+    drill_fields: [account_line_name, channel, entity_name, transaction_number, marketplace_segment, item]
   }
 
   dimension: product_line {
     type: string
     sql: ${TABLE}.product_line ;;
+    drill_fields: [account_line_name, channel, entity_name, transaction_number, marketplace_segment, item]
+  }
+
+  dimension: row_num {
+    primary_key: yes
+    hidden: yes
+    type: number
+    sql: ${TABLE}.row_num ;;
   }
 
   dimension: source_rev_rec_document_number {
@@ -156,5 +165,6 @@ view: revenue_by_item_looker {
     type: sum
     sql: ${TABLE}.amount ;;
     value_format_name: usd
+    drill_fields: [account_line_name, channel, entity_name, transaction_number, marketplace_segment, item]
   }
 }
