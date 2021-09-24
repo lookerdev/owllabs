@@ -1,6 +1,6 @@
 view: revenue_by_item_looker {
   sql_table_name: public.revenue_by_item_looker ;;
-
+  drill_fields: [account_line_name, channel, entity_name, transaction_number, marketplace_segment,item]
 
 
 # dimensions
@@ -136,7 +136,7 @@ view: revenue_by_item_looker {
   }
 
   dimension: transaction_number {
-    hidden: yes
+    # hidden: yes
     type: string
     sql: ${TABLE}.transaction_number ;;
   }
@@ -149,7 +149,7 @@ view: revenue_by_item_looker {
 
   measure: count {
     type: count
-    # drill_fields: [account_name, marketplace_segment, entity_name]
+    # drill_fields: [marketplace_segment, entity_name]
   }
 
   measure: total_revenue {
