@@ -170,6 +170,7 @@ view: revenue_by_item_looker {
   }
 
   measure: total_revenue {
+    label: "Revenue"
     type: sum
     sql: ${TABLE}.amount ;;
     value_format_name: usd
