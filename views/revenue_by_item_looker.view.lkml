@@ -94,7 +94,7 @@ view: revenue_by_item_looker {
   dimension: marketplace_segment {
     type: string
     sql: ${TABLE}.marketplace_segment ;;
-    drill_fields: [entity_name]
+    drill_fields: [entity_name, item, product_category, product_line]
   }
 
   dimension: memo {
