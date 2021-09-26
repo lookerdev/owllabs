@@ -1,10 +1,22 @@
 view: item_fulfillments_looker {
   sql_table_name: public.item_fulfillments_looker_primkey ;;
 
-  # dimension: actual_ship_date {
-  #   type: string
-  #   sql: ${TABLE}.actual_ship_date ;;
-  # }
+
+  dimension_group: actual_ship {
+    hidden: yes
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}.actual_ship_date ;;
+  }
 
   dimension: channel {
     type: string
@@ -21,22 +33,14 @@ view: item_fulfillments_looker {
     sql: ${TABLE}.cogs_amount ;;
   }
 
-  dimension: created_from {
-    type: string
-    sql: ${TABLE}.created_from ;;
-  }
-
-  dimension: customer_country {
-    type: string
-    sql: ${TABLE}.customer_country ;;
-  }
-
   dimension: customer_internal_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.customer_internal_id ;;
   }
 
   dimension_group: date {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -51,10 +55,19 @@ view: item_fulfillments_looker {
     sql: ${TABLE}.date ;;
   }
 
-  # dimension: date_created {
-  #   type: string
-  #   sql: ${TABLE}.date_created ;;
-  # }
+  dimension_group: date_created {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.date_created ;;
+  }
 
   dimension: document_number {
     type: string
@@ -73,6 +86,7 @@ view: item_fulfillments_looker {
   }
 
   dimension: name {
+    label: "Customer"
     type: string
     sql: ${TABLE}.name ;;
   }
@@ -82,14 +96,7 @@ view: item_fulfillments_looker {
     sql: ${TABLE}.period ;;
   }
 
-  dimension: primary_key {
-    primary_key: yes
-    type: string
-    sql: ${TABLE}.primary_key ;;
-  }
-
   dimension: product_category {
-    label: "Product"
     type: string
     sql: ${TABLE}.product_category ;;
   }
@@ -100,15 +107,43 @@ view: item_fulfillments_looker {
   }
 
   dimension: quantity {
-    description: "Absolute quantity"
     type: number
     sql: ${TABLE}.quantity ;;
   }
 
-  # dimension: sales_effective_date {
-  #   type: string
-  #   sql: ${TABLE}.sales_effective_date ;;
-  # }
+  dimension: row_num {
+    primary_key: yes
+    hidden: yes
+    type: number
+    sql: ${TABLE}.row_num ;;
+  }
+
+  dimension_group: sales_effective {
+    hidden: yes
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}.sales_effective_date ;;
+  }
+
+  dimension: sales_order {
+    type: string
+    sql: ${TABLE}.sales_order ;;
+  }
+
+  dimension: shopify_order_number {
+    hidden: yes
+    type: string
+    sql: ${TABLE}.shopify_order_number ;;
+  }
 
   measure: count {
     type: count
@@ -125,5 +160,4 @@ view: item_fulfillments_looker {
     sql: ${TABLE}.cogs_amount  ;;
     value_format_name: usd
   }
-
 }
