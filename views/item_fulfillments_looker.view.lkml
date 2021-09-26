@@ -1,5 +1,5 @@
 view: item_fulfillments_looker {
-  sql_table_name: public.item_fulfillments_looker ;;
+  sql_table_name: public.item_fulfillments_looker_primkey ;;
 
   # dimension: actual_ship_date {
   #   type: string
