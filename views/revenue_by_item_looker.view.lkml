@@ -118,13 +118,13 @@ view: revenue_by_item_looker {
   dimension: product_category {
     type: string
     sql: ${TABLE}.product_category ;;
-    drill_fields: [account_line_name, channel, entity_name, transaction_number, marketplace_segment, item, product_line]
+    drill_fields: [account_line_name, channel, entity_name, marketplace_segment, item, product_line]
   }
 
   dimension: product_line {
     type: string
     sql: ${TABLE}.product_line ;;
-    drill_fields: [account_line_name, channel, entity_name, transaction_number, marketplace_segment, item]
+    drill_fields: [account_line_name, channel, entity_name, marketplace_segment, item]
   }
 
   dimension: row_num {
@@ -165,6 +165,6 @@ view: revenue_by_item_looker {
     type: sum
     sql: ${TABLE}.amount ;;
     value_format_name: usd
-    drill_fields: [account_line_name, channel, entity_name, transaction_number, marketplace_segment, item]
+    drill_fields: [account_line_name, channel, entity_name, marketplace_segment, item]
   }
 }
