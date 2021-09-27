@@ -44,6 +44,7 @@ view: revenue_by_item_looker {
   dimension: channel {
     type: string
     sql: ${TABLE}.channel ;;
+    drill_fields: [account_line_name, entity_name, marketplace_segment, product_category]
   }
 
   # dimension: customer_country {
