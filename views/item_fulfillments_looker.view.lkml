@@ -21,6 +21,7 @@ view: item_fulfillments_looker {
   dimension: channel {
     type: string
     sql: ${TABLE}.channel ;;
+    drill_fields: [customer_name, marketplace_segment, product_category]
   }
 
   dimension: cogs_account {
@@ -37,6 +38,12 @@ view: item_fulfillments_looker {
     hidden: yes
     type: string
     sql: ${TABLE}.customer_internal_id ;;
+  }
+
+  dimension: customer_name {
+    label: "Customer"
+    type: string
+    sql: ${TABLE}.customer_name ;;
   }
 
   dimension_group: date {
@@ -83,12 +90,7 @@ view: item_fulfillments_looker {
   dimension: marketplace_segment {
     type: string
     sql: ${TABLE}.marketplace_segment ;;
-  }
-
-  dimension: name {
-    label: "Customer"
-    type: string
-    sql: ${TABLE}.name ;;
+    drill_fields: [customer_name, item, product_category, product_line]
   }
 
   dimension: period {
@@ -99,11 +101,13 @@ view: item_fulfillments_looker {
   dimension: product_category {
     type: string
     sql: ${TABLE}.product_category ;;
+    drill_fields: [channel, customer_name, marketplace_segment, item, product_line]
   }
 
   dimension: product_line {
     type: string
     sql: ${TABLE}.product_line ;;
+    drill_fields: [channel, customer_name, marketplace_segment, item]
   }
 
   dimension: quantity {
@@ -146,8 +150,9 @@ view: item_fulfillments_looker {
   }
 
   measure: count {
+    hidden: yes
     type: count
-    drill_fields: [name]
+    drill_fields: [customer_name]
   }
 
   measure: total_quantity{

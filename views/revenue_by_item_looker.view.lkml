@@ -1,6 +1,6 @@
 view: revenue_by_item_looker {
   sql_table_name: public.revenue_by_item_looker_primkey ;;
-  # drill_fields: [account_line_name, channel, entity_name, transaction_number, marketplace_segment,item]
+  # drill_fields: [account_line_name, channel, customer_name, transaction_number, marketplace_segment,item]
 
 
 # dimensions
@@ -15,7 +15,7 @@ view: revenue_by_item_looker {
     label: "Account Name"
     type: string
     sql: ${TABLE}.account_line_name ;;
-    drill_fields: [channel, entity_name, marketplace_segment, product_category]
+    drill_fields: [channel, customer_name, marketplace_segment, product_category]
   }
 
   dimension: account_line_name_glstyle {
@@ -45,7 +45,7 @@ view: revenue_by_item_looker {
   dimension: channel {
     type: string
     sql: ${TABLE}.channel ;;
-    drill_fields: [account_line_name, entity_name, marketplace_segment, product_category]
+    drill_fields: [account_line_name, customer_name, marketplace_segment, product_category]
   }
 
   # dimension: customer_country {
@@ -69,19 +69,19 @@ view: revenue_by_item_looker {
     sql: ${TABLE}.date ;;
   }
 
-  dimension: entity_billing_address_country {
+  dimension: customer_billing_address_country {
     hidden: yes
     type: string
     sql: ${TABLE}.entity_billing_address_country ;;
   }
 
-  dimension: entity_internal_id {
+  dimension: customer_internal_id {
     hidden: yes
     type: string
     sql: ${TABLE}.entity_internal_id ;;
   }
 
-  dimension: entity_name {
+  dimension: customer_name {
     label: "Customer"
     type: string
     sql: ${TABLE}.entity_name ;;
@@ -96,7 +96,7 @@ view: revenue_by_item_looker {
   dimension: marketplace_segment {
     type: string
     sql: ${TABLE}.marketplace_segment ;;
-    drill_fields: [entity_name, item, product_category, product_line]
+    drill_fields: [customer_name, item, product_category, product_line]
   }
 
   dimension: memo {
@@ -119,13 +119,13 @@ view: revenue_by_item_looker {
   dimension: product_category {
     type: string
     sql: ${TABLE}.product_category ;;
-    drill_fields: [account_line_name, channel, entity_name, marketplace_segment, item, product_line]
+    drill_fields: [account_line_name, channel, customer_name, marketplace_segment, item, product_line]
   }
 
   dimension: product_line {
     type: string
     sql: ${TABLE}.product_line ;;
-    drill_fields: [account_line_name, channel, entity_name, marketplace_segment, item]
+    drill_fields: [account_line_name, channel, customer_name, marketplace_segment, item]
   }
 
   dimension: row_num {
@@ -158,7 +158,7 @@ view: revenue_by_item_looker {
 
   measure: count {
     type: count
-    # drill_fields: [marketplace_segment, entity_name]
+    # drill_fields: [marketplace_segment, customer_name]
   }
 
   measure: total_revenue {
@@ -166,6 +166,6 @@ view: revenue_by_item_looker {
     type: sum
     sql: ${TABLE}.amount ;;
     value_format_name: usd
-    drill_fields: [account_line_name, channel, entity_name, marketplace_segment, item]
+    drill_fields: [account_line_name, channel, customer_name, marketplace_segment, item]
   }
 }
