@@ -1,6 +1,6 @@
 view: revenue_by_item_looker {
   sql_table_name: public.revenue_by_item_looker_primkey ;;
-  drill_fields: [account_line_name, channel, entity_name, transaction_number, marketplace_segment,item]
+  # drill_fields: [account_line_name, channel, entity_name, transaction_number, marketplace_segment,item]
 
 
 # dimensions
@@ -15,6 +15,7 @@ view: revenue_by_item_looker {
     label: "Account Name"
     type: string
     sql: ${TABLE}.account_line_name ;;
+    drill_fields: [channel, entity_name, marketplace_segment, product_category]
   }
 
   dimension: account_line_name_glstyle {
