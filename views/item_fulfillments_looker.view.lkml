@@ -89,7 +89,7 @@ view: item_fulfillments_looker {
       }
       when: {
         sql: ${TABLE}.item in ('REPLC - NA','REPLC100-1000','REPLC100-2000','REPLC100-2001','REPPS - Universal','REPUSB - Universal','PTW100-1000-RPL','PTW100-2000-RPL','MTW100-1000-RPL','MTW100-2000 - Replacement','MTW100-2000-RPL','MTW200-1000-RPL','MTW200-2000-RPL','WBC100-1000-RPL','WBC100-2000-RPL') ;;
-        label: "Total Units"
+        label: "Other Units"
       }
       else: "N/A"
     }
