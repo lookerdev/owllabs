@@ -6,6 +6,7 @@ include: "/views/netsuite_units_fulfilled.view.lkml"
 include: "/views/dim_calendar.view.lkml"
 include: "/views/item_fulfillments_looker.view.lkml"
 include: "/views/revenue_by_item_looker.view.lkml"
+include: "*.dashboard.lookml"
 
 # include all views in the views/ folder in this project
 # include: "/**/*.view.lkml"                 # include all views in this project
