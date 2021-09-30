@@ -1,5 +1,8 @@
 view: item_fulfillments_looker {
   sql_table_name: public.item_fulfillments_looker_primkey ;;
+  filter: fulfillment_type_filter {
+    sql: fulfillment_type != 'N/A' ;;
+  }
 
 
   dimension_group: actual_ship {
@@ -80,6 +83,22 @@ view: item_fulfillments_looker {
     type: string
     sql: ${TABLE}.document_number ;;
   }
+
+  dimension: fulfillment_type {
+    case: {
+      when: {
+        sql: ${TABLE}.item in ('ACC100-1000','ACC100-2000','ACC100-2001','PTW100-1000','PTW100-2000','MTW100-1000','MTW100-2000','MTW200-1000','MTW200-2000','MTW200-3000','MTW200-4000','PPK100-0000','PPK100-2000','PPK200-0000','PPK200-0000-UPDATE','PPK200-2000','PPK200-2000-UPDATE','PPKU200-1000','REF100-1000','REF200-1000','REF200-2000','WBC100-1000','WBC100-2000') ;;
+        label: "Revenue Units"
+      }
+      when: {
+        sql: ${TABLE}.item in ('REPLC - NA','REPLC100-1000','REPLC100-2000','REPLC100-2001','REPPS - Universal','REPUSB - Universal','PTW100-1000-RPL','PTW100-2000-RPL','MTW100-1000-RPL','MTW100-2000 - Replacement','MTW100-2000-RPL','MTW200-1000-RPL','MTW200-2000-RPL','WBC100-1000-RPL','WBC100-2000-RPL') ;;
+        label: "Total Units"
+      }
+      else: "N/A"
+    }
+    # can_filter:
+  }
+
 
   dimension: item {
     label: "SKU"
