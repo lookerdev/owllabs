@@ -1,8 +1,5 @@
 view: item_fulfillments_looker {
   sql_table_name: public.item_fulfillments_looker_primkey ;;
-  filter: fulfillment_type_filter {
-    sql: fulfillment_type != 'N/A' ;;
-  }
 
 
   dimension_group: actual_ship {
