@@ -5,6 +5,23 @@
   # tile_size: 100
 
   filters:
+  - name: Period
+    title: Period
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: false
+    required: true
+    ui_config:
+      type: button_group
+      display: popover
+      options: []
+    model: netsuite
+    explore: revenue_by_item_looker, item_fulfillments_looker
+    listens_to_filters: []
+    field: revenue_by_item_looker.accounting_period_name or item_fulfillments_looker.period
+    # {% condition date_filter %} ${TABLE}.actual_ship_date {% endcondition %} OR {% condition date_filter %} ${TABLE}.transaction_date {% endcondition %} ;;
+
+
   - name: Revenue Period
     title: Revenue Period
     type: field_filter
@@ -19,6 +36,7 @@
     explore: revenue_by_item_looker
     listens_to_filters: []
     field: revenue_by_item_looker.accounting_period_name
+
   - name: Fulfillments Period
     title: Fulfillments Period
     type: field_filter
@@ -75,6 +93,7 @@
     explore: revenue_by_item_looker
     listens_to_filters: []
     field: revenue_by_item_looker.channel
+
 
 
   elements:
