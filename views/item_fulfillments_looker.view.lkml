@@ -1,4 +1,4 @@
-view: item_fulfillments_looker {
+view: item_fulfillments_looker{
   sql_table_name: public.item_fulfillments_looker_primkey ;;
 
 
@@ -84,7 +84,7 @@ view: item_fulfillments_looker {
   dimension: fulfillment_type {
     case: {
       when: {
-        sql: ${TABLE}.item in ('ACC100-1000','ACC100-2000','ACC100-2001','PTW100-1000','PTW100-2000','MTW100-1000','MTW100-2000','MTW200-1000','MTW200-2000','MTW200-3000','MTW200-4000','PPK100-0000','PPK100-2000','PPK200-0000','PPK200-0000-UPDATE','PPK200-2000','PPK200-2000-UPDATE','PPKU200-1000','REF100-1000','REF200-1000','REF200-2000','WBC100-1000','WBC100-2000') ;;
+        sql: ${TABLE}.item in ('ACC100-1000','ACC100-2000','ACC100-2001','PTW100-1000','PTW100-2000','MTW100-1000','MTW100-2000','MTW200-1000','MTW200-2000','MTW200-3000','MTW200-4000','PPK100-0000','PPK100-2000','PPK200-0000','PPK200-0000-UPDATE','PPK200-2000','PPK200-2000-UPDATE','PPKU200-1000','REF100-1000','REF200-1000','REF200-2000','WBC100-1000','WBC100-2000','Refund Liability - HQ','Refund Liability - Owl','Refund Liability - WBO') ;;
         label: "Revenue Units"
       }
       when: {

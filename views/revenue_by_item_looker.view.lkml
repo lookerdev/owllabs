@@ -168,4 +168,10 @@ view: revenue_by_item_looker {
     value_format_name: usd
     drill_fields: [account_line_name, channel, customer_name, marketplace_segment, item]
   }
+
+  # measure: ASP {
+  #   # label: ""
+  #   type: sum
+  #   sql: ${amount} / ${item_fulfillments_looker.quantity} ;;
+  # }
 }
