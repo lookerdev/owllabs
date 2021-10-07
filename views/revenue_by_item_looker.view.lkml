@@ -111,11 +111,6 @@ view: revenue_by_item_looker {
   #   sql: ${TABLE}.memo_1 ;;
   # }
 
-  # dimension: old_account_name {
-  #   type: string
-  #   sql: ${TABLE}.old_account_name ;;
-  # }
-
   dimension: product_category {
     type: string
     sql: ${TABLE}.product_category ;;
@@ -155,8 +150,15 @@ view: revenue_by_item_looker {
     sql: ${TABLE}.transaction_number ;;
   }
 
+  dimension: nulls_filter {
+    label: "Null Values Filter"
+    description: "Channel or Marketplace Segment or Product Category or Product Line is null"
+    type: yesno
+    sql: ${channel} is null OR ${marketplace_segment} is null OR ${product_line} is null OR ${product_category} is null ;;
+  }
 
   measure: count {
+    hidden: yes
     type: count
     # drill_fields: [marketplace_segment, customer_name]
   }
@@ -168,10 +170,4 @@ view: revenue_by_item_looker {
     value_format_name: usd
     drill_fields: [account_line_name, channel, customer_name, marketplace_segment, item]
   }
-
-  # measure: ASP {
-  #   # label: ""
-  #   type: sum
-  #   sql: ${amount} / ${item_fulfillments_looker.quantity} ;;
-  # }
 }

@@ -96,7 +96,6 @@ view: item_fulfillments_looker{
     # can_filter:
   }
 
-
   dimension: item {
     label: "SKU"
     type: string
@@ -163,6 +162,13 @@ view: item_fulfillments_looker{
     hidden: yes
     type: string
     sql: ${TABLE}.shopify_order_number ;;
+  }
+
+  dimension: nulls_filter {
+    label: "Null Values Filter"
+    description: "Channel or Marketplace Segment or Product Category or Product Line is null"
+    type: yesno
+    sql: ${channel} is null OR ${marketplace_segment} is null OR ${product_line} is null OR ${product_category} is null ;;
   }
 
   measure: count {
