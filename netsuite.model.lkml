@@ -1,6 +1,5 @@
 connection: "redshift"
 
-include: "/views/netsuite_revenue_report.view.lkml"
 include: "/views/netsuite_units_ordered.view.lkml"
 include: "/views/netsuite_units_fulfilled.view.lkml"
 include: "/views/dim_calendar.view.lkml"
@@ -15,13 +14,6 @@ include: "/views/revenue_report_dimensions.view.lkml"
 # include: "/**/*.view.lkml"                 # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
-
-# explore: netsuite_revenue_report {
-#   label: "Netsuite Revenue Report"
-#   # always_filter: {
-#   #     filters: [actual_ship_date: "filter expression", transaction_date: "filter expression"]
-#   # sql_always_where: (${netsuite_revenue_report."Ship Date"} >= '2021-08-01' AND ${netsuite_revenue_report."Ship Date"} < '2021-09-01') OR (${netsuite_revenue_report."Transaction Date"} >= '2021-08-01' AND ${netsuite_revenue_report."Transaction Date"} < '2021-09-01');;
-#   }
 
 explore: netsuite_units_ordered {
   label: "Netsuite Units Ordered"
@@ -49,16 +41,8 @@ explore: revenue_by_item_looker {
   label: "Revenue by Item"
 }
 
-# revenue_report_dimensions
-# key = period/accounting_period_name || channel || marketplace_segment || product_category || product_line AS key
-
-# item_fulfillments_aggregated
-# primary key = ${TABLE}.period || ${TABLE}.channel || ${TABLE}.marketplace_segment || ${TABLE}.product_category || ${TABLE}.product_line;;
-
-# revenue_by_item_aggregated
-# primary key = ${TABLE}.accounting_period_name || ${TABLE}.channel || ${TABLE}.marketplace_segment || ${TABLE}.product_category || ${TABLE}.product_line ;;
-
 explore: revenue_report_dimensions {
+  label: "Revenue Aggregates"
   join: revenue_by_item_aggregated {
     type: left_outer
     relationship: one_to_one
