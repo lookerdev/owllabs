@@ -1,5 +1,5 @@
 view: item_fulfillments_looker{
-  sql_table_name: public.item_fulfillments_looker_primkey ;;
+  sql_table_name: public.item_fulfillments_looker ;;
 
 
   dimension_group: actual_ship {
@@ -130,7 +130,7 @@ view: item_fulfillments_looker{
     sql: ${TABLE}.quantity ;;
   }
 
-  dimension: row_num {
+  dimension: row_number{
     primary_key: yes
     hidden: yes
     type: number

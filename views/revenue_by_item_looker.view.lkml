@@ -1,5 +1,5 @@
 view: revenue_by_item_looker {
-  sql_table_name: public.revenue_by_item_looker_primkey ;;
+  sql_table_name: public.revenue_by_item_looker ;;
   # drill_fields: [account_line_name, channel, customer_name, transaction_number, marketplace_segment,item]
 
 
@@ -123,7 +123,7 @@ view: revenue_by_item_looker {
     drill_fields: [account_line_name, channel, customer_name, marketplace_segment, item]
   }
 
-  dimension: row_num {
+  dimension: row_number {
     primary_key: yes
     hidden: yes
     type: number
