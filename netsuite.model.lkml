@@ -15,19 +15,32 @@ include: "/views/revenue_report_dimensions.view.lkml"
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
 
-explore: netsuite_units_ordered {
-  label: "Netsuite Units Ordered"
+explore: dim_calendar {
+  label: "Netsuite Orders vs Fulfilled"
   join: netsuite_units_fulfilled {
-    # view_label: "Devices"
     relationship: one_to_many
-    sql_on: ${netsuite_units_fulfilled.created_from_internal_id} = ${netsuite_units_ordered.internal_id} and ${netsuite_units_fulfilled.item_internal_id} = ${netsuite_units_ordered.item_internal_id} ;;
-    # sql_where: ${device_view.product_name} != 'TESTNAME' ;;
+    sql_on: ${dim_calendar.date_date} = ${netsuite_units_fulfilled.fullfillment_date} ;;
   }
-  join:  dim_calendar {
-    relationship: many_to_one
-    sql_on: ${dim_calendar.date_date} = ${netsuite_units_ordered.sales_order_date} or ${dim_calendar.date_date} = ${netsuite_units_fulfilled.fullfillment_date} ;;
+  join: netsuite_units_ordered {
+    relationship: one_to_many
+    sql_on:${dim_calendar.date_date} = ${netsuite_units_ordered.sales_order_date} ;;
   }
 }
+
+# explore: netsuite_units_ordered {
+#   label: "Netsuite Units Ordered"
+#   join: netsuite_units_fulfilled {
+#     # view_label: "Devices"
+#     relationship: one_to_many
+#     sql_on: ${netsuite_units_fulfilled.created_from_internal_id} = ${netsuite_units_ordered.internal_id} and ${netsuite_units_fulfilled.item_internal_id} = ${netsuite_units_ordered.item_internal_id} ;;
+#     # sql_where: ${device_view.product_name} != 'TESTNAME' ;;
+#   }
+#   join:  dim_calendar {
+#     relationship: many_to_one
+#     sql_on: ${dim_calendar.date_date} = ${netsuite_units_ordered.sales_order_date} or ${dim_calendar.date_date} = ${netsuite_units_fulfilled.fullfillment_date} ;;
+#   }
+# }
+
 
 explore: netsuite_units_fulfilled {
   label: "Netsuite Units Fulfilled"

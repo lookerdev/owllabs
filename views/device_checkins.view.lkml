@@ -5,6 +5,7 @@ view: device_checkins {
 # Dimensions
   dimension: id {
     primary_key: yes
+    hidden: yes
     type: number
     sql: ${TABLE}.id ;;
   }
@@ -70,9 +71,9 @@ view: device_checkins {
   }
 
 # Measures
-  # measure: total_lifetime_orders {
-  #   description: "Use this for counting lifetime orders across many users"
-  #   type: sum
-  #   sql: ${lifetime_orders} ;;
-  # }
+  measure: distinct_owls {
+    # description: ""
+    type: count_distinct
+    sql: ${deviceuuid} ;;
+  }
 }
