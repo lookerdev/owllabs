@@ -15,7 +15,6 @@ view: orders_fulfillments_view {
     sql: ${TABLE}.created_at ;;
   }
 
-
   dimension: primary_key {
     type: number
     sql: ${TABLE}.primary_key ;;

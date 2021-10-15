@@ -68,7 +68,7 @@ view: netsuite_units_ordered {
 
   dimension: item_internal_id {
     type: number
-    sql: ${TABLE}.item_internal_id ;;
+    sql: ${TABLE}.sku_internalid ;;
   }
 
   dimension: item_price {
@@ -111,6 +111,10 @@ view: netsuite_units_ordered {
     sql: ${TABLE}.posting_period ;;
   }
 
+  dimension: product_line {
+    type: string
+    sql: ${TABLE}.product_line ;;
+  }
 
   dimension: quantity_ordered {
     type: number

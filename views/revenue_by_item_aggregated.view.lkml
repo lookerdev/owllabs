@@ -7,7 +7,7 @@ view: revenue_by_item_aggregated {
           product_category,
           product_line,
           SUM(amount) AS aggregated_revenue
-         FROM revenue_by_item_looker_primkey
+         FROM revenue_by_item_looker
          GROUP BY
           product_line,
           product_category,

@@ -16,7 +16,7 @@ include: "/views/revenue_report_dimensions.view.lkml"
 
 
 explore: dim_calendar {
-  label: "Netsuite Orders vs Fulfilled"
+  label: "Netsuite Orders/Fulfillment"
   join: netsuite_units_fulfilled {
     relationship: one_to_many
     sql_on: ${dim_calendar.date_date} = ${netsuite_units_fulfilled.fullfillment_date} ;;
