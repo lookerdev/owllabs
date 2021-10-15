@@ -19,6 +19,7 @@ view: netsuite_units_fulfilled {
   }
 
   dimension: customer_id {
+    hidden: yes
     type: number
     sql: ${TABLE}.customer_id ;;
   }
@@ -71,6 +72,7 @@ view: netsuite_units_fulfilled {
   }
 
   dimension: item_internal_id {
+    hidden: yes
     type: number
     sql: ${TABLE}.item_internal_id ;;
   }
@@ -87,6 +89,7 @@ view: netsuite_units_fulfilled {
 
   dimension: row_num {
     primary_key: yes
+    hidden: yes
     type: number
     sql: ${TABLE}.row_num ;;
   }

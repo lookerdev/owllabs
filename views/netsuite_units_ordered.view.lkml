@@ -32,6 +32,7 @@ view: netsuite_units_ordered {
   }
 
   dimension: customer_id {
+    hidden: yes
     type: number
     sql: ${TABLE}.customer_id ;;
   }
@@ -57,16 +58,19 @@ view: netsuite_units_ordered {
   }
 
   dimension: external_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.external_id ;;
   }
 
   dimension: internal_id {
+    hidden: yes
     type: number
     sql: ${TABLE}.internal_id ;;
   }
 
   dimension: item_internal_id {
+    hidden: yes
     type: number
     sql: ${TABLE}.sku_internalid ;;
   }
@@ -158,6 +162,7 @@ view: netsuite_units_ordered {
 
   dimension: row_num {
     primary_key: yes
+    hidden:  yes
     type: number
     sql: ${TABLE}.row_num ;;
   }
@@ -212,6 +217,7 @@ view: netsuite_units_ordered {
     sql: ${TABLE}.terms ;;
   }
 
+# MEASURES
   measure: count {
     type: count
     drill_fields: []
