@@ -33,7 +33,7 @@ view: revenue_report_dimensions {
     sql: ${TABLE}.product_line ;;
   }
 
-  dimension: row_num {
+  dimension: row_number {
     primary_key: yes
     type: number
     sql: ${TABLE}.row_num ;;

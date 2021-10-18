@@ -87,7 +87,7 @@ view: meeting_records {
   }
 
   dimension: presenteradmin {
-    label: "Presenter Admin"
+    label: "Presenter Mode Enabled"
     description: "Whether presenter mode was enabled by admin setting"
     type: string
     sql: ${TABLE}.presenteradmin ;;
@@ -128,7 +128,7 @@ view: meeting_records {
 
   dimension: waspaired {
     type: yesno
-    label: "Was Paired"
+    label: "Device Paired"
     description: "Whether this device was paired to another device during meeting"
     sql: ${TABLE}.waspaired ;;
   }
