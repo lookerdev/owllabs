@@ -252,7 +252,4 @@ view: meeting_records {
     sql: ${deviceuuid};;
     # drill_fields: [id,deviceuuid]
   }
-
-
-
 }

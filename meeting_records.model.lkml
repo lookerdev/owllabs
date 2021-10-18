@@ -2,7 +2,7 @@ connection: "redshift"
 
 include: "/views/meeting_records.view.lkml"
 include: "/views/device_view.view.lkml"
-include: "/views/device_registration_user_company_view.view.lkml"
+include: "/views/device_registrations.view.lkml"
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
 
@@ -15,9 +15,9 @@ include: "/views/device_registration_user_company_view.view.lkml"
       sql_on: ${device_view.uuid} = ${meeting_records.deviceuuid} ;;
      # sql_where: ${device_view.product_name} != 'TESTNAME' ;;
    }
-    join:  device_registration_user_company_view {
+    join:  device_registrations {
       type: left_outer
-      relationship: one_to_one
-      sql_on: ${device_view.uuid} = ${device_registration_user_company_view.deviceuuid} ;;
+      relationship: many_to_one
+      sql_on: ${device_view.uuid} = ${device_registrations.deviceuuid} ;;
     }
 }
