@@ -1,4 +1,5 @@
 view: item_fulfillments_looker{
+  label: "Revenue Item Fulfillments"
   sql_table_name: public.item_fulfillments_looker ;;
 
 
@@ -134,7 +135,7 @@ view: item_fulfillments_looker{
     primary_key: yes
     hidden: yes
     type: number
-    sql: ${TABLE}.row_num ;;
+    sql: ${TABLE}.row_number ;;
   }
 
   dimension_group: sales_effective {

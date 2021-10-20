@@ -128,7 +128,7 @@ view: revenue_by_item_looker {
     primary_key: yes
     hidden: yes
     type: number
-    sql: ${TABLE}.row_num ;;
+    sql: ${TABLE}.row_number ;;
   }
 
   dimension: source_rev_rec_document_number {
