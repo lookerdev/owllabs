@@ -1,5 +1,6 @@
 view: revenue_by_item_looker {
   sql_table_name: public.revenue_by_item_looker ;;
+  label: "Revenue by Item"
   # drill_fields: [account_line_name, channel, customer_name, transaction_number, marketplace_segment,item]
 
 
@@ -164,10 +165,21 @@ view: revenue_by_item_looker {
   }
 
   measure: total_revenue {
-    label: "Revenue"
+    label: "Total Revenue (Exact)"
+    description: "Revenue value including cents"
     type: sum
     sql: ${TABLE}.amount ;;
     value_format_name: usd
+    drill_fields: [account_line_name, channel, customer_name, marketplace_segment, item]
+  }
+
+  measure: rounded_total_revenue {
+    label: "Total Revenue (Rounded)"
+    description: "Revenue value rounded to the nearest dollar"
+    type: sum
+    sql: ${TABLE}.amount ;;
+    # value_format_name: usd
+    value_format: "$#,##0"
     drill_fields: [account_line_name, channel, customer_name, marketplace_segment, item]
   }
 }

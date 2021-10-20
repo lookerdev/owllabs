@@ -58,7 +58,8 @@ view: revenue_by_item_aggregated {
     label: "ASP"
     description: "Average Selling Price"
     type: number
-    value_format_name: usd
+    # value_format_name: usd
+    value_format: "$#,##0" #rounded to the nearest dollar
     sql: ${aggregated_revenue} / nullif(${item_fulfillments_aggregated.aggregated_quantity},0) ;;
   }
 

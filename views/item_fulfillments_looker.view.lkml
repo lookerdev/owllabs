@@ -24,15 +24,15 @@ view: item_fulfillments_looker{
     drill_fields: [customer_name, marketplace_segment, product_category]
   }
 
-  dimension: cogs_account {
-    type: string
-    sql: ${TABLE}.cogs_account ;;
-  }
+  # dimension: cogs_account {
+  #   type: string
+  #   sql: ${TABLE}.cogs_account ;;
+  # }
 
-  dimension: cogs_amount {
-    type: number
-    sql: ${TABLE}.cogs_amount ;;
-  }
+  # dimension: cogs_amount {
+  #   type: number
+  #   sql: ${TABLE}.cogs_amount ;;
+  # }
 
   dimension: customer_internal_id {
     hidden: yes
@@ -180,6 +180,7 @@ view: item_fulfillments_looker{
   measure: total_quantity{
     type: sum
     sql: ${TABLE}.quantity  ;;
+    drill_fields: [channel, marketplace_segment, product_category, product_line]
   }
 
   measure: total_cogs{

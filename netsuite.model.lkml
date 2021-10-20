@@ -8,6 +8,7 @@ include: "/views/revenue_by_item_looker.view.lkml"
 include: "/views/revenue_by_item_aggregated.view.lkml"
 include: "/views/item_fulfillments_aggregated.view.lkml"
 include: "/views/revenue_report_dimensions.view.lkml"
+include: "/views/dim_calendar_distinct.view.lkml"
 # include: "*.dashboard.lookml"
 
 # include all views in the views/ folder in this project
@@ -50,8 +51,28 @@ explore: item_fulfillments_looker {
   label: "Revenue Item Fulfillments"
 }
 
-explore: revenue_by_item_looker {
+# explore: revenue_by_item_looker {
+#   label: "Revenue by Item"
+# }
+
+# explore: revenue_by_item_looker {
+#   label: "Revenue by Item"
+#   join: dim_calendar {
+#     type: left_outer
+#     relationship: many_to_one
+#     sql_on: ${revenue_by_item_looker.accounting_period_name} = ${dim_calendar.period_name} ;;
+#   }
+# }
+
+
+
+explore: dim_calendar_distinct {
   label: "Revenue by Item"
+  join: revenue_by_item_looker {
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${revenue_by_item_looker.accounting_period_name} = ${dim_calendar_distinct.period_name} ;;
+  }
 }
 
 explore: revenue_report_dimensions {
