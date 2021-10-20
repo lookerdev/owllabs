@@ -67,6 +67,7 @@ explore: item_fulfillments_looker {
 
 
 explore: dim_calendar_distinct {
+  sql_always_where: ${dim_calendar_distinct.year} >= 2014 ;;
   label: "Revenue by Item"
   join: revenue_by_item_looker {
     type: left_outer
