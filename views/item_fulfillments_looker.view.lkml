@@ -179,6 +179,7 @@ view: item_fulfillments_looker{
   }
 
   measure: total_quantity{
+    label: "Total Fulfillments"
     type: sum
     sql: ${TABLE}.quantity  ;;
     drill_fields: [channel, marketplace_segment, product_category, product_line]

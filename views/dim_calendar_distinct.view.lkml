@@ -1,6 +1,6 @@
 # This view includes distinct month/year combos, still from Jan 1900 to Dec 2049
 view: dim_calendar_distinct {
-  label: "Calendar Dates"
+  label: "Accounting Period"
   sql_table_name: public.dim_calendar_distinct ;;
 
 
@@ -19,6 +19,7 @@ view: dim_calendar_distinct {
   }
 
   dimension: month_name {
+    # label: "Month"
     type: string
     sql: ${TABLE}.month_name ;;
   }
@@ -30,11 +31,13 @@ view: dim_calendar_distinct {
   }
 
   dimension: period_name{
+    # hidden: yes
     type: string
     sql: ${TABLE}.period_name ;;
   }
 
   dimension: quarter {
+    hidden: yes
     label: "Quarter Number"
     type: number
     # type: date_fiscal_quarter
@@ -42,6 +45,7 @@ view: dim_calendar_distinct {
   }
 
   dimension: quarter_name {
+    # label: "Quarter"
     type: string
     sql: case when ${TABLE}.quarter = 1 then 'Q1'
               when ${TABLE}.quarter = 2 then 'Q2'

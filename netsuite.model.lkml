@@ -47,24 +47,26 @@ explore: netsuite_units_fulfilled {
   label: "Netsuite Units Fulfilled"
 }
 
-explore: item_fulfillments_looker {
-  label: "Revenue Item Fulfillments"
-}
+# explore: item_fulfillments_looker {
+#   label: "Revenue Item Fulfillments"
+# }
 
-explore: revenue_by_item_looker {
-  label: "Revenue by Item"
-}
+# explore: revenue_by_item_looker {
+#   label: "Revenue by Item"
+# }
 
 explore: dim_calendar_distinct {
   sql_always_where: ${dim_calendar_distinct.year} >= 2014 ;;
   label: "Revenue & Fulfillments by Item"
   join: revenue_by_item_looker {
-    type: left_outer
+    type: inner
+    # type: left_outer
     relationship: one_to_many
     sql_on: ${revenue_by_item_looker.accounting_period_name} = ${dim_calendar_distinct.period_name} ;;
   }
   join: item_fulfillments_looker {
-    type: left_outer
+    # type: left_outer
+    type: inner
     relationship: one_to_many
     sql_on: ${dim_calendar_distinct.period_name} = ${item_fulfillments_looker.period} ;;
   }
@@ -72,6 +74,10 @@ explore: dim_calendar_distinct {
 
 explore: revenue_report_dimensions {
   label: "Revenue Aggregates"
+  join: dim_calendar_distinct {
+    relationship: many_to_one
+    sql_on: ${dim_calendar_distinct.period_name} = ${revenue_report_dimensions.period} ;;
+  }
   join: revenue_by_item_aggregated {
     type: left_outer
     relationship: one_to_one

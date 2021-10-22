@@ -33,6 +33,7 @@ view: revenue_by_item_looker {
 
   dimension: accounting_period_name {
     label: "Accounting Period"
+    # hidden: yes
     type: string
     sql: ${TABLE}.accounting_period_name ;;
   }
