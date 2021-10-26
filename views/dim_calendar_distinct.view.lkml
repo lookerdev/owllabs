@@ -62,8 +62,8 @@ view: dim_calendar_distinct {
 
 
 
-  measure: count {
-    type: count
-    drill_fields: [month_name]
-  }
+  # measure: count {
+  #   type: count
+  #   drill_fields: [month_name]
+  # }
 }

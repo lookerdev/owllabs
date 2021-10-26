@@ -132,6 +132,7 @@ view: device_view {
 
   dimension: status {
     label: "Status"
+    description: "Status Values: 0 - New, 1 - Active, 2 - Requires Update, 3 - Updating, 4 - Inactive, 5 - Downloading Update, 6 - Offline, 7 - Archived"
     type: number
     sql: ${TABLE}.device_status ;;
   }

@@ -89,7 +89,7 @@ view: meeting_records {
   dimension: presenteradmin {
     label: "Presenter Mode Enabled"
     description: "Whether presenter mode was enabled by admin setting"
-    type: string
+    type: yesno
     sql: ${TABLE}.presenteradmin ;;
   }
 
@@ -208,20 +208,21 @@ view: meeting_records {
 
   measure: remotetalktimeseconds {
     label: "Remote Talk Time Seconds"
-    description: "Total seconds meeting attendee(s) not using the device spoke"
+    description: "Total seconds that meeting attendee(s) not using the device spoke"
     type: sum
     sql: ${TABLE}.remotetalktimeseconds ;;
   }
 
-# does this measure work?
-  measure: avg_number_meetings_per_week {
+# # does this measure work?
+#   measure: avg_number_meetings_per_week {
 
-    label: "Average Number of Meetings per Week"
-    type: number
-    sql: count(${TABLE}.id) / nullif(DATEDIFF(week,min(${TABLE}.startdate::timestamp), max(${TABLE}.startdate::timestamp)),0);;
-  }
+#     label: "Average Number of Meetings per Week"
+#     type: number
+#     sql: count(${TABLE}.id) / nullif(DATEDIFF(week,min(${TABLE}.startdate::timestamp), max(${TABLE}.startdate::timestamp)),0);;
+#   }
 
   measure: crash_count {
+    description: "Number of times device crashed"
     type: sum
     sql: CASE WHEN ${crashinmeeting} = 'true' THEN 1 ELSE NULL END;;
   }

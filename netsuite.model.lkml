@@ -17,6 +17,7 @@ include: "/views/dim_calendar_distinct.view.lkml"
 
 
 explore: dim_calendar {
+  sql_always_where: ${year} >= 2014 and ${date_date} <= sysdate;;
   label: "Netsuite Orders/Fulfillment"
   join: netsuite_units_fulfilled {
     relationship: one_to_many
@@ -29,7 +30,7 @@ explore: dim_calendar {
 }
 
 explore: dim_calendar_distinct {
-  sql_always_where: ${dim_calendar_distinct.year} >= 2014 ;;
+  sql_always_where: ${dim_calendar_distinct.year} >= 2014;;
   label: "Revenue & Fulfillments by Item"
   join: revenue_by_item_looker {
     type: inner
