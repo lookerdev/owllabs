@@ -12,6 +12,7 @@ view: dim_calendar {
   }
 
   dimension_group: date {
+    label: "Calendar"
     type: time
     timeframes: [
       raw,
@@ -95,22 +96,26 @@ view: dim_calendar {
     sql: ${TABLE}.year ;;
   }
 
+# MEASURES
   # measure: count {
   #   type: count
   #   drill_fields: [id, month_name, day_name]
   # }
 
   measure: count_days {
+    hidden: yes
     type: count_distinct
     sql: ${day} ;;
   }
 
   measure: count_weeks {
+    hidden: yes
     type: count_distinct
     sql: ${week} ;;
   }
 
     measure: count_years {
+    hidden: yes
     type: count_distinct
     sql: ${year} ;;
   }
