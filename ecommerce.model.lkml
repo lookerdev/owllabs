@@ -21,7 +21,7 @@ explore: orders_view {
   join: orders_fulfillments_view {
     sql_on: ${orders_view.shopify_order_number}=${orders_fulfillments_view.order_number}
             AND ${orders_fulfillments_view.store}=${orders_view.store}
-            AND ${orders_fulfillments_view.product_id}=${orders_fulfillments_view.product_id}
+            AND ${orders_fulfillments_view.product_id}=${orders_line_items_view.product_id}
             ;;
     relationship: many_to_one
     type: left_outer
