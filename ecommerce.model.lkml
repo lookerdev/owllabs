@@ -3,6 +3,7 @@ connection: "redshift"
 include: "/views/orders_view.view.lkml"                # include all views in the views/ folder in this project
 include: "/views/orders_line_items_view.view.lkml"
 include: "/views/orders_fulfillments_view.view.lkml"
+include: "/views/dim_calendar.view.lkml"
 # include: "/**/*.view.lkml"                 # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
@@ -11,7 +12,7 @@ include: "/views/orders_fulfillments_view.view.lkml"
 #
 
 explore: orders_view {
-  label: "Orders Explore"
+  label: "Orders Explore (orig)"
   join: orders_line_items_view {
     sql_on: ${orders_line_items_view.store}=${orders_view.store}
       AND ${orders_line_items_view.name}=${orders_view.shopify_order_number};;
@@ -28,7 +29,17 @@ explore: orders_view {
 
 }
 
-
+explore: dim_calendar {
+  label: "Orders Explore (test)"
+  join: orders_line_items_view {
+    sql_on: ${dim_calendar.date_date} = ${orders_line_items_view.order_created_date} ;;
+    relationship: one_to_many
+  }
+  join: orders_fulfillments_view {
+    sql_on: ${dim_calendar.date_date} = ${orders_fulfillments_view.created_date} ;;
+    relationship: one_to_many
+  }
+}
 # explore: order_items {
 #   join: orders {
 #     relationship: many_to_one

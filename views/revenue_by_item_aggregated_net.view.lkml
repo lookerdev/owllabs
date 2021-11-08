@@ -1,5 +1,6 @@
-view: revenue_by_item_aggregated {
+view: revenue_by_item_aggregated_net {
 # includes revenue for all accounts
+  label: "Revenue by Item (Aggregated) - Net"
   derived_table: {
     sql: SELECT
           accounting_period_name,
@@ -56,7 +57,7 @@ view: revenue_by_item_aggregated {
   }
 
   measure: asp {
-    label: "ASP"
+    label: "ASP - Net"
     description: "Average Selling Price"
     type: number
     # value_format_name: usd

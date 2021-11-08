@@ -6,7 +6,7 @@ view: meeting_records {
 # Dimensions
   dimension: id {
     primary_key: yes
-    hidden: yes
+    # hidden: yes
     label: "Meeting ID"
     description: "Unique identifier for each meeting record"
     type: number
@@ -139,6 +139,17 @@ view: meeting_records {
     sql: ${TABLE}.softwareversion ;;
   }
 
+  dimension: durationseconds_test {
+    label: "Individual Meeting Duration"
+    type: number
+    sql: ${TABLE}.durationseconds ;;
+  }
+
+  dimension: durationminutes_test {
+    type: number
+    sql: ${TABLE}.durationseconds/60 ;;
+  }
+
 
 
 
@@ -155,6 +166,17 @@ view: meeting_records {
     label: "Total Meeting Minutes"
     type: number
     sql: sum(${TABLE}.durationseconds) / 60 ;;
+  }
+
+  measure: avg_duration {
+    type: average
+    sql: ${durationminutes_test} ;;
+  }
+
+  measure: durationminutes_test_sum {
+    # label: "Total Meeting Minutes"
+    type: sum
+    sql: ${durationminutes_test} ;;
   }
 
   measure: durationhours {

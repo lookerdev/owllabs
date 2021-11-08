@@ -1,5 +1,6 @@
-view: revenue_by_item_aggregated {
-# includes revenue for all accounts
+view: revenue_by_item_aggregated_gross {
+# includes only revenue for account 41000: Revenue - Hardware
+label: "Revenue by Item (Aggregated) - Gross"
   derived_table: {
     sql: SELECT
           accounting_period_name,
@@ -9,6 +10,7 @@ view: revenue_by_item_aggregated {
           product_line,
           SUM(amount) AS aggregated_revenue
          FROM revenue_by_item_looker
+         where account_id = '829'
          GROUP BY
           product_line,
           product_category,
@@ -49,19 +51,19 @@ view: revenue_by_item_aggregated {
     sql: ${TABLE}.product_line ;;
   }
 
-  measure: aggregated_revenue {
+  measure: aggregated_gross_revenue {
     type: sum
     value_format_name: usd
     sql: ${TABLE}.aggregated_revenue ;;
   }
 
   measure: asp {
-    label: "ASP"
+    label: "ASP - Gross"
     description: "Average Selling Price"
     type: number
     # value_format_name: usd
     value_format: "$#,##0" #rounded to the nearest dollar
-    sql: ${aggregated_revenue} / nullif(${item_fulfillments_aggregated.aggregated_quantity},0) ;;
+    sql: ${aggregated_gross_revenue} / nullif(${item_fulfillments_aggregated.aggregated_quantity},0) ;;
   }
 
 }
