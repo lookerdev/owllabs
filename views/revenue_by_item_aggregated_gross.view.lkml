@@ -59,7 +59,7 @@ label: "Revenue by Item (Aggregated) - Gross"
 
   measure: asp {
     label: "ASP - Gross"
-    description: "Average Selling Price"
+    description: "Average Gross Selling Price"
     type: number
     # value_format_name: usd
     value_format: "$#,##0" #rounded to the nearest dollar

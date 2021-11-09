@@ -139,15 +139,16 @@ view: meeting_records {
     sql: ${TABLE}.softwareversion ;;
   }
 
-  dimension: durationseconds_test {
-    label: "Individual Meeting Duration"
+  dimension: durationseconds_per_meeting {
+    label: "Number of Seconds per Meeting"
     type: number
     sql: ${TABLE}.durationseconds ;;
   }
 
-  dimension: durationminutes_test {
+  dimension: durationminutes_per_meeting {
+    label: "Number of Minutes per Meeting"
     type: number
-    sql: ${TABLE}.durationseconds/60 ;;
+    sql: ${TABLE}.durationseconds / 60 ;;
   }
 
 
@@ -170,13 +171,13 @@ view: meeting_records {
 
   measure: avg_duration {
     type: average
-    sql: ${durationminutes_test} ;;
+    sql: ${durationminutes_per_meeting} ;;
   }
 
   measure: durationminutes_test_sum {
     # label: "Total Meeting Minutes"
     type: sum
-    sql: ${durationminutes_test} ;;
+    sql: ${durationminutes_per_meeting} ;;
   }
 
   measure: durationhours {

@@ -50,7 +50,7 @@ view: revenue_by_item_aggregated_net {
     sql: ${TABLE}.product_line ;;
   }
 
-  measure: aggregated_revenue {
+  measure: aggregated_net_revenue {
     type: sum
     value_format_name: usd
     sql: ${TABLE}.aggregated_revenue ;;
@@ -58,11 +58,11 @@ view: revenue_by_item_aggregated_net {
 
   measure: asp {
     label: "ASP - Net"
-    description: "Average Selling Price"
+    description: "Average Net Selling Price"
     type: number
     # value_format_name: usd
     value_format: "$#,##0" #rounded to the nearest dollar
-    sql: ${aggregated_revenue} / nullif(${item_fulfillments_aggregated.aggregated_quantity},0) ;;
+    sql: ${aggregated_net_revenue} / nullif(${item_fulfillments_aggregated.aggregated_quantity},0) ;;
   }
 
 }

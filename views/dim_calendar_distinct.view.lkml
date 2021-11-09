@@ -8,7 +8,7 @@ view: dim_calendar_distinct {
   dimension: primary_key {
     hidden: yes
     type: number
-    sql: concat(${month},${year} ;;
+    sql: concat(${month},${year}) ;;
   }
 
   dimension: month {
