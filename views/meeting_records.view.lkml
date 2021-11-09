@@ -184,7 +184,6 @@ view: meeting_records {
     sql: sum(${TABLE}.durationseconds) / 3600;;
   }
 
-
   # measure: avg_meeting_length_minutes {
   #   label: "Average Meeting Length - minutes"
   #   type: average
