@@ -141,12 +141,14 @@ view: meeting_records {
 
   dimension: durationseconds_per_meeting {
     label: "Number of Seconds per Meeting"
+    description: "The number of minutes that each individual meeting takes. Use this to filter by meeting length."
     type: number
     sql: ${TABLE}.durationseconds ;;
   }
 
   dimension: durationminutes_per_meeting {
     label: "Number of Minutes per Meeting"
+    description: "The number of seconds that each individual meeting takes. Use this to filter by meeting length."
     type: number
     sql: ${TABLE}.durationseconds / 60 ;;
   }
@@ -159,24 +161,20 @@ view: meeting_records {
   measure: durationseconds {
     # label: "Meeting Duration - seconds"
     label: "Total Meeting Seconds"
+    description: "Total sum of meeting seconds for all devices"
     type: sum
     sql: ${TABLE}.durationseconds ;;
   }
 
   measure: durationminutes {
     label: "Total Meeting Minutes"
+    description: "Total sum of meeting minutes for all devices"
     type: number
     sql: sum(${TABLE}.durationseconds) / 60 ;;
   }
 
   measure: avg_duration {
     type: average
-    sql: ${durationminutes_per_meeting} ;;
-  }
-
-  measure: durationminutes_test_sum {
-    # label: "Total Meeting Minutes"
-    type: sum
     sql: ${durationminutes_per_meeting} ;;
   }
 
