@@ -155,7 +155,6 @@ view: meeting_records {
 
 
 
-
 # Measures
 
   measure: durationseconds {
