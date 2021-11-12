@@ -93,7 +93,6 @@ view: meeting_records {
     sql: ${TABLE}.presenteradmin ;;
   }
 
-
   dimension_group: startdate {
     label: "Meeting Start"
     description: "The datetime at which a meeting began"
@@ -156,6 +155,12 @@ view: meeting_records {
 
 
 # Measures
+
+  measure: count_meetings {
+    label: "Number of Meetings"
+    type: count_distinct
+    sql: ${id} ;;
+  }
 
   measure: durationseconds {
     # label: "Meeting Duration - seconds"
