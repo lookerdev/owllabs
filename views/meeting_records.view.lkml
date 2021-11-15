@@ -202,13 +202,15 @@ view: meeting_records {
   measure: avg_hours_per_device{
     label: "Avg. Meeting Hours per Device"
     type: number
-    sql: ${durationhours} / ${count_devices} ;;
+    value_format: "0.00"
+    sql: (${durationhours} * 1.0) / ${count_devices} ;;
   }
 
   measure: avg_meetings_per_device {
     label: "Avg. Meetings per Device"
     type: number
-    sql: ${count_meetings} / ${count_devices} ;;
+    value_format: "0.00"
+    sql: (${count_meetings} * 1.0) / ${count_devices} ;;
   }
 
   measure: avg_meeting_length_minutes {
