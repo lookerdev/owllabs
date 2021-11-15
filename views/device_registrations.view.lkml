@@ -144,4 +144,14 @@ view: device_registrations {
     type: count
     drill_fields: [product_name, company_name, user_name]
   }
+
+  measure: count_companies {
+    label: "Count of Companies"
+    type: count_distinct
+    sql: ${company_id} ;;
+  }
+
+  # measure: devices_per_company {
+  #   sql: ${meeting_records.count_devices} / ${count_companies} ;;
+  # }
 }
