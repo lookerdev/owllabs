@@ -147,6 +147,7 @@ view: device_view {
 
 # Measures
   measure: device_count {
+    label: "Total Number of Devices"
     type: count
     drill_fields: [device_id, device_name, product_name, channel_name]
   }

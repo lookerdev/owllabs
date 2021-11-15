@@ -158,14 +158,16 @@ view: meeting_records {
 
   measure: count_meetings {
     label: "Number of Meetings"
-    type: count_distinct
-    sql: ${id} ;;
-  }
-
-  measure: count_meetings_test {
-    label: "Number of Meetings test"
     type: count
     # sql: ${id} ;;
+    drill_fields: [id]
+  }
+
+  measure: count_devices {
+    label: "Number of Devices"
+    type: count_distinct
+    sql: ${deviceuuid};;
+    # drill_fields: [id,deviceuuid]
   }
 
   measure: durationseconds {
@@ -184,6 +186,7 @@ view: meeting_records {
   }
 
   measure: avg_duration {
+    label: "Average Minutes per Meeting"
     type: average
     sql: ${durationminutes_per_meeting} ;;
   }
@@ -194,12 +197,24 @@ view: meeting_records {
     sql: sum(${TABLE}.durationseconds) / 3600;;
   }
 
-  # measure: avg_meeting_length_minutes {
-  #   label: "Average Meeting Length - minutes"
-  #   type: average
-  #   drill_fields: [id]
-  #   sql: ${durationminutes};; # durationminutes needs to be a dimension
-  # }
+  measure: avg_hours_per_device{
+    label: "Avg. Meeting Hours per Device"
+    type: number
+    sql: ${durationhours} / ${count_devices} ;;
+  }
+
+  measure: avg_meetings_per_device {
+    label: "Avg. Meetings per Device"
+    type: number
+    sql: ${count_meetings} / ${count_devices} ;;
+  }
+
+  measure: avg_meeting_length_minutes {
+    label: "Average Meeting Length - minutes"
+    type: average
+    drill_fields: [id]
+    sql: ${durationminutes_per_meeting};; # durationminutes needs to be a dimension
+  }
 
   measure: bothtalktimeseconds {
     label: "Both Talk Time Seconds"
@@ -243,14 +258,6 @@ view: meeting_records {
     sql: ${TABLE}.remotetalktimeseconds ;;
   }
 
-# # does this measure work?
-#   measure: avg_number_meetings_per_week {
-
-#     label: "Average Number of Meetings per Week"
-#     type: number
-#     sql: count(${TABLE}.id) / nullif(DATEDIFF(week,min(${TABLE}.startdate::timestamp), max(${TABLE}.startdate::timestamp)),0);;
-#   }
-
   measure: crash_count {
     description: "Number of times device crashed"
     type: sum
@@ -271,16 +278,10 @@ view: meeting_records {
   #   drill_fields: [id,deviceuuid]
   # }
 
-  measure: count {
-    label: "Total Number of Meetings"
-    type: count
-    drill_fields: [id]
-  }
-
-  measure: count_devices {
-    label: "Number of Devices"
-    type: count_distinct
-    sql: ${deviceuuid};;
-    # drill_fields: [id,deviceuuid]
-  }
+# # does this measure work?
+#   measure: avg_number_meetings_per_week {
+#     label: "Average Number of Meetings per Week"
+#     type: number
+#     sql: count(${TABLE}.id) / nullif(DATEDIFF(week,min(${TABLE}.startdate::timestamp), max(${TABLE}.startdate::timestamp)),0);;
+#   }
 }
