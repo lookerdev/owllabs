@@ -157,14 +157,16 @@ view: meeting_records {
 # Measures
 
   measure: count_meetings {
-    label: "Number of Meetings"
+    label: "Count of Meetings"
+    description: "Count of unique meeting records"
     type: count
     # sql: ${id} ;;
     drill_fields: [id]
   }
 
   measure: count_devices {
-    label: "Number of Devices"
+    label: "Count of Devices"
+    description: "Number of distict devices"
     type: count_distinct
     sql: ${deviceuuid};;
     # drill_fields: [id,deviceuuid]
@@ -259,7 +261,7 @@ view: meeting_records {
   }
 
   measure: crash_count {
-    description: "Number of Times Device Crashed"
+    description: "Count of Times Device Crashed"
     type: sum
     sql: CASE WHEN ${crashinmeeting} = 'true' THEN 1 ELSE NULL END;;
   }
