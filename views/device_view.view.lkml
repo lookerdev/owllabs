@@ -43,7 +43,7 @@ view: device_view {
 
   dimension_group: createdat {
     hidden: yes
-    description: "Device record creation date"
+    description: "Device Record Creation"
     type: time
     timeframes: [
       raw,
@@ -58,7 +58,7 @@ view: device_view {
   }
 
   dimension_group: device_activation_date {
-    description: "Device Activation Date"
+    description: "Device Activation"
     type: time
     timeframes: [
       raw,
@@ -84,6 +84,7 @@ view: device_view {
 
   dimension: device_id {
     primary_key: yes
+    hidden: yes
     label: "Device Record ID"
     description: "Unique identifier for each device record"
     type: number
@@ -91,7 +92,7 @@ view: device_view {
   }
 
   dimension: device_name {
-    # hidden: yes
+    hidden: yes
     type: string
     sql: ${TABLE}.device_name ;;
   }
@@ -111,7 +112,7 @@ view: device_view {
   }
 
   dimension: product_name {
-    label: "Product"
+    label: "Product Name"
     description: "Device product type"
     type: string
     sql: ${TABLE}.product_name;;
@@ -131,7 +132,7 @@ view: device_view {
   }
 
   dimension: status {
-    label: "Status"
+    label: "Device Status"
     description: "Status Values: 0 - New, 1 - Active, 2 - Requires Update, 3 - Updating, 4 - Inactive, 5 - Downloading Update, 6 - Offline, 7 - Archived"
     type: number
     sql: ${TABLE}.device_status ;;

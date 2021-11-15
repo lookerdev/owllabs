@@ -162,6 +162,12 @@ view: meeting_records {
     sql: ${id} ;;
   }
 
+  measure: count_meetings_test {
+    label: "Number of Meetings test"
+    type: count
+    # sql: ${id} ;;
+  }
+
   measure: durationseconds {
     # label: "Meeting Duration - seconds"
     label: "Total Meeting Seconds"
