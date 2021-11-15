@@ -186,7 +186,7 @@ view: meeting_records {
   }
 
   measure: avg_duration {
-    label: "Average Minutes per Meeting"
+    label: "Avg. Minutes per Meeting"
     type: average
     sql: ${durationminutes_per_meeting} ;;
   }
@@ -210,7 +210,7 @@ view: meeting_records {
   }
 
   measure: avg_meeting_length_minutes {
-    label: "Average Meeting Length - minutes"
+    label: "Avg. Meeting Length - minutes"
     type: average
     drill_fields: [id]
     sql: ${durationminutes_per_meeting};; # durationminutes needs to be a dimension
@@ -259,17 +259,17 @@ view: meeting_records {
   }
 
   measure: crash_count {
-    description: "Number of times device crashed"
+    description: "Number of Times Device Crashed"
     type: sum
     sql: CASE WHEN ${crashinmeeting} = 'true' THEN 1 ELSE NULL END;;
   }
 
-  measure: max_number_meetings {
-    label: "Maximum Number of Meetings"
-    type: max
-    sql: ${TABLE}.count;;
-    drill_fields: [id,deviceuuid]
-  }
+  # measure: max_number_meetings {
+  #   label: "Maximum Number of Meetings"
+  #   type: max
+  #   sql: ${TABLE}.count;;
+  #   drill_fields: [id,deviceuuid]
+  # }
 
   # measure: avg_person_count_per_mtg {
   #   label: "Average Person Count per Meeting"
