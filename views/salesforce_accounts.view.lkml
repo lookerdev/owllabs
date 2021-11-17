@@ -1,5 +1,5 @@
 view: salesforce_accounts {
-  label: "TESTING (please don't use)"
+  label: "Companies - IN TESTING"
   sql_table_name: public.salesforce_accounts ;;
 
   # dimension: company_name {
