@@ -2,10 +2,10 @@ view: salesforce_accounts {
   label: "TESTING (please don't use)"
   sql_table_name: public.salesforce_accounts ;;
 
-  dimension: company_name {
-    type: string
-    sql: ${TABLE}.company_name ;;
-  }
+  # dimension: company_name {
+  #   type: string
+  #   sql: ${TABLE}.company_name ;;
+  # }
 
   dimension: company_size {
     type: string
@@ -23,6 +23,7 @@ view: salesforce_accounts {
   }
 
   dimension: industry_group {
+    hidden: yes
     type: string
     sql: ${TABLE}.industry_group ;;
   }
@@ -34,9 +35,9 @@ view: salesforce_accounts {
     sql: ${TABLE}.row_num ;;
   }
 
-  measure: count {
-    hidden: yes
-    type: count
-    drill_fields: [company_name]
-  }
+  # measure: count {
+  #   hidden: yes
+  #   type: count
+  #   drill_fields: [company_name]
+  # }
 }
