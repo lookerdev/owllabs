@@ -49,6 +49,7 @@ view: nps_surveys {
   }
 
   dimension: response_type {
+    description: "IP Address: A normal response, Survey Preview: A preview response, Survey Test: A test response, Imported: An imported response, Spam: A possible spam response, Preview Spam: A possible spam response submitted through the preview link, Imported Spam: A possible spam response that was imported, Offline: A Qualtrics Offline App response, Offline Preview: Previews submitted through the Qualtrics Offline App. This feature is deprecated in latest versions of the app"
     hidden: yes
     type: string
     sql: ${TABLE}."response_type" ;;

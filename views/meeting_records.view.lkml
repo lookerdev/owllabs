@@ -106,7 +106,8 @@ view: meeting_records {
       quarter,
       year
     ]
-    sql: ${TABLE}.startdate ;;
+    sql: ${TABLE}.startdate::timestamp ;; # have to cast as timestamp for the date parts (year, etc) to work
+    allow_fill: yes
   }
 
   dimension_group: updatedat {
@@ -152,6 +153,11 @@ view: meeting_records {
     sql: ${TABLE}.durationseconds / 60 ;;
   }
 
+  dimension: hour {
+    type: number
+    sql: extract(hour from ${startdate_raw}) ;;
+  }
+
 
 
 # Measures
@@ -166,7 +172,7 @@ view: meeting_records {
 
   measure: count_devices {
     label: "Count of Devices"
-    description: "Number of distict devices"
+    description: "Number of distinct devices"
     type: count_distinct
     sql: ${deviceuuid};;
     # drill_fields: [id,deviceuuid]
@@ -268,10 +274,10 @@ view: meeting_records {
     sql: CASE WHEN ${crashinmeeting} = 'true' THEN 1 ELSE NULL END;;
   }
 
-  # had count days for Rob
   measure: count_days {
+    hidden: yes
     type: number
-    sql: count(${startdate_date} ;;
+    sql: count(distinct ${startdate_date}) ;;
   }
 
   # measure: max_number_meetings {

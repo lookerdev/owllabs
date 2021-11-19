@@ -14,20 +14,19 @@ include: "/views/device_checkins.view.lkml"
   always_filter: {
     filters: [device_registrations.registration_record_delete_date: "NULL"]
   }
-   join: device_view {
+  join: device_view {
     # view_label: "Devices"
       type: left_outer
       relationship: many_to_one
-      sql_on: ${device_view.uuid} = ${meeting_records.deviceuuid} ;;
-     # sql_where: ${device_view.product_name} != 'TESTNAME' ;;
-   }
+      sql_on: ${meeting_records.deviceuuid} = ${device_view.uuid} ;;
+  }
     join:  device_registrations {
       type: left_outer
-      relationship: many_to_one
-      sql_on: ${device_view.uuid} = ${device_registrations.deviceuuid} ;;
+      relationship: many_to_many # this will change once I remove the funky registration dupes
+      sql_on: ${meeting_records.deviceuuid} = ${device_registrations.deviceuuid} ;;
     }
     join: salesforce_accounts {
-      # type: left_outer
+      type: left_outer
       relationship: many_to_one
       sql_on: ${device_registrations.company_domain} = ${salesforce_accounts.email_domain} ;;
     }
