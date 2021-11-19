@@ -268,6 +268,12 @@ view: meeting_records {
     sql: CASE WHEN ${crashinmeeting} = 'true' THEN 1 ELSE NULL END;;
   }
 
+  # had count days for Rob
+  measure: count_days {
+    type: number
+    sql: count(${startdate_date} ;;
+  }
+
   # measure: max_number_meetings {
   #   label: "Maximum Number of Meetings"
   #   type: max

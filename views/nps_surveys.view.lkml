@@ -1,4 +1,4 @@
-view: nps_surveys_redshift {
+view: nps_surveys {
   label: "NPS Surveys"
   sql_table_name: public.nps_surveys_redshift ;;
 
@@ -266,7 +266,7 @@ view: nps_surveys_redshift {
     type: number
     sql: case when ${recommend_score} in (9,10) then 1
               when ${recommend_score} in (7,8) then 0
-              when ${recommend_score} in (1,2,3,4,5,6) then -1
+              when ${recommend_score} in (0,1,2,3,4,5,6) then -1
               else null end;;
   }
 
@@ -275,7 +275,7 @@ view: nps_surveys_redshift {
     type: string
     sql: case when ${recommend_score} in (9,10) then 'Promoter'
               when ${recommend_score} in (7,8) then 'Passive'
-              when ${recommend_score} in (1,2,3,4,5,6) then 'Detractor'
+              when ${recommend_score} in (0,1,2,3,4,5,6) then 'Detractor'
               else null end;;
   }
 
@@ -286,17 +286,10 @@ view: nps_surveys_redshift {
     type: number
     sql: ((sum(${nps_bucket_int}) * 1.0) / count(${recommend_score})) * 100 ;;
     value_format: "0"
-#     ((Count(distinct case when `Score Full` in ('9', '10') then `Timestamp` end)
-# /
-# Count(distinct case when `Score Full` in ('0','1','2','3','4','5','6','7','8','9','10') then `Timestamp` end ))
-# -
-# (Count(distinct case when `Score Full` in ('0','1','2','3','4','5','6')  then `Timestamp` end)
-# /
-# Count(distinct case when `Score Full` in ('0','1','2','3','4','5','6','7','8','9','10') then `Timestamp` end )))*100
   }
 
   measure: count_scores {
-    label: "Number of Scores"
+    label: "Count of Scores"
     type: number
     sql: count(${recommend_score}) ;;
   }
