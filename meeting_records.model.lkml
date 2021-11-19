@@ -1,9 +1,11 @@
 connection: "redshift"
+label: "Barn Data"
 
 include: "/views/meeting_records.view.lkml"
 include: "/views/device_view.view.lkml"
 include: "/views/device_registrations.view.lkml"
 include: "/views/salesforce_accounts.view.lkml"
+include: "/views/device_checkins.view.lkml"
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
 
@@ -30,3 +32,7 @@ include: "/views/salesforce_accounts.view.lkml"
       sql_on: ${device_registrations.company_domain} = ${salesforce_accounts.email_domain} ;;
     }
 }
+
+  explore: device_checkins {
+    label: "Device Check-Ins"
+  }
