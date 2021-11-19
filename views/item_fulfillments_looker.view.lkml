@@ -186,6 +186,7 @@ view: item_fulfillments_looker{
   }
 
   measure: total_cogs{
+    hidden: yes
     type: sum
     sql: ${TABLE}.cogs_amount  ;;
     value_format_name: usd
