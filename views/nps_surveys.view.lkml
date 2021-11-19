@@ -1,6 +1,6 @@
-view: nps_surveys_postgres {
+view: nps_surveys_redshift {
   label: "NPS Surveys"
-  sql_table_name: public.nps_surveys_postgres ;;
+  sql_table_name: public.nps_surveys_redshift ;;
 
 ## DIMENSIONS
 
@@ -28,6 +28,7 @@ view: nps_surveys_postgres {
       year
     ]
     sql: ${TABLE}."start_date" ;;
+    allow_fill: yes
   }
 
   dimension_group: end {
@@ -43,6 +44,7 @@ view: nps_surveys_postgres {
       year
     ]
     sql: ${TABLE}."end_date" ;;
+    allow_fill: yes
   }
 
   dimension: response_type {
@@ -261,18 +263,18 @@ view: nps_surveys_postgres {
   dimension: nps_bucket_int {
     hidden: yes
     type: number
-    sql: case where ${recommend_score} in (9,10) then 1
-              where ${recommend_score} in (7,8) then 0
-              where ${recommend_score} in (1,2,3,4,5,6) then -1
+    sql: case when ${recommend_score} in (9,10) then 1
+              when ${recommend_score} in (7,8) then 0
+              when ${recommend_score} in (1,2,3,4,5,6) then -1
               else null end;;
   }
 
   dimension: nps_bucket {
     label: "Net Promoter Category"
     type: string
-    sql: case where ${recommend_score} in (9,10) then 'Promoter'
-              where ${recommend_score} in (7,8) then 'Passive'
-              where ${recommend_score} in (1,2,3,4,5,6) then 'Detractor'
+    sql: case when ${recommend_score} in (9,10) then 'Promoter'
+              when ${recommend_score} in (7,8) then 'Passive'
+              when ${recommend_score} in (1,2,3,4,5,6) then 'Detractor'
               else null end;;
   }
 
@@ -281,7 +283,8 @@ view: nps_surveys_postgres {
   measure: nps_score {
     label: "NPS Score"
     type: number
-    sql: sum(${nps_bucket_int}) / count(${recommend_score}) ;;
+    sql: ((sum(${nps_bucket_int}) * 1.0) / count(${recommend_score})) * 100 ;;
+    value_format: "0"
 #     ((Count(distinct case when `Score Full` in ('9', '10') then `Timestamp` end)
 # /
 # Count(distinct case when `Score Full` in ('0','1','2','3','4','5','6','7','8','9','10') then `Timestamp` end ))
@@ -294,7 +297,7 @@ view: nps_surveys_postgres {
   measure: count_scores {
     label: "Number of Scores"
     type: number
-    sql: count(${recommend_score} ;;
+    sql: count(${recommend_score}) ;;
   }
 
   # measure: count {
@@ -303,11 +306,13 @@ view: nps_surveys_postgres {
   # }
 
   measure: total_duration_seconds {
+    hidden: yes
     type: sum
     sql: ${duration_seconds} ;;
   }
 
   measure: average_duration_seconds {
+    hidden: yes
     type: average
     sql: ${duration_seconds} ;;
   }
