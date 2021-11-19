@@ -6,7 +6,8 @@ view: nps_surveys_redshift {
 
   dimension: row_num {
     primary_key: yes
-    # type:
+    hidden: yes
+    type: number
     sql: ${TABLE}."row_num" ;;
   }
 
