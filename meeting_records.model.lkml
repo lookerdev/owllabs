@@ -33,6 +33,9 @@ include: "/views/device_checkins.view.lkml"
     }
 }
 
-  explore: device_checkins {
-    label: "Device Check-Ins"
-  }
+ explore: device_checkins {
+  label: "Device Check-Ins"
+}
+
+# explore: device_registrations {
+# }
