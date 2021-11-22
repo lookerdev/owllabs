@@ -22,7 +22,7 @@ view: item_fulfillments_looker{
   dimension: channel {
     type: string
     sql: ${TABLE}.channel ;;
-    drill_fields: [customer_name, marketplace_segment, product_category]
+    drill_fields: [customer_name, marketplace_segment, product_category, document_number]
   }
 
   # dimension: cogs_account {
@@ -106,7 +106,7 @@ view: item_fulfillments_looker{
   dimension: marketplace_segment {
     type: string
     sql: ${TABLE}.marketplace_segment ;;
-    drill_fields: [customer_name, item, product_category, product_line]
+    drill_fields: [customer_name, item, product_category, product_line, document_number]
   }
 
   dimension: period {
@@ -117,13 +117,13 @@ view: item_fulfillments_looker{
   dimension: product_category {
     type: string
     sql: ${TABLE}.product_category ;;
-    drill_fields: [channel, customer_name, marketplace_segment, item, product_line]
+    drill_fields: [channel, customer_name, marketplace_segment, item, product_line, document_number]
   }
 
   dimension: product_line {
     type: string
     sql: ${TABLE}.product_line ;;
-    drill_fields: [channel, customer_name, marketplace_segment, item]
+    drill_fields: [channel, customer_name, marketplace_segment, item, document_number]
   }
 
   dimension: quantity {
@@ -171,6 +171,14 @@ view: item_fulfillments_looker{
     type: yesno
     sql: ${channel} is null OR ${marketplace_segment} is null OR ${product_line} is null OR ${product_category} is null ;;
   }
+
+  # dimension: fulfillments_owl_wbo_hq {
+  #   type: yesno
+  #   sql: case when ${product_category} in ('Owls', 'HQ', 'WBO') then True
+  #             else False end;;
+  # }
+
+  # MEASURE
 
   measure: count {
     hidden: yes

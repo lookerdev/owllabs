@@ -23,7 +23,7 @@ view: salesforce_accounts {
   }
 
   dimension: industry_group {
-    hidden: yes
+    # hidden: yes
     type: string
     sql: ${TABLE}.industry_group ;;
   }
