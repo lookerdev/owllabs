@@ -35,9 +35,18 @@ view: salesforce_accounts {
     sql: ${TABLE}.row_num ;;
   }
 
+
+## MEASURES
   # measure: count {
   #   hidden: yes
   #   type: count
   #   drill_fields: [company_name]
   # }
+
+  # dimension: count_owls_per_company {
+  #   type: number
+  #   sql: count(distinct ${meeting_records.deviceuuid}) ;;
+  #   tiers: []
+  # }
+
 }

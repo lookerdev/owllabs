@@ -38,3 +38,16 @@ include: "/views/device_checkins.view.lkml"
 
 # explore: device_registrations {
 # }
+
+ explore: device_view {
+  label: "Devices"
+  sql_always_where: ${device_view.product_name} <> 'TESTNAME' ;; # Removes TESTNAME product name rows
+  always_filter: {
+    filters: [device_registrations.registration_record_delete_date: "NULL"]
+  }
+    join: device_registrations {
+      type: left_outer
+      relationship: one_to_many
+      sql_on: ${device_view.uuid} = ${device_registrations.deviceuuid} ;;
+    }
+  }

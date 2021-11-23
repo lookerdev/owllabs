@@ -1,17 +1,10 @@
 # The name of this view in Looker is "Device Registrations"
 view: device_registrations {
-  # The sql_table_name parameter indicates the underlying database table
-  # to be used for all fields in this view.
   sql_table_name: public.device_registrations ;;
-  # No primary key is defined for this view. In order to join this view in an Explore,
-  # define primary_key: yes on a dimension that has no repeated values.
-
-  # Here's what a typical dimension looks like in LookML.
-  # A dimension is a groupable field that can be used to filter query results.
-  # This dimension will be called "Channel ID" in Explore.
 
   dimension: channel_id {
     label: "Channel ID"
+    hidden: yes
     type: number
     sql: ${TABLE}.channel_id ;;
   }
@@ -58,6 +51,7 @@ view: device_registrations {
   }
 
   dimension: product_name {
+    hidden: yes
     description: "Type of product registered"
     type: string
     sql: ${TABLE}.product_name ;;
@@ -145,11 +139,17 @@ view: device_registrations {
     drill_fields: [product_name, company_name, user_name]
   }
 
-  measure: count_companies {
-    label: "Count of Companies"
+  measure: count_domain {
+    label: "Count of Company Email Domain"
     type: count_distinct
-    sql: ${company_id} ;;
+    sql: ${company_domain} ;;
   }
+
+  # measure: count_companies {
+  #   label: "Count of Companies"
+  #   type: count_distinct
+  #   sql: ${company_id} ;;
+  # }
 
   # measure: devices_per_company {
   #   sql: ${meeting_records.count_devices} / ${count_companies} ;;

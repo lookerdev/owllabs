@@ -14,16 +14,22 @@ view: device_view {
   }
 
   dimension: channel_id {
-    hidden: yes
+    # hidden: yes
     type: number
     sql: ${TABLE}.channel_id ;;
   }
 
   dimension: channel_name {
-    label: "Channel Name"
+    label: "Barn Channel Name"
     description: "Name of Barn channel device belongs to"
     type: string
     sql: ${TABLE}.channel_name ;;
+  }
+
+  dimension: barn_channel_category {
+    type: string
+    sql: case when ${channel_name} in ('AmazonVendorCentral','ANZ','ChromeIssueOTA','ConferenceRoom','ConferenceRooms','Customers','DesktopAppBeta','Europe','LodiSchools','LodiSchoolsPhasedRollout','PhasedRollout','PhasedRollout2','ResellerCustomers','Returns','Unknown') then 'Public Facing'
+              else 'QA' end;;
   }
 
   dimension_group: checkedinat {
@@ -147,9 +153,16 @@ view: device_view {
 
 # Measures
   measure: device_count {
-    label: "Total Number of Devices"
-    type: count
+    label: "Count of Devices"
+    type: number
+    sql: count(distinct ${uuid}) ;;
     drill_fields: [device_id, device_name, product_name, channel_name]
+  }
+
+  measure: avg_owls_per_company {
+    type: number
+    value_format: "0.0"
+    sql: count(distinct ${uuid}) * 1.0/ count(distinct ${device_registrations.company_domain}) ;;
   }
 
   # dimension: 6mth_average_local_talk_time_minutes {
