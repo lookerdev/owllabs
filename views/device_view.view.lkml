@@ -26,11 +26,11 @@ view: device_view {
     sql: ${TABLE}.channel_name ;;
   }
 
-  dimension: barn_channel_category {
-    type: string
-    sql: case when ${channel_name} in ('AmazonVendorCentral','ANZ','ChromeIssueOTA','ConferenceRoom','ConferenceRooms','Customers','DesktopAppBeta','Europe','LodiSchools','LodiSchoolsPhasedRollout','PhasedRollout','PhasedRollout2','ResellerCustomers','Returns','Unknown') then 'Public Facing'
-              else 'QA' end;;
-  }
+  # dimension: barn_channel_category {
+  #   type: string
+  #   sql: case when ${channel_name} in ('AmazonVendorCentral','ANZ','ChromeIssueOTA','ConferenceRoom','ConferenceRooms','Customers','DesktopAppBeta','Europe','LodiSchools','LodiSchoolsPhasedRollout','PhasedRollout','PhasedRollout2','ResellerCustomers','Returns','Unknown') then 'Public Facing'
+  #             else 'QA' end;;
+  # }
 
   dimension_group: checkedinat {
     label: "Most Recent Device Check-In"
