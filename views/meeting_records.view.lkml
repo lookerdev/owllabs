@@ -171,7 +171,7 @@ view: meeting_records {
   }
 
   measure: count_devices {
-    label: "Count of Devices"
+    label: "Count of Devices in Meetings"
     description: "Number of distinct devices"
     type: count_distinct
     sql: ${deviceuuid};;
