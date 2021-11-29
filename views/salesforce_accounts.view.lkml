@@ -41,15 +41,6 @@ view: salesforce_accounts {
     sql: ${TABLE}.devices_registered ;;
   }
 
-  # dimension: devices_registered_buckets {
-  #   type: string
-  #   sql: case when devices_registered = 0 then '0'
-  #             when devices_registered = 1 then '1'
-  #             when devices_registered between 2 and 4 then '2-4'
-  #             when devices_registered between 5 and 10 then '5-10'
-  #             when devices_registered between 11 and 20 then '11-20'
-  #             when devices_registered >= 21 then '21 or more' end ;;
-  # }
 
   dimension: devices_registered_bins {
     label: "Devices Registered - bins"
