@@ -145,6 +145,19 @@ view: device_registrations {
     sql: ${company_domain} ;;
   }
 
+  measure: count_registered_devices {
+    label: "Count of Registered Devices"
+    type: count_distinct
+    sql: ${deviceuuid} ;;
+  }
+
+  measure: avg_owls_per_company {
+    type: number
+    value_format: "0.0"
+    sql: count(distinct ${deviceuuid}) * 1.0/ count(distinct ${company_domain}) ;;
+  }
+
+
   # measure: count_companies {
   #   label: "Count of Companies"
   #   type: count_distinct

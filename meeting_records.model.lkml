@@ -28,7 +28,8 @@ include: "/views/device_checkins.view.lkml"
     join: salesforce_accounts {
       type: left_outer
       relationship: many_to_one
-      sql_on: ${device_registrations.company_domain} = ${salesforce_accounts.email_domain} ;;
+      sql_on: lower(${device_registrations.company_domain}) = lower(${salesforce_accounts.email_domain})
+              and lower(${device_registrations.company_name}) = lower(${salesforce_accounts.company_name});;
     }
 }
 
