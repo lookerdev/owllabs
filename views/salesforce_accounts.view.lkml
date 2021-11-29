@@ -51,10 +51,10 @@ view: salesforce_accounts {
   #             when devices_registered >= 21 then '21 or more' end ;;
   # }
 
-  dimension: devices_registered_tier {
-    label: "Devices Registered - Tiers"
+  dimension: devices_registered_bins {
+    label: "Devices Registered - bins"
     # label: "Count Devices Registered to Company"
-    type: tier
+    type: bin
     style: integer
     tiers: [1, 2, 5, 11, 21,]
     sql: ${devices_registered}  ;;
