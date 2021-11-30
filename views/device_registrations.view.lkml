@@ -158,11 +158,11 @@ view: device_registrations {
   }
 
 
-  # measure: count_companies {
-  #   label: "Count of Companies"
-  #   type: count_distinct
-  #   sql: ${company_id} ;;
-  # }
+  measure: count_companies {
+    label: "Count of Company Domains"
+    type: count_distinct
+    sql: ${company_domain} ;;
+  }
 
   # measure: devices_per_company {
   #   sql: ${meeting_records.count_devices} / ${count_companies} ;;
