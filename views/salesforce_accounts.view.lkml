@@ -18,6 +18,13 @@ view: salesforce_accounts {
     sql: ${TABLE}.company_domain ;;
   }
 
+  dimension: device_registrations_join_key {
+    hidden: yes
+    description: "this is what to use to join to device_registrations. mostly domains, but has company name for gmail.com, comcast.net, and aol.com because of all the companies that use those domains"
+    type: string
+    sql: ${TABLE}.device_registrations_join_key ;;
+  }
+
   dimension: industry {
     type: string
     sql: ${TABLE}.industry ;;
@@ -33,7 +40,7 @@ view: salesforce_accounts {
     primary_key: yes
     hidden: yes
     type: string
-    sql: ${TABLE}.row_number ;;
+    sql: ${TABLE}.row_num ;;
   }
 
   dimension: devices_registered {

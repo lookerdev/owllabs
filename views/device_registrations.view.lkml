@@ -21,6 +21,14 @@ view: device_registrations {
     sql: ${TABLE}.company_id ;;
   }
 
+  dimension: sf_accounts_join_key {
+    hidden: yes
+    description: "this is what to use to join to salesforce_accounts. mostly domains, but has company name for gmail.com, comcast.net, and aol.com because of all the companies that use those domains"
+    type: string
+    sql: ${TABLE}.sf_accounts_join_key ;;
+  }
+
+
   dimension: company_name {
     description: "Name of company device is registered to"
     type: string
