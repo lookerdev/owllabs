@@ -33,7 +33,7 @@ view: salesforce_accounts {
     primary_key: yes
     hidden: yes
     type: string
-    sql: ${TABLE}.row_num ;;
+    sql: ${TABLE}.row_number ;;
   }
 
   dimension: devices_registered {
