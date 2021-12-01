@@ -12,7 +12,7 @@ include: "/views/device_checkins.view.lkml"
  explore: meeting_records {
   sql_always_where: ${device_view.product_name} <> 'TESTNAME' ;; # Removes TESTNAME product name rows
   always_filter: {
-    filters: [device_registrations.registration_record_delete_date: "NULL"]
+    filters: [device_registrations.registration_record_delete_date: "NULL"] # filter defaults to remove deleted registration records
   }
   join: device_view {
     # view_label: "Devices"
@@ -28,8 +28,7 @@ include: "/views/device_checkins.view.lkml"
     join: salesforce_accounts {
       type: left_outer
       relationship: many_to_one
-      sql_on: lower(${device_registrations.company_domain}) = lower(${salesforce_accounts.email_domain})
-              and lower(${device_registrations.company_name}) = lower(${salesforce_accounts.company_name});;
+      sql_on: lower(${device_registrations.company_domain}) = lower(${salesforce_accounts.email_domain});;
     }
 }
 
@@ -44,7 +43,7 @@ include: "/views/device_checkins.view.lkml"
   label: "Devices"
   sql_always_where: ${device_view.product_name} <> 'TESTNAME' ;; # Removes TESTNAME product name rows
   always_filter: {
-    filters: [device_registrations.registration_record_delete_date: "NULL"]
+    filters: [device_registrations.registration_record_delete_date: "NULL"] # filter defaults to remove deleted registration records
   }
     join: device_registrations {
       type: left_outer

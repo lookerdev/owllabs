@@ -133,11 +133,11 @@ view: device_registrations {
   # measures for numeric dimensions, but you can also add measures of many different types.
   # Click on the type parameter to see all the options in the Quick Help panel on the right.
 
-  measure: count {
-    label: "Count Registrations"
-    type: count
-    drill_fields: [product_name, company_name, user_name]
-  }
+  # measure: count {
+  #   label: "Count of Registrations"
+  #   type: count
+  #   drill_fields: [product_name, company_name, user_name]
+  # }
 
   measure: count_domain {
     label: "Count of Company Email Domain"
@@ -146,7 +146,7 @@ view: device_registrations {
   }
 
   measure: count_registered_devices {
-    label: "Count of Registered Devices"
+    label: "Count of Total Registered Devices"
     type: count_distinct
     sql: ${deviceuuid} ;;
   }

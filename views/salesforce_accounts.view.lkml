@@ -3,6 +3,7 @@ view: salesforce_accounts {
   sql_table_name: public.salesforce_accounts_view ;;
 
   dimension: company_name {
+    hidden: yes
     type: string
     sql: ${TABLE}.company_name ;;
   }
@@ -36,14 +37,16 @@ view: salesforce_accounts {
   }
 
   dimension: devices_registered {
-    description: "Number of Registered Devices per Company"
+    label: "Count of Registered Devices per Company"
+    description: "Number of registered devices per company"
     type: number
     sql: ${TABLE}.devices_registered ;;
   }
 
 
   dimension: devices_registered_bins {
-    label: "Devices Registered - bins"
+    label: "Count of Registered Devices per Company - bins"
+    description: "Number of registered devices per company, grouped into bins. 'Below 1' means the company has 0 devices regsitered, 'Undefined' means that the  "
     # label: "Count Devices Registered to Company"
     type: bin
     style: integer
