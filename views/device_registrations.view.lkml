@@ -29,7 +29,6 @@ view: device_registrations {
     sql: ${TABLE}.sf_accounts_join_key ;;
   }
 
-
   dimension: company_name {
     label: "Registeration Company Name"
     description: "Name of company that device is registered to"
@@ -52,6 +51,11 @@ view: device_registrations {
     label: "DeviceUUID"
     type: string
     sql: ${TABLE}.deviceuuid ;;
+  }
+
+  dimension: email {
+    type: string
+    sql: ${TABLE}.email_address ;;
   }
 
   dimension: product_id {
