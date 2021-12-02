@@ -1,5 +1,5 @@
 view: salesforce_accounts {
-  label: "Salesforce Account Information - IN TESTING"
+  label: "Salesforce Account Information"
   sql_table_name: public.salesforce_accounts_view ;;
 
   dimension: company_name {
@@ -43,7 +43,7 @@ view: salesforce_accounts {
   }
 
   dimension: devices_registered {
-    label: "Count of Registered Devices per Company"
+    label: "# Registered Devices per Company"
     description: "Number of registered devices per company"
     type: number
     sql: ${TABLE}.devices_registered ;;
@@ -51,7 +51,7 @@ view: salesforce_accounts {
 
 
   dimension: devices_registered_bins {
-    label: "Count of Registered Devices per Company - bins"
+    label: "# Registered Devices per Company - bins"
     description: "Number of registered devices per company, grouped into bins."
     # label: "Count Devices Registered to Company"
     type: bin

@@ -10,7 +10,7 @@ view: device_registrations {
   }
 
   dimension: company_domain {
-    label: "Registered Email Domain"
+    label: "Registration Email Domain"
     description: "Email domain that devices is registered to"
     type: string
     sql: ${TABLE}.company_domain ;;
@@ -31,7 +31,7 @@ view: device_registrations {
 
 
   dimension: company_name {
-    label: "Registered Company Name"
+    label: "Registeration Company Name"
     description: "Name of company that device is registered to"
     type: string
     sql: ${TABLE}.company_name ;;
@@ -149,8 +149,15 @@ view: device_registrations {
   #   drill_fields: [product_name, company_name, user_name]
   # }
 
+  measure: count_companies {
+    hidden: yes
+    label: "Count of Company"
+    type: count_distinct
+    sql: ${company_id} ;;
+  }
+
   measure: count_domain {
-    label: "Count of Company Email Domain"
+    label: "Count of Registered Email Domain"
     type: count_distinct
     sql: ${company_domain} ;;
   }
@@ -162,17 +169,12 @@ view: device_registrations {
   }
 
   measure: avg_owls_per_company {
+    label: "Avg. Owls Registered per Company"
     type: number
     value_format: "0.0"
     sql: count(distinct ${deviceuuid}) * 1.0/ count(distinct ${company_domain}) ;;
   }
 
-
-  measure: count_companies {
-    label: "Count of Company Domains"
-    type: count_distinct
-    sql: ${company_domain} ;;
-  }
 
   # measure: devices_per_company {
   #   sql: ${meeting_records.count_devices} / ${count_companies} ;;

@@ -20,16 +20,16 @@ include: "/views/device_checkins.view.lkml"
       relationship: many_to_one
       sql_on: ${meeting_records.deviceuuid} = ${device_view.uuid} ;;
   }
-    join:  device_registrations {
-      type: left_outer
-      relationship: many_to_many # this will change once I remove the funky registration dupes
-      sql_on: ${meeting_records.deviceuuid} = ${device_registrations.deviceuuid} ;;
-    }
-    join: salesforce_accounts {
-      type: left_outer
-      relationship: many_to_one
-      sql_on: lower(${device_registrations.sf_accounts_join_key}) = lower(${salesforce_accounts.device_registrations_join_key});;
-    }
+  join:  device_registrations {
+    type: left_outer
+    relationship: many_to_many # this will change once I remove the funky registration dupes
+    sql_on: ${meeting_records.deviceuuid} = ${device_registrations.deviceuuid} ;;
+  }
+  join: salesforce_accounts {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: lower(${device_registrations.sf_accounts_join_key}) = lower(${salesforce_accounts.device_registrations_join_key});;
+  }
 }
 
  explore: device_checkins {
@@ -45,9 +45,16 @@ include: "/views/device_checkins.view.lkml"
   always_filter: {
     filters: [device_registrations.registration_record_delete_date: "NULL"] # filter defaults to remove deleted registration records
   }
-    join: device_registrations {
-      type: left_outer
-      relationship: one_to_many
-      sql_on: ${device_view.uuid} = ${device_registrations.deviceuuid} ;;
-    }
+  join: device_registrations {
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${device_view.uuid} = ${device_registrations.deviceuuid} ;;
+  }
+  join: salesforce_accounts {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: lower(${device_registrations.sf_accounts_join_key}) = lower(${salesforce_accounts.device_registrations_join_key});;
+  }
+
+
   }
