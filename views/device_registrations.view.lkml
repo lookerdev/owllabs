@@ -54,6 +54,7 @@ view: device_registrations {
   }
 
   dimension: email {
+    label: "Email Address"
     type: string
     sql: ${TABLE}.email_address ;;
   }
