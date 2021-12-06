@@ -48,7 +48,7 @@ view: device_view {
       quarter,
       year
     ]
-    sql: ${TABLE}.device_last_checkin ;;
+    sql: ${TABLE}.device_last_checkin::timestamp ;;
   }
 
   dimension_group: createdat {

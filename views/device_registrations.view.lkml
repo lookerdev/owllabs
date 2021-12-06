@@ -86,7 +86,7 @@ view: device_registrations {
       quarter,
       year
     ]
-    sql: ${TABLE}.registration_date ;;
+    sql: ${TABLE}.registration_date::timestamp ;;
   }
 
   dimension: registration_id {

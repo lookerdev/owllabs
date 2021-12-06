@@ -15,12 +15,12 @@ explore: orders_view {
   label: "Orders Explore (orig)"
   join: orders_line_items_view {
     sql_on: ${orders_line_items_view.store}=${orders_view.store}
-      AND ${orders_line_items_view.name}=${orders_view.shopify_order_number};;
+      AND ${orders_line_items_view.name}=${orders_view.order_number};;
     relationship: many_to_one
     type: left_outer
   }
   join: orders_fulfillments_view {
-    sql_on: ${orders_view.shopify_order_number}=${orders_fulfillments_view.order_number}
+    sql_on: ${orders_view.order_number}=${orders_fulfillments_view.order_number}
             AND ${orders_fulfillments_view.store}=${orders_view.store}
             AND ${orders_fulfillments_view.product_id}=${orders_fulfillments_view.product_id};; #these are the same!
     relationship: many_to_one
