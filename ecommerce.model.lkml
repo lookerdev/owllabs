@@ -1,4 +1,5 @@
 connection: "redshift"
+label: "E-Commerce"
 
 include: "/views/orders_view.view.lkml"                # include all views in the views/ folder in this project
 include: "/views/orders_line_items_view.view.lkml"

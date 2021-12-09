@@ -19,8 +19,9 @@ include: "/views/revenue_report_dimensions.view.lkml"
 
 
 explore: dim_calendar {
+  hidden: yes
   sql_always_where: ${year} >= 2014 and ${date_date} <= trunc(sysdate);;
-  label: "Netsuite Orders/Fulfillment"
+  label: "Netsuite Orders & Fulfillments"
   join: netsuite_units_fulfilled {
     relationship: one_to_many
     sql_on: ${dim_calendar.date_date} = ${netsuite_units_fulfilled.fullfillment_date} ;;
@@ -31,8 +32,26 @@ explore: dim_calendar {
   }
 }
 
+# this explore is a dupe of the one above (named dim_calendar) but is renamed
+# I should probably move this explore into the Ecommerce model and delete the one above
+# Is anyone using the one above? If so replace with the new one
+explore: netsuite_orders_fulfillments {
+  hidden: yes
+  label: "Netsuite Orders & Fulfillments"
+  view_name: dim_calendar
+  sql_always_where: ${year} >= 2014 and ${date_date} <= trunc(sysdate);;
+  join: netsuite_units_fulfilled {
+    relationship: one_to_many
+    sql_on: ${dim_calendar.date_date} = ${netsuite_units_fulfilled.fullfillment_date} ;;
+  }
+  join: netsuite_units_ordered {
+    relationship: one_to_many
+    sql_on:${dim_calendar.date_date} = ${netsuite_units_ordered.sales_order_date} ;;
+  }
+}
 
 explore: dim_calendar_distinct {
+  hidden: yes
   sql_always_where: ${dim_calendar_distinct.year} >= 2021
                     and ${dim_calendar_distinct.month} >= 8;;
   label: "Revenue & Fulfillments by Item"
@@ -51,7 +70,7 @@ explore: dim_calendar_distinct {
 }
 
   explore: revenue_report_aggregates {
-# explore: revenue_aggregates_test {
+    hidden: yes
     label: "Revenue Report Aggregates"
     view_name: revenue_report_dimensions
     sql_always_where: ${dim_calendar_distinct.year} >= 2021
