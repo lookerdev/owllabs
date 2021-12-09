@@ -12,6 +12,7 @@ include: "/views/dim_calendar.view.lkml"
 #
 
 explore: orders_view {
+  hidden: yes
   label: "Orders Explore (orig)"
   join: orders_line_items_view {
     sql_on: ${orders_line_items_view.store}=${orders_view.store}
@@ -30,6 +31,7 @@ explore: orders_view {
 }
 
 explore: dim_calendar {
+  hidden: yes
   label: "Orders Explore (test)"
   join: orders_line_items_view {
     sql_on: ${dim_calendar.date_date} = ${orders_line_items_view.order_created_date} ;;

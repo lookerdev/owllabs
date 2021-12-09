@@ -1,6 +1,7 @@
 view: orders_view {
   # sql_table_name: public.orders_view ;;
-  sql_table_name: public.shopify_orders_view ;;
+  # sql_table_name: public.shopify_orders_view ;;
+  sql_table_name: public.shopify_orders_redshift ;;
 
   dimension: billing_address_address1 {
     type: string
@@ -95,7 +96,7 @@ view: orders_view {
       quarter,
       year
     ]
-    sql: ${TABLE}.created_at ;;
+    sql: ${TABLE}.created_at::timestamp ;;
   }
 
   dimension: customer_currency {
