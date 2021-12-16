@@ -79,7 +79,7 @@ view: device_view {
       quarter,
       year
     ]
-    sql: ${TABLE}.device_activation_date ;;
+    sql: ${TABLE}.device_activation_date::timestamp ;;
   }
 
   dimension: device_hardware_serial_number {
