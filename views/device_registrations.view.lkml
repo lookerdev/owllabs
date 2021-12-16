@@ -10,7 +10,7 @@ view: device_registrations {
   }
 
   dimension: company_domain {
-    label: "Registration Email Domain"
+    label: "Registered Email Domain"
     description: "Email domain that devices is registered to"
     type: string
     sql: ${TABLE}.company_domain ;;
@@ -30,7 +30,7 @@ view: device_registrations {
   }
 
   dimension: company_name {
-    label: "Registration Company Name"
+    label: "Registered Company Name"
     description: "Name of company that device is registered to"
     type: string
     sql: ${TABLE}.company_name ;;
@@ -54,7 +54,7 @@ view: device_registrations {
   }
 
   dimension: email {
-    label: "Registration Email Address"
+    label: "Registered Email Address"
     type: string
     sql: ${TABLE}.email_address ;;
   }
