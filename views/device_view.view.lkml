@@ -68,7 +68,7 @@ view: device_view {
   }
 
   dimension_group: device_activation_date {
-    description: "Device Activation"
+    label: "Device Activation"
     type: time
     timeframes: [
       raw,
@@ -83,11 +83,13 @@ view: device_view {
   }
 
   dimension: device_hardware_serial_number {
+    label: "Hardware Serial Number"
     type: string
     sql: ${TABLE}.device_hardware_serial_number ;;
   }
 
   dimension: device_hardware_version {
+    label: "Hardware Version"
     type: string
     sql: ${TABLE}.device_hardware_version ;;
   }
@@ -102,7 +104,7 @@ view: device_view {
   }
 
   dimension: device_name {
-    hidden: yes
+    # hidden: yes
     type: string
     sql: ${TABLE}.device_name ;;
   }

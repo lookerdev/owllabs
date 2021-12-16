@@ -30,7 +30,7 @@ view: device_registrations {
   }
 
   dimension: company_name {
-    label: "Registeration Company Name"
+    label: "Registration Company Name"
     description: "Name of company that device is registered to"
     type: string
     sql: ${TABLE}.company_name ;;

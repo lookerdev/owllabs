@@ -50,6 +50,8 @@ explore: netsuite_orders_fulfillments {
   }
 }
 
+# keep hidden, doesn't need to be accessible outside of Revenue Report dashboard
+# should I rename this explore...? If I do I'll have to replace everything in the dashboard using it...
 explore: dim_calendar_distinct {
   hidden: yes
   sql_always_where: ${dim_calendar_distinct.year} >= 2021
@@ -69,6 +71,7 @@ explore: dim_calendar_distinct {
   }
 }
 
+# keep hidden, doesn't need to be accessible outside of Revenue Report dashboard
   explore: revenue_report_aggregates {
     hidden: yes
     label: "Revenue Report Aggregates"
