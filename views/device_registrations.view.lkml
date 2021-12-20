@@ -1,6 +1,6 @@
 # The name of this view in Looker is "Device Registrations"
 view: device_registrations {
-  sql_table_name: public.device_registrations ;;
+  sql_table_name: public.device_registrations_view ;;
 
   dimension: channel_id {
     label: "Channel ID"
@@ -108,7 +108,7 @@ view: device_registrations {
       quarter,
       year
     ]
-    sql: ${TABLE}.registration_record_delete_date ;;
+    sql: ${TABLE}.registration_record_delete_date::timestamp ;;
   }
 
   dimension_group: registration_record_lastupdate {
@@ -123,7 +123,7 @@ view: device_registrations {
       quarter,
       year
     ]
-    sql: ${TABLE}.registration_record_lastupdate_date ;;
+    sql: ${TABLE}.registration_record_lastupdate_date::timestamp ;;
   }
 
   dimension: registration_source {
