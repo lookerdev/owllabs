@@ -180,6 +180,11 @@ view: device_registrations {
     sql: count(distinct ${deviceuuid}) * 1.0/ count(distinct ${company_domain}) ;;
   }
 
+  measure: count_registrations {
+    label: "Count of Registrations"
+    type: count
+  }
+
 
   # measure: devices_per_company {
   #   sql: ${meeting_records.count_devices} / ${count_companies} ;;
