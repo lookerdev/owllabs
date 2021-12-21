@@ -14,7 +14,7 @@ view: netsuite_fulfillments {
       quarter,
       year
     ]
-    sql: ${TABLE}.actual_ship_date::timestamp ;;
+    sql: ${TABLE}.actual_ship_date::date ;;
   }
 
   dimension: class {
@@ -49,7 +49,7 @@ view: netsuite_fulfillments {
       quarter,
       year
     ]
-    sql: ${TABLE}.fulfillment_date::timestamp ;;
+    sql: ${TABLE}.fulfillment_date::date;;
   }
 
   dimension: fulfillment_externalid {

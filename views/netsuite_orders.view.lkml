@@ -70,9 +70,6 @@ view: netsuite_orders {
     sql: ${TABLE}.memo ;;
   }
 
-  # Dates and timestamps can be represented in Looker using a dimension group of type: time.
-  # Looker converts dates and timestamps to the specified timeframes within the dimension group.
-
   dimension_group: order {
     type: time
     timeframes: [
@@ -84,7 +81,7 @@ view: netsuite_orders {
       quarter,
       year
     ]
-    sql: ${TABLE}.order_date::timestamp ;;
+    sql: ${TABLE}.order_date::date ;;
   }
 
   dimension: order_externalid {

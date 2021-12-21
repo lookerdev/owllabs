@@ -17,7 +17,7 @@ include: "/views/revenue_report_dimensions.view.lkml"
 # include: "/**/*.view.lkml"                 # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
-# this explore is a dupe of the one above (named dim_calendar) but is renamed
+
 # I should probably move this explore into the Ecommerce model and delete the one above
 # Is anyone using the one above? If so replace with the new one
 explore: netsuite_orders_fulfillments {

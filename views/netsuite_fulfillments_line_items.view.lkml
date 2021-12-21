@@ -13,7 +13,7 @@ view: netsuite_fulfillments_line_items {
     ]
     convert_tz: no
     datatype: date
-    sql: ${TABLE}.actual_ship_date::timestamp ;;
+    sql: ${TABLE}.actual_ship_date::date ;;
   }
 
   dimension: class {
@@ -64,7 +64,7 @@ view: netsuite_fulfillments_line_items {
     ]
     convert_tz: no
     datatype: date
-    sql: ${TABLE}.fulfillment_date::timestamp ;;
+    sql: ${TABLE}.fulfillment_date::date;;
   }
 
   dimension: fulfillment_externalid {

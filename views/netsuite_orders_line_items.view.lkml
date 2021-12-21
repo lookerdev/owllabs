@@ -77,7 +77,7 @@ view: netsuite_orders_line_items {
     ]
     convert_tz: no
     datatype: date
-    sql: ${TABLE}.order_date::timestamp ;;
+    sql: ${TABLE}.order_date::date ;;
   }
 
   dimension: order_externalid {
