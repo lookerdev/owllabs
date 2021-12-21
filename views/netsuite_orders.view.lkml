@@ -45,13 +45,13 @@ view: netsuite_orders {
   dimension: line_items_subtotal_agg {
     hidden: yes
     type: number
-    sql: ${TABLE}.line_items_subtotal_agg ;;
+    sql: ${TABLE}.subtotal_line_items_agg ;;
   }
 
   dimension: line_items_subtotal_agg_usd {
     hidden: yes
     type: number
-    sql: ${TABLE}.line_items_subtotal_agg_usd ;;
+    sql: ${TABLE}.subtotal_usd_line_items_agg ;;
   }
 
   dimension: list_order_skus {
