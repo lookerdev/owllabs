@@ -1,4 +1,5 @@
 view: shopify_orders_serial_numbers {
+  label: "Shopify Orders"
   sql_table_name: public.shopify_orders_serial_numbers ;;
 
 # DIMENSIONS
@@ -16,6 +17,7 @@ view: shopify_orders_serial_numbers {
   }
 
   dimension: order_number {
+    hidden: yes
     label: "Shopify Order Number"
     type: number
     sql: ${TABLE}.order_number ;;
@@ -29,6 +31,7 @@ view: shopify_orders_serial_numbers {
   }
 
   dimension: serial_number {
+    hidden: yes
     label: "Device Hardware Serial Number"
     type: string
     sql: ${TABLE}.serial_number ;;
@@ -48,6 +51,7 @@ view: shopify_orders_serial_numbers {
   }
 
   measure: count_serials {
+    hidden: yes
     label: "Count of Serial Numbers"
     type: count_distinct
     sql: ${serial_number} ;;

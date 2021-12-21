@@ -6,6 +6,7 @@ include: "/views/device_view.view.lkml"
 include: "/views/device_registrations.view.lkml"
 include: "/views/salesforce_accounts.view.lkml"
 include: "/views/device_checkins.view.lkml"
+include: "/views/shopify_orders_serial_numbers.view.lkml"
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
 
@@ -54,5 +55,10 @@ include: "/views/device_checkins.view.lkml"
     type: left_outer
     relationship: many_to_one
     sql_on: lower(${device_registrations.sf_accounts_join_key}) = lower(${salesforce_accounts.device_registrations_join_key});;
+  }
+  join: shopify_orders_serial_numbers {
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${device_view.device_hardware_serial_number} = ${shopify_orders_serial_numbers.serial_number} ;;
   }
 }

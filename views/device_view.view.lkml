@@ -1,6 +1,6 @@
 view: device_view {
   label: "Devices"
-  sql_table_name: public.device_view ;;
+  sql_table_name: public.devices_view ;;
   drill_fields: [device_id]
 
 # Dimensions
