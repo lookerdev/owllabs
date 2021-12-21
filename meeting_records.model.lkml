@@ -55,6 +55,9 @@ include: "/views/device_checkins.view.lkml"
     relationship: many_to_one
     sql_on: lower(${device_registrations.sf_accounts_join_key}) = lower(${salesforce_accounts.device_registrations_join_key});;
   }
-
-
-  }
+  # join: shopify_orders_serial_numbers {
+  #   type: left_outer
+  #   relationship:
+  #   sql_on: ${device_view.device_hardware_serial_number} = serial ;;
+  # }
+}
