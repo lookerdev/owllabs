@@ -6,7 +6,7 @@ view: device_view {
 # Dimensions
 
   dimension: alias {
-    label: "Alias"
+    label: "Device Alias"
     description: "Customer's chosen nickname for device"
     type: string
     sql: ${TABLE}.device_alias ;;
