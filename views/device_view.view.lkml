@@ -6,7 +6,6 @@ view: device_view {
 # Dimensions
 
   dimension: alias {
-    hidden: yes
     label: "Alias"
     description: "Customer's chosen nickname for device"
     type: string
