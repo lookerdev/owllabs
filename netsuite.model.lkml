@@ -18,8 +18,6 @@ include: "/views/revenue_report_dimensions.view.lkml"
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
 
-# I should probably move this explore into the Ecommerce model and delete the one above
-# Is anyone using the one above? If so replace with the new one
 explore: netsuite_orders_fulfillments {
   hidden: yes
   label: "Netsuite Orders & Fulfillments"

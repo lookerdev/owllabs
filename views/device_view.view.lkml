@@ -14,7 +14,7 @@ view: device_view {
   }
 
   dimension: channel_id {
-    # hidden: yes
+    hidden: yes
     type: number
     sql: ${TABLE}.channel_id ;;
   }
@@ -82,6 +82,22 @@ view: device_view {
     sql: ${TABLE}.device_activation_date::timestamp ;;
   }
 
+  dimension_group: device_record_delete_date {
+    hidden: yes
+    label: "Device Record Delete"
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.device_record_delete_date::timestamp ;;
+  }
+
   dimension: device_hardware_serial_number {
     label: "Hardware Serial Number"
     type: string
@@ -117,6 +133,24 @@ view: device_view {
     sql: ${TABLE}.device_last_ip_address ;;
   }
 
+  dimension: last_location {
+    hidden: yes
+    type: string
+    sql: ${TABLE}.device_last_location ;;
+  }
+
+  dimension: parent_settings {
+    hidden: yes
+    type: string
+    sql: ${TABLE}.device_parent_settings ;;
+  }
+
+  dimension: pcb_version {
+    hidden: yes
+    type: string
+    sql: ${TABLE}.device_pcb_version ;;
+  }
+
   dimension: product_id {
     hidden: yes
     type: number
@@ -136,11 +170,23 @@ view: device_view {
     sql: ${TABLE}.device_serial_number ;;
   }
 
+  dimension: settings {
+    hidden: yes
+    type: string
+    sql: ${TABLE}.device_settings ;;
+  }
+
   dimension: software_version {
     label: "Device Current Software Version"
     description: "Device's most recent software version, captured during most recent check-in"
     type: string
     sql: ${TABLE}.device_software_version ;;
+  }
+
+  dimension: software_version_number{
+    hidden: yes
+    type: string
+    sql: ${TABLE}.device_software_version_number ;;
   }
 
   dimension: status {

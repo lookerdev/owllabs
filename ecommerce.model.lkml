@@ -5,6 +5,10 @@ include: "/views/orders_view.view.lkml"                # include all views in th
 include: "/views/orders_line_items_view.view.lkml"
 include: "/views/orders_fulfillments_view.view.lkml"
 include: "/views/dim_calendar.view.lkml"
+include: "/views/netsuite_orders.view.lkml"
+include: "/views/netsuite_orders_line_items.view.lkml"
+include: "/views/netsuite_fulfillments.view.lkml"
+include: "/views/netsuite_fulfillments_line_items.view.lkml"
 # include: "/**/*.view.lkml"                 # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
@@ -54,3 +58,27 @@ explore: dim_calendar {
 #     sql_on: ${users.id} = ${orders.user_id} ;;
 #   }
 # }
+
+
+explore: netsuite_orders_fulfillments {
+  hidden: yes
+  label: "Netsuite Orders & Fulfillments"
+  view_name: dim_calendar
+  sql_always_where: ${year} >= 2021 and ${date_date} <= trunc(sysdate);;
+
+  join: netsuite_orders {
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${dim_calendar.date_date} = ${netsuite_orders.order_date} ;;
+  }
+  join: netsuite_orders_line_items {
+    type: left_outer
+    relationship: one_to_many
+    sql_on:  ;;
+  }
+
+  join: netsuite_fulfillments {
+    relationship: one_to_many
+    sql_on:${dim_calendar.date_date} = ${netsuite_fulfillments.actual_ship_date} ;;
+  }
+}
