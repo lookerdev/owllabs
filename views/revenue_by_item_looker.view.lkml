@@ -16,7 +16,7 @@ view: revenue_by_item_looker {
     label: "Account Name"
     type: string
     sql: ${TABLE}.account_line_name ;;
-    drill_fields: [channel, customer_name, marketplace_segment, product_category]
+    drill_fields: [channel, customer_name, marketplace_segment, product_category, transaction_number]
   }
 
   dimension: account_line_name_glstyle {
