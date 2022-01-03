@@ -47,7 +47,7 @@ view: device_view {
       quarter,
       year
     ]
-    sql: ${TABLE}.device_last_checkin::timestamp ;;
+    sql: ${TABLE}.device_last_checkin_date::timestamp ;;
   }
 
   dimension_group: createdat {
@@ -131,6 +131,8 @@ view: device_view {
     type: string
     sql: ${TABLE}.device_last_ip_address ;;
   }
+
+
 
   dimension: last_location {
     hidden: yes
