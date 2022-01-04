@@ -3,6 +3,11 @@ view: shopify_orders_serial_numbers {
   sql_table_name: public.shopify_orders_serial_numbers ;;
 
 # DIMENSIONS
+  dimension: customer_company {
+    label: "Customer Company Name"
+    description: "Priority order of company name: 1) Billing Company, 2) Shipping Company, 3) Customer Default Company"
+    sql: coalesce(${TABLE}.billing_address_company, ${TABLE}.shipping_address_company, ${TABLE}.customer_default_address_company) ;;
+  }
 
   dimension: name {
     label: "Shopify Order Name"
@@ -34,7 +39,7 @@ view: shopify_orders_serial_numbers {
     hidden: yes
     label: "Device Hardware Serial Number"
     type: string
-    sql: ${TABLE}.serial_number ;;
+    sql: ${TABLE}.hardware_serial_number ;;
   }
 
   dimension: store {
