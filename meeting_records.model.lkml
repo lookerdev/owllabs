@@ -65,6 +65,6 @@ include: "/views/shopify_orders_serial_numbers.view.lkml"
   join: shopify_orders_serial_numbers {
     type: left_outer
     relationship: one_to_one
-    sql_on: ${device_view.device_hardware_serial_number} = ${shopify_orders_serial_numbers.serial_number} ;;
+    sql_on: lower(${device_view.device_hardware_serial_number}) = lower(${shopify_orders_serial_numbers.serial_number}) ;;
   }
 }
