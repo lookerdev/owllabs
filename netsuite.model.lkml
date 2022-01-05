@@ -59,8 +59,7 @@ explore: dim_calendar_distinct {
     hidden: yes
     label: "Revenue Report Aggregates"
     view_name: revenue_report_dimensions
-    sql_always_where: ${dim_calendar_distinct.year} >= 2021
-      and ${dim_calendar_distinct.month} >= 8;;
+    sql_always_where: ${dim_calendar_distinct.year} >= 2021;;
     join: dim_calendar_distinct {
       relationship: many_to_one
       sql_on: ${dim_calendar_distinct.period_name} = ${revenue_report_dimensions.period} ;;

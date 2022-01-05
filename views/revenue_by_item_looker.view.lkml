@@ -4,12 +4,12 @@ view: revenue_by_item_looker {
   # drill_fields: [account_line_name, channel, customer_name, transaction_number, marketplace_segment,item]
 
 
-# dimensions
+# DIMENSIONS
   dimension: account_id {
-    label: "Account internal id"
+    label: "Account Internal id"
     hidden: yes
     type: string
-    sql: ${TABLE}.account_id ;;
+    sql: ${TABLE}.account_line_internal_id ;;
   }
 
   dimension: account_line_name {
@@ -50,12 +50,6 @@ view: revenue_by_item_looker {
     drill_fields: [account_line_name, customer_name, marketplace_segment, product_category]
   }
 
-  # dimension: customer_country {
-  #   hidden: yes
-  #   type: string
-  #   sql: ${TABLE}.customer_country ;;
-  # }
-
   dimension_group: date {
     hidden: yes
     type: time
@@ -68,7 +62,7 @@ view: revenue_by_item_looker {
       quarter,
       year
     ]
-    sql: ${TABLE}.date ;;
+    sql: ${TABLE}.transaction_date ;;
   }
 
   dimension: customer_billing_address_country {
@@ -107,12 +101,6 @@ view: revenue_by_item_looker {
     sql: ${TABLE}.memo ;;
   }
 
-  # dimension: memo_1 {
-  #   hidden: yes
-  #   type: string
-  #   sql: ${TABLE}.memo_1 ;;
-  # }
-
   dimension: product_category {
     type: string
     sql: ${TABLE}.product_category ;;
@@ -132,17 +120,27 @@ view: revenue_by_item_looker {
     sql: ${TABLE}.row_number ;;
   }
 
-  dimension: source_rev_rec_document_number {
-    label: "Source Document Number"
+  dimension: sku_description {
     hidden: yes
-    type: string
-    sql: ${TABLE}.source_rev_rec_document_number ;;
+    sql: ${TABLE}.description ;;
   }
 
-  dimension: source_rev_rec_document_type {
+  # dimension: source_rev_rec_document_number {
+  #   label: "Source Document Number"
+  #   hidden: yes
+  #   type: string
+  #   sql: ${TABLE}.source_rev_rec_document_number ;;
+  # }
+
+  dimension: document_type {
     label: "Document Type"
     type: string
-    sql: ${TABLE}.source_rev_rec_document_type ;;
+    sql: ${TABLE}.transaction_type ;;
+  }
+
+  dimension: subsidiary_name {
+    hidden: yes
+    sql: ${TABLE}.subsidiary_name ;;
   }
 
   dimension: transaction_number {
@@ -159,6 +157,8 @@ view: revenue_by_item_looker {
     sql: ${channel} is null OR ${marketplace_segment} is null OR ${product_line} is null OR ${product_category} is null ;;
   }
 
+
+#MEASURES
   measure: count {
     hidden: yes
     type: count
