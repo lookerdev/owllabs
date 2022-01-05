@@ -10,7 +10,7 @@ label: "Revenue by Item (Aggregated) - Gross"
           product_line,
           SUM(amount) AS aggregated_revenue
          FROM revenue_by_item_looker
-         where account_id = '829'
+         where account_line_internal_id = '829'
          GROUP BY
           product_line,
           product_category,

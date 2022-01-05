@@ -60,6 +60,11 @@ view: dim_calendar_distinct {
     sql: ${TABLE}.year ;;
   }
 
+  dimension: date_convert {
+    hidden: yes
+    description: "Use this column to filter the dates from this table that are included. This column converts year-month to date."
+    sql: to_date(year || '-' || month, 'YYYY-MM') ;;
+  }
 
 
   # measure: count {
