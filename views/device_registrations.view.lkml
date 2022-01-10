@@ -156,19 +156,19 @@ view: device_registrations {
 
   measure: count_companies {
     hidden: yes
-    label: "Count of Company"
+    label: "Count of Regsitered Companies"
     type: count_distinct
     sql: ${company_id} ;;
   }
 
   measure: count_domain {
-    label: "Count of Registered Email Domain"
+    label: "Count of Registered Email Domains"
     type: count_distinct
     sql: ${company_domain} ;;
   }
 
   measure: count_registered_devices {
-    label: "Count of Total Registered Devices"
+    label: "Count of Registered Devices"
     type: count_distinct
     sql: ${deviceuuid} ;;
   }
