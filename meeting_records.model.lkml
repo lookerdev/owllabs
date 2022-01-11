@@ -12,7 +12,6 @@ include: "/views/shopify_orders_serial_numbers.view.lkml"
 
  explore: meeting_records {
   sql_always_where: ${device_view.product_name} <> 'TESTNAME'
-                    and ${device_view.device_record_delete_date_date} is null
                     and ${device_registrations.registration_record_delete_date} is null;;
                     # Exludes TESTNAME product name rows and only includes devices with no record deletion date or registration deletion date
   # always_filter: {
@@ -46,7 +45,6 @@ include: "/views/shopify_orders_serial_numbers.view.lkml"
  explore: device_view {
   label: "Devices"
   sql_always_where: ${device_view.product_name} <> 'TESTNAME'
-                    and ${device_view.device_record_delete_date_date} is null
                     and ${device_registrations.registration_record_delete_date} is null;;
                     # Exludes TESTNAME product name rows and only includes device rows with no device record deletion date or registration deletion date
   # always_filter: {
