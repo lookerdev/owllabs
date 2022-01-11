@@ -63,7 +63,7 @@ view: device_view {
       quarter,
       year
     ]
-    sql: ${TABLE}.device_record_create_date ;;
+    sql: ${TABLE}.device_record_create_date::timestamp ;;
   }
 
   dimension_group: device_activation_date {
@@ -131,8 +131,6 @@ view: device_view {
     type: string
     sql: ${TABLE}.device_last_ip_address ;;
   }
-
-
 
   dimension: last_location {
     hidden: yes
@@ -204,11 +202,17 @@ view: device_view {
     sql: ${TABLE}.deviceuuid ;;
   }
 
+  dimension: record_source {
+    hidden: yes
+    description: "place where this record is from"
+    type: string
+    sql: ${TABLE}.record_source ;;
+  }
+
 # Measures
   measure: device_count {
     label: "Count of Devices"
-    type: number
-    sql: count(distinct ${uuid}) ;;
+    type: count_distinct
     drill_fields: [device_id, device_name, product_name, channel_name]
   }
 
