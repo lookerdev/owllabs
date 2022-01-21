@@ -23,7 +23,7 @@ sql_table_name: public.barnuser_view ;;
 
   dimension: company_name {
     label: "Company Name"
-    # description: "The total number of orders for each user"
+    description: "Names of companies to which devices have been registered"
     type: string
     sql: ${TABLE}.company_name ;;
   }

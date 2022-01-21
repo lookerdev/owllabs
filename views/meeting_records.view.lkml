@@ -154,9 +154,18 @@ view: meeting_records {
   }
 
   dimension: hour {
+    hidden: yes
     type: number
     sql: extract(hour from ${startdate_raw}) ;;
   }
+
+  dimension_group: owl_connect_return_after_first_mtg {
+    hidden: yes
+    type: duration
+    sql_start: ${device_view.first_owl_connect_mtg_5_mins_date} ;;
+    sql_end: ${startdate_date} ;;
+  }
+
 
 
 
@@ -279,6 +288,7 @@ view: meeting_records {
     type: number
     sql: count(distinct ${startdate_date}) ;;
   }
+
 
   # measure: max_number_meetings {
   #   label: "Maximum Number of Meetings"

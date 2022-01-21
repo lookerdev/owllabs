@@ -209,12 +209,29 @@ view: device_view {
     sql: ${TABLE}.record_source ;;
   }
 
+  dimension_group: first_owl_connect_mtg_5_mins {
+    hidden: yes
+    label: "First Owl Connect Meeting >= 5 Minutes"
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.first_owl_connect_meeting_date_longer_than_5_mins::timestamp ;;
+  }
+
+
 # Measures
   measure: device_count {
     label: "Count of Devices"
     type: count_distinct
     sql: ${device_id} ;;
-    drill_fields: [device_id, device_name, product_name, channel_name]
+    drill_fields: [device_id, uuid, device_name, product_name, channel_name]
   }
 
   # dimension: 6mth_average_local_talk_time_minutes {

@@ -12,11 +12,13 @@ view: nps_surveys {
   }
 
   dimension: survey_source {
+    hidden: yes
     type: string
     sql: ${TABLE}."survey_source" ;;
   }
 
   dimension_group: start {
+    hidden: yes
     label: "Survey Start"
     type: time
     timeframes: [
