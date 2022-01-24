@@ -247,14 +247,14 @@ view: nps_surveys {
   }
 
   dimension: employee_count {
-    # label: "Number of Employees"
-    label: "How many employees does your organization have?"
+    label: "Number of Employees"
+    description: "Survey question: How many employees does your organization have?"
     type: string
     sql: ${TABLE}."employee_count" ;;
   }
 
   dimension: company_name {
-    label: "What company do you work for?"
+    description: "Survey question: What company do you work for?"
     type: string
     sql: ${TABLE}."company_name" ;;
   }

@@ -181,13 +181,14 @@ view: meeting_records {
 
   measure: count_devices {
     label: "Count of Devices in Meetings"
-    description: "Number of distinct devices"
+    description: "Number of distinct devices that have had meetings"
     type: count_distinct
     sql: ${deviceuuid};;
     # drill_fields: [id,deviceuuid]
   }
 
   measure: durationseconds {
+    hidden: yes
     # label: "Meeting Duration - seconds"
     label: "Total Meeting Seconds"
     description: "Total sum of meeting seconds for all devices"
@@ -203,6 +204,7 @@ view: meeting_records {
   }
 
   measure: avg_duration {
+    hidden: yes
     label: "Avg. Minutes per Meeting"
     type: average
     sql: ${durationminutes_per_meeting} ;;
@@ -215,6 +217,7 @@ view: meeting_records {
   }
 
   measure: avg_hours_per_device{
+    hidden: yes
     label: "Avg. Meeting Hours per Device"
     type: number
     value_format: "0.00"
@@ -222,6 +225,7 @@ view: meeting_records {
   }
 
   measure: avg_meetings_per_device {
+    hidden: yes
     label: "Avg. Meetings per Device"
     type: number
     value_format: "0.00"
@@ -287,6 +291,11 @@ view: meeting_records {
     hidden: yes
     type: number
     sql: count(distinct ${startdate_date}) ;;
+  }
+
+  measure: max_startdate {
+    label: "Most Recent Meeting Date"
+    sql: max(${originalstartdate_date})::timestamp ;;
   }
 
 
