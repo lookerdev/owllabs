@@ -89,12 +89,20 @@ view: device_registrations {
     sql: ${TABLE}.registration_date::timestamp ;;
   }
 
-  dimension: registration_id {
+  # dimension: registration_id {
+  #   primary_key: yes
+  #   hidden: yes
+  #   type: string
+  #   sql: ${TABLE}.registration_id ;;
+  # }
+
+  dimension: row_num {
     primary_key: yes
     hidden: yes
-    type: number
-    sql: ${TABLE}.registration_id ;;
+    type: string
+    sql: ${TABLE}.row_num ;;
   }
+
 
   dimension_group: registration_record_delete {
     hidden: yes
