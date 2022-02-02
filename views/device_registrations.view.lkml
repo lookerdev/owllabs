@@ -97,6 +97,7 @@ view: device_registrations {
   }
 
   dimension_group: registration_record_delete {
+    hidden: yes
     description: "Deletion date of registration record"
     type: time
     timeframes: [

@@ -151,6 +151,7 @@ view: nps_surveys {
   }
 
   dimension: device {
+    label: "Device Type"
     # label: "Which product are you providing feedback on?"
     type: string
     sql: ${TABLE}."device" ;;
@@ -181,6 +182,8 @@ view: nps_surveys {
   }
 
   dimension: biggest_device_benefit {
+    # label: "Biggest Benefit"
+    # description: "Survey question: What do you consider the biggest benefit of the device?"
     label: "What do you consider the biggest benefit of the device?"
     type: string
     sql: ${TABLE}."biggest_device_benefit" ;;
@@ -205,13 +208,15 @@ view: nps_surveys {
   }
 
   dimension: videoconferencing_system_select {
-    label: "What videoconferencing system do you use?"
+    label: "Videoconferencing System - selection"
+    description: "Survey question: What videoconferencing system do you use?"
     type: string
     sql: ${TABLE}."videoconferencing_system_select" ;;
   }
 
   dimension: videoconferencing_system_text {
-    label: "What videoconferencing system do you use? (Other text)"
+    label: "Videoconferencing System - free text"
+    description: "Survey question: What videoconferencing system do you use? (Other text)"
     type: string
     sql: ${TABLE}."videoconferencing_system_text" ;;
   }

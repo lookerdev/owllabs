@@ -171,7 +171,7 @@ view: revenue_by_item_looker {
     type: sum
     sql: ${TABLE}.amount ;;
     value_format_name: usd
-    drill_fields: [account_line_name, channel, customer_name, marketplace_segment, item]
+    drill_fields: [transaction_number, customer_name, channel, marketplace_segment, item, product_category, product_line, account_line_name, accounting_period_name]
   }
 
   measure: rounded_total_revenue {
@@ -181,6 +181,6 @@ view: revenue_by_item_looker {
     sql: ${TABLE}.amount ;;
     # value_format_name: usd
     value_format: "$#,##0"
-    drill_fields: [account_line_name, channel, customer_name, marketplace_segment, item]
+    drill_fields: [transaction_number, customer_name, channel, marketplace_segment, item, product_category, product_line, account_line_name, accounting_period_name]
   }
 }
