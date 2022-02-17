@@ -24,6 +24,7 @@ view: shopify_fulfillments_line_items_view {
   }
 
   dimension: distribution_channel {
+    hidden: yes
     type: string
     sql: ${TABLE}.distribution_channel ;;
   }
@@ -43,6 +44,7 @@ view: shopify_fulfillments_line_items_view {
   }
 
   dimension: fulfillment_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.fulfillment_id ;;
   }
@@ -53,6 +55,7 @@ view: shopify_fulfillments_line_items_view {
   }
 
   dimension: line_item_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.line_item_id ;;
   }
@@ -64,16 +67,19 @@ view: shopify_fulfillments_line_items_view {
   }
 
   dimension: pre_tax_price {
+    hidden: yes
     type: number
     sql: ${TABLE}.pre_tax_price ;;
   }
 
   dimension: pre_tax_price_usd {
+    hidden: yes
     type: number
     sql: ${TABLE}.pre_tax_price_usd ;;
   }
 
   dimension: product_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.product_id ;;
   }
@@ -102,6 +108,7 @@ view: shopify_fulfillments_line_items_view {
   }
 
   dimension: shipping_address_company {
+    label: "Shipping Company"
     type: string
     sql: ${TABLE}.shipping_address_company ;;
   }
@@ -123,6 +130,7 @@ view: shopify_fulfillments_line_items_view {
   }
 
   dimension: shopify_tags_cam {
+    label: "CAM"
     type: string
     sql: ${TABLE}.shopify_tags_cam ;;
   }
@@ -144,6 +152,7 @@ view: shopify_fulfillments_line_items_view {
   }
 
   dimension: source {
+    hidden: yes
     type: string
     sql: ${TABLE}.source ;;
   }
@@ -170,49 +179,151 @@ view: shopify_fulfillments_line_items_view {
     sql: ${TABLE}.world_region ;;
   }
 
+  dimension: allitems_quantity_shipped {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.allitems_quantity_shipped ;;
+  }
+
+  dimension: bundle_quantity_shipped {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.bundle_quantity_shipped ;;
+  }
+
+  dimension: hq_quantity_shipped {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.hq_quantity_shipped ;;
+  }
+
+  dimension: linecord_quantity_shipped {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.linecord_quantity_shipped ;;
+  }
+
+  dimension: lockadapter_quantity_shipped {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.lockadapter_quantity_shipped ;;
+  }
+
+  dimension: og_quantity_shipped {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.og_quantity_shipped ;;
+  }
+
+  dimension: other_quantity_shipped {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.other_quantity_shipped ;;
+  }
+
+  dimension: owlcare_quantity_shipped {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.owlcare_quantity_shipped ;;
+  }
+
+  dimension: powersupply_quantity_shipped {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.powersupply_quantity_shipped ;;
+  }
+
+  dimension: pro_quantity_shipped {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.pro_quantity_shipped ;;
+  }
+
+  dimension: subscription_quantity_shipped {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.subscription_quantity_shipped ;;
+  }
+
+  dimension: usbextension_quantity_shipped {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.usbextension_quantity_shipped ;;
+  }
+
+  dimension: wbo_quantity_shipped {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.wbo_quantity_shipped ;;
+  }
+
+  dimension: owls_quantity_shipped {
+    hidden: yes
+    type: number
+    sql: ${og_quantity_shipped} + ${pro_quantity_shipped} ;;
+  }
+
+  dimension: hardware_quantity_shipped {
+    hidden: yes
+    type: number
+    sql: ${og_quantity_shipped} + ${pro_quantity_shipped} + ${wbo_quantity_shipped} + ${hq_quantity_shipped} ;;
+  }
+
+
+
+
 # # MEASURES
 
-  measure: allitems_quantity_shipped {
+  measure: total_allitems_quantity_shipped {
+    label: "All Items Quantity Shipped"
     type: sum
     sql: ${TABLE}.allitems_quantity_shipped ;;
   }
 
-  measure: bundle_quantity_shipped {
+  measure: total_bundle_quantity_shipped {
+    label: "Bundle Quantity Shipped"
     type: sum
     sql: ${TABLE}.bundle_quantity_shipped ;;
   }
 
-  measure: hq_quantity_shipped {
+  measure: total_hq_quantity_shipped {
+    label: "Meeting HQ Quantity Shipped"
     type: sum
     sql: ${TABLE}.hq_quantity_shipped ;;
   }
 
-  measure: linecord_quantity_shipped {
+  measure: total_linecord_quantity_shipped {
+    label: "Line Cord Quantity Shipped"
     type: sum
     sql: ${TABLE}.linecord_quantity_shipped ;;
   }
 
-  measure: lockadapter_quantity_shipped {
+  measure: total_lockadapter_quantity_shipped {
+    label: "Lock Adapter Quantity Shipped"
     type: sum
     sql: ${TABLE}.lockadapter_quantity_shipped ;;
   }
 
-  measure: og_quantity_shipped {
+  measure: total_og_quantity_shipped {
+    label: "Meeting Owl OG Quantity Shipped"
     type: sum
     sql: ${TABLE}.og_quantity_shipped ;;
   }
 
-  measure: other_quantity_shipped {
+  measure: total_other_quantity_shipped {
+    label: "Other Quantity Shipped"
     type: sum
     sql: ${TABLE}.other_quantity_shipped ;;
   }
 
-  measure: owlcare_quantity_shipped {
+  measure: total_owlcare_quantity_shipped {
+    label: "Owl Care Quantity Shipped"
     type: sum
     sql: ${TABLE}.owlcare_quantity_shipped ;;
   }
 
-  measure: powersupply_quantity_shipped {
+  measure: total_powersupply_quantity_shipped {
+    label: "Power Supply Quantity Shipped"
     type: sum
     sql: ${TABLE}.powersupply_quantity_shipped ;;
   }
@@ -234,24 +345,41 @@ view: shopify_fulfillments_line_items_view {
     sql: ${pre_tax_price_usd} ;;
   }
 
-  measure: pro_quantity_shipped {
+  measure: total_pro_quantity_shipped {
+    label: "Meeting Owl Pro Quantity Shipped"
     type: sum
     sql: ${TABLE}.pro_quantity_shipped ;;
   }
 
-  measure: subscription_quantity_shipped {
+  measure: total_subscription_quantity_shipped {
+    hidden: yes
     type: sum
     sql: ${TABLE}.subscription_quantity_shipped ;;
   }
 
-  measure: usbextension_quantity_shipped {
+  measure: total_usbextension_quantity_shipped {
+    label: "USB Extension Quantity Shipped"
     type: sum
     sql: ${TABLE}.usbextension_quantity_shipped ;;
   }
 
-  measure: wbo_quantity_shipped {
+  measure: total_wbo_quantity_shipped {
+    label: "Whiteboard Owl Quantity Shipped"
     type: sum
     sql: ${TABLE}.wbo_quantity_shipped ;;
+  }
+
+  measure: total_owls_quantity_shipped {
+    label: "All Owls Quantity Shipped"
+    description: "Combination of OG and MOP"
+    type: sum
+    sql: ${owls_quantity_shipped} ;;
+  }
+
+  measure: total_hardware_quantity_shipped {
+    label: "All Hardware Quantity Shipped"
+    type: sum
+    sql: ${hardware_quantity_shipped} ;;
   }
 
   measure: count {
