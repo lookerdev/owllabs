@@ -6,11 +6,13 @@ view: shopify_orders_line_items_view {
 
 
   dimension: billing_address_company {
+    label: "Billing Company"
     type: string
     sql: ${TABLE}.billing_address_company ;;
   }
 
   dimension: billing_address_country {
+    hidden: yes
     type: string
     sql: ${TABLE}.billing_address_country ;;
   }
@@ -31,11 +33,13 @@ view: shopify_orders_line_items_view {
   }
 
   dimension: contact_email {
+    label: "Email"
     type: string
     sql: ${TABLE}.contact_email ;;
   }
 
   dimension: country_name {
+    label: "Market Region"
     type: string
     sql: ${TABLE}.country_name ;;
   }
@@ -75,6 +79,7 @@ view: shopify_orders_line_items_view {
   }
 
   dimension: netsuite_customer_internalid {
+    hidden: yes
     type: string
     sql: ${TABLE}.netsuite_customer_internalid ;;
   }
@@ -90,6 +95,7 @@ view: shopify_orders_line_items_view {
   }
 
   dimension: netsuite_sales_rep {
+    hidden: yes
     type: string
     sql: ${TABLE}.netsuite_sales_rep ;;
   }
@@ -109,6 +115,7 @@ view: shopify_orders_line_items_view {
   }
 
   dimension: order_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.order_id ;;
   }
@@ -119,21 +126,25 @@ view: shopify_orders_line_items_view {
   }
 
   dimension: pre_tax_price {
+    hidden: yes
     type: number
     sql: ${TABLE}.pre_tax_price ;;
   }
 
   dimension: pre_tax_price_usd {
+    hidden: yes
     type: number
     sql: ${TABLE}.pre_tax_price_usd ;;
   }
 
   dimension: product_exists {
+    hidden: yes
     type: yesno
     sql: ${TABLE}.product_exists ;;
   }
 
   dimension: product_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.product_id ;;
   }
@@ -160,11 +171,13 @@ view: shopify_orders_line_items_view {
   }
 
   dimension: sales_order_internalid {
+    hidden: yes
     type: string
     sql: ${TABLE}.sales_order_internalid ;;
   }
 
   dimension: shopify_tags_cam {
+    label: "CAM"
     type: string
     sql: ${TABLE}.shopify_tags_cam ;;
   }
@@ -185,17 +198,14 @@ view: shopify_orders_line_items_view {
     sql: ${TABLE}.store ;;
   }
 
-  measure: subscription_quantity_ordered {
-    type: sum
-    sql: ${TABLE}.subscription_quantity_ordered ;;
-  }
-
   dimension: tags {
+    hidden: yes
     type: string
     sql: ${TABLE}.tags ;;
   }
 
   dimension: variant_id {
+    hidden: yes
     type: number
     sql: ${TABLE}.variant_id ;;
   }
@@ -267,6 +277,11 @@ view: shopify_orders_line_items_view {
     sql: ${TABLE}.pro_quantity_ordered ;;
   }
 
+  measure: subscription_quantity_ordered {
+    type: sum
+    sql: ${TABLE}.subscription_quantity_ordered ;;
+  }
+
   measure: usbextension_quantity_ordered {
     type: sum
     sql: ${TABLE}.usbextension_quantity_ordered ;;
@@ -283,6 +298,7 @@ view: shopify_orders_line_items_view {
   }
 
   measure: average_pre_tax_price {
+    hidden: yes
     type: average
     sql: ${pre_tax_price} ;;
   }

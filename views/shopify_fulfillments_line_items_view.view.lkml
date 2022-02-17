@@ -7,6 +7,7 @@ view: shopify_fulfillments_line_items_view {
 # # DIMENSIONS
 
   dimension: contact_email {
+    label: "Email"
     type: string
     sql: ${TABLE}.contact_email ;;
   }
