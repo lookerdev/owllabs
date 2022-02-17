@@ -218,11 +218,13 @@ view: shopify_orders_line_items_view {
 # # MEASURES
 
   measure: count {
+    hidden: yes
     type: count
     drill_fields: [country_name, netsuite_customer_name, order_name]
   }
 
   measure: count_orders {
+    label: "Number of Orders"
     type: count_distinct
     sql: ${order_id} ;;
   }
