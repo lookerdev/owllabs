@@ -50,6 +50,7 @@ view: shopify_orders_line_items_view {
   }
 
   dimension: distribution_channel {
+    hidden: yes
     type: string
     sql: ${TABLE}.distribution_channel ;;
   }
@@ -85,6 +86,7 @@ view: shopify_orders_line_items_view {
   }
 
   dimension: netsuite_customer_name {
+    hidden: yes
     type: string
     sql: ${TABLE}.netsuite_customer_name ;;
   }
@@ -121,6 +123,7 @@ view: shopify_orders_line_items_view {
   }
 
   dimension: order_name {
+    label: "Shopify Order Name"
     type: string
     sql: ${TABLE}.order_name ;;
   }
@@ -215,6 +218,73 @@ view: shopify_orders_line_items_view {
     sql: ${TABLE}.world_region ;;
   }
 
+  dimension: allitems_quantity_ordered {
+    type: number
+    sql: ${TABLE}.allitems_quantity_ordered ;;
+  }
+
+  dimension: bundle_quantity_ordered {
+    type: number
+    sql: ${TABLE}.bundle_quantity_ordered ;;
+  }
+
+  dimension: hq_quantity_ordered {
+    type: number
+    sql: ${TABLE}.hq_quantity_ordered ;;
+  }
+
+  dimension: linecord_quantity_ordered {
+    type: number
+    sql: ${TABLE}.linecord_quantity_ordered ;;
+  }
+
+  dimension: lockadapter_quantity_ordered {
+    type: number
+    sql: ${TABLE}.lockadapter_quantity_ordered ;;
+  }
+
+  dimension: og_quantity_ordered {
+    type: number
+    sql: ${TABLE}.og_quantity_ordered ;;
+  }
+
+  dimension: other_quantity_ordered {
+    type: number
+    sql: ${TABLE}.other_quantity_ordered ;;
+  }
+
+  dimension: owlcare_quantity_ordered {
+    type: number
+    sql: ${TABLE}.owlcare_quantity_ordered ;;
+  }
+
+  dimension: powersupply_quantity_ordered {
+    type: number
+    sql: ${TABLE}.powersupply_quantity_ordered ;;
+  }
+
+  dimension: pro_quantity_ordered {
+    type: number
+    sql: ${TABLE}.pro_quantity_ordered ;;
+  }
+
+  dimension: subscription_quantity_ordered {
+    type: number
+    sql: ${TABLE}.subscription_quantity_ordered ;;
+  }
+
+  dimension: usbextension_quantity_ordered {
+    type: number
+    sql: ${TABLE}.usbextension_quantity_ordered ;;
+  }
+
+  dimension: wbo_quantity_ordered {
+    type: number
+    sql: ${TABLE}.wbo_quantity_ordered ;;
+  }
+
+
+
 # # MEASURES
 
   measure: count {
@@ -229,67 +299,67 @@ view: shopify_orders_line_items_view {
     sql: ${order_id} ;;
   }
 
-  measure: allitems_quantity_ordered {
+  measure: sum_allitems_quantity_ordered {
     type: sum
     sql: ${TABLE}.allitems_quantity_ordered ;;
   }
 
-  measure: bundle_quantity_ordered {
+  measure: sum_bundle_quantity_ordered {
     type: sum
     sql: ${TABLE}.bundle_quantity_ordered ;;
   }
 
-  measure: hq_quantity_ordered {
+  measure: sum_hq_quantity_ordered {
     type: sum
     sql: ${TABLE}.hq_quantity_ordered ;;
   }
 
-  measure: linecord_quantity_ordered {
+  measure: sum_linecord_quantity_ordered {
     type: sum
     sql: ${TABLE}.linecord_quantity_ordered ;;
   }
 
-  measure: lockadapter_quantity_ordered {
+  measure: sum_lockadapter_quantity_ordered {
     type: sum
     sql: ${TABLE}.lockadapter_quantity_ordered ;;
   }
 
-  measure: og_quantity_ordered {
+  measure: sum_og_quantity_ordered {
     type: sum
     sql: ${TABLE}.og_quantity_ordered ;;
   }
 
-  measure: other_quantity_ordered {
+  measure: sum_other_quantity_ordered {
     type: sum
     sql: ${TABLE}.other_quantity_ordered ;;
   }
 
-  measure: owlcare_quantity_ordered {
+  measure: sum_owlcare_quantity_ordered {
     type: sum
     sql: ${TABLE}.owlcare_quantity_ordered ;;
   }
 
-  measure: powersupply_quantity_ordered {
+  measure: sum_powersupply_quantity_ordered {
     type: sum
     sql: ${TABLE}.powersupply_quantity_ordered ;;
   }
 
-  measure: pro_quantity_ordered {
+  measure: sum_pro_quantity_ordered {
     type: sum
     sql: ${TABLE}.pro_quantity_ordered ;;
   }
 
-  measure: subscription_quantity_ordered {
+  measure: sum_subscription_quantity_ordered {
     type: sum
     sql: ${TABLE}.subscription_quantity_ordered ;;
   }
 
-  measure: usbextension_quantity_ordered {
+  measure: sum_usbextension_quantity_ordered {
     type: sum
     sql: ${TABLE}.usbextension_quantity_ordered ;;
   }
 
-  measure: wbo_quantity_ordered {
+  measure: sum_wbo_quantity_ordered {
     type: sum
     sql: ${TABLE}.wbo_quantity_ordered ;;
   }
