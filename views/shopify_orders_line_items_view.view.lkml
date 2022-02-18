@@ -1,5 +1,6 @@
 # The name of this view in Looker is "Shopify Orders View"
 view: shopify_orders_line_items_view {
+  label: "Shopify Orders"
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
   sql_table_name: public.shopify_orders_view ;;
