@@ -152,7 +152,7 @@ view: shopify_fulfillments_line_items_view {
   }
 
   dimension: source {
-    hidden: yes
+    # hidden: yes
     type: string
     sql: ${TABLE}.source ;;
   }
