@@ -26,13 +26,9 @@ view: device_view {
   }
 
   dimension: barn_channel_category {
-    description: "If Barn channel is a production, customer-facing channel or QA"
+    description: "Public = Customer-facing, Internal = testing, Beta = beta testing"
     type: string
-    sql: case when ${channel_name} in ('Beta1','Beta2','BETA2020107FindFreeOwl','BETA2020109VoiceCameraLock','BETA2Production','Beta3','BetaActive','BetaCustomers','BetaRetired','BetaKOZ','RhapsodyBeta') then 'Beta'
-              when ${channel_name} in ('AnastasiaTest','AudioTest','AutoWhiteBalance','BCATest','BETA1TESTERS','BETA2USERS','BobTest','CanadiaTest','CausewayStOwls','CausewayStPROD','CausewayStQA','CausewayStUnits','CausewayStWhiteboardOwls','ChrisEngTest','ChrisHTest','ChristineSQA','ChristineTest','DesktopAppDevOTATest','DoNotUpdate','ErinHbPairedOwlTest','ErinTest','FATESTALL','FATESTOTA','GooglePreReleaseDec18','GucciTest','HBIRDBETATESTEROWLS','IlyaTest','Internal','InternalAlpha','InternalUsers','Isolated','JBTest','JohnOiotOTA','LenaTest','LifeTest','MarkInternalTestFlock','OTATEST10100','PeterTest','PhuTest','PressAndMarketing','PrestonTest','Processing','QA','RAALLVERSIONTEST','RAOTATESTV18','RDPreRelease','RetiredEng','RevertOTA99998TestKey','RevertOTA99999999','RobertTest','RussTest','RyanJCustomersQA','RyanTest','SarahAudioTest','SourceNextOffice','SpenserTest','SQAAnastasia','SQAJeffTest','SQAnastasia','SterlingTest','TomTest','V1ToV2Upgrade','VCCertsAudioTest','WBsavenshareProOldPOC','YukiTesting','ZoomUi') then 'Internal'
-              when ${channel_name} in ('OVERRIDE','overrideQA') then 'Override'
-              when ${channel_name} in ('00019Customers','0001Customers','1080PhasedRollout','1090PhasedRollout','AmazonVendorCentral','ANZ','ChromeIssueOTA','ConferenceRooms','Customers','DesktopAppBeta','Europe','LodiSchools','LodiSchoolsPhasedRollout','PhasedRollout','ResellerCustomers','Returns','SomervilleOfficeConferenceRoom','Unknown') then 'Public'
-              end;;
+    sql: ${TABLE}.channel_category;;
   }
 
   dimension_group: checkedinat {
