@@ -414,5 +414,18 @@ view: shopify_orders_line_items_view {
     sql: ${pre_tax_price} ;;
   }
 
+  measure: sum_owls_quantity_ordered {
+    label: "All Owls Quantity Ordered"
+    description: "Combination of OG and MOP units"
+    type: sum
+    sql: ${owls_quantity_ordered} ;;
+  }
+
+  measure: sum_hardware_quantity_ordered {
+    label: "All Hardware Quantity Ordered"
+    description: "Combination of OG, MOP, WBO, and HQ units"
+    type: sum
+    sql: ${hardware_quantity_ordered} ;;
+  }
 
 }
