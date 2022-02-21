@@ -220,68 +220,93 @@ view: shopify_orders_line_items_view {
   }
 
   dimension: allitems_quantity_ordered {
+    hidden: yes
     type: number
     sql: ${TABLE}.allitems_quantity_ordered ;;
   }
 
   dimension: bundle_quantity_ordered {
+    hidden: yes
     type: number
     sql: ${TABLE}.bundle_quantity_ordered ;;
   }
 
   dimension: hq_quantity_ordered {
+    hidden: yes
     type: number
     sql: ${TABLE}.hq_quantity_ordered ;;
   }
 
   dimension: linecord_quantity_ordered {
+    hidden: yes
     type: number
     sql: ${TABLE}.linecord_quantity_ordered ;;
   }
 
   dimension: lockadapter_quantity_ordered {
+    hidden: yes
     type: number
     sql: ${TABLE}.lockadapter_quantity_ordered ;;
   }
 
   dimension: og_quantity_ordered {
+    hidden: yes
     type: number
     sql: ${TABLE}.og_quantity_ordered ;;
   }
 
   dimension: other_quantity_ordered {
+    hidden: yes
     type: number
     sql: ${TABLE}.other_quantity_ordered ;;
   }
 
   dimension: owlcare_quantity_ordered {
+    hidden: yes
     type: number
     sql: ${TABLE}.owlcare_quantity_ordered ;;
   }
 
   dimension: powersupply_quantity_ordered {
+    hidden: yes
     type: number
     sql: ${TABLE}.powersupply_quantity_ordered ;;
   }
 
   dimension: pro_quantity_ordered {
+    hidden: yes
     type: number
     sql: ${TABLE}.pro_quantity_ordered ;;
   }
 
   dimension: subscription_quantity_ordered {
+    hidden: yes
     type: number
     sql: ${TABLE}.subscription_quantity_ordered ;;
   }
 
   dimension: usbextension_quantity_ordered {
+    hidden: yes
     type: number
     sql: ${TABLE}.usbextension_quantity_ordered ;;
   }
 
   dimension: wbo_quantity_ordered {
+    hidden: yes
     type: number
     sql: ${TABLE}.wbo_quantity_ordered ;;
+  }
+
+  dimension: owls_quantity_ordered {
+    hidden: yes
+    type: number
+    sql: ${og_quantity_ordered} + ${pro_quantity_ordered} ;;
+  }
+
+  dimension: hardware_quantity_ordered {
+    hidden: yes
+    type: number
+    sql: ${og_quantity_ordered} + ${pro_quantity_ordered} + ${wbo_quantity_ordered} + ${hq_quantity_ordered} ;;
   }
 
 
@@ -301,66 +326,79 @@ view: shopify_orders_line_items_view {
   }
 
   measure: sum_allitems_quantity_ordered {
+    label: "All Items Quantity Ordered"
     type: sum
     sql: ${TABLE}.allitems_quantity_ordered ;;
   }
 
   measure: sum_bundle_quantity_ordered {
+    label: "Bundle Quantity Ordered"
     type: sum
     sql: ${TABLE}.bundle_quantity_ordered ;;
   }
 
   measure: sum_hq_quantity_ordered {
+    label: "Meeting HQ Quantity Ordered"
     type: sum
     sql: ${TABLE}.hq_quantity_ordered ;;
   }
 
   measure: sum_linecord_quantity_ordered {
+    label: "Line Cord Quantity Ordered"
     type: sum
     sql: ${TABLE}.linecord_quantity_ordered ;;
   }
 
   measure: sum_lockadapter_quantity_ordered {
+    label: "Lock Adapter Quantity Ordered"
     type: sum
     sql: ${TABLE}.lockadapter_quantity_ordered ;;
   }
 
   measure: sum_og_quantity_ordered {
+    label: "Meeting Owl OG Quantity Ordered"
     type: sum
     sql: ${TABLE}.og_quantity_ordered ;;
   }
 
   measure: sum_other_quantity_ordered {
+    label: "Other Quantity Ordered"
     type: sum
     sql: ${TABLE}.other_quantity_ordered ;;
   }
 
   measure: sum_owlcare_quantity_ordered {
+    label: "Owl Care Quantity Ordered"
     type: sum
     sql: ${TABLE}.owlcare_quantity_ordered ;;
   }
 
   measure: sum_powersupply_quantity_ordered {
+    label: "Power Supply Quantity Ordered"
     type: sum
     sql: ${TABLE}.powersupply_quantity_ordered ;;
   }
 
   measure: sum_pro_quantity_ordered {
+    label: "Meeting Owl Pro Quantity Ordered"
     type: sum
     sql: ${TABLE}.pro_quantity_ordered ;;
   }
 
   measure: sum_subscription_quantity_ordered {
+    label: "Subscription Quantity Ordered"
     type: sum
     sql: ${TABLE}.subscription_quantity_ordered ;;
   }
 
   measure: sum_usbextension_quantity_ordered {
+    label: "USB Extension Quantity Ordered"
     type: sum
     sql: ${TABLE}.usbextension_quantity_ordered ;;
   }
 
   measure: sum_wbo_quantity_ordered {
+    label: "Whiteboard Owl Quantity Ordered"
     type: sum
     sql: ${TABLE}.wbo_quantity_ordered ;;
   }

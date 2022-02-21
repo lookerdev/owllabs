@@ -19,16 +19,16 @@ include: "/views/shopify_fulfillments_line_items_view.view.lkml"
 
 
 explore: shopify_orders_fulfillments {
-  label: "TESTING - Shopify Orders & Fulfillments"
+  label: "UAT - Shopify Orders & Fulfillments"
   view_name: dim_calendar
   sql_always_where: ${year} >= 2021 and ${date_date} <= trunc(sysdate);;
   join: shopify_orders_line_items_view {
-    type: full_outer
+    type: left_outer
     relationship: one_to_many
     sql_on: ${shopify_orders_line_items_view.order_date} = ${dim_calendar.date_date} ;;
   }
   join: shopify_fulfillments_line_items_view {
-    type: full_outer
+    type: left_outer
     relationship: one_to_many
     sql_on: ${shopify_fulfillments_line_items_view.fulfillment_date} = ${dim_calendar.date_date} ;;
   }
