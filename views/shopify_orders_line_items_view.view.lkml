@@ -159,6 +159,7 @@ view: shopify_orders_line_items_view {
   }
 
   dimension: quantity_ordered {
+    label: "SKU Quantity Ordered"
     hidden: yes
     type: number
     sql: ${TABLE}.quantity_ordered ;;
@@ -426,6 +427,13 @@ view: shopify_orders_line_items_view {
     description: "Combination of OG, MOP, WBO, and HQ units"
     type: sum
     sql: ${hardware_quantity_ordered} ;;
+  }
+
+  measure: sum_quantity_ordered {
+    label: "SKU Quantity Ordered"
+    description: "Count of orders for each SKU"
+    type: sum
+    sql: ${quantity_ordered} ;;
   }
 
 }
