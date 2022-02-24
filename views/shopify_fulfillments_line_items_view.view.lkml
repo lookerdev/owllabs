@@ -106,6 +106,7 @@ view: shopify_fulfillments_line_items_view {
   dimension: sales_channel {
     type: string
     sql: ${TABLE}.sales_channel ;;
+    # drill_fields: [fulfillment_id]
   }
 
   dimension: shipping_address_company {
