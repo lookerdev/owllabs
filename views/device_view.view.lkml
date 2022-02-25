@@ -177,6 +177,7 @@ view: device_view {
   }
 
   dimension: software_version {
+    hidden: yes
     label: "Device Current Software Version"
     description: "Device's most recent software version, captured during most recent check-in"
     type: string
