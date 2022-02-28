@@ -11,12 +11,30 @@ include: "/views/netsuite_fulfillments.view.lkml"
 include: "/views/netsuite_fulfillments_line_items.view.lkml"
 include: "/views/shopify_orders_line_items_view.view.lkml"
 include: "/views/shopify_fulfillments_line_items_view.view.lkml"
+include: "/views/all_orders.view.lkml"
+include: "/views/all_fulfillments.view.lkml"
 # include: "/**/*.view.lkml"                 # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
 # # Select the views that should be a part of this model,
 # # and define the joins that connect them together.
 
+
+explore: all_orders_fulfillments {
+  label: "All Orders & Fulfillments"
+  view_name: dim_calendar
+  sql_always_where: ${year} >= 2021 and ${date_date} <= trunc(sysdate);;
+  join: all_orders {
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${dim_calendar.date_date} = ${all_orders.order_date};;
+  }
+  join: all_fulfillments {
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${dim_calendar.date_date} = ${all_fulfillments.fulfillment_date};;
+  }
+}
 
 explore: shopify_orders_fulfillments {
   label: "UAT - Shopify Orders & Fulfillments"
