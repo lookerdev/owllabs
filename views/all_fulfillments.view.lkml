@@ -1,27 +1,17 @@
-# The name of this view in Looker is "Shopify Fulfillments View"
-view: shopify_fulfillments_line_items_view {
-  label: "Shopify Fulfillments"
+# The name of this view in Looker is "All Fulfillments"
+view: all_fulfillments {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
-  sql_table_name: public.shopify_fulfillments_view ;;
+  sql_table_name: public.all_fulfillments ;;
+  # No primary key is defined for this view. In order to join this view in an Explore,
+  # define primary_key: yes on a dimension that has no repeated values.
 
-# # DIMENSIONS
-
-  dimension: contact_email {
-    label: "Email"
-    type: string
-    sql: ${TABLE}.contact_email ;;
-  }
 
   dimension: country_name {
     label: "Market Region"
+    description: "Country of billed customer"
     type: string
     sql: ${TABLE}.country_name ;;
-  }
-
-  dimension: currency {
-    type: string
-    sql: ${TABLE}.currency ;;
   }
 
   dimension: distribution_channel {
@@ -31,6 +21,7 @@ view: shopify_fulfillments_line_items_view {
   }
 
   dimension_group: fulfillment {
+    label: "Ship"
     type: time
     timeframes: [
       raw,
@@ -44,61 +35,23 @@ view: shopify_fulfillments_line_items_view {
     sql: ${TABLE}.fulfillment_date ;;
   }
 
-  dimension: fulfillment_id {
-    hidden: yes
+  dimension: fulfillment_number {
     type: string
-    sql: ${TABLE}.fulfillment_id ;;
+    sql: ${TABLE}.fulfillment_number ;;
   }
 
-  dimension: fulfillment_status {
+  dimension: marketplace_segment {
     type: string
-    sql: ${TABLE}.fulfillment_status ;;
+    sql: ${TABLE}.marketplace_segment ;;
   }
 
-  dimension: line_item_id {
-    hidden: yes
+  dimension: order_number {
     type: string
-    sql: ${TABLE}.line_item_id ;;
-  }
-
-  dimension: netsuite_sales_rep {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.netsuite_sales_rep ;;
-  }
-
-  dimension: pre_tax_price {
-    hidden: yes
-    type: number
-    sql: ${TABLE}.pre_tax_price ;;
-  }
-
-  dimension: pre_tax_price_usd {
-    hidden: yes
-    type: number
-    sql: ${TABLE}.pre_tax_price_usd ;;
-  }
-
-  dimension: product_id {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.product_id ;;
-  }
-
-  dimension: product_title {
-    type: string
-    sql: ${TABLE}.product_title ;;
-  }
-
-  dimension: quantity_shipped {
-    hidden: yes
-    type: number
-    sql: ${TABLE}.quantity ;;
+    sql: ${TABLE}.order_number ;;
   }
 
   dimension: row_number {
     primary_key: yes
-    hidden: yes
     type: number
     sql: ${TABLE}.row_number ;;
   }
@@ -106,46 +59,11 @@ view: shopify_fulfillments_line_items_view {
   dimension: sales_channel {
     type: string
     sql: ${TABLE}.sales_channel ;;
-    # drill_fields: [fulfillment_id]
   }
 
-  dimension: shipping_address_company {
-    label: "Shipping Company"
+  dimension: customer_ship_to {
     type: string
     sql: ${TABLE}.shipping_address_company ;;
-  }
-
-  dimension: shipping_address_country {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.shipping_address_country ;;
-  }
-
-  dimension: shopify_fulfillment_name {
-    type: string
-    sql: ${TABLE}.shopify_fulfillment_name ;;
-  }
-
-  dimension: shopify_order_name {
-    type: string
-    sql: ${TABLE}.shopify_order_name ;;
-  }
-
-  dimension: shopify_tags_cam {
-    label: "CAM"
-    type: string
-    sql: ${TABLE}.shopify_tags_cam ;;
-  }
-
-  dimension: shopify_tags_sales_rep {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.shopify_tags_sales_rep ;;
-  }
-
-  dimension: sales_rep {
-    type: string
-    sql: coalesce(${netsuite_sales_rep},${shopify_tags_sales_rep}) ;;
   }
 
   dimension: sku {
@@ -153,8 +71,13 @@ view: shopify_fulfillments_line_items_view {
     sql: ${TABLE}.sku ;;
   }
 
+  dimension: sku_name {
+    type: string
+    sql: ${TABLE}.sku_name ;;
+  }
+
   dimension: source {
-    # hidden: yes
+    hidden: yes
     type: string
     sql: ${TABLE}.source ;;
   }
@@ -162,18 +85,6 @@ view: shopify_fulfillments_line_items_view {
   dimension: store {
     type: string
     sql: ${TABLE}.store ;;
-  }
-
-  dimension: tags {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.tags ;;
-  }
-
-  dimension: variant_id {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.variant_id ;;
   }
 
   dimension: world_region {
@@ -273,8 +184,12 @@ view: shopify_fulfillments_line_items_view {
 
 
 
-
 # # MEASURES
+  measure: count {
+    hidden: yes
+    type: count
+    drill_fields: [country_name, sku_name]
+  }
 
   measure: sum_allitems_quantity_shipped {
     label: "All Items Quantity Shipped"
@@ -335,23 +250,6 @@ view: shopify_fulfillments_line_items_view {
     sql: ${powersupply_quantity_shipped} ;;
   }
 
-  measure: average_pre_tax_price {
-    hidden: yes
-    type: average
-    sql: ${pre_tax_price} ;;
-  }
-
-  measure: sum_pre_tax_price {
-    type: sum
-    sql: ${pre_tax_price} ;;
-  }
-
-  measure: sum_pre_tax_price_usd {
-    type: sum
-    value_format_name: usd
-    sql: ${pre_tax_price_usd} ;;
-  }
-
   measure: sum_pro_quantity_shipped {
     label: "Meeting Owl Pro Quantity Shipped"
     type: sum
@@ -391,9 +289,5 @@ view: shopify_fulfillments_line_items_view {
     sql: ${hardware_quantity_shipped} ;;
   }
 
-  measure: count {
-    hidden: yes
-    type: count
-    drill_fields: [country_name, shopify_fulfillment_name, shopify_order_name]
-  }
+
 }

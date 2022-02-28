@@ -160,7 +160,6 @@ view: shopify_orders_line_items_view {
 
   dimension: quantity_ordered {
     label: "SKU Quantity Ordered"
-    hidden: yes
     type: number
     sql: ${TABLE}.quantity_ordered ;;
   }
@@ -321,7 +320,7 @@ view: shopify_orders_line_items_view {
   }
 
   measure: count_orders {
-    label: "Number of Orders"
+    label: "Count of Orders"
     type: count_distinct
     sql: ${order_id} ;;
   }
@@ -329,79 +328,79 @@ view: shopify_orders_line_items_view {
   measure: sum_allitems_quantity_ordered {
     label: "All Items Quantity Ordered"
     type: sum
-    sql: ${TABLE}.allitems_quantity_ordered ;;
+    sql: ${allitems_quantity_ordered} ;;
   }
 
   measure: sum_bundle_quantity_ordered {
     label: "Bundle Quantity Ordered"
     type: sum
-    sql: ${TABLE}.bundle_quantity_ordered ;;
+    sql: ${bundle_quantity_ordered} ;;
   }
 
   measure: sum_hq_quantity_ordered {
     label: "Meeting HQ Quantity Ordered"
     type: sum
-    sql: ${TABLE}.hq_quantity_ordered ;;
+    sql: ${hq_quantity_ordered} ;;
   }
 
   measure: sum_linecord_quantity_ordered {
     label: "Line Cord Quantity Ordered"
     type: sum
-    sql: ${TABLE}.linecord_quantity_ordered ;;
+    sql: ${linecord_quantity_ordered} ;;
   }
 
   measure: sum_lockadapter_quantity_ordered {
     label: "Lock Adapter Quantity Ordered"
     type: sum
-    sql: ${TABLE}.lockadapter_quantity_ordered ;;
+    sql: ${lockadapter_quantity_ordered} ;;
   }
 
   measure: sum_og_quantity_ordered {
     label: "Meeting Owl OG Quantity Ordered"
     type: sum
-    sql: ${TABLE}.og_quantity_ordered ;;
+    sql: ${og_quantity_ordered} ;;
   }
 
   measure: sum_other_quantity_ordered {
     label: "Other Quantity Ordered"
     type: sum
-    sql: ${TABLE}.other_quantity_ordered ;;
+    sql: ${other_quantity_ordered} ;;
   }
 
   measure: sum_owlcare_quantity_ordered {
     label: "Owl Care Quantity Ordered"
     type: sum
-    sql: ${TABLE}.owlcare_quantity_ordered ;;
+    sql: ${owlcare_quantity_ordered} ;;
   }
 
   measure: sum_powersupply_quantity_ordered {
     label: "Power Supply Quantity Ordered"
     type: sum
-    sql: ${TABLE}.powersupply_quantity_ordered ;;
+    sql: ${powersupply_quantity_ordered} ;;
   }
 
   measure: sum_pro_quantity_ordered {
     label: "Meeting Owl Pro Quantity Ordered"
     type: sum
-    sql: ${TABLE}.pro_quantity_ordered ;;
+    sql: ${pro_quantity_ordered} ;;
   }
 
   measure: sum_subscription_quantity_ordered {
     label: "Subscription Quantity Ordered"
     type: sum
-    sql: ${TABLE}.subscription_quantity_ordered ;;
+    sql: ${subscription_quantity_ordered} ;;
   }
 
   measure: sum_usbextension_quantity_ordered {
     label: "USB Extension Quantity Ordered"
     type: sum
-    sql: ${TABLE}.usbextension_quantity_ordered ;;
+    sql: ${usbextension_quantity_ordered} ;;
   }
 
   measure: sum_wbo_quantity_ordered {
     label: "Whiteboard Owl Quantity Ordered"
     type: sum
-    sql: ${TABLE}.wbo_quantity_ordered ;;
+    sql: ${wbo_quantity_ordered} ;;
   }
 
   measure: total_pre_tax_price {
