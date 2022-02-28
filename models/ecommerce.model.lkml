@@ -21,7 +21,7 @@ include: "/views/all_fulfillments.view.lkml"
 
 
 explore: all_orders_fulfillments {
-  label: "All Orders & Fulfillments"
+  label: "UAT - All Orders & Fulfillments"
   view_name: dim_calendar
   sql_always_where: ${year} >= 2021 and ${date_date} <= trunc(sysdate);;
   join: all_orders {
