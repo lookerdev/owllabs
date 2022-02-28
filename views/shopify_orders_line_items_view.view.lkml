@@ -159,6 +159,7 @@ view: shopify_orders_line_items_view {
   }
 
   dimension: quantity_ordered {
+    hidden: yes
     label: "SKU Quantity Ordered"
     type: number
     sql: ${TABLE}.quantity_ordered ;;

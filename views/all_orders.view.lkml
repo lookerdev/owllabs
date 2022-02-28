@@ -1,14 +1,7 @@
-# The name of this view in Looker is "All Orders"
 view: all_orders {
-  # The sql_table_name parameter indicates the underlying database table
-  # to be used for all fields in this view.
   sql_table_name: public.all_orders ;;
-  # No primary key is defined for this view. In order to join this view in an Explore,
-  # define primary_key: yes on a dimension that has no repeated values.
 
-  # Here's what a typical dimension looks like in LookML.
-  # A dimension is a groupable field that can be used to filter query results.
-  # This dimension will be called "Allitems Quantity Ordered" in Explore.
+## DIMENSIONS
 
   dimension: allitems_quantity_ordered {
     type: number
@@ -172,8 +165,131 @@ view: all_orders {
     sql: ${TABLE}.world_region ;;
   }
 
-  measure: count {
-    type: count
-    drill_fields: [country_name, sku_name]
+  dimension: owls_quantity_ordered {
+    hidden: yes
+    type: number
+    sql: ${og_quantity_ordered} + ${pro_quantity_ordered} ;;
   }
+
+  dimension: hardware_quantity_ordered {
+    hidden: yes
+    type: number
+    sql: ${og_quantity_ordered} + ${pro_quantity_ordered} + ${wbo_quantity_ordered} + ${hq_quantity_ordered} ;;
+  }
+
+
+## MEASURES
+
+  # measure: count {
+  #   hidden: yes
+  #   type: count
+  #   drill_fields: [country_name, sku_name]
+  # }
+
+  # measure: count_orders {
+  #   hidden: yes
+  #   label: "Count of Orders"
+  #   type: count_distinct
+  #   sql: ${order_id} ;;
+  # }
+
+  measure: sum_allitems_quantity_ordered {
+    label: "All Items Quantity Ordered"
+    type: sum
+    sql: ${allitems_quantity_ordered} ;;
+  }
+
+  measure: sum_bundle_quantity_ordered {
+    label: "Bundle Quantity Ordered"
+    type: sum
+    sql: ${bundle_quantity_ordered} ;;
+  }
+
+  measure: sum_hq_quantity_ordered {
+    label: "Meeting HQ Quantity Ordered"
+    type: sum
+    sql: ${hq_quantity_ordered} ;;
+  }
+
+  measure: sum_linecord_quantity_ordered {
+    label: "Line Cord Quantity Ordered"
+    type: sum
+    sql: ${linecord_quantity_ordered} ;;
+  }
+
+  measure: sum_lockadapter_quantity_ordered {
+    label: "Lock Adapter Quantity Ordered"
+    type: sum
+    sql: ${lockadapter_quantity_ordered} ;;
+  }
+
+  measure: sum_og_quantity_ordered {
+    label: "Meeting Owl OG Quantity Ordered"
+    type: sum
+    sql: ${og_quantity_ordered} ;;
+  }
+
+  measure: sum_other_quantity_ordered {
+    label: "Other Quantity Ordered"
+    type: sum
+    sql: ${other_quantity_ordered} ;;
+  }
+
+  measure: sum_owlcare_quantity_ordered {
+    label: "Owl Care Quantity Ordered"
+    type: sum
+    sql: ${owlcare_quantity_ordered} ;;
+  }
+
+  measure: sum_powersupply_quantity_ordered {
+    label: "Power Supply Quantity Ordered"
+    type: sum
+    sql: ${powersupply_quantity_ordered} ;;
+  }
+
+  measure: sum_pro_quantity_ordered {
+    label: "Meeting Owl Pro Quantity Ordered"
+    type: sum
+    sql: ${pro_quantity_ordered} ;;
+  }
+
+  measure: sum_subscription_quantity_ordered {
+    label: "Subscription Quantity Ordered"
+    type: sum
+    sql: ${subscription_quantity_ordered} ;;
+  }
+
+  measure: sum_usbextension_quantity_ordered {
+    label: "USB Extension Quantity Ordered"
+    type: sum
+    sql: ${usbextension_quantity_ordered} ;;
+  }
+
+  measure: sum_wbo_quantity_ordered {
+    label: "Whiteboard Owl Quantity Ordered"
+    type: sum
+    sql: ${wbo_quantity_ordered} ;;
+  }
+
+  measure: sum_owls_quantity_ordered {
+    label: "All Owls Quantity Ordered"
+    description: "Combination of OG and MOP units"
+    type: sum
+    sql: ${owls_quantity_ordered} ;;
+  }
+
+  measure: sum_hardware_quantity_ordered {
+    label: "All Hardware Quantity Ordered"
+    description: "Combination of OG, MOP, WBO, and HQ units"
+    type: sum
+    sql: ${hardware_quantity_ordered} ;;
+  }
+
+  measure: sum_sku_quantity_ordered {
+    label: "SKU Quantity Ordered"
+    description: "Count of orders for each SKU"
+    type: sum
+    sql: ${sku_quantity_ordered} ;;
+  }
+
 }
