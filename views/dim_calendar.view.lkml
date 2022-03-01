@@ -74,9 +74,20 @@ view: dim_calendar {
   # }
 
   dimension: quarter {
+    hidden: yes
     label: "Quarter Number"
     type: number
     sql: ${TABLE}.quarter ;;
+  }
+
+  dimension: quarter_name {
+    label: "Quarter"
+    type: string
+    sql: case when ${TABLE}.quarter = 1 then 'Q1'
+              when ${TABLE}.quarter = 2 then 'Q2'
+              when ${TABLE}.quarter = 3 then 'Q3'
+              when ${TABLE}.quarter = 4 then 'Q4'
+              end;;
   }
 
   dimension: week {
@@ -86,6 +97,7 @@ view: dim_calendar {
   }
 
   dimension: weekend_flag {
+    hidden: yes
     label: "Is Weekend?"
     type: yesno
     sql: ${TABLE}.weekend_flag ;;

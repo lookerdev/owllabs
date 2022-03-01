@@ -4,41 +4,49 @@ view: all_orders {
 ## DIMENSIONS
 
   dimension: allitems_quantity_ordered {
+    hidden: yes
     type: number
     sql: ${TABLE}.allitems_quantity_ordered ;;
   }
 
   dimension: billing_address_company {
+    label: "Billing Company Name"
     type: string
     sql: ${TABLE}.billing_address_company ;;
   }
 
   dimension: bundle_quantity_ordered {
+    hidden: yes
     type: number
     sql: ${TABLE}.bundle_quantity_ordered ;;
   }
 
   dimension: country_name {
+    label: "Market Region"
     type: string
     sql: ${TABLE}.country_name ;;
   }
 
   dimension: distribution_channel {
+    hidden: yes
     type: string
     sql: ${TABLE}.distribution_channel ;;
   }
 
   dimension: hq_quantity_ordered {
+    hidden: yes
     type: number
     sql: ${TABLE}.hq_quantity_ordered ;;
   }
 
   dimension: linecord_quantity_ordered {
+    hidden: yes
     type: number
     sql: ${TABLE}.linecord_quantity_ordered ;;
   }
 
   dimension: lockadapter_quantity_ordered {
+    hidden: yes
     type: number
     sql: ${TABLE}.lockadapter_quantity_ordered ;;
   }
@@ -49,6 +57,7 @@ view: all_orders {
   }
 
   dimension: og_quantity_ordered {
+    hidden: yes
     type: number
     sql: ${TABLE}.og_quantity_ordered ;;
   }
@@ -76,43 +85,34 @@ view: all_orders {
   }
 
   dimension: other_quantity_ordered {
+    hidden: yes
     type: number
     sql: ${TABLE}.other_quantity_ordered ;;
   }
 
   dimension: owlcare_quantity_ordered {
+    hidden: yes
     type: number
     sql: ${TABLE}.owlcare_quantity_ordered ;;
   }
 
   dimension: powersupply_quantity_ordered {
+    hidden: yes
     type: number
     sql: ${TABLE}.powersupply_quantity_ordered ;;
   }
 
   dimension: pro_quantity_ordered {
+    hidden: yes
     type: number
     sql: ${TABLE}.pro_quantity_ordered ;;
   }
 
   dimension: row_number {
     primary_key: yes
+    hidden: yes
     type: number
     sql: ${TABLE}.row_number ;;
-  }
-
-  # A measure is a field that uses a SQL aggregate function. Here are defined sum and average
-  # measures for this dimension, but you can also add measures of many different aggregates.
-  # Click on the type parameter to see all the options in the Quick Help panel on the right.
-
-  measure: total_row_number {
-    type: sum
-    sql: ${row_number} ;;
-  }
-
-  measure: average_row_number {
-    type: average
-    sql: ${row_number} ;;
   }
 
   dimension: sales_channel {
@@ -131,6 +131,7 @@ view: all_orders {
   }
 
   dimension: sku_quantity_ordered {
+    hidden: yes
     type: number
     sql: ${TABLE}.sku_quantity_ordered ;;
   }
@@ -146,16 +147,19 @@ view: all_orders {
   }
 
   dimension: subscription_quantity_ordered {
+    hidden: yes
     type: number
     sql: ${TABLE}.subscription_quantity_ordered ;;
   }
 
   dimension: usbextension_quantity_ordered {
+    hidden: yes
     type: number
     sql: ${TABLE}.usbextension_quantity_ordered ;;
   }
 
   dimension: wbo_quantity_ordered {
+    hidden: yes
     type: number
     sql: ${TABLE}.wbo_quantity_ordered ;;
   }
@@ -163,6 +167,7 @@ view: all_orders {
   dimension: world_region {
     type: string
     sql: ${TABLE}.world_region ;;
+    drill_fields: [country_name]
   }
 
   dimension: owls_quantity_ordered {

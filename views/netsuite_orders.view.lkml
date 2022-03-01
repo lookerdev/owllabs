@@ -16,6 +16,11 @@ view: netsuite_orders {
     sql: ${TABLE}.currency ;;
   }
 
+  dimension: currency_exchange_rate {
+    type: string
+    sql: ${TABLE}.currency_exchange_rate ;;
+  }
+
   dimension: customer_internalid {
     hidden: yes
     type: string
@@ -70,7 +75,7 @@ view: netsuite_orders {
     sql: ${TABLE}.memo ;;
   }
 
-  dimension_group: order {
+  dimension_group: sales_order {
     type: time
     timeframes: [
       raw,
@@ -81,33 +86,48 @@ view: netsuite_orders {
       quarter,
       year
     ]
-    sql: ${TABLE}.order_date::date ;;
+    sql: ${TABLE}.sales_order_date ;;
   }
 
-  dimension: order_externalid {
+  dimension_group: sales_order_delete {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.sales_order_delete_date ;;
+  }
+
+  dimension: sales_order_externalid {
     hidden: yes
     type: string
-    sql: ${TABLE}.order_externalid ;;
+    sql: ${TABLE}.sales_order_externalid ;;
   }
 
-  dimension: order_internalid {
+  dimension: sales_order_internalid {
     hidden: yes
     type: string
-    sql: ${TABLE}.order_internalid ;;
+    sql: ${TABLE}.sales_order_internalid ;;
   }
 
-  dimension: order_number {
+  dimension: sales_order_number {
+    label: "Sales Order Number"
     type: string
-    sql: ${TABLE}.order_number ;;
+    sql: ${TABLE}.sales_order_number ;;
   }
 
-  dimension: order_status {
+  dimension: sales_order_status {
     type: string
-    sql: ${TABLE}.order_status ;;
+    sql: ${TABLE}.sales_order_status ;;
   }
 
-  dimension: quantity_ordered {
-    type: number
+  measure: quantity_ordered {
+    type: sum
     sql: ${TABLE}.quantity_ordered ;;
   }
 
@@ -144,6 +164,11 @@ view: netsuite_orders {
     sql: ${TABLE}.shopify_marketplace ;;
   }
 
+  dimension: shopify_order_name {
+    type: string
+    sql: ${TABLE}.shopify_order_name ;;
+  }
+
   dimension: shopify_order_number {
     type: string
     sql: ${TABLE}.shopify_order_number ;;
@@ -159,8 +184,8 @@ view: netsuite_orders {
     sql: ${TABLE}.subtotal ;;
   }
 
-  dimension: subtotal_usd {
-    type: number
+  measure: subtotal_usd {
+    type: sum
     value_format_name: usd
     sql: ${TABLE}.subtotal_usd ;;
   }

@@ -1,7 +1,5 @@
 connection: "redshift"
 
-include: "/views/netsuite_units_ordered.view.lkml"
-include: "/views/netsuite_units_fulfilled.view.lkml"
 include: "/views/dim_calendar.view.lkml"
 include: "/views/dim_calendar_distinct.view.lkml"
 include: "/views/item_fulfillments_looker.view.lkml"
@@ -10,6 +8,12 @@ include: "/views/revenue_by_item_aggregated_net.view.lkml" # revenue for all acc
 include: "/views/revenue_by_item_aggregated_gross.view.lkml" # revenue for only acount 41000: Revenue - Hardware
 include: "/views/item_fulfillments_aggregated.view.lkml"
 include: "/views/revenue_report_dimensions.view.lkml"
+include: "/views/netsuite_orders.view.lkml"
+include: "/views/netsuite_orders_line_items.view.lkml"
+include: "/views/netsuite_fulfillments.view.lkml"
+include: "/views/netsuite_fulfillments_line_items.view.lkml"
+include: "/views/netsuite_units_ordered.view.lkml"
+include: "/views/netsuite_units_fulfilled.view.lkml"
 
 # include: "*.dashboard.lookml"
 
@@ -18,20 +22,6 @@ include: "/views/revenue_report_dimensions.view.lkml"
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
 
-explore: netsuite_orders_fulfillments {
-  hidden: yes
-  label: "Netsuite Orders & Fulfillments"
-  view_name: dim_calendar
-  sql_always_where: ${year} >= 2021 and ${date_date} <= trunc(sysdate);;
-  join: netsuite_units_fulfilled {
-    relationship: one_to_many
-    sql_on: ${dim_calendar.date_date} = ${netsuite_units_fulfilled.fullfillment_date} ;;
-  }
-  join: netsuite_units_ordered {
-    relationship: one_to_many
-    sql_on:${dim_calendar.date_date} = ${netsuite_units_ordered.sales_order_date} ;;
-  }
-}
 
 # keep hidden, doesn't need to be accessible outside of Revenue Report dashboard
 # should I rename this explore...? If I do I'll have to replace everything in the dashboard using it...
@@ -50,6 +40,11 @@ explore: dim_calendar_distinct {
     type: inner
     relationship: one_to_many
     sql_on: ${dim_calendar_distinct.period_name} = ${item_fulfillments_looker.period} ;;
+  }
+  join: netsuite_orders {
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${dim_calendar_distinct.month_year} = ${netsuite_orders.sales_order_date} ;;
   }
 }
 

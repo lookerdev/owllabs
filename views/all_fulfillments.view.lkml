@@ -58,7 +58,8 @@ view: all_fulfillments {
     sql: ${TABLE}.sales_channel ;;
   }
 
-  dimension: customer_ship_to {
+  dimension: shipping_address_company {
+    label: "Shipping Company Name"
     type: string
     sql: ${TABLE}.shipping_address_company ;;
   }
@@ -74,7 +75,7 @@ view: all_fulfillments {
   }
 
   dimension: source {
-    hidden: yes
+    # hidden: yes
     type: string
     sql: ${TABLE}.source ;;
   }

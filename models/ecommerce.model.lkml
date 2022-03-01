@@ -23,7 +23,7 @@ include: "/views/all_fulfillments.view.lkml"
 explore: all_orders_fulfillments {
   label: "UAT - All Orders & Fulfillments"
   view_name: dim_calendar
-  sql_always_where: ${year} >= 2021 and ${date_date} <= trunc(sysdate);;
+  sql_always_where: ${year} >= 2015 and ${date_date} <= trunc(sysdate);;
   join: all_orders {
     type: left_outer
     relationship: one_to_many
@@ -39,7 +39,7 @@ explore: all_orders_fulfillments {
 explore: shopify_orders_fulfillments {
   label: "UAT - Shopify Orders & Fulfillments"
   view_name: dim_calendar
-  sql_always_where: ${year} >= 2021 and ${date_date} <= trunc(sysdate);;
+  sql_always_where: ${year} >= 2015 and ${date_date} <= trunc(sysdate);;
   join: shopify_orders_line_items_view {
     type: left_outer
     relationship: one_to_many
@@ -52,31 +52,45 @@ explore: shopify_orders_fulfillments {
   }
 }
 
+# explore: netsuite_orders {}
+
 # this needs to be improved!!
 explore: netsuite_orders_fulfillments {
   hidden: yes
   label: "Netsuite Orders & Fulfillments"
   view_name: dim_calendar
   sql_always_where: ${year} >= 2021 and ${date_date} <= trunc(sysdate);;
-
   join: netsuite_orders {
     type: left_outer
     relationship: one_to_many
-    sql_on: ${dim_calendar.date_date} = ${netsuite_orders.order_date} ;;
+    sql_on: ${dim_calendar.date_date} = ${netsuite_orders.sales_order_date} ;;
   }
-  join: netsuite_orders_line_items {
-    type: left_outer
-    relationship: one_to_many
-    sql_on:  ;;
+  # join: netsuite_orders_line_items {
+  #   type: left_outer
+  #   relationship: one_to_many
+  #   sql_on:  ;;
+  # }
+  # join: netsuite_fulfillments {
+  #   relationship: one_to_many
+  #   sql_on:${dim_calendar.date_date} = ${netsuite_fulfillments.actual_ship_date} ;;
+  # }
 }
 
-join: netsuite_fulfillments {
-  relationship: one_to_many
-  sql_on:${dim_calendar.date_date} = ${netsuite_fulfillments.actual_ship_date} ;;
-}
-}
 
-
+# explore: netsuite_orders_fulfillments {
+#   hidden: yes
+#   label: "Netsuite Orders & Fulfillments"
+#   view_name: dim_calendar
+#   sql_always_where: ${year} >= 2021 and ${date_date} <= trunc(sysdate);;
+#   join: netsuite_orders {
+#     relationship: one_to_many
+#     sql_on: ${dim_calendar.date_date} = ${netsuite_orders.order_date} ;;
+#   }
+#   join: netsuite_fulfillments {
+#     relationship: one_to_many
+#     sql_on:${dim_calendar.date_date} = ${netsuite_fulfillments.actual_ship_date} ;;
+#   }
+# }
 
 # archive
 explore: orders_view {
