@@ -56,7 +56,7 @@ view: all_fulfillments {
   dimension: sales_channel {
     type: string
     sql: ${TABLE}.sales_channel ;;
-  }
+    }
 
   dimension: shipping_address_company {
     label: "Shipping Company Name"
@@ -88,6 +88,36 @@ view: all_fulfillments {
   dimension: world_region {
     type: string
     sql: ${TABLE}.world_region ;;
+    # html:
+    # {% if value == 'Asia Pacific' %}
+    #   # <p style="background-color: red">{{ value }}</p>
+    # {% elsif value == 'Europe' %}
+    #   <p style="background-color: blue">{{ value }}</p>
+    # {% elsif value == 'Middle East & Africa' %}
+    #   <p style="background-color: blue">{{ value }}</p>
+    #   {% elsif value == 'North America' %}
+    #   <p style="background-color: blue">{{ value }}</p>
+    #   {% elsif value == 'South America' %}
+    #   <p style="background-color: blue">{{ value }}</p>
+    # {% else %}
+    #   <p style="color: grey">{{ value }}</p>
+    # {% endif %};;
+  # html:
+    # {% if value == 'Asia Pacific' %}
+    #   <div style="background-color: red"> {{ value }} </div>
+    # {% elsif value == 'Europe' %}
+    #   <div style="background-color: red"> {{ value }} </div>
+    # {% elsif value == 'Middle East & Africa' %}
+    #   <div style="background-color: red"> {{ value }} </div>
+    #   {% elsif value == 'North America' %}
+    #   <div style="background-color: red"> {{ value }} </div>
+    #   {% elsif value == 'South America' %}
+    #   <div style="background-color: red"> {{ value }} </div>
+    # {% else %}
+    #   <div style="background-color: red"> {{ value }} </div>
+    # {% endif %};;
+  # html: <font color="green">{{ value }}</font> ;;
+  # <div style="background-color: rgba(200,35,25,{{value}}); font-size:150%; text-align:center"><a href="{{ link }}" style="color: white" target="_new">{{ balance_foo._rendered_value }} </a></div>
   }
 
   dimension: allitems_quantity_shipped {

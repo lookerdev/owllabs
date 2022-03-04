@@ -38,6 +38,12 @@ view: dim_calendar_distinct {
     sql: ${month_name} || ' ' || ${year};;
   }
 
+  dimension: month_num_year {
+    hidden: yes
+    type: string
+    sql: ${month} || ' ' || ${year} ;;
+  }
+
   dimension: month_year_date_convert {
     # this is a date so can sort
     label: "Month Year"

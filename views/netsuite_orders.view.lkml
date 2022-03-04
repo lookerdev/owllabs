@@ -89,6 +89,12 @@ view: netsuite_orders {
     sql: ${TABLE}.sales_order_date ;;
   }
 
+  dimension: month_num_year {
+    hidden: yes
+    type: string
+    sql: ${sales_order_month} || ' ' || ${sales_order_year};;
+  }
+
   dimension_group: sales_order_delete {
     type: time
     timeframes: [

@@ -44,7 +44,8 @@ explore: dim_calendar_distinct {
   join: netsuite_orders {
     type: left_outer
     relationship: one_to_many
-    sql_on: ${dim_calendar_distinct.month_year} = ${netsuite_orders.sales_order_date} ;;
+    # sql_on: cast(${dim_calendar_distinct.month} as char) || cast(${dim_calendar_distinct.year} as char) = cast(${netsuite_orders.sales_order_month} as char) || cast(${netsuite_orders.sales_order_year} as char);;
+    sql_on: cast(${dim_calendar_distinct.month} as varchar) || cast(${dim_calendar_distinct.year} as varchar) = cast(DATE_PART(month, ${netsuite_orders.sales_order_date}) as varchar) || cast(DATE_PART(year, ${netsuite_orders.sales_order_date}) as varchar) ;;
   }
 }
 

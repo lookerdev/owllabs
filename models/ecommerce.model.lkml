@@ -52,8 +52,6 @@ explore: shopify_orders_fulfillments {
   }
 }
 
-# explore: netsuite_orders {}
-
 # this needs to be improved!!
 explore: netsuite_orders_fulfillments {
   hidden: yes
