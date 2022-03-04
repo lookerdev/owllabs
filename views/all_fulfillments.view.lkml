@@ -223,28 +223,28 @@ view: all_fulfillments {
     label: "All Items Quantity Shipped"
     type: sum
     sql: ${allitems_quantity_shipped} ;;
-    drill_fields: [shipping_address_company]
+    drill_fields: [shipping_address_company, sales_channel, world_region]
   }
 
   measure: sum_bundle_quantity_shipped {
     label: "Bundle Quantity Shipped"
     type: sum
     sql: ${bundle_quantity_shipped} ;;
-    drill_fields: [shipping_address_company]
+    drill_fields: [shipping_address_company, sales_channel, world_region]
   }
 
   measure: sum_hq_quantity_shipped {
     label: "Meeting HQ Quantity Shipped"
     type: sum
     sql: ${hq_quantity_shipped} ;;
-    drill_fields: [shipping_address_company]
+    drill_fields: [shipping_address_company, sales_channel, world_region]
   }
 
   measure: sum_linecord_quantity_shipped {
     label: "Line Cord Quantity Shipped"
     type: sum
     sql: ${linecord_quantity_shipped} ;;
-    drill_fields: [shipping_address_company]
+    drill_fields: [shipping_address_company, sales_channel, world_region]
   }
 
   measure: sum_lockadapter_quantity_shipped {
@@ -252,7 +252,7 @@ view: all_fulfillments {
     type: sum
     # sql: ${TABLE}.lockadapter_quantity_shipped ;;
     sql: ${lockadapter_quantity_shipped} ;;
-    drill_fields: [shipping_address_company]
+    drill_fields: [shipping_address_company, sales_channel, world_region]
   }
 
   measure: sum_og_quantity_shipped {
@@ -260,7 +260,7 @@ view: all_fulfillments {
     type: sum
     # sql: ${TABLE}.og_quantity_shipped ;;
     sql: ${og_quantity_shipped} ;;
-    drill_fields: [shipping_address_company]
+    drill_fields: [shipping_address_company, sales_channel, world_region]
   }
 
   measure: sum_other_quantity_shipped {
@@ -268,7 +268,7 @@ view: all_fulfillments {
     type: sum
     # sql: ${TABLE}.other_quantity_shipped ;;
     sql: ${other_quantity_shipped} ;;
-    drill_fields: [shipping_address_company]
+    drill_fields: [shipping_address_company, sales_channel, world_region]
   }
 
   measure: sum_owlcare_quantity_shipped {
@@ -276,7 +276,7 @@ view: all_fulfillments {
     type: sum
     # sql: ${TABLE}.owlcare_quantity_shipped ;;
     sql: ${owlcare_quantity_shipped} ;;
-    drill_fields: [shipping_address_company]
+    drill_fields: [shipping_address_company, sales_channel, world_region]
   }
 
   measure: sum_powersupply_quantity_shipped {
@@ -284,14 +284,14 @@ view: all_fulfillments {
     type: sum
     # sql: ${TABLE}.powersupply_quantity_shipped ;;
     sql: ${powersupply_quantity_shipped} ;;
-    drill_fields: [shipping_address_company]
+    drill_fields: [shipping_address_company, sales_channel, world_region]
   }
 
   measure: sum_pro_quantity_shipped {
     label: "Meeting Owl Pro Quantity Shipped"
     type: sum
     sql: ${pro_quantity_shipped} ;;
-    drill_fields: [shipping_address_company]
+    drill_fields: [shipping_address_company, sales_channel, world_region]
   }
 
   measure: sum_subscription_quantity_shipped {
@@ -299,21 +299,21 @@ view: all_fulfillments {
     hidden: yes
     type: sum
     sql: ${subscription_quantity_shipped} ;;
-    drill_fields: [shipping_address_company]
+    drill_fields: [shipping_address_company, sales_channel, world_region]
   }
 
   measure: sum_usbextension_quantity_shipped {
     label: "USB Extension Quantity Shipped"
     type: sum
     sql: ${usbextension_quantity_shipped} ;;
-    drill_fields: [shipping_address_company]
+    drill_fields: [shipping_address_company, sales_channel, world_region]
   }
 
   measure: sum_wbo_quantity_shipped {
     label: "Whiteboard Owl Quantity Shipped"
     type: sum
     sql: ${wbo_quantity_shipped} ;;
-    drill_fields: [shipping_address_company]
+    drill_fields: [shipping_address_company, sales_channel, world_region]
   }
 
   measure: sum_owls_quantity_shipped {
@@ -321,7 +321,7 @@ view: all_fulfillments {
     description: "Combination of OG and MOP units"
     type: sum
     sql: ${owls_quantity_shipped} ;;
-    drill_fields: [shipping_address_company]
+    drill_fields: [shipping_address_company, sales_channel, world_region]
   }
 
   measure: sum_hardware_quantity_shipped {
@@ -329,7 +329,7 @@ view: all_fulfillments {
     description: "Combination of OG, MOP, WBO, and HQ units"
     type: sum
     sql: ${hardware_quantity_shipped} ;;
-    drill_fields: [shipping_address_company]
+    drill_fields: [shipping_address_company, sales_channel, world_region]
   }
 
 
