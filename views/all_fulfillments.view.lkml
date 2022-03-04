@@ -49,6 +49,7 @@ view: all_fulfillments {
 
   dimension: row_number {
     primary_key: yes
+    hidden: yes
     type: number
     sql: ${TABLE}.row_number ;;
   }
