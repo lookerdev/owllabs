@@ -202,78 +202,91 @@ view: all_orders {
     label: "All Items Quantity Ordered"
     type: sum
     sql: ${allitems_quantity_ordered} ;;
+    drill_fields: [sales_channel, world_region, order_number, country_name]
   }
 
   measure: sum_bundle_quantity_ordered {
     label: "Bundle Quantity Ordered"
     type: sum
     sql: ${bundle_quantity_ordered} ;;
+    drill_fields: [sales_channel, world_region, order_number, country_name]
   }
 
   measure: sum_hq_quantity_ordered {
     label: "Meeting HQ Quantity Ordered"
     type: sum
     sql: ${hq_quantity_ordered} ;;
+    drill_fields: [sales_channel, world_region, order_number, country_name]
   }
 
   measure: sum_linecord_quantity_ordered {
     label: "Line Cord Quantity Ordered"
     type: sum
     sql: ${linecord_quantity_ordered} ;;
+    drill_fields: [sales_channel, world_region, order_number, country_name]
   }
 
   measure: sum_lockadapter_quantity_ordered {
     label: "Lock Adapter Quantity Ordered"
     type: sum
     sql: ${lockadapter_quantity_ordered} ;;
+    drill_fields: [sales_channel, world_region, order_number, country_name, sku]
   }
 
   measure: sum_og_quantity_ordered {
     label: "Meeting Owl OG Quantity Ordered"
     type: sum
     sql: ${og_quantity_ordered} ;;
+    drill_fields: [sales_channel, world_region, order_number, country_name, sku]
   }
 
   measure: sum_other_quantity_ordered {
     label: "Other Quantity Ordered"
     type: sum
     sql: ${other_quantity_ordered} ;;
+    drill_fields: [sales_channel, world_region, order_number, country_name, sku]
   }
 
   measure: sum_owlcare_quantity_ordered {
     label: "Owl Care Quantity Ordered"
     type: sum
     sql: ${owlcare_quantity_ordered} ;;
+    drill_fields: [sales_channel, world_region, order_number, country_name, sku]
   }
 
   measure: sum_powersupply_quantity_ordered {
     label: "Power Supply Quantity Ordered"
     type: sum
     sql: ${powersupply_quantity_ordered} ;;
+    drill_fields: [sales_channel, world_region, order_number, country_name, sku]
   }
 
   measure: sum_pro_quantity_ordered {
     label: "Meeting Owl Pro Quantity Ordered"
     type: sum
     sql: ${pro_quantity_ordered} ;;
+    drill_fields: [sales_channel, world_region, order_number, country_name, sku]
   }
 
   measure: sum_subscription_quantity_ordered {
     label: "Subscription Quantity Ordered"
     type: sum
     sql: ${subscription_quantity_ordered} ;;
+    drill_fields: [sales_channel, world_region, order_number, country_name, sku]
   }
 
   measure: sum_usbextension_quantity_ordered {
     label: "USB Extension Quantity Ordered"
     type: sum
     sql: ${usbextension_quantity_ordered} ;;
+    drill_fields: [sales_channel, world_region, order_number, country_name, sku]
   }
 
   measure: sum_wbo_quantity_ordered {
     label: "Whiteboard Owl Quantity Ordered"
     type: sum
     sql: ${wbo_quantity_ordered} ;;
+    drill_fields: [sales_channel, world_region, order_number, country_name, sku]
   }
 
   measure: sum_owls_quantity_ordered {
@@ -281,6 +294,7 @@ view: all_orders {
     description: "Combination of OG and MOP units"
     type: sum
     sql: ${owls_quantity_ordered} ;;
+    drill_fields: [sales_channel, world_region, order_number, country_name, sku]
   }
 
   measure: sum_hardware_quantity_ordered {
@@ -288,6 +302,7 @@ view: all_orders {
     description: "Combination of OG, MOP, WBO, and HQ units"
     type: sum
     sql: ${hardware_quantity_ordered} ;;
+    drill_fields: [sales_channel, world_region, order_number, country_name, sku]
   }
 
   measure: sum_sku_quantity_ordered {
@@ -295,6 +310,7 @@ view: all_orders {
     description: "Count of orders for each SKU"
     type: sum
     sql: ${sku_quantity_ordered} ;;
+    drill_fields: [sales_channel, world_region, order_number, country_name, sku]
   }
 
 }
