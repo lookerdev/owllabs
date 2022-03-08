@@ -232,7 +232,7 @@ view: device_view {
   measure: device_count {
     label: "Count of Devices"
     type: count_distinct
-    sql: ${device_id} ;;
+    sql: ${uuid} ;;
     drill_fields: [device_id, uuid, device_name, product_name, channel_name]
   }
 
