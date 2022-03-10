@@ -124,7 +124,7 @@ view: shopify_orders_line_items_view {
   }
 
   dimension: order_name {
-    label: "Shopify Order Name"
+    # label: "Shopify Order Name"
     type: string
     sql: ${TABLE}.order_name ;;
   }

@@ -122,11 +122,13 @@ view: shopify_fulfillments_line_items_view {
   }
 
   dimension: shopify_fulfillment_name {
+    label: "Fulfillment Name"
     type: string
     sql: ${TABLE}.shopify_fulfillment_name ;;
   }
 
   dimension: shopify_order_name {
+    label: "Order Name"
     type: string
     sql: ${TABLE}.shopify_order_name ;;
   }
