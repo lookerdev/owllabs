@@ -134,9 +134,15 @@ view: shopify_fulfillments_line_items_view {
   }
 
   dimension: shopify_tags_cam {
-    label: "CAM"
+    hidden: yes
     type: string
     sql: ${TABLE}.shopify_tags_cam ;;
+  }
+
+  dimension: cam_name {
+    label: "CAM"
+    type: string
+    sql: ${TABLE}.cam_name ;;
   }
 
   dimension: shopify_tags_sales_rep {
@@ -147,7 +153,7 @@ view: shopify_fulfillments_line_items_view {
 
   dimension: sales_rep {
     type: string
-    sql: ${TABLE}.sales_rep;;
+    sql: ${TABLE}.sales_rep_name;;
   }
 
   dimension: sku {
