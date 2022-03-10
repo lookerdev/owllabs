@@ -23,7 +23,9 @@ include: "/views/all_fulfillments.view.lkml"
 explore: all_orders_fulfillments {
   label: "UAT - All Orders & Fulfillments"
   view_name: dim_calendar
-  sql_always_where: ${year} >= 2015 and ${date_date} <= trunc(sysdate);;
+  sql_always_where: ${year} >= 2015
+                    and ${date_date} <= trunc(sysdate)
+                    and ${all_fulfillments.sku} not in ('MTW100-1000-RPL','MTW100-2000 - Replacement','MTW100-2000-RPL','MTW200-1000-RPL','MTW200-1000-RPL-CA','MTW200-2000 - Replacement','MTW200-2000-RPL','PTW100-1000-RPL','REPLC - NA','REPLC - UK','REPLC - US/CA','REPLC100-1000','REPLC100-1000-NA','REPLC100-2000','REPLC100-2001','REPPS','REPPS - Universal','REPUSB','REPUSB - Universal','Replacement AC Line Cord','Replacement Power Supply','Replacement USB Cable (6.5-Foot)','WBC100-1000-RPL','TEST2','TEST3');;
   join: all_orders {
     type: left_outer
     relationship: one_to_many
