@@ -342,11 +342,13 @@ view: shopify_fulfillments_line_items_view {
   }
 
   measure: sum_pre_tax_price {
+    label: "Subtotal Price"
     type: sum
     sql: ${pre_tax_price} ;;
   }
 
   measure: sum_pre_tax_price_usd {
+    label: "Subtotal Price - USD"
     type: sum
     value_format_name: usd
     sql: ${pre_tax_price_usd} ;;

@@ -172,7 +172,7 @@ view: shopify_orders_line_items_view {
 
   dimension: sales_rep {
     type: string
-    sql: coalesce(${netsuite_sales_rep},${shopify_tags_sales_rep}) ;;
+    sql: ${TABLE}.sales_rep ;;
   }
 
   dimension: sales_order_internalid {
@@ -404,9 +404,17 @@ view: shopify_orders_line_items_view {
     sql: ${wbo_quantity_ordered} ;;
   }
 
-  measure: total_pre_tax_price {
+  measure: sum_pre_tax_price {
+    label: "Subtotal Price"
     type: sum
     sql: ${pre_tax_price} ;;
+  }
+
+  measure: sum_pre_tax_price_usd {
+    label: "Subtotal Price - USD"
+    type: sum
+    value_format_name: usd
+    sql: ${pre_tax_price_usd} ;;
   }
 
   measure: average_pre_tax_price {
