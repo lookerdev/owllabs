@@ -145,7 +145,7 @@ view: shopify_fulfillments_line_items_view {
 
   dimension: sales_rep {
     type: string
-    sql: coalesce(${netsuite_sales_rep},${shopify_tags_sales_rep}) ;;
+    sql: ${TABLE}.sales_rep;;
   }
 
   dimension: sku {
