@@ -67,17 +67,17 @@ view: shopify_fulfillments_line_items_view {
     sql: ${TABLE}.netsuite_sales_rep ;;
   }
 
-  dimension: pre_tax_price {
-    hidden: yes
-    type: number
-    sql: ${TABLE}.pre_tax_price ;;
-  }
+  # dimension: pre_tax_price {
+  #   hidden: yes
+  #   type: number
+  #   sql: ${TABLE}.pre_tax_price ;;
+  # }
 
-  dimension: pre_tax_price_usd {
-    hidden: yes
-    type: number
-    sql: ${TABLE}.pre_tax_price_usd ;;
-  }
+  # dimension: pre_tax_price_usd {
+  #   hidden: yes
+  #   type: number
+  #   sql: ${TABLE}.pre_tax_price_usd ;;
+  # }
 
   dimension: product_id {
     hidden: yes
@@ -95,6 +95,19 @@ view: shopify_fulfillments_line_items_view {
     type: number
     sql: ${TABLE}.quantity ;;
   }
+
+  dimension: revenue {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.revenue ;;
+  }
+
+  dimension: revenue_usd {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.revenue_usd ;;
+  }
+
 
   dimension: row_number {
     primary_key: yes
@@ -343,24 +356,37 @@ view: shopify_fulfillments_line_items_view {
     sql: ${powersupply_quantity_shipped} ;;
   }
 
-  measure: average_pre_tax_price {
-    hidden: yes
-    type: average
-    sql: ${pre_tax_price} ;;
-  }
+  # measure: average_pre_tax_price {
+  #   hidden: yes
+  #   type: average
+  #   sql: ${pre_tax_price} ;;
+  # }
 
-  measure: sum_pre_tax_price {
-    label: "Subtotal Price"
+  # measure: sum_pre_tax_price {
+  #   label: "Subtotal Price"
+  #   type: sum
+  #   sql: ${pre_tax_price} ;;
+  # }
+
+  measure: sum_revenue {
+    label: "Revenue"
     type: sum
-    sql: ${pre_tax_price} ;;
+    sql: ${revenue} ;;
   }
 
-  measure: sum_pre_tax_price_usd {
-    label: "Subtotal Price - USD"
+  measure: sum_revenue_usd {
+    label: "Revenue - USD"
     type: sum
     value_format_name: usd
-    sql: ${pre_tax_price_usd} ;;
+    sql: ${revenue_usd} ;;
   }
+
+  # measure: sum_pre_tax_price_usd {
+  #   label: "Subtotal Price - USD"
+  #   type: sum
+  #   value_format_name: usd
+  #   sql: ${pre_tax_price_usd} ;;
+  # }
 
   measure: sum_pro_quantity_shipped {
     label: "Meeting Owl Pro Quantity Shipped"

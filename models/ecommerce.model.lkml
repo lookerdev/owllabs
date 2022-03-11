@@ -41,7 +41,10 @@ explore: all_orders_fulfillments {
 explore: shopify_orders_fulfillments {
   label: "UAT - Shopify Orders & Fulfillments"
   view_name: dim_calendar
-  sql_always_where: ${year} >= 2015 and ${date_date} <= trunc(sysdate);;
+  sql_always_where: ${year} >= 2015
+                    and ${date_date} <= trunc(sysdate)
+                    and ${shopify_fulfillments_line_items_view.sku} not in ('MTW100-1000-RPL','MTW100-2000 - Replacement','MTW100-2000-RPL','MTW200-1000-RPL','MTW200-1000-RPL-CA','MTW200-2000 - Replacement','MTW200-2000-RPL','PTW100-1000-RPL','REPLC - NA','REPLC - UK','REPLC - US/CA','REPLC100-1000','REPLC100-1000-NA','REPLC100-2000','REPLC100-2001','REPPS','REPPS - Universal','REPUSB','REPUSB - Universal','Replacement AC Line Cord','Replacement Power Supply','Replacement USB Cable (6.5-Foot)','WBC100-1000-RPL')
+                    ;;
   join: shopify_orders_line_items_view {
     type: left_outer
     relationship: one_to_many
@@ -75,22 +78,6 @@ explore: netsuite_orders_fulfillments {
   #   sql_on:${dim_calendar.date_date} = ${netsuite_fulfillments.actual_ship_date} ;;
   # }
 }
-
-
-# explore: netsuite_orders_fulfillments {
-#   hidden: yes
-#   label: "Netsuite Orders & Fulfillments"
-#   view_name: dim_calendar
-#   sql_always_where: ${year} >= 2021 and ${date_date} <= trunc(sysdate);;
-#   join: netsuite_orders {
-#     relationship: one_to_many
-#     sql_on: ${dim_calendar.date_date} = ${netsuite_orders.order_date} ;;
-#   }
-#   join: netsuite_fulfillments {
-#     relationship: one_to_many
-#     sql_on:${dim_calendar.date_date} = ${netsuite_fulfillments.actual_ship_date} ;;
-#   }
-# }
 
 # archive
 explore: orders_view {
