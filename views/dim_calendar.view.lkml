@@ -135,7 +135,7 @@ view: dim_calendar {
     sql:
     CASE
     WHEN {% parameter timeframe_picker %} = 'date_date' THEN TO_DATE(${date_date}, 'YYYY-MM-DD')
-    WHEN {% parameter timeframe_picker %} = 'date_week' THEN TO_DATE(${date_week}, 'YYYY-MM-WW')
+    WHEN {% parameter timeframe_picker %} = 'date_week' THEN TO_DATE(${date_week}, 'YYYY-MM-DD')
     WHEN {% parameter timeframe_picker %} = 'date_month' THEN TO_DATE(${date_month}, 'YYYY-MM')
     END ;;
   }
