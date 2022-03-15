@@ -50,6 +50,12 @@ view: shopify_orders_line_items_view {
     sql: ${TABLE}.currency ;;
   }
 
+  dimension: cx_team {
+    label: "CX Team"
+    type:  string
+    sql: ${TABLE}.cx_team ;;
+  }
+
   dimension: distribution_channel {
     hidden: yes
     type: string

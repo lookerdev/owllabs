@@ -24,6 +24,12 @@ view: shopify_fulfillments_line_items_view {
     sql: ${TABLE}.currency ;;
   }
 
+  dimension: cx_team {
+    label: "CX Team"
+    type:  string
+    sql: ${TABLE}.cx_team ;;
+  }
+
   dimension: distribution_channel {
     hidden: yes
     type: string
@@ -137,13 +143,13 @@ view: shopify_fulfillments_line_items_view {
   dimension: shopify_fulfillment_name {
     label: "Fulfillment Name"
     type: string
-    sql: ${TABLE}.shopify_fulfillment_name ;;
+    sql: ${TABLE}.fulfillment_name ;;
   }
 
   dimension: shopify_order_name {
     label: "Order Name"
     type: string
-    sql: ${TABLE}.shopify_order_name ;;
+    sql: ${TABLE}.order_name ;;
   }
 
   dimension: shopify_tags_cam {
@@ -290,6 +296,17 @@ view: shopify_fulfillments_line_items_view {
     hidden: yes
     type: number
     sql: ${og_quantity_shipped} + ${pro_quantity_shipped} + ${wbo_quantity_shipped} + ${hq_quantity_shipped} ;;
+  }
+
+  dimension: revenue_usd_test {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.revenue_usd_compare ;;
+  }
+
+  measure: sum_revenue_usd_test {
+    type:  sum
+    sql: ${revenue_usd_test} ;;
   }
 
 
