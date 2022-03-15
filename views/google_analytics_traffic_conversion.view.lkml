@@ -1,0 +1,258 @@
+view: google_analytics_traffic_conversion {
+  derived_table: {
+    sql: select
+        dc.id,
+        dc.date,
+        ga.start_date as ga_session_start_date,
+        ga.end_date as ga_session_end_date,
+        ga.num_affiliates_sessions,
+        ga.num_direct_sessions,
+        ga.num_display_sessions,
+        ga.num_email_sessions,
+        ga.num_native_sessions,
+        ga.num_notset_sessions,
+        ga.num_organicsearch_sessions,
+        ga.num_other_sessions,
+        ga.num_paidemail_sessions,
+        ga.num_paidsearch_sessions,
+        ga.num_paidsocial_sessions,
+        ga.num_referral_sessions,
+        ga.num_social_sessions,
+        ga.num_sponsorship_sessions,
+        ga.num_video_sessions,
+        ga.num_affiliates_sessions + ga.num_direct_sessions + ga.num_display_sessions + ga.num_email_sessions + ga.num_native_sessions + ga.num_notset_sessions + ga.num_organicsearch_sessions + ga.num_other_sessions + ga.num_paidemail_sessions + ga.num_paidsearch_sessions + ga.num_paidsocial_sessions + ga.num_referral_sessions + ga.num_social_sessions + ga.num_sponsorship_sessions + ga.num_video_sessions as all_sessions,
+        a.order_date,
+        a.count_orders,
+        a.total_pro_ordered,
+        a.total_og_ordered,
+        a.total_hq_ordered,
+        a.total_wbo_ordered,
+        a.total_owls_ordered,
+        a.total_hardware_ordered
+        from dim_calendar dc
+        left join public.ganalytics_traffic_sessions_by_day ga
+          on ga.end_date = dc."date"
+        left join (select
+                  cast(order_date as date) as order_date,
+                  count(distinct order_id) as count_orders,
+                  sum(pro_quantity_ordered) as total_pro_ordered,
+                  sum(og_quantity_ordered) as total_og_ordered,
+                  sum(hq_quantity_ordered) as total_hq_ordered,
+                  sum(wbo_quantity_ordered) as total_wbo_ordered,
+                  sum(pro_quantity_ordered) + sum(og_quantity_ordered) as total_owls_ordered,
+                  sum(pro_quantity_ordered) + sum(og_quantity_ordered) + sum(hq_quantity_ordered) + sum(wbo_quantity_ordered) as total_hardware_ordered
+                  from shopify_orders_view sov
+                  where distribution_channel <> 'Channel'
+                  and (pro_quantity_ordered + og_quantity_ordered + hq_quantity_ordered + wbo_quantity_ordered) > 0 /*at least one of these devices ordered that day*/
+                  --and (pro_quantity_ordered > 0 or og_quantity_ordered > 0 or hq_quantity_ordered > 0 or wbo_quantity_ordered > 0)
+                  group by cast(order_date as date) ) a
+          on a.order_date  = dc."date"
+          where dc."date" >= '2016-04-01'
+      ;;
+  }
+# affiliates_sessions + direct_sessions + display_sessions + email_sessions + native_sessions + notset_sessions + organicsearch_sessions + other_sessions + paidemail_sessions + paidsearch_sessions + paidsocial_sessions + referral_sessions + social_sessions + sponsorship_sessions + video_sessions as total_sessions
+
+## DIMENSIONS
+
+  dimension: id {
+    primary_key: yes
+    hidden: yes
+    type: number
+    sql: ${TABLE}.id ;;
+  }
+
+  dimension_group: date {
+    hidden: yes
+    label: "Calendar"
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}.date ;;
+  }
+
+  # dimension: ga_session_start_date {
+  #   hidden: yes
+  #   type: date
+  #   sql: ${TABLE}.ga_session_start_date ;;
+  # }
+
+  # dimension: ga_session_end_date {
+  #   hidden: yes
+  #   type: date
+  #   sql: ${TABLE}.ga_session_end_date ;;
+  # }
+
+  dimension: num_affiliates_sessions {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.num_affiliates_sessions ;;
+  }
+
+  dimension: num_direct_sessions {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.num_direct_sessions ;;
+  }
+
+  dimension: num_display_sessions {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.num_display_sessions ;;
+  }
+
+  dimension: num_email_sessions {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.num_email_sessions ;;
+  }
+
+  dimension: num_native_sessions {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.num_native_sessions ;;
+  }
+
+  dimension: num_notset_sessions {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.num_notset_sessions ;;
+  }
+
+  dimension: num_organicsearch_sessions {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.num_organicsearch_sessions ;;
+  }
+
+  dimension: num_other_sessions {
+    hidden: yes
+    type: number
+    sql: ${TABLE}. ;;
+  }
+
+  dimension: num_paidemail_sessions {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.num_paidemail_sessions ;;
+  }
+
+  dimension: num_paidsearch_sessions {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.num_paidsearch_sessions ;;
+  }
+
+  dimension: num_paidsocial_sessions {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.num_paidsocial_sessions ;;
+  }
+
+  dimension: num_referral_sessions {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.num_referral_sessions ;;
+  }
+
+  dimension: num_social_sessions {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.num_social_sessions ;;
+  }
+
+  dimension: num_sponsorship_sessions {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.num_sponsorship_sessions ;;
+  }
+
+  dimension: num_video_sessions {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.num_video_sessions ;;
+  }
+
+  # dimension: order_date {
+  #   type: date
+  #   sql: ${TABLE}.order_date ;;
+  # }
+
+  dimension: count_orders {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.count_orders ;;
+  }
+
+  dimension: total_pro_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.total_pro_ordered ;;
+  }
+
+  dimension: total_og_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.total_og_ordered ;;
+  }
+
+  dimension: total_hq_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.total_hq_ordered ;;
+  }
+
+  dimension: total_wbo_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.total_wbo_ordered ;;
+  }
+
+  dimension: total_owls_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.total_owls_ordered ;;
+  }
+
+  dimension: total_hardware_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.total_hardware_ordered ;;
+  }
+
+  # dimension: all_sessions {
+  #   hidden: yes
+  #   type: number
+  #   sql: ${num_affiliates_sessions} + ${num_direct_sessions} + ${num_display_sessions} + ${num_email_sessions} + ${num_native_sessions} + ${num_notset_sessions} + ${num_organicsearch_sessions} + ${num_other_sessions} + ${num_paidemail_sessions} + ${num_paidsearch_sessions} + ${num_paidsocial_sessions} + ${num_referral_sessions} + ${num_social_sessions} + ${num_sponsorship_sessions} + ${num_video_sessions} ;;
+  # }
+
+  dimension: all_sessions {
+    type: number
+    sql: ${TABLE}.all_sessions ;;
+  }
+
+## MEASURES
+  measure: sum_all_sessions {
+    type: sum
+    sql: ${all_sessions} ;;
+  }
+
+  measure: sum_count_orders {
+    type: sum
+    sql: ${count_orders} ;;
+  }
+
+  measure: conversion_rate {
+    type: number
+    value_format: "0.00%"
+    sql: sum(${count_orders}) / sum(${all_sessions}) ;;
+  }
+
+}

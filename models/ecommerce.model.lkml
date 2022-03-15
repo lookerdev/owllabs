@@ -13,8 +13,9 @@ include: "/views/shopify_orders_line_items_view.view.lkml"
 include: "/views/shopify_fulfillments_line_items_view.view.lkml"
 include: "/views/all_orders.view.lkml"
 include: "/views/all_fulfillments.view.lkml"
-include: "/views/shopify_direct_hardware_orders_count.view.lkml"
-include: "/views/google_analytics_traffic_sessions_by_day.view.lkml"
+# include: "/views/shopify_direct_hardware_orders_count.view.lkml"
+# include: "/views/google_analytics_traffic_sessions_by_day.view.lkml"
+include: "/views/google_analytics_traffic_conversion.view.lkml"
 # include: "/**/*.view.lkml"                 # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
@@ -59,20 +60,27 @@ explore: shopify_orders_fulfillments {
   }
 }
 
-# explore: traffic_conversion {
-#   # label: "Traffic Conversion"
-#   view_name: dim_calendar
-#   join: shopify_direct_hardware_orders_count {
-#     type: left_outer
-#     relationship: one_to_one
-#     sql_on: ${dim_calendar.date_date} = ${shopify_direct_hardware_orders_count.order_date} ;;
-#   }
-#   join: google_analytics_traffic_sessions_by_day {
-#     type: left_outer
-#     relationship: one_to_one
-#     sql_on: ${dim_calendar.date_date} = ${google_analytics_traffic_sessions_by_day.end_date} ;;
-#   }
-# }
+explore: traffic_conversion {
+  # label: "Traffic Conversion"
+  view_name: dim_calendar
+  sql_always_where: ${year} >= 2016 and ${date_date} <= trunc(sysdate)
+  ;;
+  join: google_analytics_traffic_conversion {
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${dim_calendar.id} = ${google_analytics_traffic_conversion.id} ;;
+  }
+  # join: shopify_direct_hardware_orders_count {
+  #   type: left_outer
+  #   relationship: one_to_one
+  #   sql_on: ${dim_calendar.date_date} = ${shopify_direct_hardware_orders_count.order_date} ;;
+  # }
+  # join: google_analytics_traffic_sessions_by_day {
+  #   type: left_outer
+  #   relationship: one_to_one
+  #   sql_on: ${dim_calendar.date_date} = ${google_analytics_traffic_sessions_by_day.end_date} ;;
+  # }
+}
 
 
 
