@@ -86,28 +86,28 @@ view: shopify_orders_line_items_view {
     sql: ${TABLE}.line_item_id ;;
   }
 
-  dimension: netsuite_customer_internalid {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.netsuite_customer_internalid ;;
-  }
+  # dimension: netsuite_customer_internalid {
+  #   hidden: yes
+  #   type: string
+  #   sql: ${TABLE}.netsuite_customer_internalid ;;
+  # }
 
-  dimension: netsuite_customer_name {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.netsuite_customer_name ;;
-  }
+  # dimension: netsuite_customer_name {
+  #   hidden: yes
+  #   type: string
+  #   sql: ${TABLE}.netsuite_customer_name ;;
+  # }
 
-  dimension: netsuite_sales_order_number {
-    type: string
-    sql: ${TABLE}.netsuite_sales_order_number ;;
-  }
+  # dimension: netsuite_sales_order_number {
+  #   type: string
+  #   sql: ${TABLE}.netsuite_sales_order_number ;;
+  # }
 
-  dimension: netsuite_sales_rep {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.netsuite_sales_rep ;;
-  }
+  # dimension: netsuite_sales_rep {
+  #   hidden: yes
+  #   type: string
+  #   sql: ${TABLE}.netsuite_sales_rep ;;
+  # }
 
   dimension_group: order {
     type: time
@@ -329,7 +329,7 @@ view: shopify_orders_line_items_view {
   measure: count {
     hidden: yes
     type: count
-    drill_fields: [country_name, netsuite_customer_name, order_name]
+    drill_fields: [country_name, billing_address_company, order_name]
   }
 
   measure: count_orders {

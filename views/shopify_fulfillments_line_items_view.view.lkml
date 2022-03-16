@@ -67,11 +67,11 @@ view: shopify_fulfillments_line_items_view {
     sql: ${TABLE}.line_item_id ;;
   }
 
-  dimension: netsuite_sales_rep {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.netsuite_sales_rep ;;
-  }
+  # dimension: netsuite_sales_rep {
+  #   hidden: yes
+  #   type: string
+  #   sql: ${TABLE}.netsuite_sales_rep ;;
+  # }
 
   # dimension: pre_tax_price {
   #   hidden: yes
