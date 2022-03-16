@@ -24,7 +24,7 @@ include: "/views/google_analytics_traffic_conversion.view.lkml"
 
 
 explore: all_orders_fulfillments {
-  label: "UAT - All Orders & Fulfillments"
+  label: "All Orders & Fulfillments"
   view_name: dim_calendar
   sql_always_where: ${year} >= 2015
                     and ${date_date} <= trunc(sysdate)
@@ -42,7 +42,7 @@ explore: all_orders_fulfillments {
 }
 
 explore: shopify_orders_fulfillments {
-  label: "UAT - Shopify Orders & Fulfillments"
+  label: "Shopify Orders & Fulfillments"
   view_name: dim_calendar
   sql_always_where: ${year} >= 2015
                     and ${date_date} <= trunc(sysdate)
