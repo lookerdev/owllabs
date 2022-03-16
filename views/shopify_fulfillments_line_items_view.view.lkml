@@ -298,16 +298,16 @@ view: shopify_fulfillments_line_items_view {
     sql: ${og_quantity_shipped} + ${pro_quantity_shipped} + ${wbo_quantity_shipped} + ${hq_quantity_shipped} ;;
   }
 
-  dimension: revenue_usd_test {
-    hidden: yes
-    type: number
-    sql: ${TABLE}.revenue_usd_compare ;;
-  }
+  # dimension: revenue_usd_test {
+  #   hidden: yes
+  #   type: number
+  #   sql: ${TABLE}.revenue_usd_compare ;;
+  # }
 
-  measure: sum_revenue_usd_test {
-    type:  sum
-    sql: ${revenue_usd_test} ;;
-  }
+  # measure: sum_revenue_usd_test {
+  #   type:  sum
+  #   sql: ${revenue_usd_test} ;;
+  # }
 
 
 
