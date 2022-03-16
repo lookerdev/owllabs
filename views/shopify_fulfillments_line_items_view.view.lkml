@@ -129,7 +129,7 @@ view: shopify_fulfillments_line_items_view {
   }
 
   dimension: shipping_address_company {
-    label: "Shipping Company"
+    label: "Customer"
     type: string
     sql: ${TABLE}.shipping_address_company ;;
   }
