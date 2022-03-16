@@ -10,7 +10,7 @@ view: all_orders {
   }
 
   dimension: billing_address_company {
-    label: "Billing Company Name"
+    label: "Customer"
     type: string
     sql: ${TABLE}.billing_address_company ;;
   }
