@@ -47,7 +47,7 @@ view: revenue_by_item_looker {
   dimension: channel {
     type: string
     sql: ${TABLE}.channel ;;
-    drill_fields: [account_line_name, customer_name, marketplace_segment, product_category]
+    drill_fields: [account_line_name, customer_name, marketplace_segment, product_category, transaction_number]
   }
 
   dimension_group: date {
@@ -104,13 +104,13 @@ view: revenue_by_item_looker {
   dimension: product_category {
     type: string
     sql: ${TABLE}.product_category ;;
-    drill_fields: [account_line_name, channel, customer_name, marketplace_segment, item, product_line]
+    drill_fields: [account_line_name, channel, customer_name, marketplace_segment, item, product_line, transaction_number]
   }
 
   dimension: product_line {
     type: string
     sql: ${TABLE}.product_line ;;
-    drill_fields: [account_line_name, channel, customer_name, marketplace_segment, item]
+    drill_fields: [account_line_name, channel, customer_name, marketplace_segment, item, transaction_number]
   }
 
   dimension: row_number {
