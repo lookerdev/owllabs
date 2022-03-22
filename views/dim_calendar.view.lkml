@@ -24,7 +24,7 @@ view: dim_calendar {
     ]
     convert_tz: no
     datatype: date
-    sql: ${TABLE}.date ;;
+    sql: ${TABLE}.date::timestamp ;;
   }
 
   dimension: day {

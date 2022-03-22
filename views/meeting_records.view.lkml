@@ -40,7 +40,7 @@ view: meeting_records {
       quarter,
       year
     ]
-    sql: ${TABLE}.createdat ;;
+    sql: ${TABLE}.createdat::timestamp ;;
   }
 
   dimension: deviceuuid {
@@ -83,7 +83,7 @@ view: meeting_records {
       quarter,
       year
     ]
-    sql: ${TABLE}.originalstartdate ;;
+    sql: ${TABLE}.originalstartdate::timestamp ;;
   }
 
   dimension: presenteradmin {
@@ -123,7 +123,7 @@ view: meeting_records {
       quarter,
       year
     ]
-    sql: ${TABLE}.updatedat ;;
+    sql: ${TABLE}.updatedat::timestamp ;;
   }
 
   dimension: waspaired {

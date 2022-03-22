@@ -30,7 +30,7 @@ view: device_checkins {
       quarter,
       year
     ]
-    sql: ${TABLE}.createdat ;;
+    sql: ${TABLE}.createdat::timestamp ;;
   }
 
   dimension: deviceuuid {
@@ -67,7 +67,7 @@ view: device_checkins {
       quarter,
       year
     ]
-    sql: ${TABLE}.updatedat ;;
+    sql: ${TABLE}.updatedat::timestamp ;;
   }
 
 # Measures

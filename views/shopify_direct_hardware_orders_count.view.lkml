@@ -31,7 +31,7 @@ view: shopify_direct_hardware_orders_count {
   dimension_group: order {
     type: time
     timeframes: [date, week, month, quarter, year]
-    sql: ${TABLE}.order_date ;;
+    sql: ${TABLE}.order_date::timestamp ;;
   }
 
   dimension: count_orders {

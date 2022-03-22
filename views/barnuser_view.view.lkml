@@ -41,7 +41,7 @@ sql_table_name: public.barnuser_view ;;
       quarter,
       year
     ]
-    sql: ${TABLE}.createdate ;;
+    sql: ${TABLE}.createdate::timestamp ;;
   }
 
   dimension: domains {

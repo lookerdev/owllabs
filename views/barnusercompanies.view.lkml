@@ -51,7 +51,7 @@ view: barnusercompanies {
       quarter,
       year
     ]
-    sql: ${TABLE}.updatedat ;;
+    sql: ${TABLE}.updatedat::timestamp ;;
   }
 
 # Measures

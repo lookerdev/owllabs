@@ -75,7 +75,7 @@ view: google_analytics_traffic_conversion {
     ]
     convert_tz: no
     datatype: date
-    sql: ${TABLE}.date ;;
+    sql: ${TABLE}.date::timestamp ;;
   }
 
   # dimension: ga_session_start_date {

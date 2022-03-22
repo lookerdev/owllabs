@@ -16,7 +16,7 @@ view: item_fulfillments_looker{
     ]
     convert_tz: no
     datatype: date
-    sql: ${TABLE}.actual_ship_date ;;
+    sql: ${TABLE}.actual_ship_date::timestamp ;;
   }
 
   dimension: channel {
@@ -60,7 +60,7 @@ view: item_fulfillments_looker{
     ]
     convert_tz: no
     datatype: date
-    sql: ${TABLE}.date ;;
+    sql: ${TABLE}.date::timestamp ;;
   }
 
   dimension_group: date_created {
@@ -74,7 +74,7 @@ view: item_fulfillments_looker{
       quarter,
       year
     ]
-    sql: ${TABLE}.date_created ;;
+    sql: ${TABLE}.date_created::timestamp ;;
   }
 
   dimension: document_number {
@@ -151,7 +151,7 @@ view: item_fulfillments_looker{
     ]
     convert_tz: no
     datatype: date
-    sql: ${TABLE}.sales_effective_date ;;
+    sql: ${TABLE}.sales_effective_date::timestamp ;;
   }
 
   dimension: sales_order {
