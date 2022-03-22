@@ -30,7 +30,7 @@ view: shopify_orders_line_items_view {
       quarter,
       year
     ]
-    sql: ${TABLE}.closed_at ;;
+    sql: ${TABLE}.closed_at::timestamp ;;
   }
 
   dimension: contact_email {
@@ -120,7 +120,7 @@ view: shopify_orders_line_items_view {
       quarter,
       year
     ]
-    sql: ${TABLE}.order_date ;;
+    sql: ${TABLE}.order_date::timestamp ;;
   }
 
   dimension: order_id {

@@ -47,7 +47,7 @@ view: shopify_fulfillments_line_items_view {
       quarter,
       year
     ]
-    sql: ${TABLE}.fulfillment_date ;;
+    sql: ${TABLE}.fulfillment_date::timestamp ;;
   }
 
   dimension: fulfillment_id {

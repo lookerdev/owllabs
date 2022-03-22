@@ -20,6 +20,7 @@ view: all_fulfillments {
   dimension_group: fulfillment {
     label: "Ship"
     type: time
+    # convert_tz: no
     timeframes: [
       raw,
       time,
@@ -29,7 +30,7 @@ view: all_fulfillments {
       quarter,
       year
     ]
-    sql: ${TABLE}.fulfillment_date ;;
+    sql: ${TABLE}.fulfillment_date::timestamp ;;
   }
 
   dimension: fulfillment_number {
@@ -332,6 +333,8 @@ view: all_fulfillments {
     sql: ${hardware_quantity_shipped} ;;
     drill_fields: [shipping_address_company, sales_channel, world_region, fulfillment_number]
   }
+
+  # measure: most_recent_amazon_date {}
 
 
 }

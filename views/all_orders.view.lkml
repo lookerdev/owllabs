@@ -76,7 +76,7 @@ view: all_orders {
       quarter,
       year
     ]
-    sql: ${TABLE}.order_date ;;
+    sql: ${TABLE}.order_date::timestamp ;;
   }
 
   dimension: order_number {
