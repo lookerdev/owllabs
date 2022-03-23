@@ -14,7 +14,6 @@ include: "/views/shopify_fulfillments_line_items_view.view.lkml"
 include: "/views/all_orders.view.lkml"
 include: "/views/all_fulfillments.view.lkml"
 # include: "/views/shopify_direct_hardware_orders_count.view.lkml"
-# include: "/views/google_analytics_traffic_sessions_by_day.view.lkml"
 include: "/views/google_analytics_traffic_conversion.view.lkml"
 # include: "/**/*.view.lkml"                 # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
