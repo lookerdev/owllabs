@@ -59,9 +59,16 @@ view: software_version_breakdown {
 
   dimension: name {
     label: "release name"
-    type: number
+    type: string
     sql: ${TABLE}.name ;;
   }
+
+  dimension: device_count {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.device_count ;;
+  }
+
 
   dimension_group: createdat {
     label: "Release"
@@ -71,10 +78,10 @@ view: software_version_breakdown {
     sql: ${TABLE}.createdat ;;
   }
 
-  measure: device_count {
+  measure: sum_device_count {
     label: "Number of Registered Devices"
     # description: "Use this for counting lifetime orders across many users"
-    type: number
-    sql: ${TABLE}.device_count ;;
+    type: sum
+    sql: ${device_count} ;;
   }
 }
