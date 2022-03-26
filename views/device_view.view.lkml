@@ -13,7 +13,7 @@ view: device_view {
   }
 
   dimension: channel_id {
-    hidden: yes
+    # hidden: yes
     type: number
     sql: ${TABLE}.channel_id ;;
   }
@@ -177,15 +177,16 @@ view: device_view {
   }
 
   dimension: software_version {
-    label: "Device Current Software Version"
-    description: "Device's most recent software version, captured during most recent check-in"
+    label: "Device Current Software Version (decimal expansion)"
+    description: "Device's most recent software version (decimal expansion format), captured during most recent check-in"
     type: string
     sql: ${TABLE}.device_software_version ;;
   }
 
   dimension: software_version_number{
-    hidden: yes
-    type: string
+    label: "Device Current Software Version (integer)"
+    description: "Device's most recent software version (integer format), captured during most recent check-in"
+    type: number
     sql: ${TABLE}.device_software_version_number ;;
   }
 

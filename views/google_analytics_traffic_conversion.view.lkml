@@ -135,7 +135,7 @@ view: google_analytics_traffic_conversion {
   dimension: num_other_sessions {
     hidden: yes
     type: number
-    sql: ${TABLE}. ;;
+    sql: ${TABLE}.num_other_sessions ;;
   }
 
   dimension: num_paidemail_sessions {
@@ -242,6 +242,51 @@ view: google_analytics_traffic_conversion {
   measure: sum_all_sessions {
     type: sum
     sql: ${all_sessions} ;;
+  }
+
+  measure: sum_num_affiliates_sessions {
+    type: sum
+    sql: ${num_affiliates_sessions} ;;
+  }
+
+  measure: sum_num_direct_sessions {
+    type: sum
+    sql: ${num_direct_sessions} ;;
+  }
+
+  measure: sum_num_display_sessions {
+    type: sum
+    sql: ${num_display_sessions} ;;
+  }
+
+  measure: sum_num_email_sessions {
+    type: sum
+    sql: ${num_email_sessions} ;;
+  }
+
+  measure: sum_num_native_sessions {
+    type: sum
+    sql: ${num_native_sessions} ;;
+  }
+
+  measure: sum_num_notset_sessions {
+    type: sum
+    sql: ${num_notset_sessions} ;;
+  }
+
+  measure: sum_num_organicsearch_sessions {
+    type: sum
+    sql: ${num_organicsearch_sessions} ;;
+  }
+
+  measure: sum_num_other_sessions {
+    type: sum
+    sql: ${TABLE}.num_other_sessions ;;
+  }
+
+  measure: sum_num_paidemail_sessions {
+    type: sum
+    sql: ${num_other_sessions} ;;
   }
 
   measure: sum_count_orders {

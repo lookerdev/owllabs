@@ -7,7 +7,7 @@ include: "/views/device_registrations.view.lkml"
 include: "/views/salesforce_accounts.view.lkml"
 include: "/views/device_checkins.view.lkml"
 include: "/views/shopify_orders_serial_numbers.view.lkml"
-include: "/*.explore.lkml"
+# include: "/*.explore.lkml"
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
 

@@ -212,6 +212,19 @@ view: all_fulfillments {
     sql: ${og_quantity_shipped} + ${pro_quantity_shipped} + ${wbo_quantity_shipped} + ${hq_quantity_shipped} ;;
   }
 
+  # dimension: start_of_month {
+  #   type: date
+  #   # sql: ${TABLE}.first_of_month ;;
+  #   sql: cast(date_trunc('month', ${TABLE}.fulfillment_date) as date) ;;
+  # }
+
+  # dimension: end_of_month{
+  #   type: date
+  #   sql: last_day(cast(${TABLE}.fulfillment_date as date)) ;;
+  # }
+
+
+
 
 
 # # MEASURES
@@ -225,28 +238,28 @@ view: all_fulfillments {
     label: "All Items Quantity Shipped"
     type: sum
     sql: ${allitems_quantity_shipped} ;;
-    drill_fields: [shipping_address_company, sales_channel, world_region, fulfillment_number]
+    drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, allitems_quantity_shipped]
   }
 
   measure: sum_bundle_quantity_shipped {
     label: "Bundle Quantity Shipped"
     type: sum
     sql: ${bundle_quantity_shipped} ;;
-    drill_fields: [shipping_address_company, sales_channel, world_region, fulfillment_number]
+    drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, bundle_quantity_shipped]
   }
 
   measure: sum_hq_quantity_shipped {
     label: "Meeting HQ Quantity Shipped"
     type: sum
     sql: ${hq_quantity_shipped} ;;
-    drill_fields: [shipping_address_company, sales_channel, world_region, fulfillment_number]
+    drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, hq_quantity_shipped]
   }
 
   measure: sum_linecord_quantity_shipped {
     label: "Line Cord Quantity Shipped"
     type: sum
     sql: ${linecord_quantity_shipped} ;;
-    drill_fields: [shipping_address_company, sales_channel, world_region, fulfillment_number]
+    drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, linecord_quantity_shipped]
   }
 
   measure: sum_lockadapter_quantity_shipped {
@@ -254,7 +267,7 @@ view: all_fulfillments {
     type: sum
     # sql: ${TABLE}.lockadapter_quantity_shipped ;;
     sql: ${lockadapter_quantity_shipped} ;;
-    drill_fields: [shipping_address_company, sales_channel, world_region, fulfillment_number]
+    drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, lockadapter_quantity_shipped]
   }
 
   measure: sum_og_quantity_shipped {
@@ -262,7 +275,7 @@ view: all_fulfillments {
     type: sum
     # sql: ${TABLE}.og_quantity_shipped ;;
     sql: ${og_quantity_shipped} ;;
-    drill_fields: [shipping_address_company, sales_channel, world_region, fulfillment_number]
+    drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, og_quantity_shipped]
   }
 
   measure: sum_other_quantity_shipped {
@@ -270,7 +283,7 @@ view: all_fulfillments {
     type: sum
     # sql: ${TABLE}.other_quantity_shipped ;;
     sql: ${other_quantity_shipped} ;;
-    drill_fields: [shipping_address_company, sales_channel, world_region, fulfillment_number]
+    drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, other_quantity_shipped]
   }
 
   measure: sum_owlcare_quantity_shipped {
@@ -278,7 +291,7 @@ view: all_fulfillments {
     type: sum
     # sql: ${TABLE}.owlcare_quantity_shipped ;;
     sql: ${owlcare_quantity_shipped} ;;
-    drill_fields: [shipping_address_company, sales_channel, world_region, fulfillment_number]
+    drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, owlcare_quantity_shipped]
   }
 
   measure: sum_powersupply_quantity_shipped {
@@ -286,14 +299,14 @@ view: all_fulfillments {
     type: sum
     # sql: ${TABLE}.powersupply_quantity_shipped ;;
     sql: ${powersupply_quantity_shipped} ;;
-    drill_fields: [shipping_address_company, sales_channel, world_region, fulfillment_number]
+    drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, powersupply_quantity_shipped]
   }
 
   measure: sum_pro_quantity_shipped {
     label: "Meeting Owl Pro Quantity Shipped"
     type: sum
     sql: ${pro_quantity_shipped} ;;
-    drill_fields: [shipping_address_company, sales_channel, world_region, fulfillment_number]
+    drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, pro_quantity_shipped]
   }
 
   measure: sum_subscription_quantity_shipped {
@@ -301,21 +314,21 @@ view: all_fulfillments {
     hidden: yes
     type: sum
     sql: ${subscription_quantity_shipped} ;;
-    drill_fields: [shipping_address_company, sales_channel, world_region, fulfillment_number]
+    drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, subscription_quantity_shipped]
   }
 
   measure: sum_usbextension_quantity_shipped {
     label: "USB Extension Quantity Shipped"
     type: sum
     sql: ${usbextension_quantity_shipped} ;;
-    drill_fields: [shipping_address_company, sales_channel, world_region, fulfillment_number]
+    drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, usbextension_quantity_shipped]
   }
 
   measure: sum_wbo_quantity_shipped {
     label: "Whiteboard Owl Quantity Shipped"
     type: sum
     sql: ${wbo_quantity_shipped} ;;
-    drill_fields: [shipping_address_company, sales_channel, world_region, fulfillment_number]
+    drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, wbo_quantity_shipped]
   }
 
   measure: sum_owls_quantity_shipped {
@@ -323,7 +336,7 @@ view: all_fulfillments {
     description: "Combination of OG and MOP units"
     type: sum
     sql: ${owls_quantity_shipped} ;;
-    drill_fields: [shipping_address_company, sales_channel, world_region, fulfillment_number]
+    drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, owls_quantity_shipped]
   }
 
   measure: sum_hardware_quantity_shipped {
@@ -331,7 +344,7 @@ view: all_fulfillments {
     description: "Combination of OG, MOP, WBO, and HQ units"
     type: sum
     sql: ${hardware_quantity_shipped} ;;
-    drill_fields: [shipping_address_company, sales_channel, world_region, fulfillment_number]
+    drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, hardware_quantity_shipped]
   }
 
   # measure: most_recent_amazon_date {}

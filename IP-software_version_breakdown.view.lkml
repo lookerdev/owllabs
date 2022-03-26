@@ -1,13 +1,12 @@
 view: software_version_breakdown {
-  # Or, you could make this view a derived table, like this:
   derived_table: {
     sql: select
         version_table.channelid,
         version_table.version,
         cast(version_table.device_count as integer) as device_count,
-        release_table.id as "Release ID",
-        release_table.name as "Release Name",
-        cast(release_table.createdat as timestamp) as "Release Date"
+        release_table.id,
+        release_table.name,
+        cast(release_table.createdat as timestamp) as createdat
         -- release_table.description as "Release Description"
         from (
          select
@@ -30,7 +29,7 @@ view: software_version_breakdown {
          releases.id,
          releases.version,
          channel_releases.createdat
-         from channel_releases --I added
+         from channel_releases
          inner join releases on releases.id = channel_releases.releaseid
          where channel_releases.channelid = 106
         ) release_table
@@ -38,9 +37,7 @@ view: software_version_breakdown {
         ;;
   }
 
-  # Define your dimensions and measures here, like this:
   dimension: channelid {
-    # description: "Unique ID for each user that has ordered"
     type: number
     sql: ${TABLE}.channelid ;;
   }
@@ -52,13 +49,13 @@ view: software_version_breakdown {
   }
 
   dimension: id {
-    label: "release id"
+    label: "Release id"
     type: number
     sql: ${TABLE}.id ;;
   }
 
   dimension: name {
-    label: "release name"
+    label: "Release name"
     type: string
     sql: ${TABLE}.name ;;
   }
@@ -69,18 +66,15 @@ view: software_version_breakdown {
     sql: ${TABLE}.device_count ;;
   }
 
-
   dimension_group: createdat {
     label: "Release"
-    # description: "The date when each user last ordered"
     type: time
     timeframes: [date, week, month, year]
-    sql: ${TABLE}.createdat ;;
+    sql: ${TABLE}.createdat::timestamp ;;
   }
 
   measure: sum_device_count {
     label: "Number of Registered Devices"
-    # description: "Use this for counting lifetime orders across many users"
     type: sum
     sql: ${device_count} ;;
   }

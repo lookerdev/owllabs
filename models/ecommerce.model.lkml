@@ -15,6 +15,8 @@ include: "/views/all_orders.view.lkml"
 include: "/views/all_fulfillments.view.lkml"
 # include: "/views/shopify_direct_hardware_orders_count.view.lkml"
 include: "/views/google_analytics_traffic_conversion.view.lkml"
+include: "/views/monthly_hardware_goals.view.lkml"
+include: "/views/dim_calendar_distinct.view.lkml"
 # include: "/**/*.view.lkml"                 # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
@@ -22,23 +24,36 @@ include: "/views/google_analytics_traffic_conversion.view.lkml"
 # # and define the joins that connect them together.
 
 
+# explore: monthly_hardware_goals {
+#   view_name: dim_calendar_distinct
+#   join: monthly_hardware_goals {
+#     type: inner
+#     relationship: one_to_one
+#     sql_on: ${dim_calendar_distinct.month} = ${monthly_hardware_goals.month_number}
+#     and ${dim_calendar_distinct.year} = ${monthly_hardware_goals.year};;
+#   }
+# }
+
+
 explore: all_orders_fulfillments {
   label: "All Orders & Fulfillments"
   view_name: dim_calendar
-  sql_always_where: ${year} >= 2015
-                    and ${date_date} <= trunc(sysdate)
-                    and ${all_fulfillments.sku} not in ('MTW100-1000-RPL','MTW100-2000 - Replacement','MTW100-2000-RPL','MTW200-1000-RPL','MTW200-1000-RPL-CA','MTW200-2000 - Replacement','MTW200-2000-RPL','PTW100-1000-RPL','REPLC - NA','REPLC - UK','REPLC - US/CA','REPLC100-1000','REPLC100-1000-NA','REPLC100-2000','REPLC100-2001','REPPS','REPPS - Universal','REPUSB','REPUSB - Universal','Replacement AC Line Cord','Replacement Power Supply','Replacement USB Cable (6.5-Foot)','WBC100-1000-RPL','TEST2','TEST3');;
+  # sql_always_where: ${year} >= 2015
+  #                   and ${date_date} <= trunc(sysdate)
+  #                   and ${all_fulfillments.sku} not in ('MTW100-1000-RPL','MTW100-2000 - Replacement','MTW100-2000-RPL','MTW200-1000-RPL','MTW200-1000-RPL-CA','MTW200-2000 - Replacement','MTW200-2000-RPL','PTW100-1000-RPL','REPLC - NA','REPLC - UK','REPLC - US/CA','REPLC100-1000','REPLC100-1000-NA','REPLC100-2000','REPLC100-2001','REPPS','REPPS - Universal','REPUSB','REPUSB - Universal','Replacement AC Line Cord','Replacement Power Supply','Replacement USB Cable (6.5-Foot)','WBC100-1000-RPL','TEST2','TEST3');;
+  sql_always_where: ${all_fulfillments.sku} not in ('MTW100-1000-RPL','MTW100-2000 - Replacement','MTW100-2000-RPL','MTW200-1000-RPL','MTW200-1000-RPL-CA','MTW200-2000 - Replacement','MTW200-2000-RPL','PTW100-1000-RPL','REPLC - NA','REPLC - UK','REPLC - US/CA','REPLC100-1000','REPLC100-1000-NA','REPLC100-2000','REPLC100-2001','REPPS','REPPS - Universal','REPUSB','REPUSB - Universal','Replacement AC Line Cord','Replacement Power Supply','Replacement USB Cable (6.5-Foot)','WBC100-1000-RPL','TEST2','TEST3') ;;
   join: all_orders {
-    type: left_outer
+    type: inner
     relationship: one_to_many
     sql_on: ${dim_calendar.date_date} = ${all_orders.order_date};;
   }
   join: all_fulfillments {
-    type: left_outer
+    type: inner
     relationship: one_to_many
     sql_on: ${dim_calendar.date_date} = ${all_fulfillments.fulfillment_date};;
   }
 }
+
 
 explore: shopify_orders_fulfillments {
   label: "Shopify Orders & Fulfillments"

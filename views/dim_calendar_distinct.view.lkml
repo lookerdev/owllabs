@@ -24,13 +24,6 @@ view: dim_calendar_distinct {
     sql: ${TABLE}.month_name ;;
   }
 
-  # dimension: month_name_date_convert {
-  #   # this doesn't work, turns the whole date into just a month so there is a repeated month for each year
-  #   label: "Month Name (date)"
-  #   sql: ${date_convert} ;;
-  #   html: {{ rendered_value | date: "%B" }} ;;
-  # }
-
   dimension: month_year {
     # not a date, can't sort properly
     hidden: yes
@@ -43,6 +36,19 @@ view: dim_calendar_distinct {
     type: string
     sql: ${month} || ' ' || ${year} ;;
   }
+
+  dimension: date_convert {
+    hidden: yes
+    description: "Year-Month cast as date. Use this column to filter the dates from this table that are included. This column converts year-month to date."
+    sql: to_date(${TABLE}.year || '-' || ${TABLE}.month, 'YYYY-MM') ;;
+  }
+
+  # dimension: month_name_date_convert {
+  #   # this doesn't work, turns the whole date into just a month so there is a repeated month for each year
+  #   label: "Month Name (date)"
+  #   sql: ${date_convert} ;;
+  #   html: {{ rendered_value | date: "%B" }} ;;
+  # }
 
   dimension: month_year_date_convert {
     # this is a date so can sort
@@ -80,12 +86,6 @@ view: dim_calendar_distinct {
     type: number
     # type: date
     sql: ${TABLE}.year ;;
-  }
-
-  dimension: date_convert {
-    hidden: yes
-    description: "year-month cast as date. Use this column to filter the dates from this table that are included. This column converts year-month to date."
-    sql: to_date(year || '-' || month, 'YYYY-MM') ;;
   }
 
 
