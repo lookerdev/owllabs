@@ -30,7 +30,8 @@ view: all_fulfillments {
       quarter,
       year
     ]
-    sql: ${TABLE}.fulfillment_date::timestamp ;;
+    # sql: ${TABLE}.fulfillment_date::timestamp ;;
+    sql: case when ${TABLE}.source = 'Shopify' then ${TABLE}.fulfillment_date AT TIME ZONE 'EDT' else ${TABLE}.fulfillment_date end ;;
   }
 
   dimension: fulfillment_number {
@@ -212,16 +213,16 @@ view: all_fulfillments {
     sql: ${og_quantity_shipped} + ${pro_quantity_shipped} + ${wbo_quantity_shipped} + ${hq_quantity_shipped} ;;
   }
 
-  # dimension: start_of_month {
-  #   type: date
-  #   # sql: ${TABLE}.first_of_month ;;
-  #   sql: cast(date_trunc('month', ${TABLE}.fulfillment_date) as date) ;;
-  # }
+  dimension: start_of_month {
+    type: date
+    # sql: ${TABLE}.first_of_month ;;
+    sql: cast(date_trunc('month', ${TABLE}.fulfillment_date) as date) ;;
+  }
 
-  # dimension: end_of_month{
-  #   type: date
-  #   sql: last_day(cast(${TABLE}.fulfillment_date as date)) ;;
-  # }
+  dimension: end_of_month{
+    type: date
+    sql: last_day(cast(${TABLE}.fulfillment_date as date)) ;;
+  }
 
 
 

@@ -24,15 +24,15 @@ include: "/views/dim_calendar_distinct.view.lkml"
 # # and define the joins that connect them together.
 
 
-# explore: monthly_hardware_goals {
-#   view_name: dim_calendar_distinct
-#   join: monthly_hardware_goals {
-#     type: inner
-#     relationship: one_to_one
-#     sql_on: ${dim_calendar_distinct.month} = ${monthly_hardware_goals.month_number}
-#     and ${dim_calendar_distinct.year} = ${monthly_hardware_goals.year};;
-#   }
-# }
+explore: monthly_hardware_goals {
+  view_name: dim_calendar_distinct
+  join: monthly_hardware_goals {
+    type: inner
+    relationship: one_to_one
+    sql_on: ${dim_calendar_distinct.month} = ${monthly_hardware_goals.month_number}
+    and ${dim_calendar_distinct.year} = ${monthly_hardware_goals.year};;
+  }
+}
 
 
 explore: all_orders_fulfillments {

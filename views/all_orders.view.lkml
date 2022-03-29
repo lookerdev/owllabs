@@ -76,7 +76,9 @@ view: all_orders {
       quarter,
       year
     ]
-    sql: ${TABLE}.order_date::timestamp ;;
+    # sql: ${TABLE}.order_date::timestamp ;;
+    sql: case when ${TABLE}.source = 'Shopify' then ${TABLE}.order_date AT TIME ZONE 'EDT' else ${TABLE}.order_date end::date ;;
+
   }
 
   dimension: order_number {
