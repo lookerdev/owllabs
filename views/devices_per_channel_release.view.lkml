@@ -1,15 +1,59 @@
 view: devices_per_channel_release {
 #   # Or, you could make this view a derived table, like this:
   derived_table: {
-    sql: SELECT
-        user_id as user_id
-        , COUNT(*) as lifetime_orders
-        , MAX(orders.created_at) as most_recent_purchase_at
-      FROM orders
-      GROUP BY user_id
+    sql: select
+          a.channel_id, --filter: Channel ID
+          a.channel_name,
+          a.product_name,
+          a.version, --dimension
+          a.registered_device_count, /*as "Number of Registered Devices" --measure*/
+          b.id as release_id,
+          b.name as release_name,
+          date(b.createdat) as channel_release_date
+          from (
+             select
+             devices_view.channel_id ,
+             devices_view.channel_name ,
+             devices_view.product_name,
+             devices_view.device_software_version_number as version,
+             count(1) as registered_device_count
+          --   ,count(device_registrations_view.deviceuuid) as device_count
+             from public.devices_view
+             inner join public.device_registrations_view
+              on devices_view.deviceuuid  = device_registrations_view.deviceuuid
+             where 1=1
+              and devices_view.device_software_version_number  > 1000000 --filter: Minimum SW Version
+              and devices_view.device_software_version_number < 8000000 --filter: Maximum SW Version
+             group by devices_view.channel_id, devices_view.channel_name, devices_view.product_name, devices_view.device_software_version_number
+             order by devices_view.device_software_version_number desc
+          ) a
+          left join (
+             select
+             releases.name,
+             releases.id,
+             releases.version,
+             releases.releasedate ,
+             channel_releases.createdat,
+             channel_releases.channelid
+             from channel_releases
+             inner join releases
+              on releases.id = channel_releases.releaseid
+            ) b
+          on b.version = a.version
+          and b.channelid = a.channel_id
+          order by a.channel_id, a.version
       ;;
   }
-#
+
+  parameter: max_software_version {
+    description: ""
+    type: unquoted
+  }
+
+  parameter: min_software_version {
+
+  }
+
 #   # Define your dimensions and measures here, like this:
 #   dimension: user_id {
 #     description: "Unique ID for each user that has ordered"
