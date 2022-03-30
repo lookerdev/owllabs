@@ -25,6 +25,7 @@ include: "/views/dim_calendar_distinct.view.lkml"
 
 
 explore: monthly_hardware_goals {
+  hidden: yes
   view_name: dim_calendar_distinct
   join: monthly_hardware_goals {
     type: inner
