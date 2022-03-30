@@ -203,13 +203,6 @@ view: meeting_records {
     sql: sum(${TABLE}.durationseconds) / 60 ;;
   }
 
-  measure: avg_duration {
-    hidden: yes
-    label: "Avg. Minutes per Meeting"
-    type: average
-    sql: ${durationminutes_per_meeting} ;;
-  }
-
   measure: durationhours {
     label: "Total Meeting Hours"
     type: number
@@ -233,10 +226,10 @@ view: meeting_records {
   }
 
   measure: avg_meeting_length_minutes {
-    label: "Avg. Meeting Length - minutes"
+    label: "Avg. Minutes per Meeting"
     type: average
-    drill_fields: [id]
-    sql: ${durationminutes_per_meeting};; # durationminutes needs to be a dimension
+    value_format: "0"
+    sql: ${durationminutes_per_meeting};;
   }
 
   measure: bothtalktimeseconds {
