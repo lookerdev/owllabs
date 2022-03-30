@@ -158,7 +158,7 @@ view: device_view {
   }
 
   dimension: product_name {
-    label: "Product Type"
+    label: "Device Type"
     description: "Device product type"
     type: string
     sql: ${TABLE}.product_name;;
