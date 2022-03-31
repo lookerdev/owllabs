@@ -233,42 +233,42 @@ view: meeting_records {
   }
 
   measure: bothtalktimeseconds {
-    label: "Both Talk Time Seconds"
+    label: "Total Both Talk Time Seconds"
     description: "Total second at least one meeting attendee using the device and at least one meeting attendee not using the device spoke at the same time"
     type: sum
     sql: ${TABLE}.bothtalktimeseconds ;;
   }
 
   measure: localtalktimeseconds {
-    label: "Local Talk Time Seconds"
+    label: "Total Local Talk Time Seconds"
     description: "Total seconds meeting attendee(s) using the device spoke"
     type: sum
     sql: ${TABLE}.localtalktimeseconds ;;
   }
 
   measure: neithertalktimeseconds {
-    label: "Neither Talk Time Seconds"
+    label: "Total Neither Talk Time Seconds"
     description: "Total seconds no meeting attendees spoke"
     type: sum
     sql: ${TABLE}.neithertalktimeseconds ;;
   }
 
   measure: personcount {
-    label: "Person Count"
+    label: "Total Person Count"
     description: "Device's count of total people who spoke during the meeting"
     type: sum
     sql: ${TABLE}.personcount ;;
   }
 
   measure: presenterseconds {
-    label: "Presenter Mode Seconds"
+    label: "Total Presenter Mode Seconds"
     description: "Seconds of meeting with presenter mode enabled"
     type: sum
     sql: ${TABLE}.presenterseconds ;;
   }
 
   measure: remotetalktimeseconds {
-    label: "Remote Talk Time Seconds"
+    label: "Total Remote Talk Time Seconds"
     description: "Total seconds that meeting attendee(s) not using the device spoke"
     type: sum
     sql: ${TABLE}.remotetalktimeseconds ;;
@@ -287,6 +287,7 @@ view: meeting_records {
   }
 
   measure: max_startdate {
+    hidden: yes
     label: "Most Recent Meeting Date"
     sql: max(${originalstartdate_date})::timestamp ;;
   }
