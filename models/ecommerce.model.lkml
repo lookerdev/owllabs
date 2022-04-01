@@ -18,7 +18,6 @@ include: "/views/monthly_hardware_goals.view.lkml"
 include: "/views/dim_calendar_distinct.view.lkml"
 # include: "/**/*.view.lkml"                 # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
-include: "/views/google_analytics_traffic_conversion.view.lkml"
 
 # # Select the views that should be a part of this model,
 # # and define the joins that connect them together.
@@ -74,19 +73,6 @@ explore: shopify_orders_fulfillments {
     sql_on: ${shopify_fulfillments_line_items_view.fulfillment_date} = ${dim_calendar.date_date} ;;
   }
 }
-
-explore: traffic_conversion {
-  # label: "Traffic Conversion"
-  view_name: dim_calendar
-  sql_always_where: ${year} >= 2016 and ${date_date} <= trunc(sysdate)
-  ;;
-  join: google_analytics_traffic_conversion {
-    type: left_outer
-    relationship: one_to_one
-    sql_on: ${dim_calendar.id} = ${google_analytics_traffic_conversion.id} ;;
-  }
-}
-
 
 
 # this needs to be improved!!
