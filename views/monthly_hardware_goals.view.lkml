@@ -203,11 +203,13 @@ view: monthly_hardware_goals {
   }
 
   measure: hq_goal_remaining {
+    label: "HQ Goal Remaining"
     type: number
     sql: sum(${hq_goal}) - sum(${hq_shipped}) ;;
   }
 
   measure: wbo_goal_remaining {
+    label: "WBO Goal Remaining"
     type: number
     sql: sum(${wbo_goal}) - sum(${wbo_shipped}) ;;
   }

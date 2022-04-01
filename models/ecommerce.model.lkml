@@ -25,6 +25,7 @@ include: "/views/dim_calendar_distinct.view.lkml"
 
 explore: monthly_hardware_goals {
   view_name: dim_calendar_distinct
+  sql_always_where: ${dim_calendar_distinct.month_year_date_convert} >= '2021-01-01' and ${dim_calendar_distinct.month_year_date_convert} <= trunc(sysdate);;
   join: monthly_hardware_goals {
     type: inner
     relationship: one_to_one
