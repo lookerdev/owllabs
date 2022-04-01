@@ -1,6 +1,6 @@
 # This view includes distinct month/year combos, still from Jan 1900 to Dec 2049
 view: dim_calendar_distinct {
-  label: "Accounting Period"
+  label: "Calendar Dates"
   sql_table_name: public.dim_calendar_distinct ;;
 
 

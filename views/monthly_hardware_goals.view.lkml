@@ -1,35 +1,35 @@
 view: monthly_hardware_goals {
   # label: ""
-  sql_table_name: public.monthly_hardware_goals_fulfillments ;;
+  # sql_table_name: public.monthly_hardware_goals_fulfillments ;;
   # drill_fields: []
 
- # derived_table: {
-  #   sql: with a as (
-  #       select
-  #       extract(month from fulfillment_date) as fulfillment_month,
-  #       extract(year from fulfillment_date) as fulfillment_year,
-  #       sum(og_quantity_shipped) + sum(pro_quantity_shipped) as all_owls_shipped,
-  #       sum(hq_quantity_shipped) as all_hq_shipped,
-  #       sum(wbo_quantity_shipped) as all_wbo_shipped,
-  #       sum(og_quantity_shipped) + sum(pro_quantity_shipped) + sum(hq_quantity_shipped) + sum(wbo_quantity_shipped) as all_hardware_shipped
-  #       from all_fulfillments
-  #       where sku not in ('MTW100-1000-RPL','MTW100-2000 - Replacement','MTW100-2000-RPL','MTW200-1000-RPL','MTW200-1000-RPL-CA','MTW200-2000 - Replacement','MTW200-2000-RPL','PTW100-1000-RPL','REPLC - NA','REPLC - UK','REPLC - US/CA','REPLC100-1000','REPLC100-1000-NA','REPLC100-2000','REPLC100-2001','REPPS','REPPS - Universal','REPUSB','REPUSB - Universal','Replacement AC Line Cord','Replacement Power Supply','Replacement USB Cable (6.5-Foot)','WBC100-1000-RPL','TEST2','TEST3') /*exclude replacements skus*/
-  #       group by
-  #       extract(month from fulfillment_date),
-  #       extract(year from fulfillment_date)
-  #       ),
+  derived_table: {
+    sql: with a as (
+          select
+          extract(month from fulfillment_date) as fulfillment_month,
+          extract(year from fulfillment_date) as fulfillment_year,
+          sum(og_quantity_shipped) + sum(pro_quantity_shipped) as all_owls_shipped,
+          sum(hq_quantity_shipped) as all_hq_shipped,
+          sum(wbo_quantity_shipped) as all_wbo_shipped,
+          sum(og_quantity_shipped) + sum(pro_quantity_shipped) + sum(hq_quantity_shipped) + sum(wbo_quantity_shipped) as all_hardware_shipped
+          from all_fulfillments
+          where sku not in ('MTW100-1000-RPL','MTW100-2000 - Replacement','MTW100-2000-RPL','MTW200-1000-RPL','MTW200-1000-RPL-CA','MTW200-2000 - Replacement','MTW200-2000-RPL','PTW100-1000-RPL','REPLC - NA','REPLC - UK','REPLC - US/CA','REPLC100-1000','REPLC100-1000-NA','REPLC100-2000','REPLC100-2001','REPPS','REPPS - Universal','REPUSB','REPUSB - Universal','Replacement AC Line Cord','Replacement Power Supply','Replacement USB Cable (6.5-Foot)','WBC100-1000-RPL','TEST2','TEST3') /*exclude replacements skus*/
+          group by
+          extract(month from fulfillment_date),
+          extract(year from fulfillment_date)
+          ),
 
-  #       b as (
-  #       select * from public.monthly_hardware_goals
-  #       )
+          b as (
+          select * from public.monthly_hardware_goals
+          )
 
-  #       select month_name, month_number, year, all_owls_shipped, all_hq_shipped, all_wbo_shipped, all_hardware_shipped, owls_goal, hq_goal, wbo_goal, total_hardware_goal
-  #       from a
-  #       inner join b
-  #         on b.month_number = a.fulfillment_month
-  #         and b."year" = a.fulfillment_year
-  #     ;;
-  # }
+          select b.month_name, b.month_number, b.year, cast(b.month_start as date) as month_start, cast(b.month_end as date) as month_end, a.all_owls_shipped, a.all_hq_shipped, a.all_wbo_shipped, a.all_hardware_shipped, b.owls_goal, b.hq_goal, b.wbo_goal, b.total_hardware_goal
+          from a
+          inner join b
+              on b.month_number = a.fulfillment_month
+              and b."year" = a.fulfillment_year
+      ;;
+  }
 
 ## DIMENSIONS
   dimension: primary_key {
@@ -100,7 +100,7 @@ view: monthly_hardware_goals {
   }
 
   dimension: all_hardware_goal {
-    hidden: yes
+    # hidden: yes
     type: number
     sql: ${TABLE}.total_hardware_goal ;;
   }
@@ -136,6 +136,7 @@ view: monthly_hardware_goals {
     value_format_name: percent_0
     sql: ${all_hardware_shipped}/nullif(${all_hardware_goal},0) ;;
   }
+
 
 
 ## MEASURES
@@ -190,5 +191,27 @@ view: monthly_hardware_goals {
     type: sum
     sql: ${all_hardware_goal} ;;
   }
+
+  measure: all_hardware_goal_remaining {
+    type: number
+    sql: sum(${all_hardware_goal}) - sum(${all_hardware_shipped}) ;;
+  }
+
+  measure: all_owls_goal_remaining {
+    type: number
+    sql: sum(${all_owls_goal}) - sum(${all_owls_shipped}) ;;
+  }
+
+  measure: hq_goal_remaining {
+    type: number
+    sql: sum(${hq_goal}) - sum(${hq_shipped}) ;;
+  }
+
+  measure: wbo_goal_remaining {
+    type: number
+    sql: sum(${wbo_goal}) - sum(${wbo_shipped}) ;;
+  }
+
+
 
 }
