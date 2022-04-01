@@ -14,11 +14,11 @@ include: "/views/shopify_fulfillments_line_items_view.view.lkml"
 include: "/views/all_orders.view.lkml"
 include: "/views/all_fulfillments.view.lkml"
 # include: "/views/shopify_direct_hardware_orders_count.view.lkml"
-include: "/views/google_analytics_traffic_conversion.view.lkml"
 include: "/views/monthly_hardware_goals.view.lkml"
 include: "/views/dim_calendar_distinct.view.lkml"
 # include: "/**/*.view.lkml"                 # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
+include: "/views/google_analytics_traffic_conversion.view.lkml"
 
 # # Select the views that should be a part of this model,
 # # and define the joins that connect them together.
@@ -85,16 +85,6 @@ explore: traffic_conversion {
     relationship: one_to_one
     sql_on: ${dim_calendar.id} = ${google_analytics_traffic_conversion.id} ;;
   }
-  # join: shopify_direct_hardware_orders_count {
-  #   type: left_outer
-  #   relationship: one_to_one
-  #   sql_on: ${dim_calendar.date_date} = ${shopify_direct_hardware_orders_count.order_date} ;;
-  # }
-  # join: google_analytics_traffic_sessions_by_day {
-  #   type: left_outer
-  #   relationship: one_to_one
-  #   sql_on: ${dim_calendar.date_date} = ${google_analytics_traffic_sessions_by_day.end_date} ;;
-  # }
 }
 
 

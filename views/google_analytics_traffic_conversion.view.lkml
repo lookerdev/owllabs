@@ -240,56 +240,103 @@ view: google_analytics_traffic_conversion {
 
 ## MEASURES
   measure: sum_all_sessions {
+    label: "# All Sessions"
     type: sum
     sql: ${all_sessions} ;;
   }
 
   measure: sum_num_affiliates_sessions {
+    label: "# Affiliates Sessions"
     type: sum
     sql: ${num_affiliates_sessions} ;;
   }
 
   measure: sum_num_direct_sessions {
+    label: "# Direct Sessions"
     type: sum
     sql: ${num_direct_sessions} ;;
   }
 
   measure: sum_num_display_sessions {
+    label: "# Display Sessions"
     type: sum
     sql: ${num_display_sessions} ;;
   }
 
   measure: sum_num_email_sessions {
+    label: "# Email Sessions"
     type: sum
     sql: ${num_email_sessions} ;;
   }
 
   measure: sum_num_native_sessions {
+    label: "# Native Sessions"
     type: sum
     sql: ${num_native_sessions} ;;
   }
 
   measure: sum_num_notset_sessions {
+    label: "# Not Set Sessions"
     type: sum
     sql: ${num_notset_sessions} ;;
   }
 
   measure: sum_num_organicsearch_sessions {
+    label: "# Organic Search Sessions"
     type: sum
     sql: ${num_organicsearch_sessions} ;;
   }
 
   measure: sum_num_other_sessions {
+    label: "# Other Sessions"
     type: sum
     sql: ${TABLE}.num_other_sessions ;;
   }
 
   measure: sum_num_paidemail_sessions {
+    label: "# Paid Email Sessions"
     type: sum
     sql: ${num_other_sessions} ;;
   }
 
+  measure: sum_num_paidsearch_sessions {
+    label: "# Paid Search Sessions"
+    type: sum
+    sql: ${num_paidsearch_sessions} ;;
+  }
+
+  measure: sum_num_paidsocial_sessions {
+    label: "# Paid Social Sessions"
+    type: sum
+    sql: ${num_paidsocial_sessions} ;;
+  }
+
+  measure: sum_num_referral_sessions {
+    label: "# Referral Sessions"
+    type: sum
+    sql: ${num_referral_sessions} ;;
+  }
+
+  measure: sum_num_social_sessions {
+    label: "# Social Sessions"
+    type: sum
+    sql: ${num_social_sessions} ;;
+  }
+
+  measure: sum_num_sponsorship_sessions {
+    label: "# Sponsorship Sessions"
+    type: sum
+    sql: ${num_sponsorship_sessions} ;;
+  }
+
+  measure: sum_num_video_sessions {
+    label: "# Video Sessions"
+    type: sum
+    sql: ${num_video_sessions} ;;
+  }
+
   measure: sum_count_orders {
+    label: "# Orders"
     type: sum
     sql: ${count_orders} ;;
   }
