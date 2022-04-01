@@ -11,7 +11,7 @@ view: rhapsody_sw_version_download_tracking {
         dd.software_release_version,
         dd.createdat
         from public.deviceupdatesdownloads_view dd
-        where dd.software_release_version_number < 4000000 /*sw rev we care about*/
+        where dd.software_release_version_number < 5000020 /*sw rev we care about*/
         and dd.software_release_version_number > 1000000 /*filters out uat versions*/
         ),
         b as (
@@ -23,7 +23,7 @@ view: rhapsody_sw_version_download_tracking {
         dd.software_release_version,
         dd.createdat
         from public.deviceupdatesdownloads_view dd
-        where dd.software_release_version_number >= 4000000 /*sw rev we care about (rhapsody)*/--4.8.x.x
+        where dd.software_release_version_number >= 5000020 /*sw rev we care about (rhapsody)*/--4.8.x.x
         and dd.software_release_version_number < 8888888 /*filters out uat versions*/
         )
         select
