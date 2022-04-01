@@ -195,23 +195,27 @@ view: monthly_hardware_goals {
   measure: all_hardware_goal_remaining {
     type: number
     sql: sum(${all_hardware_goal}) - sum(${all_hardware_shipped}) ;;
+    html: {{ rendered_value }} remaining of {{ all_hardware_goal._rendered_value }} ;;
   }
 
   measure: all_owls_goal_remaining {
     type: number
     sql: sum(${all_owls_goal}) - sum(${all_owls_shipped}) ;;
+    html: {{ rendered_value }} remaining of {{ all_owls_goal._rendered_value }} ;;
   }
 
   measure: hq_goal_remaining {
     label: "HQ Goal Remaining"
     type: number
     sql: sum(${hq_goal}) - sum(${hq_shipped}) ;;
+    html: {{ rendered_value }} remaining of {{ hq_goal._rendered_value }} ;;
   }
 
   measure: wbo_goal_remaining {
     label: "WBO Goal Remaining"
     type: number
     sql: sum(${wbo_goal}) - sum(${wbo_shipped}) ;;
+    html: {{ rendered_value }} remaining of {{ wbo_goal._rendered_value }} ;;
   }
 
 
