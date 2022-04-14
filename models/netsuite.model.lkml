@@ -22,7 +22,6 @@ include: "/views/netsuite_units_fulfilled.view.lkml"
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
 
-
 # keep hidden, doesn't need to be accessible outside of Revenue Report dashboard
 # should I rename this explore...? If I do I'll have to replace everything in the dashboard using it...
 explore: dim_calendar_distinct {

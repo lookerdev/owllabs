@@ -215,12 +215,14 @@ view: all_fulfillments {
   }
 
   dimension: start_of_month {
+    hidden: yes
     type: date
     # sql: ${TABLE}.first_of_month ;;
     sql: cast(date_trunc('month', ${TABLE}.fulfillment_date) as date) ;;
   }
 
   dimension: end_of_month{
+    hidden: yes
     type: date
     sql: last_day(cast(${TABLE}.fulfillment_date as date)) ;;
   }
