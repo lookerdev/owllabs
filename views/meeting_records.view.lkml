@@ -134,8 +134,8 @@ view: meeting_records {
   }
 
   dimension: meeting_software_version {
-    type: string
     label: "Meeting Software Version"
+    type: string
     sql: ${TABLE}.softwareversion ;;
   }
 
@@ -185,7 +185,7 @@ view: meeting_records {
     description: "Number of distinct devices that have had meetings"
     type: count_distinct
     sql: ${deviceuuid};;
-    drill_fields: [durationminutes_per_meeting, count_meetings]
+    drill_fields: [durationminutes_per_meeting, count_devices]
   }
 
   measure: durationseconds {

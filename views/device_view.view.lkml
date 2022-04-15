@@ -207,6 +207,22 @@ view: device_view {
     #           end) ;;
   }
 
+  dimension: device_status_test {
+    # description: "Status Values: 0 - New, 1 - Active, 2 - Requires Update, 3 - Updating, 4 - Inactive, 5 - Downloading Update, 6 - Offline, 7 - Archived"
+    type: number
+    # sql: ${TABLE}.device_status ;;
+    sql: CASE when ${TABLE}.device_status = 0 then 'New'
+              when ${TABLE}.device_status = 1 then 'Active'
+              when ${TABLE}.device_status = 2 then 'Requires Update'
+              when ${TABLE}.device_status = 3 then 'Updating'
+              when ${TABLE}.device_status = 4 then 'Inactive'
+              when ${TABLE}.device_status = 5 then 'Downloading Update'
+              when ${TABLE}.device_status = 6 then 'Offline'
+              when ${TABLE}.device_status = 7 then 'Archive'
+              else 'Not Defined'
+              end ;;
+  }
+
   dimension: uuid {
     label: "Device UUID"
     description: "Unique identifier for each device"
