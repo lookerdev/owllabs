@@ -140,14 +140,15 @@ view: meeting_records {
   }
 
   dimension: durationseconds_per_meeting {
-    label: "Number of Seconds per Meeting"
+    hidden: yes
+    label: "Meeting Length - seconds"
     description: "The number of minutes that each individual meeting takes. Use this to filter by meeting length."
     type: number
     sql: ${TABLE}.durationseconds ;;
   }
 
   dimension: durationminutes_per_meeting {
-    label: "Number of Minutes per Meeting"
+    label: "Meeting Length (minutes)"
     description: "The number of seconds that each individual meeting takes. Use this to filter by meeting length."
     type: number
     sql: ${TABLE}.durationseconds / 60 ;;
@@ -176,7 +177,7 @@ view: meeting_records {
     description: "Count of unique meeting records"
     type: count
     # sql: ${id} ;;
-    drill_fields: [id]
+    drill_fields: [device_view.product_name, count_meetings]
   }
 
   measure: count_devices {
@@ -184,7 +185,7 @@ view: meeting_records {
     description: "Number of distinct devices that have had meetings"
     type: count_distinct
     sql: ${deviceuuid};;
-    # drill_fields: [id,deviceuuid]
+    drill_fields: [durationminutes_per_meeting, count_meetings]
   }
 
   measure: durationseconds {
@@ -278,6 +279,7 @@ view: meeting_records {
     description: "Count of Times Device Crashed"
     type: sum
     sql: CASE WHEN ${crashinmeeting} = 'true' THEN 1 ELSE NULL END;;
+    drill_fields: [device_view.product_name, crash_count]
   }
 
   measure: count_days {

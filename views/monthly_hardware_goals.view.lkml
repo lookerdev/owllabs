@@ -8,6 +8,8 @@ view: monthly_hardware_goals {
           select
           extract(month from fulfillment_date) as fulfillment_month,
           extract(year from fulfillment_date) as fulfillment_year,
+          cast(date_trunc('month', fulfillment_date) as date) as fulfillment_month_first_day,
+          last_day(cast(fulfillment_date as date)) as fulfillment_month_last_day,
           sum(og_quantity_shipped) + sum(pro_quantity_shipped) as all_owls_shipped,
           sum(hq_quantity_shipped) as all_hq_shipped,
           sum(wbo_quantity_shipped) as all_wbo_shipped,
@@ -16,14 +18,16 @@ view: monthly_hardware_goals {
           where sku not in ('MTW100-1000-RPL','MTW100-2000 - Replacement','MTW100-2000-RPL','MTW200-1000-RPL','MTW200-1000-RPL-CA','MTW200-2000 - Replacement','MTW200-2000-RPL','PTW100-1000-RPL','REPLC - NA','REPLC - UK','REPLC - US/CA','REPLC100-1000','REPLC100-1000-NA','REPLC100-2000','REPLC100-2001','REPPS','REPPS - Universal','REPUSB','REPUSB - Universal','Replacement AC Line Cord','Replacement Power Supply','Replacement USB Cable (6.5-Foot)','WBC100-1000-RPL','TEST2','TEST3') /*exclude replacements skus*/
           group by
           extract(month from fulfillment_date),
-          extract(year from fulfillment_date)
+          extract(year from fulfillment_date),
+          cast(date_trunc('month', fulfillment_date) as date),
+          last_day(cast(fulfillment_date as date))
           ),
 
           b as (
           select * from public.monthly_hardware_goals
           )
 
-          select b.month_name, b.month_number, b.year, cast(b.month_start as date) as month_start, cast(b.month_end as date) as month_end, a.all_owls_shipped, a.all_hq_shipped, a.all_wbo_shipped, a.all_hardware_shipped, b.owls_goal, b.hq_goal, b.wbo_goal, b.total_hardware_goal
+          select b.month_name, b.month_number, b.year, cast(b.month_start as date) as month_start, cast(b.month_end as date) as month_end, a.fulfillment_month_first_day, a.fulfillment_month_last_day, a.all_owls_shipped, a.all_hq_shipped, a.all_wbo_shipped, a.all_hardware_shipped, b.owls_goal, b.hq_goal, b.wbo_goal, b.total_hardware_goal
           from a
           inner join b
               on b.month_number = a.fulfillment_month
@@ -137,6 +141,25 @@ view: monthly_hardware_goals {
     sql: ${all_hardware_shipped}/nullif(${all_hardware_goal},0) ;;
   }
 
+  dimension: fulfillment_month_first_day {
+    type: date
+    sql: ${TABLE}.fulfillment_month_first_day ;;
+  }
+
+  dimension: fulfillment_month_last_day {
+    type: date
+    sql: ${TABLE}.fulfillment_month_last_day ;;
+  }
+
+  dimension: month_start {
+    type: date
+    sql: ${TABLE}.month_start ;;
+  }
+
+  dimension: month_end {
+    type: date
+    sql: ${TABLE}.month_end ;;
+  }
 
 
 ## MEASURES
