@@ -44,6 +44,7 @@ include: "/views/shopify_orders_serial_numbers.view.lkml"
 # }
 
  explore: device_view {
+  view_name: device_view
   label: "Devices"
   sql_always_where: ${device_view.product_name} <> 'TESTNAME'
                     and ${device_registrations.registration_record_delete_date} is null;;
@@ -67,3 +68,11 @@ include: "/views/shopify_orders_serial_numbers.view.lkml"
     sql_on: lower(${device_view.device_hardware_serial_number}) = lower(${shopify_orders_serial_numbers.serial_number}) ;;
   }
 }
+
+# # why is this erroring?
+# explore: device_view_extend_vbj {
+#   label: "extend test"
+#   extends: [device_view]
+#   # fields: [device_registrations.registration_date, device_view.uuid, device_view.device_hardware_serial_number]
+#   # sql_always_were: ${device_view.product_name} = 'Meeting Owl Pro' ;;
+# }

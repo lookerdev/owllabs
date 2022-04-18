@@ -167,6 +167,7 @@ view: monthly_hardware_goals {
     label: "All Owls Shipped"
     type: sum
     sql: ${all_owls_shipped} ;;
+    html: {{ rendered_value }} | {{ percent_of_goal_all_owls._rendered_value }} of goal ;;
   }
 
   measure: sum_hq_shipped {
@@ -194,7 +195,6 @@ view: monthly_hardware_goals {
     label: "All Owls Goal"
     type: sum
     sql: ${all_owls_goal} ;;
-    html: {{ rendered_value }} | {{ percent_of_goal_all_owls._rendered_value }} of goal ;;
   }
 
   measure: sum_hq_goal {
