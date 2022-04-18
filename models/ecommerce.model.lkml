@@ -14,7 +14,6 @@ include: "/views/shopify_fulfillments_line_items_view.view.lkml"
 include: "/views/all_orders.view.lkml"
 include: "/views/all_fulfillments.view.lkml"
 # include: "/views/shopify_direct_hardware_orders_count.view.lkml"
-include: "/views/monthly_hardware_goals.view.lkml"
 include: "/views/dim_calendar_distinct.view.lkml"
 include: "/views/monthly_hardware_goals_eom_projections.view.lkml"
 # include: "/**/*.view.lkml"                 # include all views in this project
@@ -23,21 +22,6 @@ include: "/views/monthly_hardware_goals_eom_projections.view.lkml"
 # # Select the views that should be a part of this model,
 # # and define the joins that connect them together.
 
-
-explore: monthly_hardware_goals {
-  view_name: dim_calendar_distinct
-  sql_always_where: ${dim_calendar_distinct.month_year_date_convert} >= '2021-01-01' and ${dim_calendar_distinct.month_year_date_convert} <= trunc(sysdate);;
-  join: monthly_hardware_goals {
-    type: inner
-    relationship: one_to_one
-    sql_on: ${dim_calendar_distinct.month} = ${monthly_hardware_goals.month_number}
-    and ${dim_calendar_distinct.year} = ${monthly_hardware_goals.year};;
-  }
-}
-
-explore: monthly_hardware_goals_eom_projections {
-  label: "Monthly Sales Goals & EOM Projections"
-}
 
 
 explore: all_orders_fulfillments {
@@ -78,6 +62,21 @@ explore: shopify_orders_fulfillments {
     sql_on: ${shopify_fulfillments_line_items_view.fulfillment_date} = ${dim_calendar.date_date} ;;
   }
 }
+
+explore: monthly_hardware_goals_eom_projections {
+  label: "Monthly Sales Goals & EOM Projections"
+}
+
+# explore: monthly_hardware_goals {
+#   view_name: dim_calendar_distinct
+#   sql_always_where: ${dim_calendar_distinct.month_year_date_convert} >= '2021-01-01' and ${dim_calendar_distinct.month_year_date_convert} <= trunc(sysdate);;
+#   join: monthly_hardware_goals {
+#     type: inner
+#     relationship: one_to_one
+#     sql_on: ${dim_calendar_distinct.month} = ${monthly_hardware_goals.month_number}
+#     and ${dim_calendar_distinct.year} = ${monthly_hardware_goals.year};;
+#   }
+# }
 
 
 # this needs to be improved!!

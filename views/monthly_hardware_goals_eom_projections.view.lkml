@@ -115,8 +115,11 @@ view: monthly_hardware_goals_eom_projections {
   }
 
   dimension: month_start {
+    label: "Month"
     type: date
     sql: ${TABLE}.month_start ;;
+    html: {{ rendered_value | date: "%B %Y" }};;
+    # html: {{ rendered_value | append: "-01" | date: "%B %Y" }};;
   }
 
   dimension: month_end {
