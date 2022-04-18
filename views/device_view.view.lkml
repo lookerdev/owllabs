@@ -26,7 +26,7 @@ view: device_view {
   }
 
   dimension: barn_channel_category {
-    description: "Public = Customer-facing, Internal = testing, Beta = beta testing"
+    description: "Public = customer-facing, Internal = testing, Beta = beta testing"
     type: string
     sql: ${TABLE}.channel_category;;
     # sql: case when ${channel_name} in ('Beta1','Beta2','BETA2020107FindFreeOwl','BETA2020109VoiceCameraLock','BETA2Production','Beta3','BetaActive','BetaCustomers','BetaRetired','BetaKOZ','RhapsodyBeta') then 'Beta'
@@ -190,12 +190,18 @@ view: device_view {
     sql: ${TABLE}.device_software_version_number ;;
   }
 
-  dimension: status {
-    label: "Device Status"
+  dimension: status_number {
+    hidden: yes
     # description: "Status Values: 0 - New, 1 - Active, 2 - Requires Update, 3 - Updating, 4 - Inactive, 5 - Downloading Update, 6 - Offline, 7 - Archived"
     type: number
     sql: ${TABLE}.device_status ;;
-    # sql: (CASE when ${TABLE}.device_status = 0 then 'New'
+  }
+
+  dimension: status_text {
+    label: "Device Status"
+    type: string
+    sql: ${TABLE}.device_status_text ;;
+        # sql: (CASE when ${TABLE}.device_status = 0 then 'New'
     #           when ${TABLE}.device_status = 1 then 'Active'
     #           when ${TABLE}.device_status = 2 then 'Requires Update'
     #           when ${TABLE}.device_status = 3 then 'Updating'
@@ -205,22 +211,6 @@ view: device_view {
     #           when ${TABLE}.device_status = 7 then 'Archive'
     #           else 'Not Defined'
     #           end) ;;
-  }
-
-  dimension: device_status_test {
-    # description: "Status Values: 0 - New, 1 - Active, 2 - Requires Update, 3 - Updating, 4 - Inactive, 5 - Downloading Update, 6 - Offline, 7 - Archived"
-    type: number
-    # sql: ${TABLE}.device_status ;;
-    sql: CASE when ${TABLE}.device_status = 0 then 'New'
-              when ${TABLE}.device_status = 1 then 'Active'
-              when ${TABLE}.device_status = 2 then 'Requires Update'
-              when ${TABLE}.device_status = 3 then 'Updating'
-              when ${TABLE}.device_status = 4 then 'Inactive'
-              when ${TABLE}.device_status = 5 then 'Downloading Update'
-              when ${TABLE}.device_status = 6 then 'Offline'
-              when ${TABLE}.device_status = 7 then 'Archive'
-              else 'Not Defined'
-              end ;;
   }
 
   dimension: uuid {
