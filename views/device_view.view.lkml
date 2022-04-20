@@ -5,14 +5,37 @@ view: device_view {
 
 # Dimensions
 
+  dimension: device_id {
+    primary_key: yes
+    hidden: yes
+    label: "Device Record ID"
+    description: "Unique identifier for each device record"
+    type: number
+    sql: ${TABLE}.device_id ;;
+  }
+
   dimension: alias {
     label: "Device Alias"
-    description: "Customer's chosen nickname for device"
+    description: "Customer's chosen nickname for device, User Given Name field in Barn UI"
     type: string
     sql: ${TABLE}.device_alias ;;
   }
 
+  dimension: device_name {
+    # hidden: yes
+    type: string
+    sql: ${TABLE}.device_name ;;
+  }
+
+  dimension: display_name {
+    hidden: yes
+    label: "Device Display Name"
+    type: string
+    sql: coalesce(${alias}, ${device_name}) ;;
+  }
+
   dimension: channel_id {
+    label: "Channel ID"
     # hidden: yes
     type: number
     sql: ${TABLE}.channel_id ;;
@@ -34,6 +57,12 @@ view: device_view {
     # when ${channel_name} in ('OVERRIDE','overrideQA') then 'Override'
     # when ${channel_name} in ('00019Customers','0001Customers','1080PhasedRollout','1090PhasedRollout','AmazonVendorCentral','ANZ','ChromeIssueOTA','ConferenceRooms','Customers','DesktopAppBeta','Europe','LodiSchools','LodiSchoolsPhasedRollout','PhasedRollout','ResellerCustomers','Returns','SomervilleOfficeConferenceRoom','Unknown') then 'Public'
     # end;;
+  }
+
+  dimension: bootloaderversion {
+    label: "Bootloader Version"
+    type:  string
+    sql: ${TABLE}.bootloaderversion ;;
   }
 
   dimension_group: checkedinat {
@@ -110,21 +139,6 @@ view: device_view {
     sql: ${TABLE}.device_hardware_version ;;
   }
 
-  dimension: device_id {
-    primary_key: yes
-    hidden: yes
-    label: "Device Record ID"
-    description: "Unique identifier for each device record"
-    type: number
-    sql: ${TABLE}.device_id ;;
-  }
-
-  dimension: device_name {
-    # hidden: yes
-    type: string
-    sql: ${TABLE}.device_name ;;
-  }
-
   dimension: lastip {
     label: "Last IP Address"
     description: "Device's most recent IP address, captured during most recent check-in"
@@ -133,20 +147,33 @@ view: device_view {
     sql: ${TABLE}.device_last_ip_address ;;
   }
 
+  dimension: lastgeo {
+    label: "Last Geo"
+    type: string
+    sql: ${TABLE}.lastgeo ;;
+  }
+
   dimension: last_location {
     hidden: yes
     type: string
     sql: ${TABLE}.device_last_location ;;
   }
 
+  dimension: macaddress {
+    label: "MAC Address"
+    type: string
+    sql: ${TABLE}.macaddress ;;
+  }
+
   dimension: parent_settings {
-    hidden: yes
+    # hidden: yes
     type: string
     sql: ${TABLE}.device_parent_settings ;;
   }
 
   dimension: pcb_version {
-    hidden: yes
+    label: "PCB Version"
+    # hidden: yes
     type: string
     sql: ${TABLE}.device_pcb_version ;;
   }
@@ -243,10 +270,49 @@ view: device_view {
     sql: ${TABLE}.first_owl_connect_meeting_date_longer_than_5_mins::timestamp ;;
   }
 
+  dimension_group: updatedat {
+    hidden: yes
+    sql: ${TABLE}.updatedat ;;
+    }
+
+  dimension_group: retiredat {
+    hidden: yes
+    sql: ${TABLE}.retiredat ;;
+    }
+
+  dimension: settings_version {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.settings_version ;;
+  }
+
+  dimension: settings_timestamp {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.settings_timestamp ;;
+  }
+
+  dimension_group: lastconnectedbruintime {
+    hidden: yes
+    sql: ${TABLE}.lastconnectedbruintime ;;
+    }
+
+  dimension: lastconnectedbruinstatus {
+    hidden: yes
+    sql: ${TABLE}.lastconnectedbruinstatus ;;
+    }
+
+  dimension: bruinlastconnectto {
+    hidden: yes
+    sql: ${TABLE}.bruinlastconnectto ;;
+    }
+
+
 
 # Measures
   measure: device_count {
     label: "Count of Devices"
+    description: "Count of unique deviceuuid"
     type: count_distinct
     sql: ${uuid} ;;
     drill_fields: [device_id, uuid, device_name, product_name, channel_name]

@@ -153,9 +153,18 @@ view: device_registrations {
     sql: ${TABLE}.user_name ;;
   }
 
-  # A measure is a field that uses a SQL aggregate function. Here are count, sum, and average
-  # measures for numeric dimensions, but you can also add measures of many different types.
-  # Click on the type parameter to see all the options in the Quick Help panel on the right.
+  dimension: owl_care_warranty_status {
+    type: string
+    sql: case when dateadd(year,1,${registration_date}) <= sysdate then 'Warranty Inactive'
+         when ${registration_date} is null then 'Not Registered'
+         else 'Warranty Active'
+         end ;;
+  }
+
+
+
+
+  # MEASURES
 
   # measure: count {
   #   label: "Count of Registrations"
