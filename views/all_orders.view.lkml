@@ -317,4 +317,10 @@ view: all_orders {
     drill_fields: [sales_channel, world_region, order_number, country_name, sku, sum_sku_quantity_ordered]
   }
 
+  measure: max_date {
+    hidden: yes
+    type: date
+    sql: max(${order_date}) ;;
+  }
+
 }
