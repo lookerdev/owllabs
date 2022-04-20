@@ -154,6 +154,7 @@ view: device_registrations {
   }
 
   dimension: owl_care_warranty_status {
+    hidden: yes
     type: string
     sql: case when dateadd(year,1,${registration_date}) <= sysdate then 'Warranty Inactive'
          when ${registration_date} is null then 'Not Registered'
