@@ -204,14 +204,14 @@ view: device_view {
   }
 
   dimension: software_version {
-    label: "Device Current Software Version (decimal expansion)"
+    label: "Software Version"
     description: "Device's most recent software version (decimal expansion format), captured during most recent check-in"
     type: string
     sql: ${TABLE}.device_software_version ;;
   }
 
   dimension: software_version_number{
-    label: "Device Current Software Version (integer)"
+    label: "Software Version (integer)"
     description: "Device's most recent software version (integer format), captured during most recent check-in"
     type: number
     sql: ${TABLE}.device_software_version_number ;;
