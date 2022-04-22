@@ -8,13 +8,15 @@ view: shopify_fulfillments_line_items_view {
 # # DIMENSIONS
 
   dimension: contact_email {
-    label: "Email"
+    label: "Customer Email"
+    group_label: "Customer Info"
     type: string
     sql: ${TABLE}.contact_email ;;
   }
 
   dimension: country_name {
     label: "Market Region"
+    group_label: "Shipping Address"
     type: string
     sql: ${TABLE}.country_name ;;
   }
@@ -129,16 +131,33 @@ view: shopify_fulfillments_line_items_view {
   }
 
   dimension: shipping_address_company {
-    label: "Customer"
+    label: "Customer Name"
+    group_label: "Customer Info"
     type: string
     sql: ${TABLE}.shipping_address_company ;;
   }
 
   dimension: shipping_address_country {
+    group_label: "Shipping Address"
     hidden: yes
     type: string
     sql: ${TABLE}.shipping_address_country ;;
   }
+
+  dimension: shipping_address_province {
+    label: "Shipping State/Province"
+    group_label: "Shipping Address"
+    type: string
+    sql: ${TABLE}.shipping_address_province ;;
+  }
+
+  dimension: shipping_address_zip {
+    label: "Shipping Zip Code"
+    group_label: "Shipping Address"
+    type: string
+    sql: ${TABLE}.shipping_address_zip ;;
+  }
+
 
   dimension: shopify_fulfillment_name {
     label: "Fulfillment Name"
