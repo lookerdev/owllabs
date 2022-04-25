@@ -202,13 +202,13 @@ view: nps_surveys {
   }
 
   dimension: calendaring_system_text {
-    label: "What calendaring system do you use? (Other text)"
+    label: "What calendaring system do you use? - free text"
     type: string
     sql: ${TABLE}."calendaring_system_text" ;;
   }
 
   dimension: videoconferencing_system_select {
-    label: "Videoconferencing System - selection"
+    label: "Videoconferencing System"
     description: "Survey question: What videoconferencing system do you use?"
     type: string
     sql: ${TABLE}."videoconferencing_system_select" ;;
@@ -216,19 +216,19 @@ view: nps_surveys {
 
   dimension: videoconferencing_system_text {
     label: "Videoconferencing System - free text"
-    description: "Survey question: What videoconferencing system do you use? (Other text)"
+    # description: "Survey question: What videoconferencing system do you use? (Other text)"
     type: string
     sql: ${TABLE}."videoconferencing_system_text" ;;
   }
 
   dimension: device_predominant_use_select {
-    label: "Our Owl is used predominantly to,"
+    label: "Our Owl is used predominantly to"
     type: string
     sql: ${TABLE}."device_predominant_use_select" ;;
   }
 
   dimension: device_predominant_use_text {
-    label: "Our Owl is used predominantly to, (Other text)"
+    label: "Our Owl is used predominantly to - free text"
     type: string
     sql: ${TABLE}."device_predominant_use_text" ;;
   }
@@ -246,7 +246,7 @@ view: nps_surveys {
   }
 
   dimension: role_description_text {
-    label: "Which best describes your role? (Other text)"
+    label: "Which best describes your role? - free text"
     type: string
     sql: ${TABLE}."role_description_text" ;;
   }
