@@ -116,7 +116,6 @@ view: shopify_fulfillments_line_items_view {
     sql: ${TABLE}.revenue_usd ;;
   }
 
-
   dimension: row_number {
     primary_key: yes
     hidden: yes
