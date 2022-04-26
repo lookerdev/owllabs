@@ -360,7 +360,7 @@ view: monthly_hardware_goals_eom_projections {
   }
 
   measure: sum_mop_ordered {
-    label: "All MOPs Ordered MTD"
+    label: "MOPs Ordered MTD"
     description: "Number of MOPs ordered this month to date"
     type: sum
     group_label: "MTD Orders"
@@ -504,8 +504,8 @@ view: monthly_hardware_goals_eom_projections {
   }
 
   measure: eom_fulfillment_projection_mop {
-    label: "All Owls EOM Fulfillment Projection"
-    description: "Predicted number of Owls fulfilled by end of month"
+    label: "MOP EOM Fulfillment Projection"
+    description: "Predicted number of MOPs fulfilled by end of month"
     group_label: "EOM Fulfillment Projections"
     type: number
     value_format: "#,##0"
@@ -561,8 +561,8 @@ view: monthly_hardware_goals_eom_projections {
   }
 
   measure: eom_order_projection_mop {
-    label: "All Owls EOM Order Projection"
-    description: "Predicted number of Owls ordered by end of month"
+    label: "MOP EOM Order Projection"
+    description: "Predicted number of MOPs ordered by end of month"
     group_label: "EOM Order Projections"
     type: number
     value_format: "#,##0"
