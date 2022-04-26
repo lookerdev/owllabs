@@ -308,7 +308,7 @@ view: monthly_hardware_goals_eom_projections {
   }
 
   measure: sum_mop_shipped {
-    label: "All MOPs Fulfilled MTD"
+    label: "MOPs Fulfilled MTD"
     description: "Number of MOPs shipped this month to date"
     type: sum
     group_label: "MTD Fulfillments"
