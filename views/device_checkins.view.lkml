@@ -71,9 +71,11 @@ view: device_checkins {
   }
 
 # Measures
-  measure: distinct_owls {
-    # description: ""
+  measure: device_count {
+    label: "Count of Devices"
+    description: "Count of unique deviceuuid"
     type: count_distinct
     sql: ${deviceuuid} ;;
+    # drill_fields: [device_id, uuid, device_name, product_name, channel_name]
   }
 }
