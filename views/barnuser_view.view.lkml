@@ -34,7 +34,6 @@ sql_table_name: public.barnuser_view ;;
     type: time
     timeframes: [
       raw,
-      time,
       date,
       week,
       month,

@@ -67,7 +67,6 @@ view: item_fulfillments_looker{
     type: time
     timeframes: [
       raw,
-      time,
       date,
       week,
       month,

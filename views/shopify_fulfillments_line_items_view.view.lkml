@@ -42,7 +42,6 @@ view: shopify_fulfillments_line_items_view {
     type: time
     timeframes: [
       raw,
-      time,
       date,
       week,
       month,

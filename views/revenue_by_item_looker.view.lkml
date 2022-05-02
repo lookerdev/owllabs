@@ -55,7 +55,6 @@ view: revenue_by_item_looker {
     type: time
     timeframes: [
       raw,
-      time,
       date,
       week,
       month,

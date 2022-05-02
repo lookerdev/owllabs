@@ -33,7 +33,6 @@ view: meeting_records {
     type: time
     timeframes: [
       raw,
-      time,
       date,
       week,
       month,
@@ -76,7 +75,6 @@ view: meeting_records {
     type: time
     timeframes: [
       raw,
-      time,
       date,
       week,
       month,
@@ -99,7 +97,6 @@ view: meeting_records {
     type: time
     timeframes: [
       raw,
-      time,
       date,
       week,
       month,
@@ -116,7 +113,6 @@ view: meeting_records {
     type: time
     timeframes: [
       raw,
-      time,
       date,
       week,
       month,

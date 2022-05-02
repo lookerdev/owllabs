@@ -25,7 +25,6 @@ view: nps_surveys {
   #   type: time
   #   timeframes: [
   #     raw,
-  #     time,
   #     date,
   #     week,
   #     month,
@@ -105,8 +104,6 @@ view: nps_surveys {
     type: time
     timeframes: [
       raw,
-      time,
-      date,
       week,
       month,
       quarter,

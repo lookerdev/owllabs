@@ -74,7 +74,6 @@ view: orders_view {
     type: time
     timeframes: [
       raw,
-      time,
       date,
       week,
       month,
@@ -89,7 +88,6 @@ view: orders_view {
     type: time
     timeframes: [
       raw,
-      time,
       date,
       week,
       month,
@@ -158,7 +156,6 @@ view: orders_view {
     type: time
     timeframes: [
       raw,
-      time,
       date,
       week,
       month,
@@ -222,7 +219,6 @@ view: orders_view {
     type: time
     timeframes: [
       raw,
-      time,
       date,
       week,
       month,

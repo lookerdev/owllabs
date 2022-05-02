@@ -70,7 +70,6 @@ view: all_orders {
     timeframes: [
       raw,
       date,
-      time,
       week,
       month,
       quarter,

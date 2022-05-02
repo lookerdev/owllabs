@@ -24,7 +24,6 @@ view: all_fulfillments {
     timeframes: [
       raw,
       date,
-      time,
       week,
       month,
       quarter,

@@ -79,7 +79,6 @@ view: netsuite_orders {
     type: time
     timeframes: [
       raw,
-      time,
       date,
       week,
       month,
@@ -99,7 +98,6 @@ view: netsuite_orders {
     type: time
     timeframes: [
       raw,
-      time,
       date,
       week,
       month,

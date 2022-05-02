@@ -5,7 +5,6 @@ view: orders_fulfillments_view {
     type: time
     timeframes: [
       raw,
-      time,
       date,
       week,
       month,
@@ -79,7 +78,6 @@ view: orders_fulfillments_view {
     type: time
     timeframes: [
       raw,
-      time,
       date,
       week,
       month,

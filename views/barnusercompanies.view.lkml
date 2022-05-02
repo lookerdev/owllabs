@@ -16,7 +16,6 @@ view: barnusercompanies {
     type: time
     timeframes: [
       raw,
-      time,
       date,
       week,
       month,
@@ -44,7 +43,6 @@ view: barnusercompanies {
     type: time
     timeframes: [
       raw,
-      time,
       date,
       week,
       month,

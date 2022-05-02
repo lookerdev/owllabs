@@ -7,7 +7,6 @@ view: netsuite_fulfillments {
     type: time
     timeframes: [
       raw,
-      time,
       date,
       week,
       month,
@@ -42,7 +41,6 @@ view: netsuite_fulfillments {
     type: time
     timeframes: [
       raw,
-      time,
       date,
       week,
       month,

@@ -23,7 +23,6 @@ view: shopify_orders_line_items_view {
     type: time
     timeframes: [
       raw,
-      time,
       date,
       week,
       month,
@@ -113,7 +112,6 @@ view: shopify_orders_line_items_view {
     type: time
     timeframes: [
       raw,
-      time,
       date,
       week,
       month,
