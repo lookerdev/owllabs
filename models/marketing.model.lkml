@@ -13,6 +13,7 @@ include: "/views/google_analytics_traffic_conversion.view.lkml"
 
   explore: traffic_conversion {
     # label: "Traffic Conversion"
+  # description: ""
     view_name: dim_calendar
     sql_always_where: ${year} >= 2016 and ${date_date} <= trunc(sysdate)
       ;;

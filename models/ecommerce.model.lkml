@@ -22,6 +22,7 @@ include: "/views/monthly_hardware_goals_eom_projections.view.lkml"
 
 explore: all_orders_fulfillments {
   label: "All Orders & Fulfillments"
+  # description: ""
   view_name: dim_calendar
   # sql_always_where: ${year} >= 2015
   #                   and ${date_date} <= trunc(sysdate)
@@ -42,6 +43,7 @@ explore: all_orders_fulfillments {
 
 explore: shopify_orders_fulfillments {
   label: "Shopify Orders & Fulfillments"
+  # description: ""
   view_name: dim_calendar
   sql_always_where: ${year} >= 2015
                     and ${date_date} <= trunc(sysdate)
@@ -61,6 +63,7 @@ explore: shopify_orders_fulfillments {
 
 explore: monthly_hardware_goals_eom_projections {
   label: "Monthly Sales Goals & EOM Projections"
+  # description: ""
 }
 
 # explore: monthly_hardware_goals {
@@ -79,6 +82,7 @@ explore: monthly_hardware_goals_eom_projections {
 explore: netsuite_orders_fulfillments {
   hidden: yes
   label: "Netsuite Orders & Fulfillments"
+  # description: ""
   view_name: dim_calendar
   sql_always_where: ${year} >= 2021 and ${date_date} <= trunc(sysdate);;
   join: netsuite_orders {

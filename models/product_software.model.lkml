@@ -12,10 +12,12 @@ include: "/views/devices_per_channel_release.view.lkml"
 #
 explore: rhapsody_sw_version_download_tracking {
   label: "Rhapsody Software Download Tracking"
+  # description: ""
   }
 
 explore: devices_per_channel_release {
   label: "Devices per Channel Release"
+  # description: ""
   always_filter: {
     filters: [devices_per_channel_release.software_version_select: ""]
     }

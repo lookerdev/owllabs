@@ -13,22 +13,37 @@ view: nps_surveys {
 
   dimension: survey_source {
     hidden: yes
+    # group_label: "Qualtrics Metadata"
     type: string
     sql: ${TABLE}."survey_source" ;;
   }
 
+  # dimension_group: start {
+  #   # hidden: yes
+  #   group_label: "Qualtrics Metadata"
+  #   label: "Survey Start"
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     time,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     year
+  #   ]
+  #   sql: ${TABLE}."start_date" ;;
+  #   allow_fill: yes
+  # }
+
   dimension_group: start {
-    hidden: yes
+    # hidden: yes
+    group_label: "Qualtrics Metadata"
     label: "Survey Start"
     type: time
     timeframes: [
       raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
+      date
     ]
     sql: ${TABLE}."start_date" ;;
     allow_fill: yes
@@ -39,7 +54,6 @@ view: nps_surveys {
     type: time
     timeframes: [
       raw,
-      time,
       date,
       week,
       month,
@@ -52,31 +66,36 @@ view: nps_surveys {
 
   dimension: response_type {
     description: "IP Address: A normal response, Survey Preview: A preview response, Survey Test: A test response, Imported: An imported response, Spam: A possible spam response, Preview Spam: A possible spam response submitted through the preview link, Imported Spam: A possible spam response that was imported, Offline: A Qualtrics Offline App response, Offline Preview: Previews submitted through the Qualtrics Offline App. This feature is deprecated in latest versions of the app"
-    hidden: yes
+    # hidden: yes
+    group_label: "Qualtrics Metadata"
     type: string
     sql: ${TABLE}."response_type" ;;
   }
 
   dimension: ip_address {
-    hidden: yes
+    # hidden: yes
+    group_label: "Qualtrics Metadata"
     type: string
     sql: ${TABLE}."ip_address" ;;
   }
 
   dimension: progress {
     label: "Survey Progess - % Completion"
+    group_label: "Qualtrics Metadata"
     type: number
     sql: ${TABLE}."progress" ;;
   }
 
   dimension: duration_seconds {
     label: "Number of Seconds to Complete Survey"
+    group_label: "Qualtrics Metadata"
     type: number
     sql: ${TABLE}."duration_seconds" ;;
   }
 
   dimension: finished {
     label: "Is Survey Completed?"
+    group_label: "Qualtrics Metadata"
     type: yesno
     sql: ${TABLE}."finished" ;;
   }
@@ -98,54 +117,63 @@ view: nps_surveys {
 
   dimension: response_id {
     hidden: yes
+    group_label: "Qualtrics Metadata"
     type: string
     sql: ${TABLE}."response_id" ;;
   }
 
   dimension: recipient_lastname {
     hidden: yes
+    group_label: "Qualtrics Metadata"
     type: string
     sql: ${TABLE}."recipient_lastname" ;;
   }
 
   dimension: recipient_firstname {
     hidden: yes
+    group_label: "Qualtrics Metadata"
     type: string
     sql: ${TABLE}."recipient_firstname" ;;
   }
 
   dimension: recipient_email {
     hidden: yes
+    group_label: "Qualtrics Metadata"
     type: string
     sql: ${TABLE}."recipient_email" ;;
   }
 
   dimension: external_reference {
     hidden: yes
+    group_label: "Qualtrics Metadata"
     type: string
     sql: ${TABLE}."external_reference" ;;
   }
 
   dimension: location_latitude {
-    hidden: yes
+    # hidden: yes
+    group_label: "Qualtrics Metadata"
     type: string
     sql: ${TABLE}."location_latitude" ;;
   }
 
   dimension: location_longitude {
-    hidden: yes
+    # hidden: yes
+    group_label: "Qualtrics Metadata"
     type: string
     sql: ${TABLE}."location_longitude" ;;
   }
 
   dimension: distribution_channel {
-    hidden: yes
+    # hidden: yes
+    group_label: "Qualtrics Metadata"
     type: string
     sql: ${TABLE}."distribution_channel" ;;
   }
 
   dimension: user_language {
-    hidden: yes
+    # hidden: yes
+    group_label: "Qualtrics Metadata"
     type: string
     sql: ${TABLE}."user_language" ;;
   }
@@ -159,24 +187,28 @@ view: nps_surveys {
 
   dimension: recommend_score {
     label: "How likely is it that you would recommend this device to a colleague?"
+    group_label: "Survey Questions"
     type: number
     sql: ${TABLE}."recommend_score" ;;
   }
 
   dimension: recommend_score_reason {
     label: "What is the top reason you gave the score you did?"
+    group_label: "Survey Questions"
     type: string
     sql: ${TABLE}."recommend_score_reason" ;;
   }
 
   dimension: magic_wand {
     label: "If you could wave a magic wand and make this device do one more thing, what would it be?"
+    group_label: "Survey Questions"
     type: string
     sql: ${TABLE}."magic_wand" ;;
   }
 
   dimension: product_market_fit {
     label: "How would you feel if you could no longer use the device?"
+    group_label: "Survey Questions"
     type: string
     sql: ${TABLE}."product_market_fit" ;;
   }
@@ -185,24 +217,28 @@ view: nps_surveys {
     # label: "Biggest Benefit"
     # description: "Survey question: What do you consider the biggest benefit of the device?"
     label: "What do you consider the biggest benefit of the device?"
+    group_label: "Survey Questions"
     type: string
     sql: ${TABLE}."biggest_device_benefit" ;;
   }
 
   dimension: customer_support_rating {
     label: "To what extent do you agree or disagree with the following statement: Owl Labs made it easy for me to solve questions or issues with my device."
+    group_label: "Survey Questions"
     type: string
     sql: ${TABLE}."customer_support_rating" ;;
   }
 
   dimension: calendaring_system_select {
     label: "What calendaring system do you use?"
+    group_label: "Survey Questions"
     type: string
     sql: ${TABLE}."calendaring_system_select" ;;
   }
 
   dimension: calendaring_system_text {
     label: "What calendaring system do you use? - free text"
+    group_label: "Survey Questions"
     type: string
     sql: ${TABLE}."calendaring_system_text" ;;
   }
@@ -210,6 +246,7 @@ view: nps_surveys {
   dimension: videoconferencing_system_select {
     label: "Videoconferencing System"
     description: "Survey question: What videoconferencing system do you use?"
+    group_label: "Survey Questions"
     type: string
     sql: ${TABLE}."videoconferencing_system_select" ;;
   }
@@ -217,36 +254,42 @@ view: nps_surveys {
   dimension: videoconferencing_system_text {
     label: "Videoconferencing System - free text"
     # description: "Survey question: What videoconferencing system do you use? (Other text)"
+    group_label: "Survey Questions"
     type: string
     sql: ${TABLE}."videoconferencing_system_text" ;;
   }
 
   dimension: device_predominant_use_select {
     label: "Our Owl is used predominantly to"
+    group_label: "Survey Questions"
     type: string
     sql: ${TABLE}."device_predominant_use_select" ;;
   }
 
   dimension: device_predominant_use_text {
     label: "Our Owl is used predominantly to - free text"
+    group_label: "Survey Questions"
     type: string
     sql: ${TABLE}."device_predominant_use_text" ;;
   }
 
   dimension: add_remove_wb_capture {
     label: "What would you add or remove from Whiteboard Capture?"
+    group_label: "Survey Questions"
     type: string
     sql: ${TABLE}."add_remove_wb_capture" ;;
   }
 
   dimension: role_description_select {
     label: "Which best describes your role?"
+    group_label: "Responder Info"
     type: string
     sql: ${TABLE}."role_description_select" ;;
   }
 
   dimension: role_description_text {
     label: "Which best describes your role? - free text"
+    group_label: "Responder Info"
     type: string
     sql: ${TABLE}."role_description_text" ;;
   }
@@ -254,17 +297,21 @@ view: nps_surveys {
   dimension: employee_count {
     label: "Number of Employees"
     description: "Survey question: How many employees does your organization have?"
+    group_label: "Responder Info"
     type: string
     sql: ${TABLE}."employee_count" ;;
   }
 
   dimension: company_name {
     description: "Survey question: What company do you work for?"
+    group_label: "Responder Info"
     type: string
     sql: ${TABLE}."company_name" ;;
   }
 
   dimension: thank_you_gift_email {
+    group_label: "Responder Info"
+    label: "Email Address"
     type: string
     sql: ${TABLE}."thank_you_gift_email" ;;
   }

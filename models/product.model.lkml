@@ -9,6 +9,7 @@ include: "/views/nps_surveys.view.lkml"                # include all views in th
 #
 explore: nps_surveys {
   label: "NPS"
+  # description: ""
 #   join: orders {
 #     relationship: many_to_one
 #     sql_on: ${orders.id} = ${order_items.order_id} ;;

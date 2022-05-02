@@ -246,11 +246,13 @@ view: google_analytics_traffic_conversion {
   }
 
   measure: sum_all_sessions_test {
+    hidden: yes
     type: sum
     sql: ${num_affiliates_sessions} + ${num_direct_sessions} + ${num_display_sessions} + ${num_email_sessions} + ${num_native_sessions} + ${num_notset_sessions} + ${num_organicsearch_sessions} + ${num_other_sessions} + ${num_paidemail_sessions} + ${num_paidsearch_sessions} + ${num_paidsocial_sessions} + ${num_referral_sessions} + ${num_social_sessions} + ${num_sponsorship_sessions} + ${num_video_sessions} ;;
   }
 
   measure: sum_all_sessions_test2 {
+    hidden: yes
     type: number
     sql: sum(${num_affiliates_sessions}) + sum(${num_direct_sessions}) + sum(${num_display_sessions}) + sum(${num_email_sessions}) + sum(${num_native_sessions}) + sum(${num_notset_sessions}) + sum(${num_organicsearch_sessions}) + sum(${num_other_sessions}) + sum(${num_paidemail_sessions}) + sum(${num_paidsearch_sessions}) + sum(${num_paidsocial_sessions}) + sum(${num_referral_sessions}) + sum(${num_social_sessions}) + sum(${num_sponsorship_sessions}) + sum(${num_video_sessions}) ;;
   }
