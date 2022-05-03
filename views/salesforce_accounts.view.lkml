@@ -43,6 +43,7 @@ view: salesforce_accounts {
   }
 
   dimension: devices_registered {
+    hidden: yes
     label: "# Registered Devices per Company"
     description: "Number of registered devices per company"
     type: number
@@ -51,6 +52,7 @@ view: salesforce_accounts {
 
 
   dimension: devices_registered_bins {
+    hidden: yes
     label: "# Registered Devices per Company - bins"
     description: "Number of registered devices per company, grouped into bins."
     # label: "Count Devices Registered to Company"

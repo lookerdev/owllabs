@@ -22,7 +22,7 @@ include: "/views/monthly_hardware_goals_eom_projections.view.lkml"
 
 explore: all_orders_fulfillments {
   label: "All Orders & Fulfillments"
-  # description: ""
+  # description: "Sales data captured from Shopify, "
   view_name: dim_calendar
   # sql_always_where: ${year} >= 2015
   #                   and ${date_date} <= trunc(sysdate)

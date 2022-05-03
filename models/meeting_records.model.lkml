@@ -12,7 +12,7 @@ include: "/views/shopify_orders_serial_numbers.view.lkml"
 
 
  explore: meeting_records {
-  # description: ""
+  description: "Data for devices that have had at least one meeting"
   sql_always_where: ${device_view.product_name} <> 'TESTNAME'
                     and ${device_registrations.registration_record_delete_date} is null;;
                     # Exludes TESTNAME product name rows and only includes devices with no record deletion date or registration deletion date
@@ -39,16 +39,14 @@ include: "/views/shopify_orders_serial_numbers.view.lkml"
 
  explore: device_checkins {
   label: "Device Check-ins"
-  # description: ""
+  description: "Device check-in data captured via Barn"
 }
 
-# explore: device_registrations {
-# }
 
  explore: device_view {
   view_name: device_view
   label: "Devices"
-  # description: ""
+  description: "Data for all devices in the Barn Devices table or that have been recorded in Shopify orders"
   sql_always_where: ${device_view.product_name} <> 'TESTNAME'
                     and ${device_registrations.registration_record_delete_date} is null;;
                     # Exludes TESTNAME product name rows and only includes device rows with no device record deletion date or registration deletion date

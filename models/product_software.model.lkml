@@ -5,6 +5,8 @@ connection: "redshift"
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 include: "/views/rhapsody_sw_version_download_tracking.view.lkml"
 include: "/views/devices_per_channel_release.view.lkml"
+include: "/views/deviceupdatesdownloads.view.lkml"
+include: "/views/device_view.view.lkml"
 
 
 # # Select the views that should be a part of this model,
@@ -21,4 +23,14 @@ explore: devices_per_channel_release {
   always_filter: {
     filters: [devices_per_channel_release.software_version_select: ""]
     }
+}
+
+explore: device_update_attempts {
+  hidden: yes
+  view_name: deviceupdatesdownloads
+  join: device_view {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${deviceupdatesdownloads.deviceuuid} = ${device_view.uuid} ;;
+  }
 }
