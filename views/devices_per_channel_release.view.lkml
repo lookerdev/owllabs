@@ -131,7 +131,7 @@ view: devices_per_channel_release {
 
 
   measure: sum_registered_device_count {
-    label: "Number of Registered Devices"
+    label: "Count of Registered Devices"
     type: sum
     sql: ${registered_device_count} ;;
   }

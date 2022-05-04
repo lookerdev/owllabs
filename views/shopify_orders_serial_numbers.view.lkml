@@ -5,7 +5,7 @@ view: shopify_orders_serial_numbers {
 # DIMENSIONS
   dimension: customer_company {
     label: "Customer Company Name"
-    description: "Priority order of company name: 1) Billing Company, 2) Shipping Company, 3) Customer Default Company"
+    description: "Priority order of company name if null: 1) Billing Company, 2) Shipping Company, 3) Customer Default Company"
     sql: coalesce(${TABLE}.billing_address_company, ${TABLE}.shipping_address_company, ${TABLE}.customer_default_address_company) ;;
   }
 

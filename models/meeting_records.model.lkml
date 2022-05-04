@@ -1,5 +1,5 @@
 connection: "redshift"
-label: "Device Data"
+label: "Meeting Records"
 
 include: "/views/meeting_records.view.lkml"
 include: "/views/device_view.view.lkml"
@@ -38,12 +38,14 @@ include: "/views/shopify_orders_serial_numbers.view.lkml"
 }
 
  explore: device_checkins {
+  # hidden: yes
   label: "Device Check-ins"
   description: "Device check-in data captured via Barn"
 }
 
 
  explore: device_view {
+  # hidden: yes
   view_name: device_view
   label: "Devices"
   description: "Data for all devices in the Barn Devices table or that have been recorded in Shopify orders"

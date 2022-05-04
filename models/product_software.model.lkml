@@ -6,7 +6,7 @@ connection: "redshift"
 include: "/views/rhapsody_sw_version_download_tracking.view.lkml"
 include: "/views/devices_per_channel_release.view.lkml"
 include: "/views/deviceupdatesdownloads.view.lkml"
-include: "/views/device_view.view.lkml"
+include: "/views/devices.view.lkml"
 
 
 # # Select the views that should be a part of this model,
@@ -26,11 +26,13 @@ explore: devices_per_channel_release {
 }
 
 explore: device_update_attempts {
+  # description: ""
   hidden: yes
   view_name: deviceupdatesdownloads
-  join: device_view {
+  fields: [deviceupdatesdownloads*, devices.device_hardware_serial_number]
+  join: devices {
     type: left_outer
     relationship: many_to_one
-    sql_on: ${deviceupdatesdownloads.deviceuuid} = ${device_view.uuid} ;;
+    sql_on: ${deviceupdatesdownloads.deviceuuid} = ${devices.uuid} ;;
   }
 }

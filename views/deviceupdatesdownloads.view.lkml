@@ -10,7 +10,7 @@ view: deviceupdatesdownloads {
 
   dimension: id {
     primary_key: yes
-    hidden: yes
+    # hidden: yes
     type: number
     sql: ${TABLE}.id ;;
   }
@@ -30,20 +30,20 @@ view: deviceupdatesdownloads {
   }
 
   dimension: deviceuuid {
-    hidden: yes
+    # hidden: yes
     label: "Device UUID"
     type: string
     sql: ${TABLE}.deviceuuid ;;
   }
 
   dimension: software_release_version {
-    hidden: yes
+    # hidden: yes
     type: string
     sql: ${TABLE}.software_release_version ;;
   }
 
   dimension: software_release_version_number {
-    hidden: yes
+    # hidden: yes
     type: number
     sql: ${TABLE}.software_release_version_number ;;
   }
@@ -64,18 +64,11 @@ view: deviceupdatesdownloads {
 
 # MEASURES
 
-  measure: total_software_release_version_number {
-    type: sum
-    sql: ${software_release_version_number} ;;
-  }
-
-  measure: average_software_release_version_number {
-    type: average
-    sql: ${software_release_version_number} ;;
-  }
-
   measure: count {
+    label: "Count of Update Attempts"
+    # hidden: yes
     type: count
-    drill_fields: [id]
+    drill_fields: [id, createdat_date]
   }
+
 }

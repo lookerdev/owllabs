@@ -1,5 +1,4 @@
-view: device_view {
-  label: "Devices"
+view: devices {
   sql_table_name: public.devices_view ;;
   drill_fields: [device_id]
 
@@ -210,7 +209,6 @@ view: device_view {
     label: "Software Version (integer)"
     description: "Device's most recent software version (integer format), captured during most recent check-in"
     type: number
-    value_format: "0"
     sql: ${TABLE}.device_software_version_number ;;
   }
 
@@ -225,7 +223,7 @@ view: device_view {
     label: "Device Status"
     type: string
     sql: ${TABLE}.device_status_text ;;
-        # sql: (CASE when ${TABLE}.device_status = 0 then 'New'
+    # sql: (CASE when ${TABLE}.device_status = 0 then 'New'
     #           when ${TABLE}.device_status = 1 then 'Active'
     #           when ${TABLE}.device_status = 2 then 'Requires Update'
     #           when ${TABLE}.device_status = 3 then 'Updating'
@@ -269,12 +267,12 @@ view: device_view {
   dimension_group: updatedat {
     hidden: yes
     sql: ${TABLE}.updatedat ;;
-    }
+  }
 
   dimension_group: retiredat {
     hidden: yes
     sql: ${TABLE}.retiredat ;;
-    }
+  }
 
   dimension: settings_version {
     hidden: yes
@@ -291,17 +289,17 @@ view: device_view {
   dimension_group: lastconnectedbruintime {
     hidden: yes
     sql: ${TABLE}.lastconnectedbruintime ;;
-    }
+  }
 
   dimension: lastconnectedbruinstatus {
     hidden: yes
     sql: ${TABLE}.lastconnectedbruinstatus ;;
-    }
+  }
 
   dimension: bruinlastconnectto {
     hidden: yes
     sql: ${TABLE}.bruinlastconnectto ;;
-    }
+  }
 
 
 
