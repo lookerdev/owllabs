@@ -22,7 +22,7 @@ view: item_fulfillments_looker{
   dimension: channel {
     type: string
     sql: ${TABLE}.channel ;;
-    drill_fields: [customer_name, marketplace_segment, product_category, document_number]
+    drill_fields: [customer_name, marketplace_segment, product_category, document_number, sales_order]
   }
 
   # dimension: cogs_account {
@@ -105,7 +105,7 @@ view: item_fulfillments_looker{
   dimension: marketplace_segment {
     type: string
     sql: ${TABLE}.marketplace_segment ;;
-    drill_fields: [customer_name, item, product_category, product_line, document_number]
+    drill_fields: [customer_name, item, product_category, product_line, document_number, sales_order]
   }
 
   dimension: period {
