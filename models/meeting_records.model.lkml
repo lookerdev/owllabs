@@ -1,5 +1,5 @@
 connection: "redshift"
-label: "Meeting Records"
+label: "Device Data"
 
 include: "/views/meeting_records.view.lkml"
 include: "/views/device_view.view.lkml"

@@ -5,7 +5,7 @@ connection: "redshift"
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 include: "/views/rhapsody_sw_version_download_tracking.view.lkml"
 include: "/views/devices_per_channel_release.view.lkml"
-include: "/views/deviceupdatesdownloads.view.lkml"
+include: "/views/device_updates_downloads.view.lkml"
 include: "/views/devices.view.lkml"
 
 
@@ -28,11 +28,11 @@ explore: devices_per_channel_release {
 explore: device_update_attempts {
   # description: ""
   hidden: yes
-  view_name: deviceupdatesdownloads
-  fields: [deviceupdatesdownloads*, devices.device_hardware_serial_number]
+  view_name: device_updates_downloads
+  fields: [device_updates_downloads*, devices.device_hardware_serial_number]
   join: devices {
     type: left_outer
     relationship: many_to_one
-    sql_on: ${deviceupdatesdownloads.deviceuuid} = ${devices.uuid} ;;
+    sql_on: ${device_updates_downloads.deviceuuid} = ${devices.uuid} ;;
   }
 }
