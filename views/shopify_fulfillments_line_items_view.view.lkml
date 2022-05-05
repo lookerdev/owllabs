@@ -7,18 +7,95 @@ view: shopify_fulfillments_line_items_view {
 
 # # DIMENSIONS
 
+  dimension: billing_address_company {
+    label: "Bill Company Name"
+    group_label: "Billing Address"
+    type: string
+    sql: ${TABLE}.billing_address_company ;;
+  }
+
+  dimension: billing_address_name {
+    label: "Bill Addressee"
+    group_label: "Billing Address"
+    type: string
+    sql: ${TABLE}.billing_address_name ;;
+  }
+
+  dimension: billing_address_phone {
+    label: "Bill Phone Number"
+    group_label: "Billing Address"
+    type: string
+    sql: ${TABLE}.billing_address_phone ;;
+  }
+
+  dimension: billing_address_address1 {
+    label: "Bill Address Line 1"
+    group_label: "Billing Address"
+    type: string
+    sql: ${TABLE}.billing_address_address1 ;;
+  }
+
+  dimension: billing_address_address2 {
+    label: "Bill Address Line 2"
+    group_label: "Billing Address"
+    type: string
+    sql: ${TABLE}.billing_address_address2 ;;
+  }
+
+  dimension: billing_address_city {
+    label: "Bill City"
+    group_label: "Billing Address"
+    type: string
+    sql: ${TABLE}.billing_address_city ;;
+  }
+
+  dimension: billing_address_province {
+    label: "Bill State/Province Name"
+    group_label: "Billing Address"
+    type: string
+    sql: ${TABLE}.billing_address_province ;;
+  }
+
+  dimension: billing_address_province_code {
+    label: "Bill State/Province Code"
+    group_label: "Billing Address"
+    type: string
+    sql: ${TABLE}.billing_address_province_code ;;
+  }
+
+  dimension: billing_address_zip {
+    label: "Bill Zip Code"
+    group_label: "Billing Address"
+    type: string
+    sql: ${TABLE}.billing_address_zip ;;
+  }
+
+  dimension: billing_address_country_name {
+    label: "Bill Country Name"
+    group_label: "Billing Address"
+    type: string
+    sql: ${TABLE}.billing_address_country_name ;;
+  }
+
+  dimension: billing_address_country_code {
+    label: "Bill Country Code"
+    group_label: "Billing Address"
+    type: string
+    sql: ${TABLE}.billing_address_country_code ;;
+  }
+
+  dimension: billing_world_region {
+    label: "Bill World Region"
+    group_label: "Billing Address"
+    type: string
+    sql: ${TABLE}.billing_world_region ;;
+  }
+
   dimension: contact_email {
     label: "Customer Email"
     group_label: "Customer Info"
     type: string
     sql: ${TABLE}.contact_email ;;
-  }
-
-  dimension: country_name {
-    label: "Market Region"
-    group_label: "Shipping Address"
-    type: string
-    sql: ${TABLE}.country_name ;;
   }
 
   dimension: currency {
@@ -129,33 +206,81 @@ view: shopify_fulfillments_line_items_view {
   }
 
   dimension: shipping_address_company {
-    label: "Customer Name"
-    group_label: "Customer Info"
+    label: "Ship Company Name"
+    group_label: "Shipping Address"
     type: string
     sql: ${TABLE}.shipping_address_company ;;
   }
 
-  dimension: shipping_address_country {
+  dimension: shipping_address_name {
+    label: "Ship Addressee"
     group_label: "Shipping Address"
-    hidden: yes
     type: string
-    sql: ${TABLE}.shipping_address_country ;;
+    sql: ${TABLE}.shipping_address_name ;;
+  }
+
+  dimension: shipping_address_address1 {
+    label: "Ship Address Line 1"
+    group_label: "Shipping Address"
+    type: string
+    sql: ${TABLE}.shipping_address_address1 ;;
+  }
+
+  dimension: shipping_address_address2 {
+    label: "Ship Address Line 2"
+    group_label: "Shipping Address"
+    type: string
+    sql: ${TABLE}.shipping_address_address2 ;;
+  }
+
+  dimension: shipping_address_city {
+    label: "Ship City"
+    group_label: "Shipping Address"
+    type: string
+    sql: ${TABLE}.shipping_address_city ;;
   }
 
   dimension: shipping_address_province {
-    label: "Shipping State/Province"
+    label: "Ship State/Province Name"
     group_label: "Shipping Address"
     type: string
     sql: ${TABLE}.shipping_address_province ;;
   }
 
+  dimension: shipping_address_province_code {
+    label: "Ship State/Province Code"
+    group_label: "Shipping Address"
+    type: string
+    sql: ${TABLE}.shipping_address_province_code ;;
+  }
+
   dimension: shipping_address_zip {
-    label: "Shipping Zip Code"
+    label: "Ship Zip Code"
     group_label: "Shipping Address"
     type: string
     sql: ${TABLE}.shipping_address_zip ;;
   }
 
+  dimension: country_name {
+    label: "Ship Country Name"
+    group_label: "Shipping Address"
+    type: string
+    sql: ${TABLE}.shipping_address_country_name ;;
+  }
+
+  dimension: shipping_address_country_code {
+    label: "Ship Country Code"
+    group_label: "Shipping Address"
+    type: string
+    sql: ${TABLE}.shipping_address_country_code ;;
+  }
+
+  dimension: world_region {
+    label: "Ship World Region"
+    group_label: "Shipping Address"
+    type: string
+    sql: ${TABLE}.shipping_world_region ;;
+  }
 
   dimension: shopify_fulfillment_name {
     label: "Fulfillment Name"
@@ -218,11 +343,6 @@ view: shopify_fulfillments_line_items_view {
     hidden: yes
     type: string
     sql: ${TABLE}.variant_id ;;
-  }
-
-  dimension: world_region {
-    type: string
-    sql: ${TABLE}.world_region ;;
   }
 
   dimension: allitems_quantity_shipped {
