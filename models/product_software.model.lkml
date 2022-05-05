@@ -28,7 +28,7 @@ explore: devices_per_channel_release {
 explore: device_update_attempts {
   label: "Device Update Attempts - UAT"
   # description: ""
-  hidden: yes
+  # hidden: yes
   view_name: device_updates_downloads
   fields: [device_updates_downloads*, devices.device_hardware_serial_number]
   join: devices {
