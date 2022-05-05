@@ -73,4 +73,10 @@ view: device_updates_downloads {
     drill_fields: [id, createdat_date]
   }
 
+  measure: most_recent_attempt {
+    label: "Most Recent Update Attempt Date"
+    type: date
+    sql: max(${createdat_date}) ;;
+  }
+
 }
