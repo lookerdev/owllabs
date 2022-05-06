@@ -22,7 +22,7 @@ include: "/views/monthly_hardware_goals_eom_projections.view.lkml"
 
 explore: all_orders_fulfillments {
   label: "All Orders & Fulfillments"
-  # description: "Sales data captured from Shopify, "
+  description: "Sales data from Shopify, Amazon, Sourcenext, and historical Starin. Excludes all replacement and test SKUs."
   view_name: dim_calendar
   # sql_always_where: ${year} >= 2015
   #                   and ${date_date} <= trunc(sysdate)
@@ -43,7 +43,7 @@ explore: all_orders_fulfillments {
 
 explore: shopify_orders_fulfillments {
   label: "Shopify Orders & Fulfillments"
-  # description: ""
+  description: "Sales data from Shopify. Excludes all replacement and test SKUs."
   view_name: dim_calendar
   sql_always_where: ${year} >= 2015
                     and ${date_date} <= trunc(sysdate)
@@ -63,7 +63,7 @@ explore: shopify_orders_fulfillments {
 
 explore: monthly_hardware_goals_eom_projections {
   label: "Monthly Sales Goals & EOM Projections"
-  # description: ""
+  description: "Compares MTD fulfillments against Operating Plan goals and projects total order and fulfillment numbers for end of month. EOM projections do not factor in pipeline activity from Sales team."
 }
 
 # explore: monthly_hardware_goals {

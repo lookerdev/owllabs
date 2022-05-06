@@ -40,7 +40,7 @@ include: "/views/shopify_orders_serial_numbers.view.lkml"
  explore: device_checkins {
   # hidden: yes
   label: "Device Check-ins"
-  description: "Device check-in data captured via Barn"
+  description: "Device check-in data captured via Barn. Nothing is filtered out."
 }
 
 
