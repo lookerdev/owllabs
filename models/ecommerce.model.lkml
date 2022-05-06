@@ -63,7 +63,7 @@ explore: shopify_orders_fulfillments {
 
 explore: monthly_hardware_goals_eom_projections {
   label: "Monthly Sales Goals & EOM Projections"
-  description: "Compares MTD fulfillments against Operating Plan goals and projects total order and fulfillment numbers for end of month. EOM projections do not factor in pipeline activity from Sales team."
+  description: "Compare MTD fulfillments against Operating Plan goals and projects total order and fulfillment numbers for end of month. EOM projections do not factor in pipeline activity from Sales team."
 }
 
 # explore: monthly_hardware_goals {
