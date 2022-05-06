@@ -8,14 +8,7 @@ view: nps_surveys {
     primary_key: yes
     hidden: yes
     type: number
-    sql: ${TABLE}."row_num" ;;
-  }
-
-  dimension: survey_source {
-    hidden: yes
-    # group_label: "Qualtrics Metadata"
-    type: string
-    sql: ${TABLE}."survey_source" ;;
+    sql: ${TABLE}.row_num ;;
   }
 
   # dimension_group: start {
@@ -44,7 +37,7 @@ view: nps_surveys {
       raw,
       date
     ]
-    sql: ${TABLE}."start_date" ;;
+    sql: ${TABLE}.start_date ;;
     allow_fill: yes
   }
 
@@ -59,7 +52,7 @@ view: nps_surveys {
       quarter,
       year
     ]
-    sql: ${TABLE}."end_date" ;;
+    sql: ${TABLE}.end_date ;;
     allow_fill: yes
   }
 
@@ -68,35 +61,35 @@ view: nps_surveys {
     # hidden: yes
     group_label: "Qualtrics Metadata"
     type: string
-    sql: ${TABLE}."response_type" ;;
+    sql: ${TABLE}.response_type ;;
   }
 
   dimension: ip_address {
     # hidden: yes
     group_label: "Qualtrics Metadata"
     type: string
-    sql: ${TABLE}."ip_address" ;;
+    sql: ${TABLE}.ip_address ;;
   }
 
   dimension: progress {
     label: "Survey Progess - % Completion"
     group_label: "Qualtrics Metadata"
     type: number
-    sql: ${TABLE}."progress" ;;
+    sql: ${TABLE}.progress ;;
   }
 
   dimension: duration_seconds {
     label: "Number of Seconds to Complete Survey"
     group_label: "Qualtrics Metadata"
     type: number
-    sql: ${TABLE}."duration_seconds" ;;
+    sql: ${TABLE}.duration_seconds ;;
   }
 
   dimension: finished {
     label: "Is Survey Completed?"
     group_label: "Qualtrics Metadata"
     type: yesno
-    sql: ${TABLE}."finished" ;;
+    sql: ${TABLE}.finished ;;
   }
 
   dimension_group: recorded {
@@ -109,135 +102,142 @@ view: nps_surveys {
       quarter,
       year
     ]
-    sql: ${TABLE}."recorded_date" ;;
+    sql: ${TABLE}.recorded_date ;;
   }
 
   dimension: response_id {
     hidden: yes
     group_label: "Qualtrics Metadata"
     type: string
-    sql: ${TABLE}."response_id" ;;
+    sql: ${TABLE}.response_id ;;
   }
 
   dimension: recipient_lastname {
     hidden: yes
     group_label: "Qualtrics Metadata"
     type: string
-    sql: ${TABLE}."recipient_lastname" ;;
+    sql: ${TABLE}.recipient_lastname ;;
   }
 
   dimension: recipient_firstname {
     hidden: yes
     group_label: "Qualtrics Metadata"
     type: string
-    sql: ${TABLE}."recipient_firstname" ;;
+    sql: ${TABLE}.recipient_firstname ;;
   }
 
   dimension: recipient_email {
     hidden: yes
     group_label: "Qualtrics Metadata"
     type: string
-    sql: ${TABLE}."recipient_email" ;;
+    sql: ${TABLE}.recipient_email ;;
   }
 
   dimension: external_reference {
     hidden: yes
     group_label: "Qualtrics Metadata"
     type: string
-    sql: ${TABLE}."external_reference" ;;
+    sql: ${TABLE}.external_reference ;;
   }
 
   dimension: location_latitude {
     # hidden: yes
     group_label: "Qualtrics Metadata"
     type: string
-    sql: ${TABLE}."location_latitude" ;;
+    sql: ${TABLE}.location_latitude ;;
   }
 
   dimension: location_longitude {
     # hidden: yes
     group_label: "Qualtrics Metadata"
     type: string
-    sql: ${TABLE}."location_longitude" ;;
+    sql: ${TABLE}.location_longitude ;;
   }
 
   dimension: distribution_channel {
     # hidden: yes
     group_label: "Qualtrics Metadata"
     type: string
-    sql: ${TABLE}."distribution_channel" ;;
+    sql: ${TABLE}.distribution_channel ;;
   }
 
   dimension: user_language {
     # hidden: yes
     group_label: "Qualtrics Metadata"
     type: string
-    sql: ${TABLE}."user_language" ;;
+    sql: ${TABLE}.user_language ;;
   }
 
   dimension: device {
     label: "Device Type"
     # label: "Which product are you providing feedback on?"
     type: string
-    sql: ${TABLE}."device" ;;
+    sql: ${TABLE}.device ;;
   }
 
   dimension: recommend_score {
-    label: "How likely is it that you would recommend this device to a colleague?"
+    # label: "How likely is it that you would recommend this device to a colleague?"
+    description: "Survey question: How likely is it that you would recommend this device to a colleague?"
     group_label: "Survey Questions"
     type: number
-    sql: ${TABLE}."recommend_score" ;;
+    sql: ${TABLE}.recommend_score ;;
   }
 
   dimension: recommend_score_reason {
-    label: "What is the top reason you gave the score you did?"
+    # label: "What is the top reason you gave the score you did?"
+    description: "Survey question: What is the top reason you gave the score you did?"
     group_label: "Survey Questions"
     type: string
-    sql: ${TABLE}."recommend_score_reason" ;;
+    sql: ${TABLE}.recommend_score_reason ;;
   }
 
   dimension: magic_wand {
-    label: "If you could wave a magic wand and make this device do one more thing, what would it be?"
+    # label: "If you could wave a magic wand and make this device do one more thing, what would it be?"
+    description: "Survey question: If you could wave a magic wand and make this device do one more thing, what would it be?"
     group_label: "Survey Questions"
     type: string
-    sql: ${TABLE}."magic_wand" ;;
+    sql: ${TABLE}.magic_wand ;;
   }
 
   dimension: product_market_fit {
-    label: "How would you feel if you could no longer use the device?"
+    # label: "How would you feel if you could no longer use the device?"
+    description: "Survey question: How would you feel if you could no longer use the device?"
     group_label: "Survey Questions"
     type: string
-    sql: ${TABLE}."product_market_fit" ;;
+    sql: ${TABLE}.product_market_fit ;;
   }
 
   dimension: biggest_device_benefit {
-    # label: "Biggest Benefit"
-    # description: "Survey question: What do you consider the biggest benefit of the device?"
-    label: "What do you consider the biggest benefit of the device?"
+    label: "Biggest Device Benefit/Device Does Well"
+    # label: "What do you consider the biggest benefit of the device?"
+    description: "Combines results from 2 questions - 'What do you consider the biggest benefit of the [device]?' in 0mo HQ & WBO surveys, 'What does the [device] do well?' from all 6mo & 12mo surveys"
     group_label: "Survey Questions"
     type: string
-    sql: ${TABLE}."biggest_device_benefit" ;;
+    sql: ${TABLE}.biggest_device_benefit ;;
   }
 
   dimension: customer_support_rating {
-    label: "To what extent do you agree or disagree with the following statement: Owl Labs made it easy for me to solve questions or issues with my device."
+    # label: "To what extent do you agree or disagree with the following statement: Owl Labs made it easy for me to solve questions or issues with my device."
+    description: "Survey question: To what extent do you agree or disagree with the following statement: Owl Labs made it easy for me to solve questions or issues with my device."
     group_label: "Survey Questions"
     type: string
-    sql: ${TABLE}."customer_support_rating" ;;
+    sql: ${TABLE}.customer_support_rating ;;
   }
 
   dimension: calendaring_system_select {
-    label: "What calendaring system do you use?"
+    label: "Calendaring System"
+    description: "Survey question: What calendaring system do you use?"
     group_label: "Survey Questions"
     type: string
-    sql: ${TABLE}."calendaring_system_select" ;;
+    sql: ${TABLE}.calendaring_system_select ;;
   }
 
   dimension: calendaring_system_text {
-    label: "What calendaring system do you use? - free text"
+    label: "Calendaring System (Other text)"
+    description: "Survey question: What calendaring system do you use? (Other text)"
     group_label: "Survey Questions"
     type: string
-    sql: ${TABLE}."calendaring_system_text" ;;
+    sql: ${TABLE}.calendaring_system_text ;;
   }
 
   dimension: videoconferencing_system_select {
@@ -245,36 +245,71 @@ view: nps_surveys {
     description: "Survey question: What videoconferencing system do you use?"
     group_label: "Survey Questions"
     type: string
-    sql: ${TABLE}."videoconferencing_system_select" ;;
+    sql: ${TABLE}.videoconferencing_system_select ;;
   }
 
   dimension: videoconferencing_system_text {
-    label: "Videoconferencing System - free text"
-    # description: "Survey question: What videoconferencing system do you use? (Other text)"
+    label: "Videoconferencing System (Other text)"
+    description: "Survey question: What videoconferencing system do you use? (Other text)"
     group_label: "Survey Questions"
     type: string
-    sql: ${TABLE}."videoconferencing_system_text" ;;
+    sql: ${TABLE}.videoconferencing_system_text ;;
   }
 
   dimension: device_predominant_use_select {
-    label: "Our Owl is used predominantly to"
+    label: "Predominant Use"
+    description: "Survey question: Our Owl is used predominantly to"
     group_label: "Survey Questions"
     type: string
-    sql: ${TABLE}."device_predominant_use_select" ;;
+    sql: ${TABLE}.device_predominant_use_select ;;
   }
 
   dimension: device_predominant_use_text {
-    label: "Our Owl is used predominantly to - free text"
+    label: "Predominant Use (Other text)"
+    description: "Survey question: Our Owl is used predominantly to (Other text)"
     group_label: "Survey Questions"
     type: string
-    sql: ${TABLE}."device_predominant_use_text" ;;
+    sql: ${TABLE}.device_predominant_use_text ;;
   }
 
   dimension: add_remove_wb_capture {
-    label: "What would you add or remove from Whiteboard Capture?"
+    label: "WB Capture Add/Remove"
+    description: "Survey question: What would you add or remove from Whiteboard Capture?"
     group_label: "Survey Questions"
     type: string
-    sql: ${TABLE}."add_remove_wb_capture" ;;
+    sql: ${TABLE}.add_remove_wb_capture ;;
+  }
+
+  dimension: wifi_always_connected_select {
+    label: "Wifi Always Connected?"
+    description: "Survey question: Do you keep your Meeting Owl Pro connected to WiFi at all times? "
+    group_label: "Survey Questions"
+    type: string
+    sql: ${TABLE}.wifi_always_connected_select ;;
+  }
+
+  dimension: wifi_always_connected_text {
+    label: "Wifi Always Connected? ('No' text)"
+    description: "Survey question: Can you tell us why you don't keep your Meeting Owl Pro connected to WiFi at all times? "
+    group_label: "Survey Questions"
+    type: string
+    sql: ${TABLE}.wifi_always_connected_text ;;
+  }
+
+  dimension: hybrid_collab_pain_point {
+    label: "Hybrid Collab Pain Point"
+    description: "Survey question: What is your biggest pain point with hybrid collaboration?"
+    group_label: "Survey Questions"
+    type: string
+    sql: ${TABLE}.hybrid_collab_pain_point ;;
+  }
+
+  dimension: subscription_feature_request {
+    # label: ""
+    description: "Survey question: What features or benefits would you like to see included in the device's annual subscription?"
+    group_label: "Survey Questions"
+    type: string
+    sql: ${TABLE}.subscription_feature_request ;;
   }
 
   dimension: role_description_select {
@@ -310,7 +345,25 @@ view: nps_surveys {
     group_label: "Responder Info"
     label: "Email Address"
     type: string
-    sql: ${TABLE}."thank_you_gift_email" ;;
+    sql: ${TABLE}.email_address ;;
+  }
+
+  dimension: survey_source {
+    hidden: yes
+    type: string
+    sql: ${TABLE}.survey_source ;;
+  }
+
+  dimension: survey_iteration {
+    description: "Which round of survey sends - 0mo is the initial send, 6mo is the send 6 months from initial, 12mo is the send 12 months from initial"
+    type: string
+    sql: ${TABLE}.survey_iteration ;;
+  }
+
+  dimension: test_response {
+    description: "Flag indicates whether the response is an internal test of survey (Yes) or an actual submission (No)"
+    type: yesno
+    sql: ${TABLE}.test_response ;;
   }
 
   dimension: nps_bucket_int {
