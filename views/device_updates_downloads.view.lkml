@@ -73,6 +73,12 @@ view: device_updates_downloads {
     drill_fields: [id, createdat_date]
   }
 
+  measure: count_devices {
+    label: "Count of Devices"
+    type: count_distinct
+    sql: ${deviceuuid} ;;
+  }
+
   measure: most_recent_attempt {
     label: "Most Recent Update Attempt Date"
     type: date

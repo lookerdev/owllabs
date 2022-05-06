@@ -12,13 +12,13 @@ include: "/views/shopify_orders_serial_numbers.view.lkml"
 
 
  explore: meeting_records {
-  description: "Data for devices that have had at least one meeting"
-  sql_always_where: ${device_view.product_name} <> 'TESTNAME'
-                    and ${device_registrations.registration_record_delete_date} is null;;
+  description: "Data for devices that have had at least one meeting. By default filters out TESTNAME products and deleted registration dates."
+  # sql_always_where: ${device_view.product_name} <> 'TESTNAME'
+  #                   and ${device_registrations.registration_record_delete_date} is null;;
                     # Exludes TESTNAME product name rows and only includes devices with no record deletion date or registration deletion date
-  # always_filter: {
-  #   filters: [device_registrations.registration_record_delete_date: "NULL"] # filter defaults to remove deleted registration records
-  # }
+  always_filter: {
+    filters: [device_registrations.registration_record_delete_date: "NULL", device_view.product_name: "-TESTNAME"] # filter defaults to remove deleted registration records
+  }
   join: device_view {
     # view_label: "Devices"
       type: left_outer
@@ -48,13 +48,13 @@ include: "/views/shopify_orders_serial_numbers.view.lkml"
   # hidden: yes
   view_name: device_view
   label: "Devices"
-  description: "Data for all devices in the Barn Devices table or that have been recorded in Shopify orders"
-  sql_always_where: ${device_view.product_name} <> 'TESTNAME'
-                    and ${device_registrations.registration_record_delete_date} is null;;
+  description: "Data for all devices in the Barn Devices table or that have been recorded in Shopify orders. By default filters out TESTNAME products and deleted registration dates."
+  # sql_always_where: ${device_view.product_name} <> 'TESTNAME'
+  #                   and ${device_registrations.registration_record_delete_date} is null;;
                     # Exludes TESTNAME product name rows and only includes device rows with no device record deletion date or registration deletion date
-  # always_filter: {
-  #   filters: [device_registrations.registration_record_delete_date: "NULL"] # filter defaults to remove deleted registration records
-  # }
+  always_filter: {
+    filters: [device_registrations.registration_record_delete_date: "NULL", device_view.product_name: "-TESTNAME"] # filter defaults to remove deleted registration records and TESTNAME products
+  }
   join: device_registrations {
     type: left_outer
     relationship: one_to_many
