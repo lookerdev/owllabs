@@ -7,6 +7,7 @@ include: "/views/device_registrations.view.lkml"
 include: "/views/salesforce_accounts.view.lkml"
 include: "/views/device_checkins.view.lkml"
 include: "/views/shopify_orders_serial_numbers.view.lkml"
+include: "/views/most_recent_update_attempt.view.lkml"
 # include: "/*.explore.lkml"
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
@@ -57,6 +58,7 @@ include: "/views/shopify_orders_serial_numbers.view.lkml"
   # sql_always_where: ${device_view.product_name} <> 'TESTNAME'
   #                   and ${device_registrations.registration_record_delete_date} is null;;
                     # Exludes TESTNAME product name rows and only includes device rows with no device record deletion date or registration deletion date
+  # fields: [ALL_FIELDS*,-device_registrations.deviceuuid,-most_recent_update_attempt.deviceuuid]
   always_filter: {
     filters: [device_registrations.registration_record_delete_date: "NULL", device_view.product_name: "-TESTNAME"] # filter defaults to remove deleted registration records and TESTNAME products
   }
@@ -74,6 +76,11 @@ include: "/views/shopify_orders_serial_numbers.view.lkml"
     type: left_outer
     relationship: one_to_one
     sql_on: lower(${device_view.device_hardware_serial_number}) = lower(${shopify_orders_serial_numbers.serial_number}) ;;
+  }
+  join: most_recent_update_attempt {
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${most_recent_update_attempt.deviceuuid} = ${device_view.uuid} ;;
   }
 }
 

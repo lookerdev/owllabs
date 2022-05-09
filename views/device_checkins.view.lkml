@@ -4,6 +4,7 @@ view: device_checkins {
 
 # Dimensions
   dimension: id {
+    label: "Check-in ID"
     primary_key: yes
     hidden: yes
     type: number
@@ -48,9 +49,10 @@ view: device_checkins {
   }
 
   dimension: softwareversion {
-    label: "Software Version"
+    label: "Software Version (integer)"
     # description: ""
     type: number
+    value_format: "0"
     sql: ${TABLE}.softwareversion ;;
   }
 
@@ -70,6 +72,7 @@ view: device_checkins {
   }
 
 # Measures
+
   measure: device_count {
     label: "Count of Devices"
     description: "Count of unique deviceuuid"
@@ -77,4 +80,11 @@ view: device_checkins {
     sql: ${deviceuuid} ;;
     # drill_fields: [device_id, uuid, device_name, product_name, channel_name]
   }
+
+  measure: checkin_count {
+    label: "Count of Check-ins"
+    type: count_distinct
+    sql: ${id} ;;
+  }
+
 }

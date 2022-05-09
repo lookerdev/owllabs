@@ -6,6 +6,7 @@ include: "/views/device_registrations.view.lkml"
 include: "/views/salesforce_accounts.view.lkml"
 include: "/views/device_checkins.view.lkml"
 include: "/views/shopify_orders_serial_numbers.view.lkml"
+include: "/views/most_recent_update_attempt.view.lkml"
 
 
 # explore: meeting_records {
@@ -66,5 +67,10 @@ explore: devices {
     type: left_outer
     relationship: one_to_one
     sql_on: lower(${devices.device_hardware_serial_number}) = lower(${shopify_orders_serial_numbers.serial_number}) ;;
+  }
+  join: most_recent_update_attempt {
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${most_recent_update_attempt.deviceuuid} = ${devices.uuid} ;;
   }
 }
