@@ -30,7 +30,7 @@ explore: device_update_attempts {
   # description: ""
   # hidden: yes
   view_name: device_updates_downloads
-  fields: [device_updates_downloads*, devices.device_hardware_serial_number]
+  fields: [device_updates_downloads*, devices.device_hardware_serial_number, devices.barn_channel_category, devices.channel_name, devices.product_name]
   join: devices {
     type: left_outer
     relationship: many_to_one
