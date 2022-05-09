@@ -41,6 +41,11 @@ include: "/views/shopify_orders_serial_numbers.view.lkml"
   # hidden: yes
   label: "Device Check-ins"
   description: "Device check-in data captured via Barn. Nothing is filtered out."
+  join: device_view {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${device_checkins.deviceuuid} = ${device_view.uuid} ;;
+  }
 }
 
 
