@@ -23,6 +23,7 @@ view: device_checkins {
     type: time
     timeframes: [
       raw,
+      time,
       date,
       week,
       month,

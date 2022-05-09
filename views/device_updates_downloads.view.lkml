@@ -20,6 +20,7 @@ view: device_updates_downloads {
     type: time
     timeframes: [
       raw,
+      time,
       date,
       week,
       month,
