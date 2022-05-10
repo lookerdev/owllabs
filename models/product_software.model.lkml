@@ -30,16 +30,16 @@ explore: device_update_attempts {
   # description: ""
   # hidden: yes
   view_name: device_updates_downloads
-  fields: [device_updates_downloads*, devices.device_hardware_serial_number, devices.product_name, devices.barn_channel_category, devices.channel_name]
-  # fields: [device_updates_downloads*, devices.device_hardware_serial_number, devices.product_name, barn_channels.channel_category, barn_channels.slug] # this line goes with addition of barn_channels view
+  # fields: [device_updates_downloads*, devices.device_hardware_serial_number, devices.product_name, devices.barn_channel_category, devices.channel_name]
+  fields: [device_updates_downloads*, devices.device_hardware_serial_number, devices.product_name, barn_channels.channel_category, barn_channels.slug] # this line goes with addition of barn_channels view
   join: devices {
     type: left_outer
     relationship: many_to_one
     sql_on: ${device_updates_downloads.deviceuuid} = ${devices.uuid} ;;
   }
-  # join: barn_channels {
-  #   type: left_outer
-  #   relationship: many_to_one
-  #   sql_on: ${devices.channel_id} = ${barn_channels.channel_id} ;;
-  # }
+  join: barn_channels {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${devices.channel_id} = ${barn_channels.channel_id} ;;
+  }
 }
