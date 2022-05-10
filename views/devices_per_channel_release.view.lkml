@@ -1,5 +1,4 @@
 view: devices_per_channel_release {
-#   # Or, you could make this view a derived table, like this:
   derived_table: {
     sql: select
           a.channel_id,

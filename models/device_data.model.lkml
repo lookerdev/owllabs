@@ -7,6 +7,7 @@ include: "/views/salesforce_accounts.view.lkml"
 include: "/views/device_checkins.view.lkml"
 include: "/views/shopify_orders_serial_numbers.view.lkml"
 include: "/views/most_recent_update_attempt.view.lkml"
+include: "/views/barn_channels.view.lkml"
 
 # !!! CHANGE ALL DEVICE_VIEW FIELDS COPIED FROM MEETING_RECORDS EXPLORE TO DEVICES
 
@@ -43,7 +44,6 @@ explore: device_checkins {
   description: "Device check-in data captured via Barn"
 }
 
-
 explore: devices {
   hidden: yes
   label: "Devices"
@@ -75,3 +75,7 @@ explore: devices {
     sql_on: ${most_recent_update_attempt.deviceuuid} = ${devices.uuid} ;;
   }
 }
+
+# explore: barn_channels {
+
+# }

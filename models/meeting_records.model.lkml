@@ -8,8 +8,16 @@ include: "/views/salesforce_accounts.view.lkml"
 include: "/views/device_checkins.view.lkml"
 include: "/views/shopify_orders_serial_numbers.view.lkml"
 include: "/views/most_recent_update_attempt.view.lkml"
+include: "/views/barn_channels.view.lkml"
 # include: "/*.explore.lkml"
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
+
+
+
+# DUPLICATE THESE EXPLORES INTO DEVICE_DATA.MODEL
+# REPLACE "/views/device_view.view.lkml" WITH "/views/devices.view.lkml"
+# UPDATE ANY APPROPRIATE JOINS
+
 
 
  explore: meeting_records {
@@ -82,6 +90,7 @@ include: "/views/most_recent_update_attempt.view.lkml"
     relationship: one_to_one
     sql_on: ${most_recent_update_attempt.deviceuuid} = ${device_view.uuid} ;;
   }
+  join: barn_channels {}
 }
 
 # # why is this erroring?

@@ -42,14 +42,18 @@ view: devices {
     sql: ${TABLE}.channel_id ;;
   }
 
+# possibly remove this column, can replace with barn_channels view
   dimension: channel_name {
+    # hidden: yes
     label: "Barn Channel Name"
     description: "Name of Barn channel device belongs to"
     type: string
     sql: ${TABLE}.channel_name ;;
   }
 
+# possibly remove this column, can replace with barn_channels view
   dimension: barn_channel_category {
+    # hidden: yes
     description: "Public = customer-facing, Internal = testing, Beta = beta testing"
     type: string
     sql: ${TABLE}.channel_category;;
