@@ -127,6 +127,12 @@ view: all_orders {
     sql: ${TABLE}.sku ;;
   }
 
+  # dimension: replacement_sku {
+  #   type: yesno
+  #   sql: case when ${sku} in () then True
+  #       else False end;;
+  # }
+
   dimension: sku_name {
     type: string
     sql: ${TABLE}.sku_name ;;

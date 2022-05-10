@@ -1,3 +1,5 @@
+# BEFORE PUBLISHING IN DEVICE_DATA EXPLORE, CHECK THAT ALL UPDATES TO DEVICE_VIEW ARE CAPTURED HERE
+
 view: devices {
   sql_table_name: public.devices_view ;;
   drill_fields: [device_id]

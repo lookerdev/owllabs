@@ -8,6 +8,7 @@ include: "/views/device_checkins.view.lkml"
 include: "/views/shopify_orders_serial_numbers.view.lkml"
 include: "/views/most_recent_update_attempt.view.lkml"
 
+# !!! CHANGE ALL DEVICE_VIEW FIELDS COPIED FROM MEETING_RECORDS EXPLORE TO DEVICES
 
 # explore: meeting_records {
 #   hidden: yes
