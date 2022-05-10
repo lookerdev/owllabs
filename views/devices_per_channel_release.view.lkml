@@ -9,7 +9,7 @@ view: devices_per_channel_release {
           a.registered_device_count,
           b.id as release_id,
           b.name as release_name,
-          date(b.createdat) as channel_release_date
+          cast(b.createdat as timestamp) as channel_release_date
           from (
              select
              devices_view.channel_id ,
@@ -112,6 +112,7 @@ view: devices_per_channel_release {
     # convert_tz: no
     timeframes: [
       raw,
+      time,
       date,
       week,
       month,
@@ -128,7 +129,7 @@ view: devices_per_channel_release {
   }
 
 
-
+# MEASURES
   measure: sum_registered_device_count {
     label: "Count of Registered Devices"
     type: sum

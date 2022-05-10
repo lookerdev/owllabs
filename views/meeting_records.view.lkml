@@ -97,6 +97,7 @@ view: meeting_records {
     type: time
     timeframes: [
       raw,
+      time,
       date,
       week,
       month,

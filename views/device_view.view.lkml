@@ -70,6 +70,7 @@ view: device_view {
     type: time
     timeframes: [
       raw,
+      time,
       date,
       week,
       month,
@@ -99,6 +100,7 @@ view: device_view {
     type: time
     timeframes: [
       raw,
+      time,
       date,
       week,
       month,
