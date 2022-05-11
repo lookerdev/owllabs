@@ -90,7 +90,6 @@ include: "/views/barn_channels.view.lkml"
     relationship: one_to_one
     sql_on: ${most_recent_update_attempt.deviceuuid} = ${device_view.uuid} ;;
   }
-  join: barn_channels {}
 }
 
 # # why is this erroring?

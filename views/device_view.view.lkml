@@ -28,7 +28,7 @@ view: device_view {
   }
 
   dimension: display_name {
-    hidden: yes
+    # hidden: yes
     label: "Device Display Name"
     type: string
     sql: coalesce(${alias}, ${device_name}) ;;
@@ -36,12 +36,13 @@ view: device_view {
 
   dimension: channel_id {
     label: "Channel ID"
-    # hidden: yes
+    hidden: yes
     type: number
     sql: ${TABLE}.channel_id ;;
   }
 
   dimension: channel_name {
+    # hidden: yes
     label: "Barn Channel Name"
     description: "Name of Barn channel device belongs to"
     type: string
@@ -49,6 +50,7 @@ view: device_view {
   }
 
   dimension: barn_channel_category {
+    # hidden: yes
     description: "Public = customer-facing, Internal = testing, Beta = beta testing"
     type: string
     sql: ${TABLE}.channel_category;;

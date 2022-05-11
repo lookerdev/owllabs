@@ -36,7 +36,7 @@ view: shopify_orders_serial_numbers {
   }
 
   dimension: serial_number {
-    hidden: yes
+    # hidden: yes
     label: "Device Hardware Serial Number"
     type: string
     sql: ${TABLE}.hardware_serial_number ;;
@@ -47,6 +47,12 @@ view: shopify_orders_serial_numbers {
     type: string
     sql: ${TABLE}.store ;;
   }
+
+  # dimension: device_type {}
+
+  # dimension: sales_channel {}
+
+  # dimension: order_date {}
 
 # MEASURES
   measure: count {

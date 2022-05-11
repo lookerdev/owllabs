@@ -1,4 +1,3 @@
-# The name of this view in Looker is "Device Registrations"
 view: device_registrations {
   sql_table_name: public.device_registrations_view ;;
 
@@ -72,9 +71,6 @@ view: device_registrations {
     sql: ${TABLE}.product_name ;;
   }
 
-  # Dates and timestamps can be represented in Looker using a dimension group of type: time.
-  # Looker converts dates and timestamps to the specified timeframes within the dimension group.
-
   dimension_group: registration {
     type: time
     timeframes: [
@@ -135,6 +131,13 @@ view: device_registrations {
 
   dimension: registration_source {
     hidden: yes
+    description: "per Weihai - column needs to be vetted
+    UNKNOWN: 0,
+    USER_MOBILEAPP: 1,
+    SHOPIFY: 2 = not working for now,
+    BARN: 3 =  when we add the registration in barn,
+    BARN_TRANSFER: 4 = user claim an owl that's already own by someone in a different organization,
+    USER_FLAMINGO: 5 = mhq i believe"
     type: number
     sql: ${TABLE}.registration_source ;;
   }
@@ -199,6 +202,7 @@ view: device_registrations {
 
   measure: count_registrations {
     label: "Count of Registrations"
+    description: "It is possible for a single deviceuuid to have more than one registration record associated."
     type: count
   }
 
