@@ -74,6 +74,7 @@ view: barn_channels {
   }
 
   dimension: product_name {
+    label: "Device Type"
     type: string
     sql: ${TABLE}.product_name ;;
   }

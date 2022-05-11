@@ -74,8 +74,25 @@ explore: devices {
     relationship: one_to_one
     sql_on: ${most_recent_update_attempt.deviceuuid} = ${devices.uuid} ;;
   }
+  join: barn_channels {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${devices.channel_id} = ${barn_channels.channel_id} ;;
+  }
 }
 
-# explore: barn_channels {
-
-# }
+explore: barn_channels {
+  label: "Barn Channels - UAT"
+  # fields: [barn_channels*, devices.device_count]
+  # fields: [barn_channels*, devices.device_count, device_registrations.count_registered_devices]
+  join: devices {
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${devices.channel_id} = ${barn_channels.channel_id}  ;;
+  }
+  # join: device_registrations {
+  #   type: left_outer
+  #   relationship: one_to_many
+  #   sql_on: ${devices.uuid} = ${device_registrations.deviceuuid} ;;
+  # }
+}
