@@ -83,6 +83,7 @@ explore: devices {
 
 explore: barn_channels {
   label: "Barn Channels - UAT"
+  description: "All Barn Channels that exist and data for the devices included in each channel"
   # fields: [barn_channels*, devices.device_count]
   # fields: [barn_channels*, devices.device_count, device_registrations.count_registered_devices]
   join: devices {
