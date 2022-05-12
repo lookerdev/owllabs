@@ -48,7 +48,8 @@ explore: devices {
   hidden: yes
   label: "Devices"
   description: "Data for all devices in the Barn Devices table or that have been recorded in Shopify orders"
-   # Exludes TESTNAME product name rows and only includes device rows with no device record deletion date or registration deletion date
+  # Devices is the master table in this Explore, all other tables/data are dependent on the records in Devices
+   # Excludes TESTNAME product name rows and only includes device rows with no device record deletion date or registration deletion date
   sql_always_where: ${product_name} <> 'TESTNAME'
     and ${device_registrations.registration_record_delete_date} is null;;
   # always_filter: {
@@ -83,17 +84,17 @@ explore: devices {
 
 explore: barn_channels {
   label: "Barn Channels - UAT"
-  description: "All Barn Channels that exist and data for the devices included in each channel"
+  description: "Details for all Barn Channels whether there are devices included in the channel or not."
   # fields: [barn_channels*, devices.device_count]
-  # fields: [barn_channels*, devices.device_count, device_registrations.count_registered_devices]
+  fields: [barn_channels*, devices*,  device_registrations.count_registered_devices]
   join: devices {
     type: left_outer
     relationship: one_to_many
     sql_on: ${devices.channel_id} = ${barn_channels.channel_id}  ;;
   }
-  # join: device_registrations {
-  #   type: left_outer
-  #   relationship: one_to_many
-  #   sql_on: ${devices.uuid} = ${device_registrations.deviceuuid} ;;
-  # }
+  join: device_registrations {
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${devices.uuid} = ${device_registrations.deviceuuid} ;;
+  }
 }
