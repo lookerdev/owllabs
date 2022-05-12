@@ -23,7 +23,7 @@ include: "/views/monthly_hardware_goals_eom_projections.view.lkml"
 
 explore: all_orders_fulfillments {
   label: "All Orders & Fulfillments"
-  description: "Sales data for Shopify, Amazon, Sourcenext, and historical distributor Starin. By default includes SKUs that don't count toward revenue (replacement units, Owl For Good), which can be filtered out using Revenue SKU dimension. Excludes test SKUs"
+  description: "Sales data from Shopify, Amazon, Sourcenext, and historical distributor Starin. By default includes SKUs that don't count toward revenue (replacement units, Owls For Good), which can be filtered out using Revenue SKU dimension. Excludes test SKUs."
   view_name: dim_calendar
   sql_always_where: ${dim_calendar.date_date} >= '2017-05-14' and ${dim_calendar.date_date} <= trunc(sysdate) ;;
   join: all_orders {
@@ -43,22 +43,20 @@ explore: all_orders_fulfillments {
 
 explore: shopify_orders_fulfillments {
   label: "Shopify Orders & Fulfillments"
-  description: "Sales data for Shopify. By default excludes replacement SKUs."
-  # "Sales data for Shopify. By default includes SKUs that don't count toward revenue (replacement units, Owl For Good), which can be filtered out using Revenue SKU dimension."
+  description: "Sales data from Shopify. By default includes SKUs that don't count toward revenue (replacement units, Owls For Good), which can be filtered out using Revenue SKU dimension. Excludes test SKUs."
   view_name: dim_calendar
-  sql_always_where: ${year} >= 2017
-                    and ${date_date} <= trunc(sysdate)
-                    and ${shopify_fulfillments_line_items_view.sku} not in ('MTW100-1000-RPL','MTW100-2000 - Replacement','MTW100-2000-RPL','MTW200-1000-RPL','MTW200-1000-RPL-CA','MTW200-2000 - Replacement','MTW200-2000-RPL','PTW100-1000-RPL','REPLC - NA','REPLC - UK','REPLC - US/CA','REPLC100-1000','REPLC100-1000-NA','REPLC100-2000','REPLC100-2001','REPPS','REPPS - Universal','REPUSB','REPUSB - Universal','Replacement AC Line Cord','Replacement Power Supply','Replacement USB Cable (6.5-Foot)','WBC100-1000-RPL')
-                    ;;
+  sql_always_where: ${dim_calendar.date_date} >= '2017-05-14' and ${dim_calendar.date_date} <= trunc(sysdate) ;;
   join: shopify_orders_line_items_view {
     type: left_outer
     relationship: one_to_many
-    sql_on: ${shopify_orders_line_items_view.order_date} = ${dim_calendar.date_date} ;;
+    sql_on: ${shopify_orders_line_items_view.order_date} = ${dim_calendar.date_date}
+            and ${shopify_orders_line_items_view.sku} not in ('TEST2','TEST3') ;;
   }
   join: shopify_fulfillments_line_items_view {
     type: left_outer
     relationship: one_to_many
-    sql_on: ${shopify_fulfillments_line_items_view.fulfillment_date} = ${dim_calendar.date_date} ;;
+    sql_on: ${shopify_fulfillments_line_items_view.fulfillment_date} = ${dim_calendar.date_date}
+            and ${shopify_fulfillments_line_items_view.sku} not in ('TEST2','TEST3') ;;
   }
 }
 
