@@ -322,12 +322,12 @@ view: shopify_fulfillments_line_items_view {
     sql: ${TABLE}.sku ;;
   }
 
-  # dimension: revenue_sku {
-  #   description: "This is a SKU that counts towards revenue. Excludes Replacement, Owl For Good, and Test units."
-  #   type: yesno
-  #   sql: case when ${sku} in ('MTW100-1000-RPL','MTW100-2000 - Replacement','MTW100-2000-RPL','MTW200-1000-NI','MTW200-1000-RPL','MTW200-1000-RPL-CA','MTW200-2000 - Replacement','MTW200-2000-RPL','MTW200-4000 - RPL','MTW300-1000-RPL','PTW100-1000-RPL','REF100-1000','REF200-1000','REF200-2000','Replacement AC Line Cord','Replacement Power Supply','Replacement USB Cable (6.5-Foot)','REPLC - NA','REPLC - UK','REPLC - US/CA','REPLC100-1000','REPLC100-1000-NA','REPLC100-2000','REPLC100-2001','REPLCMHQ101-1000','REPLCMHQ102-0000','REPLCMHQ103-0000','REPLCWBO100-1000','REPLCWBO101-0000','REPPS','REPPS - Universal','REPUSB','REPUSB - Universal','TEST2','TEST3','WBC100-1000-RPL') then False
-  #     else True end;;
-  # }
+  dimension: revenue_sku {
+    description: "Identifies if SKU counts towards revenue. True = yes it does / False = nope (Replacement, Owl For Good, and Test SKUs)."
+    type: yesno
+    sql: case when ${sku} in ('MTW100-1000-RPL','MTW100-2000 - Replacement','MTW100-2000-RPL','MTW200-1000-NI','MTW200-1000-RPL','MTW200-1000-RPL-CA','MTW200-2000 - Replacement','MTW200-2000-RPL','MTW200-4000 - RPL','MTW300-1000-RPL','PTW100-1000-RPL','REF100-1000','REF200-1000','REF200-2000','Replacement AC Line Cord','Replacement Power Supply','Replacement USB Cable (6.5-Foot)','REPLC - NA','REPLC - UK','REPLC - US/CA','REPLC100-1000','REPLC100-1000-NA','REPLC100-2000','REPLC100-2001','REPLCMHQ101-1000','REPLCMHQ102-0000','REPLCMHQ103-0000','REPLCWBO100-1000','REPLCWBO101-0000','REPPS','REPPS - Universal','REPUSB','REPUSB - Universal','TEST2','TEST3','WBC100-1000-RPL') then False
+      else True end;;
+  }
 
   dimension: source {
     # hidden: yes
