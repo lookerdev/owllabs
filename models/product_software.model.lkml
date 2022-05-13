@@ -43,3 +43,10 @@ explore: device_update_attempts {
     sql_on: ${devices.channel_id} = ${barn_channels.channel_id} ;;
   }
 }
+
+explore: releases_per_channel {
+  hidden: yes
+  label: "Releases per Barn Channel - UAT"
+  view_name: barn_channels
+  # join:  {} add channel_releases here
+}

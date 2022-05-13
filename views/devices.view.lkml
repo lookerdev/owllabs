@@ -217,7 +217,6 @@ view: devices {
     sql: ${TABLE}.device_software_version ;;
   }
 
-  # change name? (software_version_int?)
   dimension: software_version_number {
     label: "Current Software Version (integer)"
     description: "Device's most recent software version (integer format), captured during most recent check-in"
@@ -226,14 +225,13 @@ view: devices {
     sql: ${TABLE}.device_software_version_number ;;
   }
 
-  # have to test if this dimension works properly
-  dimension: is_current_version {
-    description: "Whether the device's Current Software Version is the most recent production release in that device's Barn Channel."
-    type: yesno
-    sql: ${software_version_number} = ${barn_channels.current_version} ;;
-    }
+  # # have to test if this dimension works properly
+  # dimension: is_current_version {
+  #   description: "Whether the device's Current Software Version is the most recent production release in that device's Barn Channel."
+  #   type: yesno
+  #   sql: ${software_version_number} = ${barn_channels.current_version} ;;
+  #   }
 
-  # change name? (status)
   dimension: status_number {
     hidden: yes
     # description: "Status Values: 0 - New, 1 - Active, 2 - Requires Update, 3 - Updating, 4 - Inactive, 5 - Downloading Update, 6 - Offline, 7 - Archived"
@@ -286,13 +284,11 @@ view: devices {
     sql: ${TABLE}.first_owl_connect_meeting_date_longer_than_5_mins::timestamp ;;
   }
 
-  # change name? (add underscore?)
   dimension_group: updatedat {
     hidden: yes
     sql: ${TABLE}.updatedat ;;
   }
 
-  # change name? (add underscore?)
   dimension_group: retiredat {
     hidden: yes
     sql: ${TABLE}.retiredat ;;

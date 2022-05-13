@@ -160,6 +160,7 @@ view: meeting_records {
   dimension_group: owl_connect_return_after_first_mtg {
     hidden: yes
     type: duration
+    # sql_start: ${devices.first_owl_connect_mtg_5_mins_date} ;;
     sql_start: ${device_view.first_owl_connect_mtg_5_mins_date} ;;
     sql_end: ${startdate_date} ;;
   }
@@ -174,6 +175,7 @@ view: meeting_records {
     description: "Count of unique meeting records"
     type: count
     # sql: ${id} ;;
+    # drill_fields: [devices.product_name, count_meetings]
     drill_fields: [device_view.product_name, count_meetings]
   }
 
@@ -276,6 +278,7 @@ view: meeting_records {
     description: "Count of Times Device Crashed"
     type: sum
     sql: CASE WHEN ${crashinmeeting} = 'true' THEN 1 ELSE NULL END;;
+    # drill_fields: [devices.product_name, crash_count]
     drill_fields: [device_view.product_name, crash_count]
   }
 

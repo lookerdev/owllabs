@@ -19,9 +19,9 @@ include: "/views/barn_channels.view.lkml"
 # UPDATE ANY APPROPRIATE JOINS
 
 
-
+# MOVE to USAGE
  explore: meeting_records {
-  hidden: yes
+  # hidden: yes
   description: "Data for devices that have had at least one meeting. By default filters out TESTNAME products and deleted registration dates."
   # sql_always_where: ${device_view.product_name} <> 'TESTNAME'
   #                   and ${device_registrations.registration_record_delete_date} is null;;
@@ -47,6 +47,7 @@ include: "/views/barn_channels.view.lkml"
   }
 }
 
+# MOVED TO DEVICE_DATA
  explore: device_checkins {
   hidden: yes
   # hidden: yes
@@ -59,7 +60,7 @@ include: "/views/barn_channels.view.lkml"
   }
 }
 
-
+# MOVE TO DEVICE_DATA
  explore: device_view {
   hidden: yes
   view_name: device_view
