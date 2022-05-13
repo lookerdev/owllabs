@@ -57,7 +57,7 @@ explore: devices {
 explore: device_checkins {
   # hidden: yes
   label: "Device Check-ins"
-  description: "Device check-in data captured via Barn."
+  description: "Device check-in data captured via the Barn. This table has a huge amount of rows and will take some time to load."
   join: devices {
     type: left_outer
     relationship: many_to_one
