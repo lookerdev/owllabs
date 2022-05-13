@@ -1,7 +1,7 @@
 view: devices {
   sql_table_name: public.devices_view ;;
   drill_fields: [device_id]
-  label: "Devices - new"
+  # label: "Devices - new"
 
 # Dimensions
 
@@ -217,11 +217,11 @@ view: devices {
   }
 
   # # have to test if this dimension works properly
-  # dimension: is_current_version {
-  #   description: "Whether the device's Current Software Version is the most recent production release in that device's Barn Channel."
-  #   type: yesno
-  #   sql: ${software_version_number} = ${barn_channels.current_version} ;;
-  #   }
+  dimension: is_current_version {
+    description: "Whether the device's Current Software Version is the most recent production release to that device's Barn Channel."
+    type: yesno
+    sql: ${software_version_number} = ${barn_channels.current_version} ;;
+    }
 
   dimension: status_number {
     hidden: yes

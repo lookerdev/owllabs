@@ -41,7 +41,7 @@ view: barn_channels {
   }
 
   dimension: current_version {
-    label: "Current Software Version"
+    label: "Current Software Release"
     description: "The latest production software version that has been released to a Barn channel. If null, no prod software versions have been released to that channel."
     type: number
     value_format: "0"

@@ -140,6 +140,13 @@ view: channel_releases {
     sql: ${TABLE}.release_version ;;
   }
 
+# HAVE TO TEST THIS
+  dimension: is_current_version {
+    description: "Whether this release version is the most recent prod release for the channel."
+    type: yesno
+    sql: ${release_version} = ${barn_channels.current_version} ;;
+  }
+
   dimension_group: releasedate {
     label: "Release"
     type: time
