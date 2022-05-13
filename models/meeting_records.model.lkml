@@ -62,7 +62,7 @@ include: "/views/barn_channels.view.lkml"
 
 # MOVE TO DEVICE_DATA
  explore: device_view {
-  # hidden: yes
+  hidden: yes
   view_name: device_view
   label: "Devices [TEST - DON'T USE]"
   description: "Data for all devices in the Barn Devices table or that have been recorded in Shopify orders. By default filters out TESTNAME products and deleted registration dates."
