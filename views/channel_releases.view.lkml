@@ -174,6 +174,7 @@ view: channel_releases {
   }
 
   measure: count {
+    label: "Count of Releases"
     type: count
     drill_fields: [release_name]
   }
