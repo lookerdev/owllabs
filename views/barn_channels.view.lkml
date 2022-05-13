@@ -40,6 +40,14 @@ view: barn_channels {
     sql: ${TABLE}.createdat ;;
   }
 
+  dimension: current_version {
+    label: "Current Software Version"
+    description: "The latest production software version that has been released to a Barn channel. If null, no prod software versions have been released to that channel."
+    type: number
+    value_format: "0"
+    sql: ${TABLE}.current_version ;;
+  }
+
   dimension_group: deletedat {
     hidden:  yes
     type: time
@@ -64,7 +72,7 @@ view: barn_channels {
   dimension: isdefault {
     label: "Is Default?"
     type: yesno
-    sql: ${TABLE}.isdefault = 1;;
+    sql: ${TABLE}.isdefault = 1 ;;
   }
 
   dimension: ownerid {

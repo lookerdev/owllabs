@@ -86,7 +86,7 @@ explore: barn_channels {
   label: "Barn Channels - UAT"
   description: "Details for all Barn Channels whether there are devices included in the channel or not."
   # fields: [barn_channels*, devices.device_count]
-  fields: [barn_channels*, devices*,  device_registrations.count_registered_devices]
+  fields: [barn_channels*, devices*,  device_registrations.count_registered_devices, -barn_channels.current_version]
   join: devices {
     type: left_outer
     relationship: one_to_many
