@@ -7,17 +7,17 @@ view: channel_releases {
     primary_key: yes
     hidden: yes
     type: number
-    sql: concat(${channelid}, ${releaseid}) ;;
+    sql: concat(${channel_id}, ${release_id}) ;;
   }
 
-  dimension: buildid {
+  dimension: build_id {
     label: "Build ID"
     type: number
     value_format_name: id
     sql: ${TABLE}.buildid ;;
   }
 
-  dimension: channelid {
+  dimension: channel_id {
     label: "Channel ID"
     type: number
     value_format_name: id
@@ -25,6 +25,7 @@ view: channel_releases {
   }
 
   dimension_group: channelrelease_createdat {
+    label: "Channel Release Created At"
     type: time
     timeframes: [
       raw,
@@ -53,7 +54,7 @@ view: channel_releases {
     sql: ${TABLE}.channelrelease_updatedat ;;
   }
 
-  dimension: createdbyid {
+  dimension: createdby_id {
     hidden: yes
     type: yesno
     sql: ${TABLE}.createdbyid ;;
@@ -75,7 +76,7 @@ view: channel_releases {
     sql: ${TABLE}.override ;;
   }
 
-  dimension: productid {
+  dimension: product_id {
     label: "Product ID"
     type: number
     value_format_name: id
@@ -83,6 +84,7 @@ view: channel_releases {
   }
 
   dimension_group: release_createdat {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -117,6 +119,7 @@ view: channel_releases {
   }
 
   dimension_group: release_updatedat {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -152,7 +155,7 @@ view: channel_releases {
     sql: ${TABLE}.releasedate ;;
   }
 
-  dimension: releaseid {
+  dimension: release_id {
     label: "Release ID"
     type: number
     value_format_name: id

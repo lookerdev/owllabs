@@ -8,6 +8,7 @@ include: "/views/devices_per_channel_release.view.lkml"
 include: "/views/device_updates_downloads.view.lkml"
 include: "/views/devices.view.lkml"
 include: "/views/barn_channels.view.lkml"
+include: "/views/channel_releases.view.lkml"
 
 
 
@@ -45,8 +46,12 @@ explore: device_update_attempts {
 }
 
 explore: releases_per_channel {
-  hidden: yes
+  # hidden: yes
   label: "Releases per Barn Channel - UAT"
   view_name: barn_channels
-  # join:  {} add channel_releases here
+  join: channel_releases {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${barn_channels.channel_id} = ${channel_releases.channel_id} ;;
+  }
 }
