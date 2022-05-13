@@ -1,6 +1,3 @@
-# BEFORE PUBLISHING IN DEVICE_DATA EXPLORE, CHECK THAT ALL UPDATES TO DEVICE_VIEW ARE CAPTURED HERE
-# rename any dimension titles  - shorten? add underscores?
-
 view: devices {
   sql_table_name: public.devices_view ;;
   drill_fields: [device_id]
@@ -98,7 +95,6 @@ view: devices {
     sql: ${TABLE}.device_record_create_date::timestamp ;;
   }
 
-  # change name?
   dimension_group: activated {
     label: "Device Activation"
     type: time
@@ -114,7 +110,6 @@ view: devices {
     sql: ${TABLE}.device_activation_date::timestamp ;;
   }
 
-  # change name?
   dimension_group: deletedat {
     hidden: yes
     label: "Device Record Delete"
@@ -142,7 +137,6 @@ view: devices {
     sql: ${TABLE}.device_hardware_version ;;
   }
 
-  # change name? (add underscore?)
   dimension: lastip {
     label: "Last IP Address"
     description: "Device's most recent IP address, captured during most recent check-in"
@@ -151,7 +145,6 @@ view: devices {
     sql: ${TABLE}.device_last_ip_address ;;
   }
 
-  # change name? (add underscore?)
   dimension: lastgeo {
     label: "Last Geo"
     type: string
@@ -164,7 +157,6 @@ view: devices {
     sql: ${TABLE}.device_last_location ;;
   }
 
-  # change name? (add underscore?)
   dimension: macaddress {
     label: "MAC Address"
     type: string
@@ -209,7 +201,6 @@ view: devices {
     sql: ${TABLE}.device_settings ;;
   }
 
-  # change name? (_decimal?)
   dimension: software_version {
     label: "Current Software Version"
     description: "Device's most recent software version (decimal expansion format), captured during most recent check-in"
