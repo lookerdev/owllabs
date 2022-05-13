@@ -399,10 +399,11 @@ view: nps_surveys {
     sql: count(${recommend_score}) ;;
   }
 
-  # measure: count {
-  #   type: count
-  #   drill_fields: [recipient_lastname, recipient_firstname, company_name]
-  # }
+  measure: count {
+    label: "Count of Surveys"
+    type: count
+    drill_fields: [device, company_name]
+  }
 
   measure: total_duration_seconds {
     hidden: yes
