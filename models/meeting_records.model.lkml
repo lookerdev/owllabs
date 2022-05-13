@@ -64,7 +64,7 @@ include: "/views/barn_channels.view.lkml"
  explore: device_view {
   # hidden: yes
   view_name: device_view
-  label: "Devices"
+  label: "Devices [orig]"
   description: "Data for all devices in the Barn Devices table or that have been recorded in Shopify orders. By default filters out TESTNAME products and deleted registration dates."
   # sql_always_where: ${device_view.product_name} <> 'TESTNAME'
   #                   and ${device_registrations.registration_record_delete_date} is null;;

@@ -13,8 +13,8 @@ include: "/views/barn_channels.view.lkml"
 
 
 explore: devices {
-  hidden: yes
-  # label: "Devices"
+  # hidden: yes
+  label: "Devices"
   description: "Data for all devices in the Barn Devices table or that have been recorded in Shopify orders. By default filters out TESTNAME products."
   # Devices is the master table in this Explore, all other tables/data are dependent on the records in Devices
   # Excludes TESTNAME product name rows and only includes device rows with no device record deletion date or registration deletion date
@@ -55,7 +55,7 @@ explore: devices {
 
 
 explore: device_checkins {
-  hidden: yes
+  # hidden: yes
   label: "Device Check-ins"
   description: "Device check-in data captured via Barn."
   join: devices {
