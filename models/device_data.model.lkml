@@ -55,7 +55,7 @@ explore: devices {
 
 
 explore: device_checkins {
-  # hidden: yes
+  hidden: yes
   label: "Device Check-ins"
   description: "Device check-in data captured via Barn."
   join: devices {
