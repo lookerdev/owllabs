@@ -58,7 +58,7 @@ explore: devices {
   join: device_registrations {
     type: left_outer
     relationship: one_to_many
-    sql_on: ${devices.uuid} = ${device_registrations.deviceuuid} ;;
+    sql_on: ${devices.deviceuuid} = ${device_registrations.deviceuuid} ;;
   }
   join: salesforce_accounts {
     type: left_outer
@@ -68,12 +68,12 @@ explore: devices {
   join: shopify_orders_serial_numbers {
     type: left_outer
     relationship: one_to_one
-    sql_on: lower(${devices.device_hardware_serial_number}) = lower(${shopify_orders_serial_numbers.serial_number}) ;;
+    sql_on: lower(${devices.hardware_serial}) = lower(${shopify_orders_serial_numbers.serial_number}) ;;
   }
   join: most_recent_update_attempt {
     type: left_outer
     relationship: one_to_one
-    sql_on: ${most_recent_update_attempt.deviceuuid} = ${devices.uuid} ;;
+    sql_on: ${most_recent_update_attempt.deviceuuid} = ${devices.deviceuuid} ;;
   }
   join: barn_channels {
     type: left_outer
@@ -95,6 +95,6 @@ explore: barn_channels {
   join: device_registrations {
     type: left_outer
     relationship: one_to_many
-    sql_on: ${devices.uuid} = ${device_registrations.deviceuuid} ;;
+    sql_on: ${devices.deviceuuid} = ${device_registrations.deviceuuid} ;;
   }
 }

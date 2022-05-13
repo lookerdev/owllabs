@@ -1,8 +1,10 @@
 # BEFORE PUBLISHING IN DEVICE_DATA EXPLORE, CHECK THAT ALL UPDATES TO DEVICE_VIEW ARE CAPTURED HERE
+# rename any dimension titles  - shorten? add underscores?
 
 view: devices {
   sql_table_name: public.devices_view ;;
   drill_fields: [device_id]
+  label: "Devices - new"
 
 # Dimensions
 
@@ -35,6 +37,7 @@ view: devices {
     sql: coalesce(${alias}, ${device_name}) ;;
   }
 
+# possibly remove this column from table, can replace with barn_channels view
   dimension: channel_id {
     label: "Channel ID"
     hidden: yes
@@ -42,7 +45,7 @@ view: devices {
     sql: ${TABLE}.channel_id ;;
   }
 
-# possibly remove this column, can replace with barn_channels view
+# possibly remove this column from table, can replace with barn_channels view
   dimension: channel_name {
     hidden: yes
     label: "Barn Channel Name"
@@ -51,17 +54,12 @@ view: devices {
     sql: ${TABLE}.channel_name ;;
   }
 
-# possibly remove this column, can replace with barn_channels view
+# possibly remove this column from table, can replace with barn_channels view
   dimension: barn_channel_category {
     hidden: yes
     description: "Public = customer-facing, Internal = testing, Beta = beta testing"
     type: string
     sql: ${TABLE}.channel_category;;
-    # sql: case when ${channel_name} in ('Beta1','Beta2','BETA2020107FindFreeOwl','BETA2020109VoiceCameraLock','BETA2Production','Beta3','BetaActive','BetaCustomers','BetaRetired','BetaKOZ','RhapsodyBeta') then 'Beta'
-    # when ${channel_name} in ('AnastasiaTest','AudioTest','AutoWhiteBalance','BCATest','BETA1TESTERS','BETA2USERS','BobTest','CanadiaTest','CausewayStOwls','CausewayStPROD','CausewayStQA','CausewayStUnits','CausewayStWhiteboardOwls','ChrisEngTest','ChrisHTest','ChristineSQA','ChristineTest','DesktopAppDevOTATest','DoNotUpdate','ErinHbPairedOwlTest','ErinTest','FATESTALL','FATESTOTA','GooglePreReleaseDec18','GucciTest','HBIRDBETATESTEROWLS','IlyaTest','Internal','InternalAlpha','InternalUsers','Isolated','JBTest','JohnOiotOTA','LenaTest','LifeTest','MarkInternalTestFlock','OTATEST10100','PeterTest','PhuTest','PressAndMarketing','PrestonTest','Processing','QA','RAALLVERSIONTEST','RAOTATESTV18','RDPreRelease','RetiredEng','RevertOTA99998TestKey','RevertOTA99999999','RobertTest','RussTest','RyanJCustomersQA','RyanTest','SarahAudioTest','SourceNextOffice','SpenserTest','SQAAnastasia','SQAJeffTest','SQAnastasia','SterlingTest','TomTest','V1ToV2Upgrade','VCCertsAudioTest','WBsavenshareProOldPOC','YukiTesting','ZoomUi') then 'Internal'
-    # when ${channel_name} in ('OVERRIDE','overrideQA') then 'Override'
-    # when ${channel_name} in ('00019Customers','0001Customers','1080PhasedRollout','1090PhasedRollout','AmazonVendorCentral','ANZ','ChromeIssueOTA','ConferenceRooms','Customers','DesktopAppBeta','Europe','LodiSchools','LodiSchoolsPhasedRollout','PhasedRollout','ResellerCustomers','Returns','SomervilleOfficeConferenceRoom','Unknown') then 'Public'
-    # end;;
   }
 
   dimension: bootloaderversion {
@@ -100,7 +98,8 @@ view: devices {
     sql: ${TABLE}.device_record_create_date::timestamp ;;
   }
 
-  dimension_group: device_activation_date {
+  # change name?
+  dimension_group: activated {
     label: "Device Activation"
     type: time
     timeframes: [
@@ -115,7 +114,8 @@ view: devices {
     sql: ${TABLE}.device_activation_date::timestamp ;;
   }
 
-  dimension_group: device_record_delete_date {
+  # change name?
+  dimension_group: deletedat {
     hidden: yes
     label: "Device Record Delete"
     type: time
@@ -130,18 +130,19 @@ view: devices {
     sql: ${TABLE}.device_record_delete_date::timestamp ;;
   }
 
-  dimension: device_hardware_serial_number {
+  dimension: hardware_serial {
     label: "Hardware Serial Number"
     type: string
     sql: ${TABLE}.device_hardware_serial_number ;;
   }
 
-  dimension: device_hardware_version {
+  dimension: hardware_version {
     label: "Hardware Version"
     type: string
     sql: ${TABLE}.device_hardware_version ;;
   }
 
+  # change name? (add underscore?)
   dimension: lastip {
     label: "Last IP Address"
     description: "Device's most recent IP address, captured during most recent check-in"
@@ -150,6 +151,7 @@ view: devices {
     sql: ${TABLE}.device_last_ip_address ;;
   }
 
+  # change name? (add underscore?)
   dimension: lastgeo {
     label: "Last Geo"
     type: string
@@ -162,6 +164,7 @@ view: devices {
     sql: ${TABLE}.device_last_location ;;
   }
 
+  # change name? (add underscore?)
   dimension: macaddress {
     label: "MAC Address"
     type: string
@@ -194,7 +197,7 @@ view: devices {
     sql: ${TABLE}.product_name;;
   }
 
-  dimension: serial {
+  dimension: software_serial {
     label: "Software Serial Number"
     type: string
     sql: ${TABLE}.device_serial_number ;;
@@ -206,20 +209,31 @@ view: devices {
     sql: ${TABLE}.device_settings ;;
   }
 
+  # change name? (_decimal?)
   dimension: software_version {
-    label: "Software Version"
+    label: "Current Software Version"
     description: "Device's most recent software version (decimal expansion format), captured during most recent check-in"
     type: string
     sql: ${TABLE}.device_software_version ;;
   }
 
-  dimension: software_version_number{
-    label: "Software Version (integer)"
+  # change name? (software_version_int?)
+  dimension: software_version_number {
+    label: "Current Software Version (integer)"
     description: "Device's most recent software version (integer format), captured during most recent check-in"
     type: number
+    value_format: "0"
     sql: ${TABLE}.device_software_version_number ;;
   }
 
+  # have to test if this dimension works properly
+  dimension: is_current_version {
+    description: "Whether the device's Current Software Version is the most recent production release in that device's Barn Channel."
+    type: yesno
+    sql: ${software_version_number} = ${barn_channels.current_version} ;;
+    }
+
+  # change name? (status)
   dimension: status_number {
     hidden: yes
     # description: "Status Values: 0 - New, 1 - Active, 2 - Requires Update, 3 - Updating, 4 - Inactive, 5 - Downloading Update, 6 - Offline, 7 - Archived"
@@ -243,7 +257,7 @@ view: devices {
     #           end) ;;
   }
 
-  dimension: uuid {
+  dimension: deviceuuid {
     label: "DeviceUUID"
     description: "Unique identifier for each device"
     type: string
@@ -272,11 +286,13 @@ view: devices {
     sql: ${TABLE}.first_owl_connect_meeting_date_longer_than_5_mins::timestamp ;;
   }
 
+  # change name? (add underscore?)
   dimension_group: updatedat {
     hidden: yes
     sql: ${TABLE}.updatedat ;;
   }
 
+  # change name? (add underscore?)
   dimension_group: retiredat {
     hidden: yes
     sql: ${TABLE}.retiredat ;;
@@ -314,10 +330,10 @@ view: devices {
 # Measures
   measure: device_count {
     label: "Count of Devices"
-    description: "Count of unique deviceuuid"
+    description: "Count of unique deviceuuids"
     type: count_distinct
-    sql: ${uuid} ;;
-    drill_fields: [device_id, uuid, device_name, product_name, channel_name]
+    sql: ${deviceuuid} ;;
+    drill_fields: [device_id, deviceuuid, device_name, product_name, channel_name]
   }
 
   # dimension: 6mth_average_local_talk_time_minutes {
