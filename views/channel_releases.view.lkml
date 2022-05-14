@@ -134,13 +134,18 @@ view: channel_releases {
   }
 
   dimension: release_version {
-    label: "Release Software Version (int)"
+    label: "Release Software Version (integer)"
     type: number
     value_format: "0"
-    sql: ${TABLE}.release_version ;;
+    sql: ${TABLE}.release_version_int ;;
   }
 
-# HAVE TO TEST THIS
+  dimension: release_version_decimal {
+    label: "Release Software Version"
+    type: string
+    sql: ${TABLE}.release_version_decimal ;;
+  }
+
   dimension: is_current_version {
     description: "Whether this release version is the most recent prod release for the channel."
     type: yesno
