@@ -41,11 +41,17 @@ view: barn_channels {
   }
 
   dimension: current_version {
-    label: "Current Software Release"
-    description: "The latest production software version that has been released to a Barn channel. If null, no prod software versions have been released to that channel."
+    label: "Current Software Release (integer)"
+    description: "The latest production software version that has been released to a Barn channel, integer format. If null, no prod software versions have been released to that channel."
     type: number
     value_format: "0"
-    sql: ${TABLE}.current_version ;;
+    sql: ${TABLE}.current_version_integer ;;
+  }
+
+  dimension: current_version_decimal {
+    label: "Current Software Release"
+    description: "The latest production software version that has been released to a Barn channel, decimal explansion format. If null, no prod software versions have been released to that channel."
+    sql: ${TABLE}.current_version_decimal ;;
   }
 
   dimension_group: deletedat {

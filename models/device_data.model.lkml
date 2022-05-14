@@ -72,8 +72,8 @@ explore: device_checkins {
 
 
 explore: barn_channels {
-  label: "Barn Channels - UAT"
-  description: "Details for all Barn Channels whether there are devices included in the channel or not."
+  label: "Barn Channels"
+  description: "Details for all Barn Channels whether there are devices included in the channel or not. Includes data for the devices in each channel."
   # fields: [barn_channels*, devices.device_count]
   fields: [barn_channels*, devices*,  device_registrations.count_registered_devices]
   join: devices {
