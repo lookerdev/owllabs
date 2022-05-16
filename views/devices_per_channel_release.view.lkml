@@ -88,7 +88,7 @@ view: devices_per_channel_release {
 
   dimension: device_software_version {
     # hidden: yes
-    label: "Software Version (decimal expansion)"
+    label: "Software Version"
     # description: ""
     type: string
     sql: ${TABLE}.device_software_version ;;
@@ -128,9 +128,11 @@ view: devices_per_channel_release {
     sql: ${TABLE}.registered_device_count ;;
   }
 
-  # dimension:  {}
-
-
+  dimension: is_current_version {
+    description: "Whether this release version is the most recent prod release for the channel."
+    type: yesno
+    sql: ${device_software_version_number} = ${barn_channels.current_version} ;;
+  }
 
 
 # MEASURES

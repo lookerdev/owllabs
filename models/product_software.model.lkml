@@ -26,10 +26,11 @@ explore: devices_per_channel_release {
   always_filter: {
     filters: [devices_per_channel_release.software_version_select: ""]
     }
-  # join: barn_channels {
-  #   type: left_outer
-  #   relationship:
-  # }
+  join: barn_channels {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${barn_channels.channel_id} = ${devices_per_channel_release.channel_id} ;;
+  }
 }
 
 explore: device_update_attempts {
