@@ -48,17 +48,17 @@ include: "/views/barn_channels.view.lkml"
 }
 
 # MOVED TO DEVICE_DATA
- explore: device_checkins {
-  hidden: yes
-  # hidden: yes
-  label: "Device Check-ins [orig]"
-  description: "Device check-in data captured via Barn. Nothing is filtered out."
-  join: device_view {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${device_checkins.deviceuuid} = ${device_view.uuid} ;;
-  }
-}
+# explore: device_checkins {
+#   hidden: yes
+#   # hidden: yes
+#   label: "Device Check-ins [orig]"
+#   description: "Device check-in data captured via Barn. Nothing is filtered out."
+#   join: device_view {
+#     type: left_outer
+#     relationship: many_to_one
+#     sql_on: ${device_checkins.deviceuuid} = ${device_view.uuid} ;;
+#   }
+# }
 
 # MOVE TO DEVICE_DATA
  explore: device_view {
