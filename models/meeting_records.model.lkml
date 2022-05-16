@@ -1,5 +1,8 @@
 connection: "redshift"
 label: "Device Data"
+# label: "Usage"
+
+# RENAME TO USAGE
 
 include: "/views/meeting_records.view.lkml"
 include: "/views/device_view.view.lkml"
@@ -14,12 +17,7 @@ include: "/views/barn_channels.view.lkml"
 
 
 
-# DUPLICATE THESE EXPLORES INTO DEVICE_DATA.MODEL
-# REPLACE "/views/device_view.view.lkml" WITH "/views/devices.view.lkml"
-# UPDATE ANY APPROPRIATE JOINS
-
-
-# MOVE to USAGE
+# RENAME THIS to USAGE
  explore: meeting_records {
   # hidden: yes
   description: "Data for devices that have had at least one meeting. By default filters out TESTNAME products and deleted registration dates."
