@@ -9,6 +9,7 @@ include: "/views/device_updates_downloads.view.lkml"
 include: "/views/devices.view.lkml"
 include: "/views/barn_channels.view.lkml"
 include: "/views/channel_releases.view.lkml"
+include: "/views/device_registrations.view.lkml"
 
 
 
@@ -48,10 +49,22 @@ explore: device_update_attempts {
 explore: releases_per_channel {
   # hidden: yes
   label: "Releases per Barn Channel - UAT"
+  fields: [barn_channels*, channel_releases*, devices.device_count, device_registrations.count_registered_devices]
   view_name: barn_channels
   join: channel_releases {
     type: left_outer
     relationship: many_to_one
     sql_on: ${barn_channels.channel_id} = ${channel_releases.channel_id} ;;
+  }
+  join: devices {
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${channel_releases.channel_id} = ${devices.channel_id}
+            and ${channel_releases.release_version} = ${devices.software_version_number} ;;
+  }
+  join: device_registrations {
+    type:  left_outer
+    relationship: one_to_one
+    sql_on: ${devices.deviceuuid} = ${device_registrations.deviceuuid} ;;
   }
 }
