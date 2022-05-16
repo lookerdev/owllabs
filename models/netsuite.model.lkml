@@ -3,13 +3,14 @@ connection: "redshift"
 include: "/views/dim_calendar.view.lkml"
 include: "/views/dim_calendar_distinct.view.lkml"
 
-# change these paths
-include: "/views/item_fulfillments_looker.view.lkml"
-include: "/views/revenue_by_item_looker.view.lkml"
-include: "/views/revenue_by_item_aggregated_net.view.lkml" # revenue for all accounts
-include: "/views/revenue_by_item_aggregated_gross.view.lkml" # revenue for only acount 41000: Revenue - Hardware
-include: "/views/item_fulfillments_aggregated.view.lkml"
-include: "/views/revenue_report_dimensions.view.lkml"
+include: "/views/netsuite_revenue_report/**.view.lkml"
+# include: "/views/revenue_by_item_looker.view.lkml"
+# include: "/views/revenue_by_item_aggregated_net.view.lkml" # revenue for all accounts
+# include: "/views/revenue_by_item_aggregated_gross.view.lkml" # revenue for only acount 41000: Revenue - Hardware
+# include: "/views/item_fulfillments_looker.view.lkml"
+# include: "/views/item_fulfillments_aggregated.view.lkml"
+# include: "/views/revenue_report_dimensions.view.lkml"
+
 include: "/views/netsuite_orders.view.lkml"
 include: "/views/netsuite_orders_line_items.view.lkml"
 include: "/views/netsuite_fulfillments.view.lkml"
