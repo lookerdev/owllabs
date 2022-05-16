@@ -12,6 +12,7 @@ include: "/views/google_analytics_traffic_conversion.view.lkml"
 
 
   explore: traffic_conversion {
+    persist_for: "6 hours"
     # label: "Traffic Conversion"
   # description: ""
     view_name: dim_calendar
