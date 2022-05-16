@@ -87,7 +87,7 @@ view: devices_per_channel_release {
   }
 
   dimension: device_software_version {
-    hidden: yes
+    # hidden: yes
     label: "Software Version (decimal expansion)"
     # description: ""
     type: string
@@ -127,6 +127,10 @@ view: devices_per_channel_release {
     type: number
     sql: ${TABLE}.registered_device_count ;;
   }
+
+  # dimension:  {}
+
+
 
 
 # MEASURES

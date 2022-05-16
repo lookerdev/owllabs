@@ -22,9 +22,14 @@ explore: rhapsody_sw_version_download_tracking {
 explore: devices_per_channel_release {
   label: "Devices per Channel Release"
   # description: ""
+  fields: [devices_per_channel_release*]
   always_filter: {
     filters: [devices_per_channel_release.software_version_select: ""]
     }
+  # join: barn_channels {
+  #   type: left_outer
+  #   relationship:
+  # }
 }
 
 explore: device_update_attempts {
