@@ -55,6 +55,7 @@ explore: devices {
 
 
 explore: device_checkins {
+  persist_for: "6 hours"
   # hidden: yes
   label: "Device Check-ins"
   description: "Device check-in data captured via the Barn. This table has a huge amount of rows and will take some time to load."
@@ -72,6 +73,7 @@ explore: device_checkins {
 
 
 explore: barn_channels {
+  persist_for: "6 hours"
   label: "Barn Channels"
   description: "Details for all Barn Channels whether there are devices included in the channel or not. Includes data for the devices in each channel."
   # fields: [barn_channels*, devices.device_count]
