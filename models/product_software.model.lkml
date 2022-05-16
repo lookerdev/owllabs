@@ -48,7 +48,7 @@ explore: device_update_attempts {
 
 explore: releases_per_channel {
   # hidden: yes
-  label: "Releases per Barn Channel - UAT"
+  label: "Releases per Barn Channel"
   fields: [barn_channels*, channel_releases*, devices.device_count, device_registrations.count_registered_devices]
   view_name: barn_channels
   join: channel_releases {
