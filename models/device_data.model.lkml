@@ -26,6 +26,7 @@ explore: devices {
   always_filter: {
     filters: [devices.product_name: "-TESTNAME"] # filter defaults to remove deleted registration records
   }
+  # fields: [ALL_FIELDS*, -shopify_orders_serial_numbers.serial_number]
   join: device_registrations {
     type: left_outer
     relationship: one_to_many
