@@ -4,6 +4,36 @@ view: all_fulfillments {
 
 ## DIMENSIONS
 
+  parameter: timeframe_picker {
+    label: "Date Granularity"
+    # type: unquoted
+    type: string
+    default_value: "date_month"
+    allowed_value: {
+      value: "date_date"
+      label: "Date"
+    }
+    allowed_value: {
+      value: "date_week"
+      label: "Week"
+    }
+    allowed_value: {
+      value: "date_month"
+      label: "Month"
+    }
+  }
+
+  dimension: dynamic_timeframe {
+    type: string
+    sql:
+    CASE
+    WHEN {% parameter timeframe_picker %} = 'date_date' THEN TO_DATE(${fulfillment_date}, 'YYYY-MM-DD')
+    WHEN {% parameter timeframe_picker %} = 'date_week' THEN TO_DATE(${fulfillment_week}, 'YYYY-MM-DD')
+    WHEN {% parameter timeframe_picker %} = 'date_month' THEN TO_DATE(${fulfillment_month}, 'YYYY-MM')
+    END ;;
+  }
+
+
   dimension: country_name {
     label: "Market Region"
     description: "Country of billed customer"
@@ -235,8 +265,6 @@ view: all_fulfillments {
 
 
 
-
-
 # # MEASURES
   measure: count {
     hidden: yes
@@ -281,7 +309,7 @@ view: all_fulfillments {
   }
 
   measure: sum_og_quantity_shipped {
-    label: "Meeting Owl OG Quantity Shipped"
+    label: "Meeting Owl Quantity Shipped"
     type: sum
     # sql: ${TABLE}.og_quantity_shipped ;;
     sql: ${og_quantity_shipped} ;;
@@ -289,6 +317,7 @@ view: all_fulfillments {
   }
 
   measure: sum_other_quantity_shipped {
+    hidden: yes
     label: "Other Quantity Shipped"
     type: sum
     # sql: ${TABLE}.other_quantity_shipped ;;

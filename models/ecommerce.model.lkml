@@ -23,7 +23,7 @@ include: "/views/monthly_hardware_goals_eom_projections.view.lkml"
 
 explore: all_orders_fulfillments {
   label: "All Orders & Fulfillments"
-  description: "Sales data from Shopify, Amazon, Sourcenext, and historical distributor Starin. By default includes SKUs that don't count toward revenue (replacement units, Owls For Good), which can be filtered out using Revenue SKU dimension. Excludes test SKUs."
+  description: "Sales data from Shopify, Amazon, Sourcenext, and historical distributor Starin. By default includes SKUs that don't count toward revenue (replacement units, Owls For Good), which can be filtered out using Revenue SKU dimension. Excludes test SKUs. All Orders and All Fulfillments tables are joined on date and does not link orders and fulfillments to each other."
   view_name: dim_calendar
   sql_always_where: ${dim_calendar.date_date} >= '2017-05-14' and ${dim_calendar.date_date} <= trunc(sysdate) ;;
   join: all_orders {
@@ -38,6 +38,18 @@ explore: all_orders_fulfillments {
     sql_on: ${dim_calendar.date_date} = ${all_fulfillments.fulfillment_date}
             and ${all_fulfillments.sku} not in ('TEST2','TEST3') ;;
   }
+}
+
+
+explore: all_orders {
+  sql_always_where: ${all_orders.sku} not in ('TEST2','TEST3') ;;
+  hidden: yes
+}
+
+
+explore: all_fulfillments {
+  sql_always_where: ${all_fulfillments.sku} not in ('TEST2','TEST3') ;;
+  hidden: yes
 }
 
 

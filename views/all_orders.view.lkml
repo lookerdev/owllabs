@@ -3,6 +3,35 @@ view: all_orders {
 
 ## DIMENSIONS
 
+  parameter: timeframe_picker {
+    label: "Date Granularity"
+    # type: unquoted
+    type: string
+    default_value: "date_month"
+    allowed_value: {
+      value: "date_date"
+      label: "Date"
+    }
+    allowed_value: {
+      value: "date_week"
+      label: "Week"
+    }
+    allowed_value: {
+      value: "date_month"
+      label: "Month"
+    }
+  }
+
+  dimension: dynamic_timeframe {
+    type: string
+    sql:
+    CASE
+    WHEN {% parameter timeframe_picker %} = 'date_date' THEN TO_DATE(${order_date}, 'YYYY-MM-DD')
+    WHEN {% parameter timeframe_picker %} = 'date_week' THEN TO_DATE(${order_week}, 'YYYY-MM-DD')
+    WHEN {% parameter timeframe_picker %} = 'date_month' THEN TO_DATE(${order_month}, 'YYYY-MM')
+    END ;;
+  }
+
   dimension: allitems_quantity_ordered {
     hidden: yes
     type: number
@@ -239,13 +268,14 @@ view: all_orders {
   }
 
   measure: sum_og_quantity_ordered {
-    label: "Meeting Owl OG Quantity Ordered"
+    label: "Meeting Owl Quantity Ordered"
     type: sum
     sql: ${og_quantity_ordered} ;;
     drill_fields: [sales_channel, world_region, order_number, country_name, sku, sum_og_quantity_ordered]
   }
 
   measure: sum_other_quantity_ordered {
+    hidden: yes
     label: "Other Quantity Ordered"
     type: sum
     sql: ${other_quantity_ordered} ;;
