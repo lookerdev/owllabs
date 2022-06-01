@@ -20,13 +20,7 @@ include: "/views/barn_channels.view.lkml"
 # RENAME THIS to USAGE
  explore: meeting_records {
   # hidden: yes
-  description: "Data for devices that have had at least one meeting. By default filters out TESTNAME products and deleted registration dates."
-  # sql_always_where: ${device_view.product_name} <> 'TESTNAME'
-  #                   and ${device_registrations.registration_record_delete_date} is null;;
-                    # Exludes TESTNAME product name rows and only includes devices with no record deletion date or registration deletion date
-  always_filter: {
-    filters: [device_registrations.registration_record_delete_date: "NULL", device_view.product_name: "-TESTNAME"] # filter defaults to remove deleted registration records
-  }
+  description: "Data for devices that have had at least one meeting. Does not include TESTNAME products."
   join: device_view {
     # view_label: "Devices"
       type: left_outer
@@ -58,11 +52,11 @@ include: "/views/barn_channels.view.lkml"
 #   }
 # }
 
-# MOVE TO DEVICE_DATA
+# MOVED TO DEVICE_DATA
  explore: device_view {
   hidden: yes
   view_name: device_view
-  label: "Devices [TEST - DON'T USE]"
+  label: "Devices [DON'T USE]"
   description: "Data for all devices in the Barn Devices table or that have been recorded in Shopify orders. By default filters out TESTNAME products and deleted registration dates."
   # sql_always_where: ${device_view.product_name} <> 'TESTNAME'
   #                   and ${device_registrations.registration_record_delete_date} is null;;
@@ -92,11 +86,3 @@ include: "/views/barn_channels.view.lkml"
     sql_on: ${most_recent_update_attempt.deviceuuid} = ${device_view.uuid} ;;
   }
 }
-
-# # why is this erroring?
-# explore: device_view_extend_vbj {
-#   label: "extend test"
-#   extends: [device_view]
-#   # fields: [device_registrations.registration_date, device_view.uuid, device_view.device_hardware_serial_number]
-#   # sql_always_were: ${device_view.product_name} = 'Meeting Owl Pro' ;;
-# }

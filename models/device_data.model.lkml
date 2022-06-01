@@ -15,17 +15,8 @@ include: "/views/barn_channels.view.lkml"
 explore: devices {
   # hidden: yes
   label: "Devices"
-  description: "Data for all devices in the Barn Devices table or that have been recorded in Shopify orders. By default filters out TESTNAME products."
+  description: "Data for all devices in the Barn Devices table or that have been recorded in Shopify orders. Does not include TESTNAME products."
   # Devices is the master table in this Explore, all other tables/data are dependent on the records in Devices
-  # Excludes TESTNAME product name rows and only includes device rows with no device record deletion date or registration deletion date
-  # sql_always_where: ${product_name} <> 'TESTNAME'
-  #   and ${device_registrations.registration_record_delete_date} is null;;
-  # always_filter: {
-  #   filters: [device_registrations.registration_record_delete_date: "NULL"] # filter defaults to remove deleted registration records, unneeded as deleted registration records are removed from the registrations_view table
-  # }
-  always_filter: {
-    filters: [devices.product_name: "-TESTNAME"] # filter defaults to remove deleted registration records
-  }
   # fields: [ALL_FIELDS*, -shopify_orders_serial_numbers.serial_number]
   join: device_registrations {
     type: left_outer
