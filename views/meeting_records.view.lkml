@@ -132,6 +132,7 @@ view: meeting_records {
 
   dimension: meeting_software_version {
     label: "Meeting Software Version"
+    description: "The software version a device had installed at the time of the meeting. Based on software version captured for device at most recent checkin prior to meeting start. If null, this data can't be gathered from the device's checkins (Possible reasons - the most recent checkin for device occurred after the meeting date and sw version could not be determined, no sw version captured at checkin)."
     type: string
     sql: ${TABLE}.softwareversion ;;
   }
