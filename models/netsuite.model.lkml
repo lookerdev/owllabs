@@ -28,7 +28,7 @@ include: "/views/netsuite_units_fulfilled.view.lkml"
 # keep hidden, doesn't need to be accessible outside of Revenue Report dashboard
 # should I rename this explore...? If I do I'll have to replace everything in the dashboard using it...
 explore: dim_calendar_distinct {
-  # hidden: yes
+  hidden: yes
   sql_always_where: ${dim_calendar_distinct.date_convert} >= '2021-08-01';;
   label: "Revenue & Fulfillments by Item"
   join: revenue_by_item_looker {
