@@ -425,7 +425,7 @@ view: all_orders {
   # }
 
   measure: sum_mic_quantity_ordered {
-    label: "Explansion Mic Quantity Ordered"
+    label: "Expansion Mic Quantity Ordered"
     group_label: "Hardware"
     type: sum
     sql: ${mic_quantity_ordered} ;;
