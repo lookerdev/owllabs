@@ -56,11 +56,11 @@ view: all_orders {
     sql: ${TABLE}.country_name ;;
   }
 
-  dimension: distribution_channel {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.distribution_channel ;;
-  }
+  # dimension: distribution_channel {
+  #   hidden: yes
+  #   type: string
+  #   sql: ${TABLE}.distribution_channel ;;
+  # }
 
   dimension: hq_quantity_ordered {
     hidden: yes

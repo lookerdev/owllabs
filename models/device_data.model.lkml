@@ -68,6 +68,7 @@ explore: barn_channels {
   persist_for: "6 hours"
   label: "Barn Channels"
   description: "Details for all Barn Channels whether there are devices included in the channel or not. Includes data for the devices in each channel."
+  sql_always_where: ${product_name} <> 'TESTNAME' ;;
   # fields: [barn_channels*, devices.device_count]
   fields: [barn_channels*, devices*,  device_registrations.count_registered_devices]
   join: devices {

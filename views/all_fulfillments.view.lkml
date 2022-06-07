@@ -41,11 +41,11 @@ view: all_fulfillments {
     sql: ${TABLE}.country_name ;;
   }
 
-  dimension: distribution_channel {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.distribution_channel ;;
-  }
+  # dimension: distribution_channel {
+  #   hidden: yes
+  #   type: string
+  #   sql: ${TABLE}.distribution_channel ;;
+  # }
 
   dimension_group: fulfillment {
     label: "Ship"
@@ -172,6 +172,24 @@ view: all_fulfillments {
     sql: ${TABLE}.bundle_quantity_shipped ;;
   }
 
+  dimension: ceilingmount_quantity_shipped {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.ceilingmount_quantity_shipped ;;
+  }
+
+  dimension: cuecards_quantity_shipped {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.cuecards_quantity_shipped ;;
+  }
+
+  dimension: hardcase_quantity_shipped {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.hardcase_quantity_shipped ;;
+  }
+
   dimension: hq_quantity_shipped {
     hidden: yes
     type: number
@@ -190,16 +208,28 @@ view: all_fulfillments {
     sql: ${TABLE}.lockadapter_quantity_shipped ;;
   }
 
+  dimension: markers_quantity_shipped {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.markers_quantity_shipped ;;
+  }
+
+  dimension: mic_quantity_shipped {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.mic_quantity_shipped ;;
+  }
+
+  dimension: mo3_quantity_shipped {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.mo3_quantity_shipped ;;
+  }
+
   dimension: og_quantity_shipped {
     hidden: yes
     type: number
     sql: ${TABLE}.og_quantity_shipped ;;
-  }
-
-  dimension: other_quantity_shipped {
-    hidden: yes
-    type: number
-    sql: ${TABLE}.other_quantity_shipped ;;
   }
 
   dimension: owlcare_quantity_shipped {
@@ -220,10 +250,28 @@ view: all_fulfillments {
     sql: ${TABLE}.pro_quantity_shipped ;;
   }
 
+  dimension: raas_quantity_shipped {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.raas_quantity_shipped ;;
+  }
+
+  dimension: replacement_unit_shipped {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.replacement_unit_shipped ;;
+  }
+
   dimension: subscription_quantity_shipped {
     hidden: yes
     type: number
     sql: ${TABLE}.subscription_quantity_shipped ;;
+  }
+
+  dimension: tablemount_quantity_shipped {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.tablemount_quantity_shipped ;;
   }
 
   dimension: usbextension_quantity_shipped {
@@ -232,22 +280,34 @@ view: all_fulfillments {
     sql: ${TABLE}.usbextension_quantity_shipped ;;
   }
 
+  dimension: usbconversioncable_quantity_shipped {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.usbconversioncable_quantity_shipped ;;
+  }
+
   dimension: wbo_quantity_shipped {
     hidden: yes
     type: number
     sql: ${TABLE}.wbo_quantity_shipped ;;
   }
 
+  dimension: wbtags_quantity_shipped {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.wbtags_quantity_shipped ;;
+  }
+
   dimension: owls_quantity_shipped {
     hidden: yes
     type: number
-    sql: ${og_quantity_shipped} + ${pro_quantity_shipped} ;;
+    sql: ${og_quantity_shipped} + ${pro_quantity_shipped} + ${mo3_quantity_shipped} ;;
   }
 
   dimension: hardware_quantity_shipped {
     hidden: yes
     type: number
-    sql: ${og_quantity_shipped} + ${pro_quantity_shipped} + ${wbo_quantity_shipped} + ${hq_quantity_shipped} ;;
+    sql: ${og_quantity_shipped} + ${pro_quantity_shipped} + ${wbo_quantity_shipped} + ${hq_quantity_shipped} + ${mo3_quantity_shipped} + ${mic_quantity_shipped} ;;
   }
 
   dimension: start_of_month {
@@ -286,8 +346,33 @@ view: all_fulfillments {
     drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, sum_bundle_quantity_shipped]
   }
 
+  measure: sum_ceilingmount_quantity_shipped {
+    label: "Ceiling Mount Quantity Shipped"
+    group_label: "Accessories"
+    type: sum
+    sql: ${ceilingmount_quantity_shipped} ;;
+    drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, sum_ceilingmount_quantity_shipped]
+  }
+
+  measure: sum_cuecards_quantity_shipped {
+    label: "Cue Cards Quantity Shipped"
+    group_label: "Accessories"
+    type: sum
+    sql: ${cuecards_quantity_shipped} ;;
+    drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, sum_cuecards_quantity_shipped]
+  }
+
+  measure: sum_hardcase_quantity_shipped {
+    label: "Hard Case Quantity Shipped"
+    group_label: "Accessories"
+    type: sum
+    sql: ${hardcase_quantity_shipped} ;;
+    drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, sum_hardcase_quantity_shipped]
+  }
+
   measure: sum_hq_quantity_shipped {
     label: "Meeting HQ Quantity Shipped"
+    group_label: "Hardware"
     type: sum
     sql: ${hq_quantity_shipped} ;;
     drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, sum_hq_quantity_shipped]
@@ -295,6 +380,7 @@ view: all_fulfillments {
 
   measure: sum_linecord_quantity_shipped {
     label: "Line Cord Quantity Shipped"
+    group_label: "Accessories"
     type: sum
     sql: ${linecord_quantity_shipped} ;;
     drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, sum_linecord_quantity_shipped]
@@ -302,27 +388,47 @@ view: all_fulfillments {
 
   measure: sum_lockadapter_quantity_shipped {
     label: "Lock Adapter Quantity Shipped"
+    group_label: "Accessories"
     type: sum
     # sql: ${TABLE}.lockadapter_quantity_shipped ;;
     sql: ${lockadapter_quantity_shipped} ;;
     drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, sum_lockadapter_quantity_shipped]
   }
 
+  measure: sum_markers_quantity_shipped {
+    label: "Whiteboard Markers Quantity Shipped"
+    group_label: "Accessories"
+    type: sum
+    # sql: ${TABLE}.lockadapter_quantity_shipped ;;
+    sql: ${markers_quantity_shipped} ;;
+    drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, sum_markers_quantity_shipped]
+  }
+
+  measure: sum_mic_quantity_shipped {
+    label: "Extension Mic Quantity Shipped"
+    group_label: "Hardware"
+    type: sum
+    # sql: ${TABLE}.lockadapter_quantity_shipped ;;
+    sql: ${mic_quantity_shipped} ;;
+    drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, sum_mic_quantity_shipped]
+  }
+
+  measure: sum_mo3_quantity_shipped {
+    label: "Meeting Owl 3 Quantity Shipped"
+    group_label: "Hardware"
+    type: sum
+    # sql: ${TABLE}.lockadapter_quantity_shipped ;;
+    sql: ${mo3_quantity_shipped} ;;
+    drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, sum_mo3_quantity_shipped]
+  }
+
   measure: sum_og_quantity_shipped {
     label: "Meeting Owl Quantity Shipped"
+    group_label: "Hardware"
     type: sum
     # sql: ${TABLE}.og_quantity_shipped ;;
     sql: ${og_quantity_shipped} ;;
     drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, sum_og_quantity_shipped]
-  }
-
-  measure: sum_other_quantity_shipped {
-    hidden: yes
-    label: "Other Quantity Shipped"
-    type: sum
-    # sql: ${TABLE}.other_quantity_shipped ;;
-    sql: ${other_quantity_shipped} ;;
-    drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, sum_other_quantity_shipped]
   }
 
   measure: sum_owlcare_quantity_shipped {
@@ -335,6 +441,7 @@ view: all_fulfillments {
 
   measure: sum_powersupply_quantity_shipped {
     label: "Power Supply Quantity Shipped"
+    group_label: "Accessories"
     type: sum
     # sql: ${TABLE}.powersupply_quantity_shipped ;;
     sql: ${powersupply_quantity_shipped} ;;
@@ -343,9 +450,25 @@ view: all_fulfillments {
 
   measure: sum_pro_quantity_shipped {
     label: "Meeting Owl Pro Quantity Shipped"
+    group_label: "Hardware"
     type: sum
     sql: ${pro_quantity_shipped} ;;
     drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, sum_pro_quantity_shipped]
+  }
+
+  measure: sum_raas_quantity_shipped {
+    label: "RaaS Quantity Shipped"
+    type: sum
+    sql: ${raas_quantity_shipped} ;;
+    drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, sum_raas_quantity_shipped]
+  }
+
+  measure: sum_replacement_unit_shipped {
+    hidden: yes
+    label: "Replacement Quantity Shipped"
+    type: sum
+    sql: ${replacement_unit_shipped} ;;
+    drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, sum_raas_quantity_shipped]
   }
 
   measure: sum_subscription_quantity_shipped {
@@ -356,23 +479,50 @@ view: all_fulfillments {
     drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, sum_subscription_quantity_shipped]
   }
 
+  measure: sum_tablemount_quantity_shipped {
+    label: "Table Mount Quantity Shipped"
+    group_label: "Accessories"
+    type: sum
+    sql: ${tablemount_quantity_shipped} ;;
+    drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, sum_tablemount_quantity_shipped]
+  }
+
   measure: sum_usbextension_quantity_shipped {
-    label: "USB Extension Quantity Shipped"
+    label: "USB Extension Cable Quantity Shipped"
+    group_label: "Accessories"
     type: sum
     sql: ${usbextension_quantity_shipped} ;;
     drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, sum_usbextension_quantity_shipped]
   }
 
+  measure: sum_usbconversioncable_quantity_shipped {
+    label: "USB Conversion Cable Quantity Shipped"
+    group_label: "Accessories"
+    type: sum
+    sql: ${usbconversioncable_quantity_shipped} ;;
+    drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, sum_usbconversioncable_quantity_shipped]
+  }
+
   measure: sum_wbo_quantity_shipped {
     label: "Whiteboard Owl Quantity Shipped"
+    group_label: "Hardware"
     type: sum
     sql: ${wbo_quantity_shipped} ;;
     drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, sum_wbo_quantity_shipped]
   }
 
+  measure: sum_wbtags_quantity_shipped {
+    label: "Whiteboard Tags Quantity Shipped"
+    group_label: "Accessories"
+    type: sum
+    sql: ${wbtags_quantity_shipped} ;;
+    drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, sum_wbtags_quantity_shipped]
+  }
+
   measure: sum_owls_quantity_shipped {
     label: "All Owls Quantity Shipped"
-    description: "Combination of OG and MOP units"
+    group_label: "Hardware"
+    description: "Combination of OG, MOP, and MO3 units"
     type: sum
     sql: ${owls_quantity_shipped} ;;
     drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, sum_owls_quantity_shipped]
@@ -380,7 +530,8 @@ view: all_fulfillments {
 
   measure: sum_hardware_quantity_shipped {
     label: "All Hardware Quantity Shipped"
-    description: "Combination of OG, MOP, WBO, and HQ units"
+    group_label: "Hardware"
+    description: "Combination of OG, MOP, MO3, WBO, HQ, and Mic units"
     type: sum
     sql: ${hardware_quantity_shipped} ;;
     drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, sum_hardware_quantity_shipped]
