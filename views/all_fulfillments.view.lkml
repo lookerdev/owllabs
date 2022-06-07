@@ -405,7 +405,7 @@ view: all_fulfillments {
   }
 
   measure: sum_mic_quantity_shipped {
-    label: "Extension Mic Quantity Shipped"
+    label: "Expansion Mic Quantity Shipped"
     group_label: "Hardware"
     type: sum
     # sql: ${TABLE}.lockadapter_quantity_shipped ;;
