@@ -32,22 +32,17 @@ view: all_orders {
     END ;;
   }
 
-  dimension: allitems_quantity_ordered {
+  dimension: row_number {
+    primary_key: yes
     hidden: yes
     type: number
-    sql: ${TABLE}.allitems_quantity_ordered ;;
+    sql: ${TABLE}.row_number ;;
   }
 
   dimension: billing_address_company {
     label: "Customer"
     type: string
     sql: ${TABLE}.billing_address_company ;;
-  }
-
-  dimension: bundle_quantity_ordered {
-    hidden: yes
-    type: number
-    sql: ${TABLE}.bundle_quantity_ordered ;;
   }
 
   dimension: country_name {
@@ -62,33 +57,9 @@ view: all_orders {
   #   sql: ${TABLE}.distribution_channel ;;
   # }
 
-  dimension: hq_quantity_ordered {
-    hidden: yes
-    type: number
-    sql: ${TABLE}.hq_quantity_ordered ;;
-  }
-
-  dimension: linecord_quantity_ordered {
-    hidden: yes
-    type: number
-    sql: ${TABLE}.linecord_quantity_ordered ;;
-  }
-
-  dimension: lockadapter_quantity_ordered {
-    hidden: yes
-    type: number
-    sql: ${TABLE}.lockadapter_quantity_ordered ;;
-  }
-
   dimension: marketplace_segment {
     type: string
     sql: ${TABLE}.marketplace_segment ;;
-  }
-
-  dimension: og_quantity_ordered {
-    hidden: yes
-    type: number
-    sql: ${TABLE}.og_quantity_ordered ;;
   }
 
   dimension_group: order {
@@ -109,37 +80,6 @@ view: all_orders {
   dimension: order_number {
     type: string
     sql: ${TABLE}.order_number ;;
-  }
-
-  dimension: other_quantity_ordered {
-    hidden: yes
-    type: number
-    sql: ${TABLE}.other_quantity_ordered ;;
-  }
-
-  dimension: owlcare_quantity_ordered {
-    hidden: yes
-    type: number
-    sql: ${TABLE}.owlcare_quantity_ordered ;;
-  }
-
-  dimension: powersupply_quantity_ordered {
-    hidden: yes
-    type: number
-    sql: ${TABLE}.powersupply_quantity_ordered ;;
-  }
-
-  dimension: pro_quantity_ordered {
-    hidden: yes
-    type: number
-    sql: ${TABLE}.pro_quantity_ordered ;;
-  }
-
-  dimension: row_number {
-    primary_key: yes
-    hidden: yes
-    type: number
-    sql: ${TABLE}.row_number ;;
   }
 
   dimension: sales_channel {
@@ -164,12 +104,6 @@ view: all_orders {
     sql: ${TABLE}.sku_name ;;
   }
 
-  dimension: sku_quantity_ordered {
-    hidden: yes
-    type: number
-    sql: ${TABLE}.sku_quantity_ordered ;;
-  }
-
   dimension: source {
     type: string
     sql: ${TABLE}.source ;;
@@ -180,10 +114,130 @@ view: all_orders {
     sql: ${TABLE}.store ;;
   }
 
+  dimension: world_region {
+    type: string
+    sql: ${TABLE}.world_region ;;
+    drill_fields: [country_name]
+  }
+
+  dimension: sku_quantity_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.sku_quantity_ordered ;;
+  }
+
+  dimension: allitems_quantity_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.allitems_quantity_ordered ;;
+  }
+
+  dimension: bundle_quantity_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.bundle_quantity_ordered ;;
+  }
+
+  dimension: ceilingmount_quantity_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.ceilingmount_quantity_ordered ;;
+  }
+
+  dimension: cuecards_quantity_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.cuecards_quantity_ordered ;;
+  }
+
+  dimension: hardcase_quantity_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.hardcase_quantity_ordered ;;
+  }
+
+  dimension: hq_quantity_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.hq_quantity_ordered ;;
+  }
+
+  dimension: linecord_quantity_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.linecord_quantity_ordered ;;
+  }
+
+  dimension: lockadapter_quantity_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.lockadapter_quantity_ordered ;;
+  }
+
+  dimension: markers_quantity_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.markers_quantity_ordered ;;
+  }
+
+  dimension: mic_quantity_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.mic_quantity_ordered ;;
+  }
+
+  dimension: mo3_quantity_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.mo3_quantity_ordered ;;
+  }
+
+  dimension: og_quantity_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.og_quantity_ordered ;;
+  }
+
+  dimension: owlcare_quantity_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.owlcare_quantity_ordered ;;
+  }
+
+  dimension: powersupply_quantity_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.powersupply_quantity_ordered ;;
+  }
+
+  dimension: pro_quantity_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.pro_quantity_ordered ;;
+  }
+
+  dimension: raas_quantity_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.raas_quantity_ordered ;;
+  }
+
+  dimension: replacement_unit_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.replacement_unit_ordered ;;
+  }
+
   dimension: subscription_quantity_ordered {
     hidden: yes
     type: number
     sql: ${TABLE}.subscription_quantity_ordered ;;
+  }
+
+  dimension: tablemount_quantity_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.tablemount_quantity_ordered ;;
   }
 
   dimension: usbextension_quantity_ordered {
@@ -192,28 +246,34 @@ view: all_orders {
     sql: ${TABLE}.usbextension_quantity_ordered ;;
   }
 
+  dimension: usbconversioncable_quantity_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.usbconversioncable_quantity_ordered ;;
+  }
+
   dimension: wbo_quantity_ordered {
     hidden: yes
     type: number
     sql: ${TABLE}.wbo_quantity_ordered ;;
   }
 
-  dimension: world_region {
-    type: string
-    sql: ${TABLE}.world_region ;;
-    drill_fields: [country_name]
+  dimension: wbtags_quantity_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.wbtags_quantity_ordered ;;
   }
 
   dimension: owls_quantity_ordered {
     hidden: yes
     type: number
-    sql: ${og_quantity_ordered} + ${pro_quantity_ordered} ;;
+    sql: ${og_quantity_ordered} + ${pro_quantity_ordered} + ${mo3_quantity_ordered} ;;
   }
 
   dimension: hardware_quantity_ordered {
     hidden: yes
     type: number
-    sql: ${og_quantity_ordered} + ${pro_quantity_ordered} + ${wbo_quantity_ordered} + ${hq_quantity_ordered} ;;
+    sql: ${og_quantity_ordered} + ${pro_quantity_ordered} + ${wbo_quantity_ordered} + ${hq_quantity_ordered} + ${mo3_quantity_ordered} + ${mic_quantity_ordered};;
   }
 
 
@@ -232,6 +292,14 @@ view: all_orders {
   #   sql: ${order_id} ;;
   # }
 
+  measure: sum_sku_quantity_ordered {
+    label: "SKU Quantity Ordered"
+    description: "Count of orders for each SKU"
+    type: sum
+    sql: ${sku_quantity_ordered} ;;
+    drill_fields: [sales_channel, world_region, order_number, country_name, sku, sum_sku_quantity_ordered]
+  }
+
   measure: sum_allitems_quantity_ordered {
     label: "All Items Quantity Ordered"
     type: sum
@@ -246,15 +314,95 @@ view: all_orders {
     drill_fields: [sales_channel, world_region, order_number, country_name, sum_bundle_quantity_ordered]
   }
 
+  # measure: sum_ceilingmount_quantity_ordered {
+  #   label: "Ceiling Mount Quantity Ordered"
+  #   group_label: "Accessories"
+  #   type: sum
+  #   sql: ${ceilingmount_quantity_ordered} ;;
+  #   drill_fields: [sales_channel, world_region, order_number, country_name, sum_ceilingmount_quantity_ordered]
+  # }
+
+  # measure: sum_cuecards_quantity_ordered {
+  #   label: "Cue Cards Quantity Ordered"
+  #   group_label: "Accessories"
+  #   type: sum
+  #   sql: ${cuecards_quantity_ordered} ;;
+  #   drill_fields: [sales_channel, world_region, order_number, country_name, sum_cuecards_quantity_ordered]
+  # }
+
+  # measure: sum_hardcase_quantity_ordered {
+  #   label: "Hard Case Quantity Ordered"
+  #   group_label: "Accessories"
+  #   type: sum
+  #   sql: ${hardcase_quantity_ordered} ;;
+  #   drill_fields: [sales_channel, world_region, order_number, country_name, sum_hardcase_quantity_ordered]
+  # }
+
   measure: sum_hq_quantity_ordered {
     label: "Meeting HQ Quantity Ordered"
+    group_label: "Hardware"
     type: sum
     sql: ${hq_quantity_ordered} ;;
     drill_fields: [sales_channel, world_region, order_number, country_name, sum_hq_quantity_ordered]
   }
 
+  # dimension: og_quantity_ordered {
+  #   hidden: yes
+  #   type: number
+  #   sql: ${TABLE}.og_quantity_ordered ;;
+  # }
+
+  # dimension: owlcare_quantity_ordered {
+  #   hidden: yes
+  #   type: number
+  #   sql: ${TABLE}.owlcare_quantity_ordered ;;
+  # }
+
+  # dimension: powersupply_quantity_ordered {
+  #   hidden: yes
+  #   type: number
+  #   sql: ${TABLE}.powersupply_quantity_ordered ;;
+  # }
+
+  # dimension: pro_quantity_ordered {
+  #   hidden: yes
+  #   type: number
+  #   sql: ${TABLE}.pro_quantity_ordered ;;
+  # }
+
+  # dimension: raas_quantity_ordered {
+  #   hidden: yes
+  #   type: number
+  #   sql: ${TABLE}.raas_quantity_ordered ;;
+  # }
+
+  # dimension: replacement_unit_ordered {
+  #   hidden: yes
+  #   type: number
+  #   sql: ${TABLE}.replacement_unit_ordered ;;
+  # }
+
+  # dimension: tablemount_quantity_ordered {
+  #   hidden: yes
+  #   type: number
+  #   sql: ${TABLE}.tablemount_quantity_ordered ;;
+  # }
+
+  # dimension: usbconversioncable_quantity_ordered {
+  #   hidden: yes
+  #   type: number
+  #   sql: ${TABLE}.usbconversioncable_quantity_ordered ;;
+  # }
+
+  # dimension: wbtags_quantity_ordered {
+  #   hidden: yes
+  #   type: number
+  #   sql: ${TABLE}.wbtags_quantity_ordered ;;
+  # }
+
   measure: sum_linecord_quantity_ordered {
     label: "Line Cord Quantity Ordered"
+    group_label: "Accessories"
     type: sum
     sql: ${linecord_quantity_ordered} ;;
     drill_fields: [sales_channel, world_region, order_number, country_name, sum_linecord_quantity_ordered]
@@ -262,24 +410,42 @@ view: all_orders {
 
   measure: sum_lockadapter_quantity_ordered {
     label: "Lock Adapter Quantity Ordered"
+    group_label: "Accessories"
     type: sum
     sql: ${lockadapter_quantity_ordered} ;;
     drill_fields: [sales_channel, world_region, order_number, country_name, sku, sum_lockadapter_quantity_ordered]
   }
 
+  # measure: sum_markers_quantity_ordered {
+  #   label: "Whiteboard Markers Quantity Ordered"
+  #   group_label: "Accessories"
+  #   type: sum
+  #   sql: ${markers_quantity_ordered} ;;
+  #   drill_fields: [sales_channel, world_region, order_number, country_name, sku, sum_markers_quantity_ordered]
+  # }
+
+  measure: sum_mic_quantity_ordered {
+    label: "Explansion Mic Quantity Ordered"
+    group_label: "Hardware"
+    type: sum
+    sql: ${mic_quantity_ordered} ;;
+    drill_fields: [sales_channel, world_region, order_number, country_name, sku, sum_mic_quantity_ordered]
+  }
+
+  measure: sum_mo3_quantity_ordered {
+    label: "Meeting Owl 3 Quantity Ordered"
+    group_label: "Hardware"
+    type: sum
+    sql: ${mo3_quantity_ordered} ;;
+    drill_fields: [sales_channel, world_region, order_number, country_name, sku, sum_mo3_quantity_ordered]
+  }
+
   measure: sum_og_quantity_ordered {
     label: "Meeting Owl Quantity Ordered"
+    group_label: "Hardware"
     type: sum
     sql: ${og_quantity_ordered} ;;
     drill_fields: [sales_channel, world_region, order_number, country_name, sku, sum_og_quantity_ordered]
-  }
-
-  measure: sum_other_quantity_ordered {
-    hidden: yes
-    label: "Other Quantity Ordered"
-    type: sum
-    sql: ${other_quantity_ordered} ;;
-    drill_fields: [sales_channel, world_region, order_number, country_name, sku, sum_other_quantity_ordered]
   }
 
   measure: sum_owlcare_quantity_ordered {
@@ -291,6 +457,7 @@ view: all_orders {
 
   measure: sum_powersupply_quantity_ordered {
     label: "Power Supply Quantity Ordered"
+    group_label: "Accessories"
     type: sum
     sql: ${powersupply_quantity_ordered} ;;
     drill_fields: [sales_channel, world_region, order_number, country_name, sku, sum_powersupply_quantity_ordered]
@@ -298,6 +465,7 @@ view: all_orders {
 
   measure: sum_pro_quantity_ordered {
     label: "Meeting Owl Pro Quantity Ordered"
+    group_label: "Hardware"
     type: sum
     sql: ${pro_quantity_ordered} ;;
     drill_fields: [sales_channel, world_region, order_number, country_name, sku, sum_pro_quantity_ordered]
@@ -308,11 +476,12 @@ view: all_orders {
     label: "Subscription Quantity Ordered"
     type: sum
     sql: ${subscription_quantity_ordered} ;;
-    drill_fields: [sales_channel, world_region, order_number, country_name, sku]
+    drill_fields: [sales_channel, world_region, order_number, country_name, sku, sum_subscription_quantity_ordered]
   }
 
   measure: sum_usbextension_quantity_ordered {
     label: "USB Extension Quantity Ordered"
+    group_label: "Accessories"
     type: sum
     sql: ${usbextension_quantity_ordered} ;;
     drill_fields: [sales_channel, world_region, order_number, country_name, sku, sum_usbextension_quantity_ordered]
@@ -320,6 +489,7 @@ view: all_orders {
 
   measure: sum_wbo_quantity_ordered {
     label: "Whiteboard Owl Quantity Ordered"
+    group_label: "Hardware"
     type: sum
     sql: ${wbo_quantity_ordered} ;;
     drill_fields: [sales_channel, world_region, order_number, country_name, sku, sum_wbo_quantity_ordered]
@@ -327,7 +497,8 @@ view: all_orders {
 
   measure: sum_owls_quantity_ordered {
     label: "All Owls Quantity Ordered"
-    description: "Combination of OG and MOP units"
+    description: "Combination of OG, MOP, and MO3 units"
+    group_label: "Hardware"
     type: sum
     sql: ${owls_quantity_ordered} ;;
     drill_fields: [sales_channel, world_region, order_number, country_name, sku, sum_owls_quantity_ordered]
@@ -335,19 +506,13 @@ view: all_orders {
 
   measure: sum_hardware_quantity_ordered {
     label: "All Hardware Quantity Ordered"
-    description: "Combination of OG, MOP, WBO, and HQ units"
+    description: "Combination of OG, MOP, MO3, WBO, HQ, and Mic units"
+    group_label: "Hardware"
     type: sum
     sql: ${hardware_quantity_ordered} ;;
     drill_fields: [sales_channel, world_region, order_number, country_name, sku, sum_hardware_quantity_ordered]
   }
 
-  measure: sum_sku_quantity_ordered {
-    label: "SKU Quantity Ordered"
-    description: "Count of orders for each SKU"
-    type: sum
-    sql: ${sku_quantity_ordered} ;;
-    drill_fields: [sales_channel, world_region, order_number, country_name, sku, sum_sku_quantity_ordered]
-  }
 
   measure: max_date {
     hidden: yes
