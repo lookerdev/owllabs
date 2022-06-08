@@ -314,29 +314,29 @@ view: all_orders {
     drill_fields: [sales_channel, world_region, order_number, country_name, sum_bundle_quantity_ordered]
   }
 
-  # measure: sum_ceilingmount_quantity_ordered {
-  #   label: "Ceiling Mount Quantity Ordered"
-  #   group_label: "Accessories"
-  #   type: sum
-  #   sql: ${ceilingmount_quantity_ordered} ;;
-  #   drill_fields: [sales_channel, world_region, order_number, country_name, sum_ceilingmount_quantity_ordered]
-  # }
+  measure: sum_ceilingmount_quantity_ordered {
+    label: "Ceiling Mount Quantity Ordered"
+    group_label: "Accessories"
+    type: sum
+    sql: ${ceilingmount_quantity_ordered} ;;
+    drill_fields: [sales_channel, world_region, order_number, country_name, sum_ceilingmount_quantity_ordered]
+  }
 
-  # measure: sum_cuecards_quantity_ordered {
-  #   label: "Cue Cards Quantity Ordered"
-  #   group_label: "Accessories"
-  #   type: sum
-  #   sql: ${cuecards_quantity_ordered} ;;
-  #   drill_fields: [sales_channel, world_region, order_number, country_name, sum_cuecards_quantity_ordered]
-  # }
+  measure: sum_cuecards_quantity_ordered {
+    label: "Cue Cards Quantity Ordered"
+    group_label: "Accessories"
+    type: sum
+    sql: ${cuecards_quantity_ordered} ;;
+    drill_fields: [sales_channel, world_region, order_number, country_name, sum_cuecards_quantity_ordered]
+  }
 
-  # measure: sum_hardcase_quantity_ordered {
-  #   label: "Hard Case Quantity Ordered"
-  #   group_label: "Accessories"
-  #   type: sum
-  #   sql: ${hardcase_quantity_ordered} ;;
-  #   drill_fields: [sales_channel, world_region, order_number, country_name, sum_hardcase_quantity_ordered]
-  # }
+  measure: sum_hardcase_quantity_ordered {
+    label: "Hard Case Quantity Ordered"
+    group_label: "Accessories"
+    type: sum
+    sql: ${hardcase_quantity_ordered} ;;
+    drill_fields: [sales_channel, world_region, order_number, country_name, sum_hardcase_quantity_ordered]
+  }
 
   measure: sum_hq_quantity_ordered {
     label: "Meeting HQ Quantity Ordered"
@@ -345,60 +345,6 @@ view: all_orders {
     sql: ${hq_quantity_ordered} ;;
     drill_fields: [sales_channel, world_region, order_number, country_name, sum_hq_quantity_ordered]
   }
-
-  # dimension: og_quantity_ordered {
-  #   hidden: yes
-  #   type: number
-  #   sql: ${TABLE}.og_quantity_ordered ;;
-  # }
-
-  # dimension: owlcare_quantity_ordered {
-  #   hidden: yes
-  #   type: number
-  #   sql: ${TABLE}.owlcare_quantity_ordered ;;
-  # }
-
-  # dimension: powersupply_quantity_ordered {
-  #   hidden: yes
-  #   type: number
-  #   sql: ${TABLE}.powersupply_quantity_ordered ;;
-  # }
-
-  # dimension: pro_quantity_ordered {
-  #   hidden: yes
-  #   type: number
-  #   sql: ${TABLE}.pro_quantity_ordered ;;
-  # }
-
-  # dimension: raas_quantity_ordered {
-  #   hidden: yes
-  #   type: number
-  #   sql: ${TABLE}.raas_quantity_ordered ;;
-  # }
-
-  # dimension: replacement_unit_ordered {
-  #   hidden: yes
-  #   type: number
-  #   sql: ${TABLE}.replacement_unit_ordered ;;
-  # }
-
-  # dimension: tablemount_quantity_ordered {
-  #   hidden: yes
-  #   type: number
-  #   sql: ${TABLE}.tablemount_quantity_ordered ;;
-  # }
-
-  # dimension: usbconversioncable_quantity_ordered {
-  #   hidden: yes
-  #   type: number
-  #   sql: ${TABLE}.usbconversioncable_quantity_ordered ;;
-  # }
-
-  # dimension: wbtags_quantity_ordered {
-  #   hidden: yes
-  #   type: number
-  #   sql: ${TABLE}.wbtags_quantity_ordered ;;
-  # }
 
   measure: sum_linecord_quantity_ordered {
     label: "Line Cord Quantity Ordered"
@@ -416,13 +362,13 @@ view: all_orders {
     drill_fields: [sales_channel, world_region, order_number, country_name, sku, sum_lockadapter_quantity_ordered]
   }
 
-  # measure: sum_markers_quantity_ordered {
-  #   label: "Whiteboard Markers Quantity Ordered"
-  #   group_label: "Accessories"
-  #   type: sum
-  #   sql: ${markers_quantity_ordered} ;;
-  #   drill_fields: [sales_channel, world_region, order_number, country_name, sku, sum_markers_quantity_ordered]
-  # }
+  measure: sum_markers_quantity_ordered {
+    label: "Whiteboard Markers Quantity Ordered"
+    group_label: "Accessories"
+    type: sum
+    sql: ${markers_quantity_ordered} ;;
+    drill_fields: [sales_channel, world_region, order_number, country_name, sku, sum_markers_quantity_ordered]
+  }
 
   measure: sum_mic_quantity_ordered {
     label: "Expansion Mic Quantity Ordered"
@@ -471,6 +417,30 @@ view: all_orders {
     drill_fields: [sales_channel, world_region, order_number, country_name, sku, sum_pro_quantity_ordered]
   }
 
+  measure: sum_raas_quantity_ordered {
+    label: "RaaS Quantity Ordered"
+    group_label: "Hardware"
+    type: sum
+    sql: ${raas_quantity_ordered} ;;
+    drill_fields: [sales_channel, world_region, order_number, country_name, sku, sum_raas_quantity_ordered]
+  }
+
+  measure: sum_replacement_unit_ordered {
+    hidden: yes
+    label: "Replacement Quantity Ordered"
+    type: sum
+    sql: ${replacement_unit_ordered} ;;
+    drill_fields: [sales_channel, world_region, order_number, country_name, sku, sum_replacement_unit_ordered]
+  }
+
+  measure: sum_tablemount_quantity_ordered {
+    label: "Table Mount Quantity Ordered"
+    group_label: "Accessories"
+    type: sum
+    sql: ${tablemount_quantity_ordered} ;;
+    drill_fields: [sales_channel, world_region, order_number, country_name, sku, sum_tablemount_quantity_ordered]
+  }
+
   measure: sum_subscription_quantity_ordered {
     hidden: yes
     label: "Subscription Quantity Ordered"
@@ -479,8 +449,16 @@ view: all_orders {
     drill_fields: [sales_channel, world_region, order_number, country_name, sku, sum_subscription_quantity_ordered]
   }
 
+  measure: sum_usbconversioncable_quantity_ordered {
+    label: "USB Conversion Cable Quantity Ordered"
+    group_label: "Accessories"
+    type: sum
+    sql: ${usbconversioncable_quantity_ordered} ;;
+    drill_fields: [sales_channel, world_region, order_number, country_name, sku, sum_usbconversioncable_quantity_ordered]
+  }
+
   measure: sum_usbextension_quantity_ordered {
-    label: "USB Extension Quantity Ordered"
+    label: "USB Extension Cable Quantity Ordered"
     group_label: "Accessories"
     type: sum
     sql: ${usbextension_quantity_ordered} ;;
@@ -493,6 +471,14 @@ view: all_orders {
     type: sum
     sql: ${wbo_quantity_ordered} ;;
     drill_fields: [sales_channel, world_region, order_number, country_name, sku, sum_wbo_quantity_ordered]
+  }
+
+  measure: sum_wbtags_quantity_ordered {
+    label: "Whiteboard Tags Quantity Ordered"
+    group_label: "Accessories"
+    type: sum
+    sql: ${wbtags_quantity_ordered} ;;
+    drill_fields: [sales_channel, world_region, order_number, country_name, sku, sum_wbtags_quantity_ordered]
   }
 
   measure: sum_owls_quantity_ordered {

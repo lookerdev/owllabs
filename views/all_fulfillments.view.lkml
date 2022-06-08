@@ -33,7 +33,6 @@ view: all_fulfillments {
     END ;;
   }
 
-
   dimension: country_name {
     label: "Market Region"
     description: "Country of billed customer"

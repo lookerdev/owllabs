@@ -186,7 +186,7 @@ view: google_analytics_traffic_conversion {
   # }
 
   dimension: count_orders {
-    hidden: yes
+    # hidden: yes
     type: number
     sql: ${TABLE}.count_orders ;;
   }
