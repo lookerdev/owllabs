@@ -273,7 +273,7 @@ view: all_orders {
   dimension: hardware_quantity_ordered {
     hidden: yes
     type: number
-    sql: ${og_quantity_ordered} + ${pro_quantity_ordered} + ${wbo_quantity_ordered} + ${hq_quantity_ordered} + ${mo3_quantity_ordered} + ${mic_quantity_ordered};;
+    sql: ${og_quantity_ordered} + ${pro_quantity_ordered} + ${wbo_quantity_ordered} + ${hq_quantity_ordered} + ${mo3_quantity_ordered} ;;
   }
 
 

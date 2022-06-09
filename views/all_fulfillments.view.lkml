@@ -306,7 +306,7 @@ view: all_fulfillments {
   dimension: hardware_quantity_shipped {
     hidden: yes
     type: number
-    sql: ${og_quantity_shipped} + ${pro_quantity_shipped} + ${wbo_quantity_shipped} + ${hq_quantity_shipped} + ${mo3_quantity_shipped} + ${mic_quantity_shipped} ;;
+    sql: ${og_quantity_shipped} + ${pro_quantity_shipped} + ${wbo_quantity_shipped} + ${hq_quantity_shipped} + ${mo3_quantity_shipped} ;;
   }
 
   dimension: start_of_month {
