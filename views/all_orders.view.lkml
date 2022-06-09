@@ -492,7 +492,7 @@ view: all_orders {
 
   measure: sum_hardware_quantity_ordered {
     label: "All Hardware Quantity Ordered"
-    description: "Combination of OG, MOP, MO3, WBO, HQ, and Mic units"
+    description: "Combination of OG, MOP, MO3, WBO, HQ units"
     group_label: "Hardware"
     type: sum
     sql: ${hardware_quantity_ordered} ;;

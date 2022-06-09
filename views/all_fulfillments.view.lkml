@@ -530,7 +530,7 @@ view: all_fulfillments {
   measure: sum_hardware_quantity_shipped {
     label: "All Hardware Quantity Shipped"
     group_label: "Hardware"
-    description: "Combination of OG, MOP, MO3, WBO, HQ, and Mic units"
+    description: "Combination of OG, MOP, MO3, WBO, and HQ units"
     type: sum
     sql: ${hardware_quantity_shipped} ;;
     drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, sum_hardware_quantity_shipped]
