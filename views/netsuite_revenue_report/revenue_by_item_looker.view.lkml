@@ -170,7 +170,7 @@ view: revenue_by_item_looker {
     type: sum
     sql: ${TABLE}.amount ;;
     value_format_name: usd
-    drill_fields: [transaction_number, customer_name, channel, marketplace_segment, item, product_category, product_line, account_line_name, accounting_period_name]
+    drill_fields: [transaction_number, customer_name, channel, marketplace_segment, item, product_category, product_line, account_line_name, accounting_period_name, total_revenue]
   }
 
   measure: rounded_total_revenue {
@@ -180,6 +180,6 @@ view: revenue_by_item_looker {
     sql: ${TABLE}.amount ;;
     # value_format_name: usd
     value_format: "$#,##0"
-    drill_fields: [transaction_number, customer_name, channel, marketplace_segment, item, product_category, product_line, account_line_name, accounting_period_name]
+    drill_fields: [transaction_number, customer_name, channel, marketplace_segment, item, product_category, product_line, account_line_name, accounting_period_name, rounded_total_revenue]
   }
 }
