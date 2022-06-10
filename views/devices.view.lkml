@@ -298,18 +298,50 @@ view: devices {
   }
 
   dimension_group: lastconnectedbruintime {
-    hidden: yes
+    label: "lastconnectedbruintime"
+    group_label: "Bruin Connect"
     sql: ${TABLE}.lastconnectedbruintime ;;
   }
 
   dimension: lastconnectedbruinstatus {
-    hidden: yes
+    label: "lastconnectedbruinstatus"
+    group_label: "Bruin Connect"
     sql: ${TABLE}.lastconnectedbruinstatus ;;
   }
 
   dimension: bruinlastconnectto {
-    hidden: yes
+    label: "bruinlastconnectto"
+    group_label: "Bruin Connect"
     sql: ${TABLE}.bruinlastconnectto ;;
+  }
+
+  dimension_group: most_recent_meeting {
+    label: "Most Recent Meeting"
+    type: time
+    timeframes: [
+      raw,
+      date,
+      time,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.most_recent_meeting_date::timestamp ;;
+  }
+
+  dimension: most_recent_meeting_length_seconds {
+    hidden: yes
+    label: "Most Recent Meeting Length (seconds)"
+    type: number
+    sql: ${TABLE}.most_recent_meeting_length_seconds ;;
+  }
+
+  dimension: most_recent_meeting_length_minutes {
+    label: "Most Recent Meeting Length (minutes)"
+    description: "Length in minutes of device's most recent meeting."
+    type: number
+    sql: ${most_recent_meeting_length_seconds} / 60 ;;
   }
 
 
