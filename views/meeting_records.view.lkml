@@ -138,7 +138,7 @@ view: meeting_records {
   }
 
   dimension: durationseconds_per_meeting {
-    # hidden: yes
+    hidden: yes
     label: "Meeting Length - seconds"
     description: "The number of minutes that each individual meeting takes. Use this to filter by meeting length."
     type: number
@@ -149,8 +149,8 @@ view: meeting_records {
     label: "Meeting Length (minutes)"
     description: "The number of seconds that each individual meeting takes. Use this to filter by meeting length."
     type: number
-    sql: ${TABLE}.durationseconds / 60.0 ;;
-    value_format: "0" # integer
+    sql: ${TABLE}.durationseconds / 60 ;;
+    # value_format: "0" # integer
   }
 
   dimension: hour {
