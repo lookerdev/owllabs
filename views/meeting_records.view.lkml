@@ -138,7 +138,7 @@ view: meeting_records {
   }
 
   dimension: durationseconds_per_meeting {
-    hidden: yes
+    # hidden: yes
     label: "Meeting Length - seconds"
     description: "The number of minutes that each individual meeting takes. Use this to filter by meeting length."
     type: number
@@ -149,7 +149,8 @@ view: meeting_records {
     label: "Meeting Length (minutes)"
     description: "The number of seconds that each individual meeting takes. Use this to filter by meeting length."
     type: number
-    sql: ${TABLE}.durationseconds / 60 ;;
+    sql: ${TABLE}.durationseconds / 60.0 ;;
+    value_format: "0" # integer
   }
 
   dimension: hour {
@@ -194,20 +195,22 @@ view: meeting_records {
     label: "Total Meeting Seconds"
     description: "Total sum of meeting seconds for all devices"
     type: sum
-    sql: ${TABLE}.durationseconds ;;
+    sql: ${durationseconds_per_meeting} ;;
   }
 
   measure: durationminutes {
     label: "Total Meeting Minutes"
     description: "Total sum of meeting minutes for all devices"
     type: number
-    sql: sum(${TABLE}.durationseconds) / 60 ;;
+    sql: sum(${durationseconds_per_meeting}) / 60.0 ;;
+    value_format: "0" # integer
   }
 
   measure: durationhours {
     label: "Total Meeting Hours"
     type: number
-    sql: sum(${TABLE}.durationseconds) / 3600;;
+    sql: sum(${durationseconds_per_meeting}) / 3600.0 ;;
+    value_format: "0.0" #adds 1 decimal place
   }
 
   measure: avg_hours_per_device{
