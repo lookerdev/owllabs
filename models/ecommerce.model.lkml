@@ -54,7 +54,7 @@ explore: all_fulfillments {
 }
 
 explore: distributor_sellthrough {
-  hidden: yes
+  # hidden: yes
 }
 
 explore: shopify_orders_fulfillments {

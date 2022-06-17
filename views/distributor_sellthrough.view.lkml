@@ -183,6 +183,7 @@ view: distributor_sellthrough {
   }
 
   measure: max_ship_date {
+    label: "Most Recent Ship Date"
     type: date
     sql: max(${ship_date}) ;;
   }
