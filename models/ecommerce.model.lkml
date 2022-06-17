@@ -53,7 +53,9 @@ explore: all_fulfillments {
   hidden: yes
 }
 
-explore: distributor_sellthrough {}
+explore: distributor_sellthrough {
+  hidden: yes
+}
 
 explore: shopify_orders_fulfillments {
   label: "Shopify Orders & Fulfillments"
