@@ -16,6 +16,7 @@ include: "/views/all_fulfillments.view.lkml"
 # include: "/views/shopify_direct_hardware_orders_count.view.lkml"
 include: "/views/dim_calendar_distinct.view.lkml"
 include: "/views/monthly_hardware_goals_eom_projections.view.lkml"
+include: "/views/distributor_sellthrough.view.lkml"
 # include: "/**/*.view.lkml"                 # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
@@ -52,6 +53,7 @@ explore: all_fulfillments {
   hidden: yes
 }
 
+explore: distributor_sellthrough {}
 
 explore: shopify_orders_fulfillments {
   label: "Shopify Orders & Fulfillments"
