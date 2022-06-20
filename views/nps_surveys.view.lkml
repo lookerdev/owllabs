@@ -355,9 +355,27 @@ view: nps_surveys {
   }
 
   dimension: survey_iteration {
-    description: "Which round of survey sends - 0mo is the initial send, 6mo is the send 6 months from initial, 12mo is the send 12 months from initial"
+    description: "Which round of survey sends - 0mo is the first send immediately following purchase, 6mo is the send 6 months after purchase, 12mo is the send 12 months after purchase"
     type: string
     sql: ${TABLE}.survey_iteration ;;
+    # alpha_sort: yes
+    # case: {
+    #   when: {
+    #     sql: ${TABLE}.survey_iteration = '0mo' ;;
+    #     label: "At Purchase"
+    #   }
+    #   when: {
+    #     sql: ${TABLE}.survey_iteration = '6mo' ;;
+    #     label: "6 months after"
+    #   }
+    #   when: {
+    #     sql: ${TABLE}.survey_iteration = '12mo' ;;
+    #     label: "12 months after"
+    #   }
+    #   # else: "Unknown"
+    # }
+
+
   }
 
   dimension: test_response {
