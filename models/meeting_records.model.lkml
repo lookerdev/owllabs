@@ -52,7 +52,7 @@ include: "/views/barn_channels.view.lkml"
 #   }
 # }
 
-# MOVED TO DEVICE_DATA
+# MOVED TO DEVICE_DATA - DON'T USE
  explore: device_view {
   hidden: yes
   view_name: device_view

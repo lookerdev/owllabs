@@ -1,6 +1,9 @@
 view: netsuite_orders {
   sql_table_name: public.netsuite_orders ;;
 
+
+## DIMENSIONS
+
   dimension: billing_country {
     type: string
     sql: ${TABLE}.billing_country ;;
@@ -17,24 +20,9 @@ view: netsuite_orders {
   }
 
   dimension: currency_exchange_rate {
-    type: string
-    sql: ${TABLE}.currency_exchange_rate ;;
-  }
-
-  dimension: customer_internalid {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.customer_internalid ;;
-  }
-
-  dimension: customer_name {
-    type: string
-    sql: ${TABLE}.customer_name ;;
-  }
-
-  dimension: discount {
     type: number
-    sql: ${TABLE}.discount ;;
+    value_format: "0.00"
+    sql: ${TABLE}.currency_exchange_rate ;;
   }
 
   dimension: discount_name {
@@ -42,21 +30,43 @@ view: netsuite_orders {
     sql: ${TABLE}.discount_name ;;
   }
 
+  dimension: discount_total {
+    type: number
+    sql: ${TABLE}.discount_total ;;
+  }
+
+  dimension: email {
+    type: string
+    sql: ${TABLE}.email ;;
+  }
+
+  dimension: entity_internalid {
+    # hidden: yes
+    type: string
+    sql: ${TABLE}.entity_internalid ;;
+  }
+
+  dimension: entity_name {
+    type: string
+    sql: ${TABLE}.entity_name ;;
+  }
+
+  dimension: externalid {
+    hidden: yes
+    type: string
+    sql: ${TABLE}.externalid ;;
+  }
+
+  dimension: internalid {
+    hidden: yes
+    primary_key: yes
+    type: string
+    sql: ${TABLE}.internalid ;;
+  }
+
   dimension: is_taxable {
     type: yesno
     sql: ${TABLE}.is_taxable ;;
-  }
-
-  dimension: line_items_subtotal_agg {
-    hidden: yes
-    type: number
-    sql: ${TABLE}.subtotal_line_items_agg ;;
-  }
-
-  dimension: line_items_subtotal_agg_usd {
-    hidden: yes
-    type: number
-    sql: ${TABLE}.subtotal_usd_line_items_agg ;;
   }
 
   dimension: list_order_skus {
@@ -75,7 +85,7 @@ view: netsuite_orders {
     sql: ${TABLE}.memo ;;
   }
 
-  dimension_group: sales_order {
+  dimension_group: order {
     type: time
     timeframes: [
       raw,
@@ -85,49 +95,37 @@ view: netsuite_orders {
       quarter,
       year
     ]
-    sql: ${TABLE}.sales_order_date ;;
+    sql: ${TABLE}.order_date ;;
   }
 
   dimension: month_num_year {
     hidden: yes
     type: string
-    sql: ${sales_order_month} || ' ' || ${sales_order_year};;
+    sql: ${order_month} || ' ' || ${order_year};;
   }
 
-  dimension_group: sales_order_delete {
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.sales_order_delete_date ;;
-  }
+  # dimension_group: sales_order_delete {
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     year
+  #   ]
+  #   sql: ${TABLE}.sales_order_delete_date ;;
+  # }
 
-  dimension: sales_order_externalid {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.sales_order_externalid ;;
-  }
-
-  dimension: sales_order_internalid {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.sales_order_internalid ;;
-  }
-
-  dimension: sales_order_number {
+  dimension: order_number {
     label: "Sales Order Number"
     type: string
-    sql: ${TABLE}.sales_order_number ;;
+    sql: ${TABLE}.order_number ;;
   }
 
-  dimension: sales_order_status {
+  dimension: status {
     type: string
-    sql: ${TABLE}.sales_order_status ;;
+    sql: ${TABLE}.status ;;
   }
 
   measure: quantity_ordered {
@@ -135,22 +133,15 @@ view: netsuite_orders {
     sql: ${TABLE}.quantity_ordered ;;
   }
 
-  dimension: row_num {
-    primary_key: yes
-    hidden: yes
-    type: number
-    sql: ${TABLE}.row_num ;;
-  }
-
   dimension: sales_rep {
     type: string
     sql: ${TABLE}.sales_rep ;;
   }
 
-  dimension: sales_rep_id {
+  dimension: sales_rep_internalid {
     hidden: yes
     type: string
-    sql: ${TABLE}.sales_rep_id ;;
+    sql: ${TABLE}.sales_rep_internalid ;;
   }
 
   dimension: salesforce_opportunity_id {
@@ -160,12 +151,13 @@ view: netsuite_orders {
 
   dimension: shipping_cost {
     type: number
+    value_format: "0.00"
     sql: ${TABLE}.shipping_cost ;;
   }
 
-  dimension: shopify_marketplace {
+  dimension: shopify_store {
     type: string
-    sql: ${TABLE}.shopify_marketplace ;;
+    sql: ${TABLE}.shopify_store ;;
   }
 
   dimension: shopify_order_name {
@@ -178,21 +170,34 @@ view: netsuite_orders {
     sql: ${TABLE}.shopify_order_number ;;
   }
 
-  dimension: subsidiary {
+  dimension: subsidiary_name {
     type: string
-    sql: ${TABLE}.subsidiary ;;
+    sql: ${TABLE}.subsidiary_name ;;
   }
 
   dimension: subtotal {
     type: number
+    value_format: "0.00"
     sql: ${TABLE}.subtotal ;;
   }
+
+  # dimension: subtotal_line_items_agg {
+  #   hidden: yes
+  #   type: number
+  #   sql: ${TABLE}.subtotal_line_items_agg ;;
+  # }
 
   measure: subtotal_usd {
     type: sum
     value_format_name: usd
     sql: ${TABLE}.subtotal_usd ;;
   }
+
+  # dimension: subtotal_usd_line_items_agg {
+  #   hidden: yes
+  #   type: number
+  #   sql: ${TABLE}.subtotal_usd_line_items_agg ;;
+  # }
 
   dimension: tax_rate {
     type: number
@@ -223,6 +228,6 @@ view: netsuite_orders {
 # MEASURES
   measure: count {
     type: count
-    drill_fields: [discount_name, customer_name]
+    drill_fields: [order_number, entity_name]
   }
 }

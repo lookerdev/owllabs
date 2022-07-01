@@ -3,7 +3,8 @@ view: shopify_fulfillments_line_items_view {
   label: "Shopify Fulfillments"
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
-  sql_table_name: public.shopify_fulfillments_view ;;
+  sql_table_name: public.shopify_fulfillments_line_items_view ;;
+
 
 # # DIMENSIONS
 

@@ -12,8 +12,6 @@ include: "/views/channel_releases.view.lkml"
 include: "/views/device_registrations.view.lkml"
 
 
-
-
 explore: rhapsody_sw_version_download_tracking {
   label: "Rhapsody Software Download Tracking"
   # description: ""

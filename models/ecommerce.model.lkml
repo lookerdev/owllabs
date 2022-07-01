@@ -103,7 +103,7 @@ explore: netsuite_orders_fulfillments {
   join: netsuite_orders {
     type: left_outer
     relationship: one_to_many
-    sql_on: ${dim_calendar.date_date} = ${netsuite_orders.sales_order_date} ;;
+    sql_on: ${dim_calendar.date_date} = ${netsuite_orders.order_date} ;;
   }
   # join: netsuite_orders_line_items {
   #   type: left_outer
