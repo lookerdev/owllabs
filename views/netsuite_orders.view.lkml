@@ -98,11 +98,11 @@ view: netsuite_orders {
     sql: ${TABLE}.order_date ;;
   }
 
-  dimension: month_num_year {
-    hidden: yes
-    type: string
-    sql: ${order_month} || ' ' || ${order_year};;
-  }
+  # dimension: month_num_year {
+  #   hidden: yes
+  #   type: string
+  #   sql: ${order_month} || ' ' || ${order_year};;
+  # }
 
   # dimension_group: sales_order_delete {
   #   type: time
@@ -149,7 +149,7 @@ view: netsuite_orders {
     sql: ${TABLE}.salesforce_opportunity_id ;;
   }
 
-  dimension: shipping_cost {
+  dimension: shipping_total {
     type: number
     value_format: "0.00"
     sql: ${TABLE}.shipping_cost ;;
