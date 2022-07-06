@@ -309,6 +309,7 @@ view: all_orders {
 
   measure: sum_bundle_quantity_ordered {
     label: "Bundle Quantity Ordered"
+    hidden: yes
     type: sum
     sql: ${bundle_quantity_ordered} ;;
     drill_fields: [sales_channel, world_region, order_number, country_name, sum_bundle_quantity_ordered]

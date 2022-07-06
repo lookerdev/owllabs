@@ -340,6 +340,7 @@ view: all_fulfillments {
 
   measure: sum_bundle_quantity_shipped {
     label: "Bundle Quantity Shipped"
+    hidden: yes
     type: sum
     sql: ${bundle_quantity_shipped} ;;
     drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, sum_bundle_quantity_shipped]
