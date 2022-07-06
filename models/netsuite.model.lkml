@@ -15,6 +15,7 @@ include: "/views/netsuite_orders.view.lkml"
 # include: "/views/netsuite_orders_line_items.view.lkml"
 # include: "/views/netsuite_fulfillments.view.lkml"
 # include: "/views/netsuite_fulfillments_line_items.view.lkml"
+include: "/views/shopify_orders.view.lkml"
 
 
 # include: "*.dashboard.lookml"
@@ -83,8 +84,15 @@ include: "/views/netsuite_orders.view.lkml"
     }
   }
 
-  explore: billing_invoicing_netsuite_shopify{
-    label: "Billing & Invoicing Validation (Netsuite vs. Shopify)"
-    # description: ""
-    view_name: netsuite_orders
-  }
+  # explore: billing_invoicing_netsuite_shopify{
+  #   hidden: yes
+  #   label: "Billing & Invoicing Validation (Netsuite vs. Shopify)"
+  #   # description: ""
+  #   view_name: netsuite_orders
+  #   join: shopify_orders {
+  #     type: inner
+  #     # relationship:
+  #     sql_on: ${netsuite_orders.shopify_order_name} = ${shopify_orders.name}
+  #             and ${netsuite_orders.shopify_store} = ${shopify_orders.store};;
+  #   }
+  # }

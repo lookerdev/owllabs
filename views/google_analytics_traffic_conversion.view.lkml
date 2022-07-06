@@ -41,7 +41,7 @@ view: google_analytics_traffic_conversion {
                   sum(wbo_quantity_ordered) as total_wbo_ordered,
                   sum(pro_quantity_ordered) + sum(og_quantity_ordered) as total_owls_ordered,
                   sum(pro_quantity_ordered) + sum(og_quantity_ordered) + sum(hq_quantity_ordered) + sum(wbo_quantity_ordered) as total_hardware_ordered
-                  from shopify_orders_view sov
+                  from shopify_orders_line_items_view sov
                   where distribution_channel <> 'Channel'
                   and (pro_quantity_ordered + og_quantity_ordered + hq_quantity_ordered + wbo_quantity_ordered) > 0 /*at least one of these devices ordered that day*/
                   --and (pro_quantity_ordered > 0 or og_quantity_ordered > 0 or hq_quantity_ordered > 0 or wbo_quantity_ordered > 0)
