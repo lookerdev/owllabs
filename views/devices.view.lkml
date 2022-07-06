@@ -298,19 +298,19 @@ view: devices {
   }
 
   dimension_group: lastconnectedbruintime {
-    label: "lastconnectedbruintime"
+    label: "Last Connected Bruin Time"
     group_label: "Bruin Connect"
     sql: ${TABLE}.lastconnectedbruintime ;;
   }
 
   dimension: lastconnectedbruinstatus {
-    label: "lastconnectedbruinstatus"
+    label: "Last Connected Bruin Status"
     group_label: "Bruin Connect"
     sql: ${TABLE}.lastconnectedbruinstatus ;;
   }
 
   dimension: bruinlastconnectto {
-    label: "bruinlastconnectto"
+    label: "Bruin Last Connect To"
     group_label: "Bruin Connect"
     sql: ${TABLE}.bruinlastconnectto ;;
   }
