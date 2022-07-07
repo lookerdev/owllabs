@@ -85,6 +85,11 @@ view: shopify_orders_line_items_view {
     sql: ${TABLE}.line_item_id ;;
   }
 
+  dimension: marketplace_segment {
+    type: string
+    sql: ${TABLE}.marketplace_segment ;;
+  }
+
   # dimension: netsuite_customer_internalid {
   #   hidden: yes
   #   type: string
@@ -174,16 +179,11 @@ view: shopify_orders_line_items_view {
     sql: ${TABLE}.sales_channel ;;
   }
 
-  dimension: sales_rep {
-    type: string
-    sql: ${TABLE}.sales_rep_name ;;
-  }
-
-  dimension: sales_order_internalid {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.sales_order_internalid ;;
-  }
+  # dimension: sales_order_internalid {
+  #   hidden: yes
+  #   type: string
+  #   sql: ${TABLE}.sales_order_internalid ;;
+  # }
 
   dimension: shopify_tags_cam {
     hidden: yes
@@ -201,6 +201,11 @@ view: shopify_orders_line_items_view {
     hidden: yes
     type: string
     sql: ${TABLE}.shopify_tags_sales_rep ;;
+  }
+
+  dimension: sales_rep {
+    type: string
+    sql: ${TABLE}.sales_rep_name ;;
   }
 
   dimension: sku {
@@ -237,6 +242,8 @@ view: shopify_orders_line_items_view {
     sql: ${TABLE}.world_region ;;
   }
 
+
+
   dimension: allitems_quantity_ordered {
     hidden: yes
     type: number
@@ -247,6 +254,24 @@ view: shopify_orders_line_items_view {
     hidden: yes
     type: number
     sql: ${TABLE}.bundle_quantity_ordered ;;
+  }
+
+  dimension: ceilingmount_quantity_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.ceilingmount_quantity_ordered ;;
+  }
+
+  dimension: cuecards_quantity_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.cuecards_quantity_ordered ;;
+  }
+
+  dimension: hardcase_quantity_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.hardcase_quantity_ordered ;;
   }
 
   dimension: hq_quantity_ordered {
@@ -267,16 +292,28 @@ view: shopify_orders_line_items_view {
     sql: ${TABLE}.lockadapter_quantity_ordered ;;
   }
 
+  dimension: markers_quantity_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.markers_quantity_ordered ;;
+  }
+
+  dimension: mic_quantity_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.mic_quantity_ordered ;;
+  }
+
+  dimension: mo3_quantity_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.mo3_quantity_ordered ;;
+  }
+
   dimension: og_quantity_ordered {
     hidden: yes
     type: number
     sql: ${TABLE}.og_quantity_ordered ;;
-  }
-
-  dimension: other_quantity_ordered {
-    hidden: yes
-    type: number
-    sql: ${TABLE}.other_quantity_ordered ;;
   }
 
   dimension: owlcare_quantity_ordered {
@@ -297,10 +334,34 @@ view: shopify_orders_line_items_view {
     sql: ${TABLE}.pro_quantity_ordered ;;
   }
 
+  dimension: raas_quantity_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.raas_quantity_ordered ;;
+  }
+
+  dimension: replacement_unit_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.replacement_unit_ordered ;;
+  }
+
   dimension: subscription_quantity_ordered {
     hidden: yes
     type: number
     sql: ${TABLE}.subscription_quantity_ordered ;;
+  }
+
+  dimension: tablemount_quantity_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.tablemount_quantity_ordered ;;
+  }
+
+  dimension: usbconversioncable_quantity_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.usbconversioncable_quantity_ordered ;;
   }
 
   dimension: usbextension_quantity_ordered {
@@ -315,16 +376,22 @@ view: shopify_orders_line_items_view {
     sql: ${TABLE}.wbo_quantity_ordered ;;
   }
 
+  dimension: wbtags_quantity_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.wbtags_quantity_ordered ;;
+  }
+
   dimension: owls_quantity_ordered {
     hidden: yes
     type: number
-    sql: ${og_quantity_ordered} + ${pro_quantity_ordered} ;;
+    sql: ${og_quantity_ordered} + ${pro_quantity_ordered} + ${mo3_quantity_ordered} ;;
   }
 
   dimension: hardware_quantity_ordered {
     hidden: yes
     type: number
-    sql: ${og_quantity_ordered} + ${pro_quantity_ordered} + ${wbo_quantity_ordered} + ${hq_quantity_ordered} ;;
+    sql: ${og_quantity_ordered} + ${pro_quantity_ordered} + ${wbo_quantity_ordered} + ${hq_quantity_ordered} + ${mo3_quantity_ordered} ;;
   }
 
 
@@ -345,44 +412,88 @@ view: shopify_orders_line_items_view {
 
   measure: sum_allitems_quantity_ordered {
     label: "All Items Quantity Ordered"
+    hidden: yes
     type: sum
     sql: ${allitems_quantity_ordered} ;;
   }
 
   measure: sum_bundle_quantity_ordered {
+    hidden: yes
     label: "Bundle Quantity Ordered"
     type: sum
     sql: ${bundle_quantity_ordered} ;;
   }
 
+  measure: sum_ceilingmount_quantity_ordered {
+    label: "Ceiling Mount Quantity Ordered"
+    group_label: "Accessories"
+    type: sum
+    sql: ${ceilingmount_quantity_ordered} ;;
+  }
+
+  measure: sum_cuecards_quantity_ordered {
+    # hidden: yes
+    label: "Cue Cards Quantity Ordered"
+    group_label: "Accessories"
+    type: sum
+    sql: ${cuecards_quantity_ordered} ;;
+  }
+
+  measure: sum_hardcase_quantity_ordered {
+    # hidden: yes
+    label: "Hard Case Quantity Ordered"
+    group_label: "Accessories"
+    type: sum
+    sql: ${hardcase_quantity_ordered} ;;
+  }
+
   measure: sum_hq_quantity_ordered {
     label: "Meeting HQ Quantity Ordered"
+    # group_label: "Hardware"
     type: sum
     sql: ${hq_quantity_ordered} ;;
   }
 
   measure: sum_linecord_quantity_ordered {
     label: "Line Cord Quantity Ordered"
+    group_label: "Accessories"
     type: sum
     sql: ${linecord_quantity_ordered} ;;
   }
 
   measure: sum_lockadapter_quantity_ordered {
     label: "Lock Adapter Quantity Ordered"
+    group_label: "Accessories"
     type: sum
     sql: ${lockadapter_quantity_ordered} ;;
   }
 
-  measure: sum_og_quantity_ordered {
-    label: "Meeting Owl OG Quantity Ordered"
+  measure: sum_markers_quantity_ordered {
+    label: "Markers Quantity Ordered"
+    group_label: "Accessories"
     type: sum
-    sql: ${og_quantity_ordered} ;;
+    sql: ${markers_quantity_ordered} ;;
   }
 
-  measure: sum_other_quantity_ordered {
-    label: "Other Quantity Ordered"
+  measure: sum_mic_quantity_ordered {
+    label: "Extension Mic Quantity Ordered"
+    # group_label: "Hardware"
     type: sum
-    sql: ${other_quantity_ordered} ;;
+    sql: ${mic_quantity_ordered} ;;
+  }
+
+  measure: sum_mo3_quantity_ordered {
+    label: "Meeting Owl 3 Quantity Ordered"
+    # group_label: "Hardware"
+    type: sum
+    sql: ${mo3_quantity_ordered} ;;
+  }
+
+  measure: sum_og_quantity_ordered {
+    label: "Meeting Owl OG Quantity Ordered"
+    # group_label: "Hardware"
+    type: sum
+    sql: ${og_quantity_ordered} ;;
   }
 
   measure: sum_owlcare_quantity_ordered {
@@ -393,14 +504,31 @@ view: shopify_orders_line_items_view {
 
   measure: sum_powersupply_quantity_ordered {
     label: "Power Supply Quantity Ordered"
+    group_label: "Accessories"
     type: sum
     sql: ${powersupply_quantity_ordered} ;;
   }
 
   measure: sum_pro_quantity_ordered {
     label: "Meeting Owl Pro Quantity Ordered"
+    # group_label: "Hardware"
     type: sum
     sql: ${pro_quantity_ordered} ;;
+  }
+
+  measure: sum_raas_quantity_ordered {
+    hidden: yes
+    label: "RaaS Quantity Ordered"
+    # group_label: "Hardware"
+    type: sum
+    sql: ${raas_quantity_ordered} ;;
+  }
+
+  measure: sum_replacement_unit_ordered {
+    hidden: yes
+    # group_label: "Hardware"
+    type: sum
+    sql: ${replacement_unit_ordered} ;;
   }
 
   measure: sum_subscription_quantity_ordered {
@@ -409,8 +537,23 @@ view: shopify_orders_line_items_view {
     sql: ${subscription_quantity_ordered} ;;
   }
 
+  measure: sum_tablemount_quantity_ordered {
+    label: "Table Mount Quantity Ordered"
+    group_label: "Accessories"
+    type: sum
+    sql: ${tablemount_quantity_ordered} ;;
+  }
+
+  measure: sum_usbconversioncable_quantity_ordered {
+    label: "USB Conversion Cable Quantity Ordered"
+    group_label: "Accessories"
+    type: sum
+    sql: ${usbconversioncable_quantity_ordered} ;;
+  }
+
   measure: sum_usbextension_quantity_ordered {
-    label: "USB Extension Quantity Ordered"
+    label: "USB Extension Cable Quantity Ordered"
+    group_label: "Accessories"
     type: sum
     sql: ${usbextension_quantity_ordered} ;;
   }
@@ -419,6 +562,13 @@ view: shopify_orders_line_items_view {
     label: "Whiteboard Owl Quantity Ordered"
     type: sum
     sql: ${wbo_quantity_ordered} ;;
+  }
+
+  measure: sum_wbtags_quantity_ordered {
+    label: "Whiteboard Tags Quantity Ordered"
+    group_label: "Accessories"
+    type: sum
+    sql: ${wbtags_quantity_ordered} ;;
   }
 
   measure: sum_pre_tax_price {
@@ -434,22 +584,16 @@ view: shopify_orders_line_items_view {
     sql: ${pre_tax_price_usd} ;;
   }
 
-  measure: average_pre_tax_price {
-    hidden: yes
-    type: average
-    sql: ${pre_tax_price} ;;
-  }
-
   measure: sum_owls_quantity_ordered {
     label: "All Owls Quantity Ordered"
-    description: "Combination of OG and MOP units"
+    description: "Combination of OG, MOP, and MO3 units"
     type: sum
     sql: ${owls_quantity_ordered} ;;
   }
 
   measure: sum_hardware_quantity_ordered {
     label: "All Hardware Quantity Ordered"
-    description: "Combination of OG, MOP, WBO, and HQ units"
+    description: "Combination of OG, MOP, MO3, WBO, and HQ units"
     type: sum
     sql: ${hardware_quantity_ordered} ;;
   }
