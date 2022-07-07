@@ -123,7 +123,7 @@ view: all_orders {
   dimension: sku_quantity_ordered {
     hidden: yes
     type: number
-    sql: ${TABLE}.sku_quantity_ordered ;;
+    sql: ${TABLE}.quantity_ordered ;;
   }
 
   dimension: allitems_quantity_ordered {
