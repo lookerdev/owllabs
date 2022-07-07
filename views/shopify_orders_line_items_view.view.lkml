@@ -426,7 +426,7 @@ view: shopify_orders_line_items_view {
 
   measure: sum_ceilingmount_quantity_ordered {
     label: "Ceiling Mount Quantity Ordered"
-    group_label: "Accessories"
+    # group_label: "Accessories"
     type: sum
     sql: ${ceilingmount_quantity_ordered} ;;
   }
@@ -434,7 +434,7 @@ view: shopify_orders_line_items_view {
   measure: sum_cuecards_quantity_ordered {
     # hidden: yes
     label: "Cue Cards Quantity Ordered"
-    group_label: "Accessories"
+    # group_label: "Accessories"
     type: sum
     sql: ${cuecards_quantity_ordered} ;;
   }
@@ -442,7 +442,7 @@ view: shopify_orders_line_items_view {
   measure: sum_hardcase_quantity_ordered {
     # hidden: yes
     label: "Hard Case Quantity Ordered"
-    group_label: "Accessories"
+    # group_label: "Accessories"
     type: sum
     sql: ${hardcase_quantity_ordered} ;;
   }
@@ -456,21 +456,21 @@ view: shopify_orders_line_items_view {
 
   measure: sum_linecord_quantity_ordered {
     label: "Line Cord Quantity Ordered"
-    group_label: "Accessories"
+    # group_label: "Accessories"
     type: sum
     sql: ${linecord_quantity_ordered} ;;
   }
 
   measure: sum_lockadapter_quantity_ordered {
     label: "Lock Adapter Quantity Ordered"
-    group_label: "Accessories"
+    # group_label: "Accessories"
     type: sum
     sql: ${lockadapter_quantity_ordered} ;;
   }
 
   measure: sum_markers_quantity_ordered {
     label: "Markers Quantity Ordered"
-    group_label: "Accessories"
+    # group_label: "Accessories"
     type: sum
     sql: ${markers_quantity_ordered} ;;
   }
@@ -504,7 +504,7 @@ view: shopify_orders_line_items_view {
 
   measure: sum_powersupply_quantity_ordered {
     label: "Power Supply Quantity Ordered"
-    group_label: "Accessories"
+    # group_label: "Accessories"
     type: sum
     sql: ${powersupply_quantity_ordered} ;;
   }
@@ -539,21 +539,21 @@ view: shopify_orders_line_items_view {
 
   measure: sum_tablemount_quantity_ordered {
     label: "Table Mount Quantity Ordered"
-    group_label: "Accessories"
+    # group_label: "Accessories"
     type: sum
     sql: ${tablemount_quantity_ordered} ;;
   }
 
   measure: sum_usbconversioncable_quantity_ordered {
     label: "USB Conversion Cable Quantity Ordered"
-    group_label: "Accessories"
+    # group_label: "Accessories"
     type: sum
     sql: ${usbconversioncable_quantity_ordered} ;;
   }
 
   measure: sum_usbextension_quantity_ordered {
     label: "USB Extension Cable Quantity Ordered"
-    group_label: "Accessories"
+    # group_label: "Accessories"
     type: sum
     sql: ${usbextension_quantity_ordered} ;;
   }
@@ -566,7 +566,7 @@ view: shopify_orders_line_items_view {
 
   measure: sum_wbtags_quantity_ordered {
     label: "Whiteboard Tags Quantity Ordered"
-    group_label: "Accessories"
+    # group_label: "Accessories"
     type: sum
     sql: ${wbtags_quantity_ordered} ;;
   }
