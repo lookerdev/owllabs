@@ -23,10 +23,11 @@ view: google_analytics_traffic_conversion {
         ga.num_affiliates_sessions + ga.num_direct_sessions + ga.num_display_sessions + ga.num_email_sessions + ga.num_native_sessions + ga.num_notset_sessions + ga.num_organicsearch_sessions + ga.num_other_sessions + ga.num_paidemail_sessions + ga.num_paidsearch_sessions + ga.num_paidsocial_sessions + ga.num_referral_sessions + ga.num_social_sessions + ga.num_sponsorship_sessions + ga.num_video_sessions as all_sessions,
         a.order_date,
         a.count_orders,
-        a.total_pro_ordered,
         a.total_og_ordered,
+        a.total_pro_ordered,
         a.total_hq_ordered,
         a.total_wbo_ordered,
+        a.total_mo3_ordered,
         a.total_owls_ordered,
         a.total_hardware_ordered
         from dim_calendar dc
@@ -39,11 +40,12 @@ view: google_analytics_traffic_conversion {
                   sum(og_quantity_ordered) as total_og_ordered,
                   sum(hq_quantity_ordered) as total_hq_ordered,
                   sum(wbo_quantity_ordered) as total_wbo_ordered,
-                  sum(pro_quantity_ordered) + sum(og_quantity_ordered) as total_owls_ordered,
-                  sum(pro_quantity_ordered) + sum(og_quantity_ordered) + sum(hq_quantity_ordered) + sum(wbo_quantity_ordered) as total_hardware_ordered
+                  sum(mo3_quantity_ordered) AS total_mo3_ordered,
+                  sum(pro_quantity_ordered) + sum(og_quantity_ordered) + sum(mo3_quantity_ordered) as total_owls_ordered,
+                  sum(pro_quantity_ordered) + sum(og_quantity_ordered) + sum(hq_quantity_ordered) + sum(wbo_quantity_ordered) + sum(mo3_quantity_ordered) as total_hardware_ordered
                   from shopify_orders_line_items_view sov
                   where distribution_channel <> 'Channel'
-                  and (pro_quantity_ordered + og_quantity_ordered + hq_quantity_ordered + wbo_quantity_ordered) > 0 /*at least one of these devices ordered that day*/
+                  and (pro_quantity_ordered + og_quantity_ordered + hq_quantity_ordered + wbo_quantity_ordered + mo3_quantity_ordered) > 0 /*at least one of these devices ordered that day*/
                   --and (pro_quantity_ordered > 0 or og_quantity_ordered > 0 or hq_quantity_ordered > 0 or wbo_quantity_ordered > 0)
                   group by cast(order_date as date) ) a
           on a.order_date  = dc."date"
@@ -238,6 +240,9 @@ view: google_analytics_traffic_conversion {
     sql: ${TABLE}.all_sessions ;;
   }
 
+
+
+
 ## MEASURES
   measure: sum_all_sessions {
     label: "# All Sessions"
@@ -256,7 +261,6 @@ view: google_analytics_traffic_conversion {
     type: number
     sql: sum(${num_affiliates_sessions}) + sum(${num_direct_sessions}) + sum(${num_display_sessions}) + sum(${num_email_sessions}) + sum(${num_native_sessions}) + sum(${num_notset_sessions}) + sum(${num_organicsearch_sessions}) + sum(${num_other_sessions}) + sum(${num_paidemail_sessions}) + sum(${num_paidsearch_sessions}) + sum(${num_paidsocial_sessions}) + sum(${num_referral_sessions}) + sum(${num_social_sessions}) + sum(${num_sponsorship_sessions}) + sum(${num_video_sessions}) ;;
   }
-
 
   measure: sum_num_affiliates_sessions {
     label: "# Affiliates Sessions"
@@ -356,7 +360,7 @@ view: google_analytics_traffic_conversion {
 
   measure: conversion_rate {
     type: number
-    value_format: "0.00%"
+    # value_format: "0.00%"
     sql: sum(${count_orders}) / sum(${all_sessions}) ;;
   }
 

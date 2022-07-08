@@ -14,7 +14,7 @@ include: "/views/google_analytics_traffic_conversion.view.lkml"
   explore: traffic_conversion {
     persist_for: "6 hours"
     # label: "Traffic Conversion"
-  # description: ""
+    description: "Google Analytics website traffic conversion to hardware orders (MO, MOP, MO3, HQ, WBO)"
     view_name: dim_calendar
     sql_always_where: ${year} >= 2016 and ${date_date} <= trunc(sysdate)
       ;;

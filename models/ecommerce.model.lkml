@@ -47,9 +47,18 @@ explore: all_orders {
   hidden: yes
 }
 
-
 explore: all_fulfillments {
   sql_always_where: ${all_fulfillments.sku} not in ('TEST2','TEST3') ;;
+  hidden: yes
+}
+
+explore: shopify_orders_line_items_view {
+  label: "Shopify Orders"
+  hidden: yes
+}
+
+explore: shopify_fulfillments_line_items_view {
+  label: "Shopify Fulfillments"
   hidden: yes
 }
 
