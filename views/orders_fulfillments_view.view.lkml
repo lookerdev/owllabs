@@ -5,7 +5,6 @@ view: orders_fulfillments_view {
     type: time
     timeframes: [
       raw,
-      time,
       date,
       week,
       month,
@@ -14,7 +13,6 @@ view: orders_fulfillments_view {
     ]
     sql: ${TABLE}.created_at ;;
   }
-
 
   dimension: primary_key {
     type: number
@@ -80,7 +78,6 @@ view: orders_fulfillments_view {
     type: time
     timeframes: [
       raw,
-      time,
       date,
       week,
       month,

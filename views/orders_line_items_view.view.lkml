@@ -27,6 +27,81 @@ view: orders_line_items_view {
     sql: ${TABLE}.order_id_key ;;
   }
 
+  dimension: order_number {
+    type: number
+    sql: ${TABLE}.order_number ;;
+  }
+
+  dimension_group: order_cancelled {
+    # hidden: yes
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}.order_cancelled ;;
+  }
+
+  dimension: cancel_reason {
+    type: string
+    sql: ${TABLE}.cancel_reason ;;
+  }
+
+
+  dimension_group: order_created {
+    # hidden: yes
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}.order_created ;;
+  }
+
+  dimension_group: order_updated {
+    # hidden: yes
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}.order_updated ;;
+  }
+
+  dimension_group: order_processed {
+    # hidden: yes
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}.order_processed ;;
+  }
+
   dimension: primary_key {
     type: string
     sql: ${TABLE}.primary_key ;;
@@ -99,6 +174,8 @@ view: orders_line_items_view {
     sql: ${TABLE}.unbundled_sku ;;
   }
 
+
+# MEASURES
   measure: order_lines {
     type: count
     drill_fields: [name]
@@ -109,22 +186,33 @@ view: orders_line_items_view {
     sql: ${TABLE}.price ;;
   }
 
+  # measure: sum_of_ordered_units_excl_cancelled {
+  #   type: sum
+  #   sql: ${TABLE}.quantity  ;;
+  #   filters: [orders_view.cancel_reason: "NULL"]
+  # }
+
   measure: sum_of_ordered_units_excl_cancelled {
     type: sum
     sql: ${TABLE}.quantity  ;;
-    filters: [orders_view.cancel_reason: "NULL"]
+    filters: [cancel_reason: "NULL"]
   }
-
 
   measure: sum_of_ordered_units_incl_cancelled {
     type: sum
     sql: ${TABLE}.quantity  ;;
   }
 
+  # measure: sum_of_cancelled_units {
+  #   type: sum
+  #   sql: ${TABLE}.quantity  ;;
+  #   filters: [orders_view.cancel_reason: "-NULL"]
+  # }
+
   measure: sum_of_cancelled_units {
     type: sum
     sql: ${TABLE}.quantity  ;;
-    filters: [orders_view.cancel_reason: "-NULL"]
+    filters: [cancel_reason: "-NULL"]
   }
 
 
