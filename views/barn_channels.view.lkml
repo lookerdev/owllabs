@@ -1,5 +1,6 @@
 view: barn_channels {
-  sql_table_name: public.barn_channels_view ;;
+  sql_table_name: owlbarn_views.channels_v ;;
+  # public.barn_channels_view
 
 
   dimension: accesstype {
