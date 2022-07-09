@@ -5,6 +5,7 @@ view: nps_surveys {
 ## DIMENSIONS
 
   dimension: row_num {
+    # label: "Survey ID"
     primary_key: yes
     hidden: yes
     type: number
@@ -355,7 +356,7 @@ view: nps_surveys {
   }
 
   dimension: survey_iteration {
-    description: "Which survey round the reponse was included in. Initial = first survey sent following purchase, 6 Month = sruvey sent 6 months after purchase, 12 Month = survey sent 12 months after purchase"
+    description: "Which survey round the reponse was included in. Initial = first survey sent following purchase, 6 Month = survey sent 6 months after purchase, 12 Month = survey sent 12 months after purchase."
     type: string
     # sql: ${TABLE}.survey_iteration ;;
     # alpha_sort: yes
@@ -374,8 +375,6 @@ view: nps_surveys {
       }
       # else: "Unknown"
     }
-
-
   }
 
   dimension: test_response {
@@ -385,7 +384,8 @@ view: nps_surveys {
   }
 
   dimension: nps_bucket_int {
-    hidden: yes
+    label: "NPS Bucket Integer"
+    # hidden: yes
     type: number
     sql: case when ${recommend_score} in (9,10) then 1
               when ${recommend_score} in (7,8) then 0

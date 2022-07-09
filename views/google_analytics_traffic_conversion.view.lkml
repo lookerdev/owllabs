@@ -360,7 +360,7 @@ view: google_analytics_traffic_conversion {
 
   measure: conversion_rate {
     type: number
-    # value_format: "0.00%"
+    value_format: "0.00%"
     sql: sum(${count_orders}) / sum(${all_sessions}) ;;
   }
 
