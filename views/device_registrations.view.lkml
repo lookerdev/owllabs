@@ -3,7 +3,7 @@ view: device_registrations {
 
   dimension: channel_id {
     label: "Channel ID"
-    hidden: yes
+    # hidden: yes
     type: number
     sql: ${TABLE}.channel_id ;;
   }
@@ -16,7 +16,8 @@ view: device_registrations {
   }
 
   dimension: company_id {
-    hidden: yes
+    label: "Company ID"
+    # hidden: yes
     type: number
     sql: ${TABLE}.company_id ;;
   }
@@ -41,7 +42,8 @@ view: device_registrations {
   }
 
   dimension: device_id {
-    hidden: yes
+    label: "Device ID"
+    # hidden: yes
     type: number
     sql: ${TABLE}.device_id ;;
   }
@@ -59,7 +61,8 @@ view: device_registrations {
   }
 
   dimension: product_id {
-    hidden: yes
+    label: "Product ID"
+    # hidden: yes
     type: number
     sql: ${TABLE}.product_id ;;
   }
@@ -143,7 +146,8 @@ view: device_registrations {
   }
 
   dimension: user_id {
-    hidden: yes
+    label: "User ID"
+    # hidden: yes
     type: number
     sql: ${TABLE}.user_id ;;
   }
