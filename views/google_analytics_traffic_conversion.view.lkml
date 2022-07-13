@@ -43,8 +43,10 @@ view: google_analytics_traffic_conversion {
                   sum(mo3_quantity_ordered) AS total_mo3_ordered,
                   sum(pro_quantity_ordered) + sum(og_quantity_ordered) + sum(mo3_quantity_ordered) as total_owls_ordered,
                   sum(pro_quantity_ordered) + sum(og_quantity_ordered) + sum(hq_quantity_ordered) + sum(wbo_quantity_ordered) + sum(mo3_quantity_ordered) as total_hardware_ordered
-                  from shopify_orders_line_items_view sov
+                  from shopify_orders_line_items_view
                   where distribution_channel <> 'Channel'
+                  --and sales_channel is null
+                  and {% condition sales_channel_select %} sales_channel {% endcondition %}
                   and (pro_quantity_ordered + og_quantity_ordered + hq_quantity_ordered + wbo_quantity_ordered + mo3_quantity_ordered) > 0 /*at least one of these devices ordered that day*/
                   --and (pro_quantity_ordered > 0 or og_quantity_ordered > 0 or hq_quantity_ordered > 0 or wbo_quantity_ordered > 0)
                   group by cast(order_date as date) ) a
@@ -52,7 +54,17 @@ view: google_analytics_traffic_conversion {
           where dc."date" >= '2016-04-01'
       ;;
   }
+  # suggestions: yes
 # affiliates_sessions + direct_sessions + display_sessions + email_sessions + native_sessions + notset_sessions + organicsearch_sessions + other_sessions + paidemail_sessions + paidsearch_sessions + paidsocial_sessions + referral_sessions + social_sessions + sponsorship_sessions + video_sessions as total_sessions
+
+
+  filter: sales_channel_select {
+    hidden: yes
+    label: "Sales Channel Filter"
+    type:  string
+    suggestions: ["InsideSales","Retail","VAR","Website"]
+  }
+
 
 ## DIMENSIONS
 
