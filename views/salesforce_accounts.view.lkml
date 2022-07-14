@@ -80,6 +80,7 @@ view: salesforce_accounts {
     label: "Count of Companies"
     type: count_distinct
     sql: ${company_name} ;;
+    drill_fields: [company_name]
   }
 
 }
