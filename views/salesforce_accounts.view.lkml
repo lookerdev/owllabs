@@ -76,4 +76,10 @@ view: salesforce_accounts {
   #   tiers: []
   # }
 
+  measure: count_companies {
+    label: "Count of Companies"
+    type: count_distinct
+    sql: ${company_name} ;;
+  }
+
 }
