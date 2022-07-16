@@ -33,11 +33,11 @@ view: devices_per_channel_release {
              releases.id,
              releases.version,
              releases.releasedate ,
-             channel_releases.createdat,
-             channel_releases.channelid
-             from channel_releases
-             inner join releases
-              on releases.id = channel_releases.releaseid
+             channelreleases.createdat,
+             channelreleases.channelid
+             from owlbarn.channelreleases
+             inner join owlbarn.releases
+              on releases.id = channelreleases.releaseid
             ) b
           on b.version = a.device_software_version_number
           and b.channelid = a.channel_id
