@@ -375,7 +375,7 @@ view: nps_surveys {
     description: "Flag indicates if an additional response was submitted by the same email address for the same device and survey iteration"
     group_label: "Filters"
     type: yesno
-    sql: ${TABLE}.dupe_survey ;;
+    sql: ${TABLE}.dupe_response ;;
   }
 
   dimension: nps_bucket_int {
