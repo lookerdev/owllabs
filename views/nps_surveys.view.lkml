@@ -12,22 +12,6 @@ view: nps_surveys {
     sql: ${TABLE}.row_num ;;
   }
 
-  # dimension_group: start {
-  #   # hidden: yes
-  #   group_label: "Qualtrics Metadata"
-  #   label: "Survey Start"
-  #   type: time
-  #   timeframes: [
-  #     raw,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   sql: ${TABLE}."start_date" ;;
-  #   allow_fill: yes
-  # }
 
   dimension_group: start {
     # hidden: yes
@@ -68,19 +52,22 @@ view: nps_surveys {
   dimension: ip_address {
     # hidden: yes
     group_label: "Qualtrics Metadata"
+    description: "Responder's IP address"
     type: string
     sql: ${TABLE}.ip_address ;;
   }
 
   dimension: progress {
-    label: "Survey Progess - % Completion"
+    label: "Survey Progess - % Completed"
     group_label: "Qualtrics Metadata"
     type: number
+    value_format: "0\%"
     sql: ${TABLE}.progress ;;
   }
 
   dimension: duration_seconds {
-    label: "Number of Seconds to Complete Survey"
+    label: "Survey Completion Duration (seconds)"
+    description: "Number of seconds it took for responder to complete the survey"
     group_label: "Qualtrics Metadata"
     type: number
     sql: ${TABLE}.duration_seconds ;;
@@ -379,8 +366,16 @@ view: nps_surveys {
 
   dimension: test_response {
     description: "Flag indicates whether the response is an internal test of survey (Yes) or an actual submission (No)"
+    group_label: "Filters"
     type: yesno
     sql: ${TABLE}.test_response ;;
+  }
+
+  dimension: dupe_survey {
+    description: "Flag indicates if additional survey response was submitted by an email address for same device and survey iteration"
+    group_label: "Filters"
+    type: yesno
+    sql: ${TABLE}.dupe_survey ;;
   }
 
   dimension: nps_bucket_int {
