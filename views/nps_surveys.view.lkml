@@ -371,8 +371,8 @@ view: nps_surveys {
     sql: ${TABLE}.test_response ;;
   }
 
-  dimension: dupe_survey {
-    description: "Flag indicates if additional survey response was submitted by an email address for same device and survey iteration"
+  dimension: dupe_response {
+    description: "Flag indicates if an additional response was submitted by the same email address for the same device and survey iteration"
     group_label: "Filters"
     type: yesno
     sql: ${TABLE}.dupe_survey ;;
