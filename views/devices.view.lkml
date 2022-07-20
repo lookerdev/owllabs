@@ -7,7 +7,7 @@ view: devices {
 
   dimension: device_id {
     primary_key: yes
-    hidden: yes
+    # hidden: yes
     label: "Device Record ID"
     description: "Unique identifier for each device record"
     type: number
