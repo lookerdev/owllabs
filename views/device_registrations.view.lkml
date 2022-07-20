@@ -131,7 +131,7 @@ view: device_registrations {
     sql: ${TABLE}.registration_record_lastupdate_date::timestamp ;;
   }
 
-  dimension: registration_source {
+  dimension: source {
     hidden: yes
     description: "per Weihai - column needs to be vetted
     UNKNOWN: 0,
@@ -141,12 +141,17 @@ view: device_registrations {
     BARN_TRANSFER: 4 = user claim an owl that's already own by someone in a different organization,
     USER_FLAMINGO: 5 = mhq i believe"
     type: number
-    sql: ${TABLE}.registration_source ;;
+    sql: ${TABLE}.source ;;
+  }
+
+  dimension: source_value {
+    hidden: yes
+    type: string
+    sql: ${TABLE}.source_value ;;
   }
 
   dimension: user_id {
     label: "User ID"
-    # hidden: yes
     type: number
     sql: ${TABLE}.user_id ;;
   }
