@@ -7,22 +7,21 @@ view: devices {
 
   dimension: device_id {
     primary_key: yes
-    # hidden: yes
-    label: "Device Record ID"
+    label: "Device ID"
     description: "Unique identifier for each device record"
     type: number
     sql: ${TABLE}.device_id ;;
   }
 
   dimension: alias {
-    label: "Device Alias"
+    # label: "Device Alias"
     description: "Customer's chosen nickname for device, User Given Name field in Barn UI"
     type: string
     sql: ${TABLE}.device_alias ;;
   }
 
   dimension: device_name {
-    # hidden: yes
+    label: "Name"
     type: string
     sql: ${TABLE}.device_name ;;
   }
@@ -140,7 +139,7 @@ view: devices {
   dimension: lastip {
     label: "Last IP Address"
     description: "Device's most recent IP address, captured during most recent check-in"
-    hidden: yes
+    # hidden: yes
     type: string
     sql: ${TABLE}.device_last_ip_address ;;
   }
@@ -152,7 +151,6 @@ view: devices {
   }
 
   dimension: last_location {
-    hidden: yes
     type: string
     sql: ${TABLE}.device_last_location ;;
   }
@@ -164,20 +162,18 @@ view: devices {
   }
 
   dimension: parent_settings {
-    # hidden: yes
     type: string
     sql: ${TABLE}.device_parent_settings ;;
   }
 
   dimension: pcb_version {
     label: "PCB Version"
-    # hidden: yes
     type: string
     sql: ${TABLE}.device_pcb_version ;;
   }
 
   dimension: product_id {
-    hidden: yes
+    label: "Product ID"
     type: number
     sql: ${TABLE}.product_id ;;
   }
@@ -196,7 +192,6 @@ view: devices {
   }
 
   dimension: settings {
-    hidden: yes
     type: string
     sql: ${TABLE}.device_settings ;;
   }
@@ -216,7 +211,6 @@ view: devices {
     sql: ${TABLE}.device_software_version_number ;;
   }
 
-  # # have to test if this dimension works properly
   dimension: is_current_version {
     description: "Whether the device's Current Software Version is the most recent production release to that device's Barn Channel."
     type: yesno
@@ -231,7 +225,7 @@ view: devices {
   }
 
   dimension: status_text {
-    label: "Device Status"
+    label: "Status"
     type: string
     sql: ${TABLE}.device_status_text ;;
     # sql: (CASE when ${TABLE}.device_status = 0 then 'New'
@@ -286,13 +280,13 @@ view: devices {
   }
 
   dimension: settings_version {
-    hidden: yes
+    # hidden: yes
     type: number
     sql: ${TABLE}.settings_version ;;
   }
 
   dimension: settings_timestamp {
-    hidden: yes
+    # hidden: yes
     type: number
     sql: ${TABLE}.settings_timestamp ;;
   }
