@@ -94,29 +94,28 @@ view: device_registrations {
   #   sql: ${TABLE}.registration_id ;;
   # }
 
-  dimension: row_num {
+  dimension: registration_id {
     primary_key: yes
-    hidden: yes
     type: string
-    sql: ${TABLE}.row_num ;;
+    sql: ${TABLE}.registration_id ;;
   }
 
 
-  dimension_group: registration_record_delete {
-    hidden: yes
-    description: "Deletion date of registration record"
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.registration_record_delete_date::timestamp ;;
-  }
+  # dimension_group: registration_record_delete {
+  #   hidden: yes
+  #   description: "Deletion date of registration record"
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     time,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     year
+  #   ]
+  #   sql: ${TABLE}.registration_record_delete_date::timestamp ;;
+  # }
 
   dimension_group: registration_record_lastupdate {
     hidden: yes
