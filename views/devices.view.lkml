@@ -241,7 +241,7 @@ view: devices {
   }
 
   dimension: deviceuuid {
-    label: "DeviceUUID"
+    label: "Device UUID"
     description: "Unique identifier for each device"
     type: string
     sql: ${TABLE}.deviceuuid ;;

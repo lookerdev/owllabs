@@ -49,7 +49,7 @@ view: device_registrations {
   }
 
   dimension: deviceuuid {
-    label: "DeviceUUID"
+    label: "Device UUID"
     type: string
     sql: ${TABLE}.deviceuuid ;;
   }
@@ -87,19 +87,11 @@ view: device_registrations {
     sql: ${TABLE}.registration_date::timestamp ;;
   }
 
-  # dimension: registration_id {
-  #   primary_key: yes
-  #   hidden: yes
-  #   type: string
-  #   sql: ${TABLE}.registration_id ;;
-  # }
-
   dimension: registration_id {
     primary_key: yes
     type: string
     sql: ${TABLE}.registration_id ;;
   }
-
 
   # dimension_group: registration_record_delete {
   #   hidden: yes
@@ -145,6 +137,7 @@ view: device_registrations {
   }
 
   dimension: source_value {
+    label: "Source"
     hidden: yes
     type: string
     sql: ${TABLE}.source_value ;;
