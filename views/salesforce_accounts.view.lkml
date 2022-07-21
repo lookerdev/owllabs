@@ -1,5 +1,5 @@
 view: salesforce_accounts {
-  label: "Salesforce Account Information"
+  label: "Salesforce Accounts"
   sql_table_name: public.salesforce_accounts_view ;;
 
   dimension: company_name {
