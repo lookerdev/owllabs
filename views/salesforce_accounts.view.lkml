@@ -42,6 +42,7 @@ view: salesforce_accounts {
     sql: ${TABLE}.row_num ;;
   }
 
+# move to Salesforce Accounts view
   dimension: devices_registered {
     hidden: yes
     label: "# Registered Devices per Company"
@@ -62,18 +63,18 @@ view: salesforce_accounts {
     sql: ${devices_registered}  ;;
   }
 
+  # dimension: count_owls_per_company {
+  #   type: number
+  #   sql: count(distinct ${meeting_records.deviceuuid}) ;;
+  #   tiers: []
+  # }
+
 
 ## MEASURES
   # measure: count {
   #   hidden: yes
   #   type: count
   #   drill_fields: [company_name]
-  # }
-
-  # dimension: count_owls_per_company {
-  #   type: number
-  #   sql: count(distinct ${meeting_records.deviceuuid}) ;;
-  #   tiers: []
   # }
 
   measure: count_companies {
