@@ -139,7 +139,7 @@ view: meeting_records {
 
   dimension: durationseconds_per_meeting {
     hidden: yes
-    label: "Meeting Length - seconds"
+    label: "Meeting Length (seconds)"
     description: "The number of minutes that each individual meeting takes. Use this to filter by meeting length."
     type: number
     sql: ${TABLE}.durationseconds ;;
@@ -172,6 +172,7 @@ view: meeting_records {
 
 # Measures
 
+# counts
   measure: count_meetings {
     label: "Count of Meetings"
     description: "Count of unique meeting records"
@@ -189,10 +190,32 @@ view: meeting_records {
     drill_fields: [durationminutes_per_meeting, count_devices]
   }
 
+  measure: crash_count {
+    description: "Count of Times Device Crashed"
+    type: sum
+    sql: CASE WHEN ${crashinmeeting} = 'true' THEN 1 ELSE NULL END;;
+    # drill_fields: [devices.product_name, crash_count]
+    drill_fields: [device_view.product_name, crash_count]
+  }
+
+  measure: count_days {
+    hidden: yes
+    type: number
+    sql: count(distinct ${startdate_date}) ;;
+  }
+
+  measure: personcount {
+    label: "Total Person Count"
+    description: "Device's count of total people who spoke during the meeting"
+    type: sum
+    sql: ${TABLE}.personcount ;;
+  }
+
+# meeting duration
   measure: durationseconds {
     hidden: yes
-    # label: "Meeting Duration - seconds"
     label: "Total Meeting Seconds"
+    group_label: "Meeting Duration"
     description: "Total sum of meeting seconds for all devices"
     type: sum
     sql: ${durationseconds_per_meeting} ;;
@@ -200,6 +223,7 @@ view: meeting_records {
 
   measure: durationminutes {
     label: "Total Meeting Minutes"
+    group_label: "Total Meeting Duration"
     description: "Total sum of meeting minutes for all devices"
     type: number
     sql: sum(${durationseconds_per_meeting}) / 60.0 ;;
@@ -208,11 +232,13 @@ view: meeting_records {
 
   measure: durationhours {
     label: "Total Meeting Hours"
+    group_label: "Total Meeting Duration"
     type: number
     sql: sum(${durationseconds_per_meeting}) / 3600.0 ;;
     value_format: "0.0" #adds 1 decimal place
   }
 
+# averages
   measure: avg_hours_per_device{
     hidden: yes
     label: "Avg. Meeting Hours per Device"
@@ -236,66 +262,51 @@ view: meeting_records {
     sql: ${durationminutes_per_meeting};;
   }
 
+# talk time
+  measure: remotetalktimeseconds {
+    label: "Total Remote Talk Time (seconds)"
+    group_label: "Total Talk Time"
+    description: "Total seconds that meeting attendee(s) not using the device spoke"
+    type: sum
+    sql: ${TABLE}.remotetalktimeseconds ;;
+  }
+
   measure: bothtalktimeseconds {
-    label: "Total Both Talk Time Seconds"
+    label: "Total Both Talk Time (seconds)"
+    group_label: "Total Talk Time"
     description: "Total second at least one meeting attendee using the device and at least one meeting attendee not using the device spoke at the same time"
     type: sum
     sql: ${TABLE}.bothtalktimeseconds ;;
   }
 
   measure: localtalktimeseconds {
-    label: "Total Local Talk Time Seconds"
+    label: "Total Local Talk Time (seconds)"
+    group_label: "Total Talk Time"
     description: "Total seconds meeting attendee(s) using the device spoke"
     type: sum
     sql: ${TABLE}.localtalktimeseconds ;;
   }
 
   measure: neithertalktimeseconds {
-    label: "Total Neither Talk Time Seconds"
+    label: "Total Neither Talk Time (seconds)"
+    group_label: "Total Talk Time"
     description: "Total seconds no meeting attendees spoke"
     type: sum
     sql: ${TABLE}.neithertalktimeseconds ;;
   }
 
-  measure: personcount {
-    label: "Total Person Count"
-    description: "Device's count of total people who spoke during the meeting"
-    type: sum
-    sql: ${TABLE}.personcount ;;
-  }
-
-  measure: presenterseconds {
-    label: "Total Presenter Mode Seconds"
-    description: "Seconds of meeting with presenter mode enabled"
-    type: sum
-    sql: ${TABLE}.presenterseconds ;;
-  }
-
-  measure: remotetalktimeseconds {
-    label: "Total Remote Talk Time Seconds"
-    description: "Total seconds that meeting attendee(s) not using the device spoke"
-    type: sum
-    sql: ${TABLE}.remotetalktimeseconds ;;
-  }
-
-  measure: crash_count {
-    description: "Count of Times Device Crashed"
-    type: sum
-    sql: CASE WHEN ${crashinmeeting} = 'true' THEN 1 ELSE NULL END;;
-    # drill_fields: [devices.product_name, crash_count]
-    drill_fields: [device_view.product_name, crash_count]
-  }
-
-  measure: count_days {
-    hidden: yes
-    type: number
-    sql: count(distinct ${startdate_date}) ;;
-  }
-
+# other
   measure: max_startdate {
     hidden: yes
     label: "Most Recent Meeting Date"
     sql: max(${originalstartdate_date})::timestamp ;;
+  }
+
+  measure: presenterseconds {
+    label: "Total Presenter Mode (seconds)"
+    description: "Seconds of meeting with presenter mode enabled"
+    type: sum
+    sql: ${TABLE}.presenterseconds ;;
   }
 
 
