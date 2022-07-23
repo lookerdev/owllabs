@@ -172,6 +172,7 @@ view: meeting_records_test {
 
 # Measures
 
+# counts
   measure: count_meetings {
     label: "Count of Meetings"
     description: "Count of unique meeting records"
@@ -189,10 +190,32 @@ view: meeting_records_test {
     drill_fields: [durationminutes_per_meeting, count_devices]
   }
 
+  measure: crash_count {
+    description: "Count of Times Device Crashed"
+    type: sum
+    sql: CASE WHEN ${crashinmeeting} = 'true' THEN 1 ELSE NULL END;;
+    # drill_fields: [devices.product_name, crash_count]
+    drill_fields: [device_view.product_name, crash_count]
+  }
+
+  measure: count_days {
+    hidden: yes
+    type: number
+    sql: count(distinct ${startdate_date}) ;;
+  }
+
+  measure: personcount {
+    label: "Total Person Count"
+    description: "Device's count of total people who spoke during the meeting"
+    type: sum
+    sql: ${TABLE}.personcount ;;
+  }
+
+# meeting duration
   measure: durationseconds {
     hidden: yes
-    # label: "Meeting Duration - seconds"
     label: "Total Meeting Seconds"
+    group_label: "Meeting Duration"
     description: "Total sum of meeting seconds for all devices"
     type: sum
     sql: ${durationseconds_per_meeting} ;;
@@ -200,6 +223,7 @@ view: meeting_records_test {
 
   measure: durationminutes {
     label: "Total Meeting Minutes"
+    group_label: "Total Meeting Duration"
     description: "Total sum of meeting minutes for all devices"
     type: number
     sql: sum(${durationseconds_per_meeting}) / 60.0 ;;
@@ -208,11 +232,13 @@ view: meeting_records_test {
 
   measure: durationhours {
     label: "Total Meeting Hours"
+    group_label: "Total Meeting Duration"
     type: number
     sql: sum(${durationseconds_per_meeting}) / 3600.0 ;;
     value_format: "0.0" #adds 1 decimal place
   }
 
+# averages
   measure: avg_hours_per_device{
     hidden: yes
     label: "Avg. Meeting Hours per Device"
@@ -236,75 +262,52 @@ view: meeting_records_test {
     sql: ${durationminutes_per_meeting};;
   }
 
+# talk time
+  measure: remotetalktimeseconds {
+    label: "Total Remote Talk Time (seconds)"
+    group_label: "Total Talk Time"
+    description: "Total seconds that meeting attendee(s) not using the device spoke"
+    type: sum
+    sql: ${TABLE}.remotetalktimeseconds ;;
+  }
+
   measure: bothtalktimeseconds {
-    label: "Total Both Talk Time Seconds"
+    label: "Total Both Talk Time (seconds)"
+    group_label: "Total Talk Time"
     description: "Total second at least one meeting attendee using the device and at least one meeting attendee not using the device spoke at the same time"
     type: sum
     sql: ${TABLE}.bothtalktimeseconds ;;
   }
 
   measure: localtalktimeseconds {
-    label: "Total Local Talk Time Seconds"
+    label: "Total Local Talk Time (seconds)"
+    group_label: "Total Talk Time"
     description: "Total seconds meeting attendee(s) using the device spoke"
     type: sum
     sql: ${TABLE}.localtalktimeseconds ;;
   }
 
   measure: neithertalktimeseconds {
-    label: "Total Neither Talk Time Seconds"
+    label: "Total Neither Talk Time (seconds)"
+    group_label: "Total Talk Time"
     description: "Total seconds no meeting attendees spoke"
     type: sum
     sql: ${TABLE}.neithertalktimeseconds ;;
   }
 
-  measure: personcount {
-    label: "Total Person Count"
-    description: "Device's count of total people who spoke during the meeting"
-    type: sum
-    sql: ${TABLE}.personcount ;;
-  }
-
-  measure: presenterseconds {
-    label: "Total Presenter Mode Seconds"
-    description: "Seconds of meeting with presenter mode enabled"
-    type: sum
-    sql: ${TABLE}.presenterseconds ;;
-  }
-
-  measure: remotetalktimeseconds {
-    label: "Total Remote Talk Time Seconds"
-    description: "Total seconds that meeting attendee(s) not using the device spoke"
-    type: sum
-    sql: ${TABLE}.remotetalktimeseconds ;;
-  }
-
-  measure: crash_count {
-    description: "Count of Times Device Crashed"
-    type: sum
-    sql: CASE WHEN ${crashinmeeting} = 'true' THEN 1 ELSE NULL END;;
-    # drill_fields: [devices.product_name, crash_count]
-    drill_fields: [device_view.product_name, crash_count]
-  }
-
-  measure: count_days {
-    hidden: yes
-    type: number
-    sql: count(distinct ${startdate_date}) ;;
-  }
-
+# other
   measure: max_startdate {
     hidden: yes
     label: "Most Recent Meeting Date"
     sql: max(${originalstartdate_date})::timestamp ;;
   }
 
-
-  # measure: max_number_meetings {
-  #   label: "Maximum Number of Meetings"
-  #   type: max
-  #   sql: ${TABLE}.count;;
-  #   drill_fields: [id,deviceuuid]
-  # }
+  measure: presenterseconds {
+    label: "Total Presenter Mode (seconds)"
+    description: "Seconds of meeting with presenter mode enabled"
+    type: sum
+    sql: ${TABLE}.presenterseconds ;;
+  }
 
   # measure: avg_person_count_per_mtg {
   #   label: "Average Person Count per Meeting"
@@ -313,29 +316,16 @@ view: meeting_records_test {
   #   drill_fields: [id,deviceuuid]
   # }
 
-# # does this measure work?
-#   measure: avg_number_meetings_per_week {
-#     label: "Average Number of Meetings per Week"
-#     type: number
-#     sql: count(${TABLE}.id) / nullif(DATEDIFF(week,min(${TABLE}.startdate::timestamp), max(${TABLE}.startdate::timestamp)),0);;
-#   }
 
-  measure: avg_mtgs_customers_weeks {
-    description: "Avg meetings per customer per week"
-    sql: (count(${id}) / count(distinct ${device_registrations.company_domain})) / count(${startdate_week}) ;;
-  }
-
-
-
+# Averages per customer per time
   parameter: timespan_picker {
-    group_label: "TEST"
+    group_label: "Avgs per time period test"
     label: "Time Granularity"
-    # type: unquoted
     type: string
     default_value: "date_month"
     allowed_value: {
       value: "day"
-      # label: "Date"
+      # label: "Day"
     }
     allowed_value: {
       value: "week"
@@ -347,58 +337,66 @@ view: meeting_records_test {
     }
     allowed_value: {
       value: "quarter"
+      # label: "Quarter"
+    }
+    allowed_value: {
+      value: "year"
+      # label: "Year"
     }
   }
 
-  # dimension: dynamic_timeframe {
-  #   type: string
-  #   sql:
-  #   CASE
-  #   WHEN {% parameter timeframe_picker %} = 'date_date' THEN TO_DATE(${date_date}, 'YYYY-MM-DD')
-  #   WHEN {% parameter timeframe_picker %} = 'date_week' THEN TO_DATE(${date_week}, 'YYYY-MM-DD')
-  #   WHEN {% parameter timeframe_picker %} = 'date_month' THEN TO_DATE(${date_month}, 'YYYY-MM')
-  #   END ;;
-  # }
-
   dimension: count_time {
-    group_label: "TEST"
+    group_label: "Avgs per time period test"
     type: number
     sql: datediff({% parameter timespan_picker %}, {% date_start startdate_date %},{% date_end startdate_date %}) ;;
   }
 
   dimension: count_weeks {
-    group_label: "TEST"
+    hidden: yes
+    group_label: "Avgs per time period test"
     type: number
     sql: datediff(week, {% date_start startdate_date %},{% date_end startdate_date %}) ;;
   }
 
+  measure: avg_mtgs_customers_weeks {
+    hidden: yes
+    label: "Avg. Meetings per Customer per Week"
+    sql: (count(${id}) / count(distinct ${device_registrations.company_domain})) / count(${startdate_week}) ;;
+  }
+
   # measure: avg_mtgs_customers_weeks {
-  #   group_label: "TEST"
+  #   group_label: "Avgs per time period test"
   #   description: "Avg meetings per customer per week"
   #   # sql: (count(${id}) * 1.0 / count(distinct ${device_registrations.company_domain})) / count(${startdate_week}) ;;
   #   sql: (count(${id}) * 1.0 / count(distinct ${device_registrations.company_domain})) / ${count_weeks} ;;
   #   value_format: "0.##"
   # }
 
-  measure: avg_mtgs_customers_weeks2 {
-    group_label: "TEST"
-    description: "Avg meetings per customer per week"
-    sql: (${count_meetings} * 1.0 / ${device_registrations.count_domain}) / ${count_weeks} ;;
-    value_format: "0.##"
-  }
-
-
   measure: avg_mtgs_customers_time {
-    label_from_parameter: timespan_picker
-    group_label: "TEST"
-    description: "Avg meetings per customer per time"
-    sql: (${count_meetings} * 1.0 / ${device_registrations.count_domain}) / ${count_time} ;;
+    # label_from_parameter: timespan_picker
+    group_label: "Avgs per time period test"
+    label: "Avg meetings per customer per time"
+    description: "requires use of date filter and time granularity filter"
+    sql: (${count_meetings} * 1.0 / ${device_registrations.count_domain}) / nullif(${count_time},0) ;;
     value_format: "0.##"
   }
-# {% condition software_version_select %} devices_view.device_software_version_number {% endcondition %}
+
+  # measure: avg_mtgs_customers_weeks2 {
+  #   hidden: yes
+  #   group_label: "Avgs per time period test"
+  #   description: "Avg meetings per customer per week"
+  #   sql: (${count_meetings} * 1.0 / ${device_registrations.count_domain}) / ${count_weeks} ;;
+  #   value_format: "0.##"
+  # }
 
 
-
+  measure: avg_lenth_device_time {
+    label: "Avg. Meeting Minutes (per device count) per Time Period"
+    description: "requires use of date filter and time granularity filter"
+    group_label: "Avgs per time period test"
+    sql: (${durationminutes} * 1.0 / ${count_devices}) / nullif(${count_time},0) ;;
+  }
+  # Avg length per device count per time period
 
 
 
