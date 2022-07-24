@@ -66,7 +66,7 @@ explore: shopify_fulfillments_line_items_view {
 }
 
 explore: distributor_sellthrough {
-  # hidden: yes
+  hidden: yes
 }
 
 explore: shopify_orders_fulfillments {
