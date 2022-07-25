@@ -257,9 +257,10 @@ view: meeting_records {
 
   measure: avg_meeting_length_minutes {
     label: "Avg. Minutes per Meeting"
-    type: average
+    type: number
     value_format: "0"
-    sql: ${durationminutes_per_meeting};;
+    # value_format: "0.0"
+    sql: ${durationminutes} / ${count_meetings};;
   }
 
 # talk time
@@ -307,6 +308,12 @@ view: meeting_records {
     description: "Seconds of meeting with presenter mode enabled"
     type: sum
     sql: ${TABLE}.presenterseconds ;;
+  }
+
+  measure: avg_mtgs_per_customer {
+    label: "Avg. # Meetings per Customer"
+    sql: ${count_meetings} * 1.0 / ${device_registrations.count_domain} ;;
+    value_format: "0.0"
   }
 
 

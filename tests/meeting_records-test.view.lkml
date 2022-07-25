@@ -227,7 +227,8 @@ view: meeting_records_test {
     description: "Total sum of meeting minutes for all devices"
     type: number
     sql: sum(${durationseconds_per_meeting}) / 60.0 ;;
-    value_format: "0" # integer
+    # value_format: "0" # integer
+    value_format: "#,##0"
   }
 
   measure: durationhours {
@@ -255,12 +256,6 @@ view: meeting_records_test {
     sql: (${count_meetings} * 1.0) / ${count_devices} ;;
   }
 
-  measure: avg_meeting_length_minutes {
-    label: "Avg. Minutes per Meeting"
-    type: average
-    value_format: "0"
-    sql: ${durationminutes_per_meeting};;
-  }
 
 # talk time
   measure: remotetalktimeseconds {
@@ -351,27 +346,6 @@ view: meeting_records_test {
     sql: datediff({% parameter timespan_picker %}, {% date_start startdate_date %},{% date_end startdate_date %}) ;;
   }
 
-  dimension: count_weeks {
-    hidden: yes
-    group_label: "Avgs per time period test"
-    type: number
-    sql: datediff(week, {% date_start startdate_date %},{% date_end startdate_date %}) ;;
-  }
-
-  measure: avg_mtgs_customers_weeks {
-    hidden: yes
-    label: "Avg. Meetings per Customer per Week"
-    sql: (count(${id}) / count(distinct ${device_registrations.company_domain})) / count(${startdate_week}) ;;
-  }
-
-  # measure: avg_mtgs_customers_weeks {
-  #   group_label: "Avgs per time period test"
-  #   description: "Avg meetings per customer per week"
-  #   # sql: (count(${id}) * 1.0 / count(distinct ${device_registrations.company_domain})) / count(${startdate_week}) ;;
-  #   sql: (count(${id}) * 1.0 / count(distinct ${device_registrations.company_domain})) / ${count_weeks} ;;
-  #   value_format: "0.##"
-  # }
-
   measure: avg_mtgs_customers_time {
     # label_from_parameter: timespan_picker
     group_label: "Avgs per time period test"
@@ -381,14 +355,6 @@ view: meeting_records_test {
     value_format: "0.##"
   }
 
-  # measure: avg_mtgs_customers_weeks2 {
-  #   hidden: yes
-  #   group_label: "Avgs per time period test"
-  #   description: "Avg meetings per customer per week"
-  #   sql: (${count_meetings} * 1.0 / ${device_registrations.count_domain}) / ${count_weeks} ;;
-  #   value_format: "0.##"
-  # }
-
 
   measure: avg_lenth_device_time {
     label: "Avg. Meeting Minutes (per device count) per Time Period"
@@ -397,6 +363,22 @@ view: meeting_records_test {
     sql: (${durationminutes} * 1.0 / ${count_devices}) / nullif(${count_time},0) ;;
   }
   # Avg length per device count per time period
+
+
+
+  measure: avg_mtgs_per_customer {
+    label: "Avg. # Meetings per Customer"
+    sql: ${count_meetings} * 1.0 / ${device_registrations.count_domain} ;;
+    value_format: "0.##"
+  }
+
+
+  measure: avg_mtg_lenth_per_device {
+    label: "Avg. Meeting Minutes per Device"
+    sql: ${durationminutes} * 1.0 / ${count_devices} ;;
+    value_format: "0.##"
+  }
+
 
 
 
