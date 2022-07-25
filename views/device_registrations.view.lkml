@@ -78,6 +78,7 @@ view: device_registrations {
     type: time
     timeframes: [
       raw,
+      time,
       date,
       week,
       month,
