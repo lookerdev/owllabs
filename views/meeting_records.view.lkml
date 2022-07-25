@@ -211,6 +211,14 @@ view: meeting_records {
     sql: ${TABLE}.personcount ;;
   }
 
+  measure: avg_personcount {
+    label: "Avg. Person Count per Meeting"
+    description: "Device's count of total people who spoke during the meeting"
+    type: number
+    sql: ${personcount} * 1.0 / ${count_meetings} ;;
+    value_format: "0"
+  }
+
 # meeting duration
   measure: durationseconds {
     hidden: yes
