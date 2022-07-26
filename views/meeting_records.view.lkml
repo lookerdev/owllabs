@@ -136,6 +136,40 @@ view: meeting_records {
     sql: ${TABLE}.updatedat::timestamp ;;
   }
 
+# talk time
+  dimension: remotetalktimeseconds {
+    label: "Remote Talk Time (seconds)"
+    group_label: "Talk Time"
+    description: "Number of meeting seconds meeting attendee(s) not using the device spoke"
+    type: number
+    sql: ${TABLE}.remotetalktimeseconds ;;
+  }
+
+  dimension: bothtalktimeseconds {
+    label: "Both Talk Time (seconds)"
+    group_label: "Talk Time"
+    description: "Number of meeting seconds at least one meeting attendee using the device and at least one meeting attendee not using the device spoke at the same time"
+    type: number
+    sql: ${TABLE}.bothtalktimeseconds ;;
+  }
+
+  dimension: localtalktimeseconds {
+    label: "Local Talk Time (seconds)"
+    group_label: "Talk Time"
+    description: "Number of meeting seconds meeting attendee(s) using the device spoke"
+    type: number
+    sql: ${TABLE}.localtalktimeseconds ;;
+  }
+
+  dimension: neithertalktimeseconds {
+    label: "Neither Talk Time (seconds)"
+    group_label: "Talk Time"
+    description: "Number of meeting seconds no meeting attendees spoke"
+    type: number
+    sql: ${TABLE}.neithertalktimeseconds ;;
+  }
+
+
   dimension: waspaired {
     type: yesno
     label: "Device Paired"
@@ -285,14 +319,6 @@ view: meeting_records {
   }
 
 # talk time
-  dimension: remotetalktimeseconds {
-    label: "Remote Talk Time (seconds)"
-    group_label: "Talk Time"
-    description: "Number of meeting seconds meeting attendee(s) not using the device spoke"
-    type: number
-    sql: ${TABLE}.remotetalktimeseconds ;;
-  }
-
   measure: sum_remotetalktimeseconds {
     label: "Total Remote Talk Time (seconds)"
     group_label: "Total Talk Time"
@@ -301,28 +327,12 @@ view: meeting_records {
     sql: ${remotetalktimeseconds} ;;
   }
 
-  dimension: bothtalktimeseconds {
-    label: "Both Talk Time (seconds)"
-    group_label: "Talk Time"
-    description: "Number of meeting seconds at least one meeting attendee using the device and at least one meeting attendee not using the device spoke at the same time"
-    type: number
-    sql: ${TABLE}.bothtalktimeseconds ;;
-  }
-
   measure: sum_bothtalktimeseconds {
     label: "Total Both Talk Time (seconds)"
     group_label: "Total Talk Time"
     description: "Total seconds at least one meeting attendee using the device and at least one meeting attendee not using the device spoke at the same time"
     type: sum
-    sql: ${TABLE}.bothtalktimeseconds ;;
-  }
-
-  dimension: localtalktimeseconds {
-    label: "Local Talk Time (seconds)"
-    group_label: "Talk Time"
-    description: "Number of meeting seconds meeting attendee(s) using the device spoke"
-    type: number
-    sql: ${TABLE}.localtalktimeseconds ;;
+    sql: ${bothtalktimeseconds} ;;
   }
 
   measure: sum_localtalktimeseconds {
@@ -333,20 +343,12 @@ view: meeting_records {
     sql: ${localtalktimeseconds} ;;
   }
 
-  dimension: neithertalktimeseconds {
-    label: "Neither Talk Time (seconds)"
-    group_label: "Talk Time"
-    description: "Number of meeting seconds no meeting attendees spoke"
-    type: number
-    sql: ${TABLE}.neithertalktimeseconds ;;
-  }
-
   measure: sum_neithertalktimeseconds {
     label: "Total Neither Talk Time (seconds)"
     group_label: "Total Talk Time"
     description: "Total seconds no meeting attendees spoke"
     type: sum
-    sql: ${TABLE}.neithertalktimeseconds ;;
+    sql: ${neithertalktimeseconds} ;;
   }
 
 # other
