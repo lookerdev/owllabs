@@ -223,8 +223,8 @@ view: meeting_records {
   measure: count_meetings {
     label: "Count of Meetings"
     description: "Count of unique meeting records"
-    type: count
-    # sql: ${id} ;;
+    type: count_distinct
+    sql: ${id} ;;
     # drill_fields: [devices.product_name, count_meetings]
     drill_fields: [device_view.product_name, count_meetings]
   }
