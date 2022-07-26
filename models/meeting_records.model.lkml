@@ -18,13 +18,11 @@ include: "/views/devices.view.lkml"
 
 
 
-# RENAME THIS to USAGE
  explore: meeting_records {
-  # hidden: yes
   description: "Data for devices that have had at least one meeting. Does not include TESTNAME products."
   # fields: [meeting_records*, device_registrations*, ] # may not be needed
   join: device_view {
-    # view_label: "This data is on its way out, please don't use"
+    # view_label: "Please replace with corresponding column from Devices subcategory"
       type: left_outer
       relationship: many_to_one
       sql_on: ${meeting_records.deviceuuid} = ${device_view.uuid} ;;
@@ -50,6 +48,7 @@ include: "/views/devices.view.lkml"
   #   sql_on: ${devices.channel_id} = ${barn_channels.channel_id} ;;
   # }
 }
+
 
 # MOVED TO DEVICE_DATA
 # explore: device_checkins {
