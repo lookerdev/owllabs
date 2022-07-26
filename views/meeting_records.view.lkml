@@ -84,6 +84,13 @@ view: meeting_records {
     sql: ${TABLE}.originalstartdate::timestamp ;;
   }
 
+  dimension: personcount {
+    label: "Person Count"
+    description: "Device's count of people who spoke during the meeting"
+    type: number
+    sql: ${TABLE}.personcount ;;
+  }
+
   dimension: presenteradmin {
     label: "Presenter Mode Enabled"
     description: "Whether presenter mode was enabled by admin setting"
@@ -204,18 +211,18 @@ view: meeting_records {
     sql: count(distinct ${startdate_date}) ;;
   }
 
-  measure: personcount {
+  measure: sum_personcount {
     label: "Total Person Count"
-    description: "Device's count of total people who spoke during the meeting"
+    description: "Device's count of total people who spoke"
     type: sum
-    sql: ${TABLE}.personcount ;;
+    sql: ${personcount} ;;
   }
 
   measure: avg_personcount {
     label: "Avg. Person Count per Meeting"
-    description: "Device's count of total people who spoke during the meeting"
+    description: "Average number of people captured by device who spoke per meeting"
     type: number
-    sql: ${personcount} * 1.0 / ${count_meetings} ;;
+    sql: ${sum_personcount} * 1.0 / ${count_meetings} ;;
     value_format: "0"
   }
 
