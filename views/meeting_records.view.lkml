@@ -43,7 +43,6 @@ view: meeting_records {
   }
 
   dimension: deviceuuid {
-    # hidden: yes
     label: "Device UUID"
     description: "Unique identifier for each device"
     type: string
@@ -286,31 +285,63 @@ view: meeting_records {
   }
 
 # talk time
-  measure: remotetalktimeseconds {
-    label: "Total Remote Talk Time (seconds)"
-    group_label: "Total Talk Time"
-    description: "Total seconds that meeting attendee(s) not using the device spoke"
-    type: sum
+  dimension: remotetalktimeseconds {
+    label: "Remote Talk Time (seconds)"
+    group_label: "Talk Time"
+    description: "Number of meeting seconds meeting attendee(s) not using the device spoke"
+    type: number
     sql: ${TABLE}.remotetalktimeseconds ;;
   }
 
-  measure: bothtalktimeseconds {
+  measure: sum_remotetalktimeseconds {
+    label: "Total Remote Talk Time (seconds)"
+    group_label: "Total Talk Time"
+    description: "Total seconds meeting attendees not using the device spoke"
+    type: sum
+    sql: ${remotetalktimeseconds} ;;
+  }
+
+  dimension: bothtalktimeseconds {
+    label: "Both Talk Time (seconds)"
+    group_label: "Talk Time"
+    description: "Number of meeting seconds at least one meeting attendee using the device and at least one meeting attendee not using the device spoke at the same time"
+    type: number
+    sql: ${TABLE}.bothtalktimeseconds ;;
+  }
+
+  measure: sum_bothtalktimeseconds {
     label: "Total Both Talk Time (seconds)"
     group_label: "Total Talk Time"
-    description: "Total second at least one meeting attendee using the device and at least one meeting attendee not using the device spoke at the same time"
+    description: "Total seconds at least one meeting attendee using the device and at least one meeting attendee not using the device spoke at the same time"
     type: sum
     sql: ${TABLE}.bothtalktimeseconds ;;
   }
 
-  measure: localtalktimeseconds {
-    label: "Total Local Talk Time (seconds)"
-    group_label: "Total Talk Time"
-    description: "Total seconds meeting attendee(s) using the device spoke"
-    type: sum
+  dimension: localtalktimeseconds {
+    label: "Local Talk Time (seconds)"
+    group_label: "Talk Time"
+    description: "Number of meeting seconds meeting attendee(s) using the device spoke"
+    type: number
     sql: ${TABLE}.localtalktimeseconds ;;
   }
 
-  measure: neithertalktimeseconds {
+  measure: sum_localtalktimeseconds {
+    label: "Total Local Talk Time (seconds)"
+    group_label: "Total Talk Time"
+    description: "Total seconds meeting attendees using the device spoke"
+    type: sum
+    sql: ${localtalktimeseconds} ;;
+  }
+
+  dimension: neithertalktimeseconds {
+    label: "Neither Talk Time (seconds)"
+    group_label: "Talk Time"
+    description: "Number of meeting seconds no meeting attendees spoke"
+    type: number
+    sql: ${TABLE}.neithertalktimeseconds ;;
+  }
+
+  measure: sum_neithertalktimeseconds {
     label: "Total Neither Talk Time (seconds)"
     group_label: "Total Talk Time"
     description: "Total seconds no meeting attendees spoke"
