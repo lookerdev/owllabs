@@ -1,27 +1,23 @@
 view: salesforce_accounts {
   label: "Salesforce Accounts"
-  sql_table_name: public.salesforce_accounts_view ;;
+  sql_table_name: salesforce.salesforce_accounts_view ;;
+
+
+  dimension: accountid {
+    label: "Account ID"
+    primary_key: yes
+    type: string
+    sql: ${TABLE}.id ;;
+  }
 
   dimension: company_name {
     type: string
-    sql: ${TABLE}.company_name ;;
-  }
-
-  dimension: company_size {
-    type: string
-    sql: ${TABLE}.company_size ;;
+    sql: ${TABLE}.name ;;
   }
 
   dimension: email_domain {
     type: string
-    sql: ${TABLE}.company_domain ;;
-  }
-
-  dimension: device_registrations_join_key {
-    hidden: yes
-    description: "this is what to use to join to device_registrations. mostly domains, but has company name for gmail.com, comcast.net, and aol.com because of all the companies that use those domains"
-    type: string
-    sql: ${TABLE}.device_registrations_join_key ;;
+    sql: ${TABLE}.company_domain_name_c ;;
   }
 
   dimension: industry {
@@ -35,11 +31,23 @@ view: salesforce_accounts {
     sql: ${TABLE}.industry_group ;;
   }
 
-  dimension: row_num {
-    primary_key: yes
-    hidden: yes
+  dimension: company_size {
     type: string
-    sql: ${TABLE}.row_num ;;
+    sql: ${TABLE}.company_size ;;
+  }
+
+  dimension: device_registrations_join_key {
+    hidden: yes
+    description: "this is what to use to join to device_registrations. mostly domains, but has company name for gmail.com, comcast.net, and aol.com because of all the companies that use those domains"
+    type: string
+    sql: ${TABLE}.registrations_joinkey ;;
+  }
+
+  dimension: priority {
+    hidden: yes
+    # this is the ROW_NUMBER priority ranking based on industry, industry group, company size values. higher ranked dupe records are selected
+    type: number
+    sql: ${TABLE}.priority ;;
   }
 
 # # move to Salesforce Accounts view
@@ -80,7 +88,7 @@ view: salesforce_accounts {
   measure: count_companies {
     label: "Count of Companies"
     type: count_distinct
-    sql: ${company_name} ;;
+    sql: ${accountid} ;;
     drill_fields: [company_name, industry, industry_group]
   }
 

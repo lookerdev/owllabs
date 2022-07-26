@@ -139,7 +139,7 @@ view: meeting_records {
 # talk time
   dimension: remotetalktimeseconds {
     label: "Remote Talk Time (seconds)"
-    group_label: "Talk Time"
+    group_label: "Meeting Talk Time"
     description: "Number of meeting seconds meeting attendee(s) not using the device spoke"
     type: number
     sql: ${TABLE}.remotetalktimeseconds ;;
@@ -147,7 +147,7 @@ view: meeting_records {
 
   dimension: bothtalktimeseconds {
     label: "Both Talk Time (seconds)"
-    group_label: "Talk Time"
+    group_label: "Meeting Talk Time"
     description: "Number of meeting seconds at least one meeting attendee using the device and at least one meeting attendee not using the device spoke at the same time"
     type: number
     sql: ${TABLE}.bothtalktimeseconds ;;
@@ -155,7 +155,7 @@ view: meeting_records {
 
   dimension: localtalktimeseconds {
     label: "Local Talk Time (seconds)"
-    group_label: "Talk Time"
+    group_label: "Meeting Talk Time"
     description: "Number of meeting seconds meeting attendee(s) using the device spoke"
     type: number
     sql: ${TABLE}.localtalktimeseconds ;;
@@ -163,7 +163,7 @@ view: meeting_records {
 
   dimension: neithertalktimeseconds {
     label: "Neither Talk Time (seconds)"
-    group_label: "Talk Time"
+    group_label: "Meeting Talk Time"
     description: "Number of meeting seconds no meeting attendees spoke"
     type: number
     sql: ${TABLE}.neithertalktimeseconds ;;
