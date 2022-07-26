@@ -98,6 +98,13 @@ view: meeting_records {
     sql: ${TABLE}.presenteradmin ;;
   }
 
+  dimension: presenterseconds {
+    label: "Presenter Mode (seconds)"
+    description: "Seconds of meeting with presenter mode enabled"
+    type: number
+    sql: ${TABLE}.presenterseconds ;;
+  }
+
   dimension_group: startdate {
     label: "Meeting Start"
     description: "The datetime at which a meeting began"
@@ -318,11 +325,11 @@ view: meeting_records {
     sql: max(${originalstartdate_date})::timestamp ;;
   }
 
-  measure: presenterseconds {
+  measure: sum_presenterseconds {
     label: "Total Presenter Mode (seconds)"
-    description: "Seconds of meeting with presenter mode enabled"
+    description: "Sum of meeting seconds with presenter mode enabled"
     type: sum
-    sql: ${TABLE}.presenterseconds ;;
+    sql: ${presenterseconds} ;;
   }
 
   measure: avg_mtgs_per_customer {
