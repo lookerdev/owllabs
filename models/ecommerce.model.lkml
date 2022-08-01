@@ -23,7 +23,7 @@ include: "/views/distributor_sellthrough.view.lkml"
 
 
 explore: all_orders_fulfillments {
-  # hidden: yes
+  hidden: yes
   label: "All Orders & Fulfillments"
   description: "Sales data from Shopify, Amazon, Sourcenext, and historical distributor Starin. By default includes SKUs that don't count toward revenue (replacement units, Owls For Good), which can be filtered out using Revenue SKU dimension. Excludes test SKUs. All Orders and All Fulfillments tables are joined on date and does not link orders and fulfillments to each other."
   view_name: dim_calendar
@@ -42,32 +42,18 @@ explore: all_orders_fulfillments {
   }
 }
 
-
 explore: all_orders {
+  hidden: yes
   description: "Order data from Shopify, Amazon, Sourcenext, and historical distributor Starin. By default includes SKUs that don't count toward revenue (replacement units, Owls For Good), which can be filtered out using Revenue SKU dimension. Excludes test SKUs."
   sql_always_where: ${all_orders.sku} not in ('TEST2','TEST3') ;;
-  hidden: yes
 }
 
 explore: all_fulfillments {
+  hidden: yes
   description: "Shipment data from Shopify, Amazon, Sourcenext, and historical distributor Starin. By default includes SKUs that don't count toward revenue (replacement units, Owls For Good), which can be filtered out using Revenue SKU dimension. Excludes test SKUs."
   sql_always_where: ${all_fulfillments.sku} not in ('TEST2','TEST3') ;;
-  hidden: yes
 }
 
-explore: shopify_orders_line_items_view {
-  label: "Shopify Orders"
-  hidden: yes
-}
-
-explore: shopify_fulfillments_line_items_view {
-  label: "Shopify Fulfillments"
-  hidden: yes
-}
-
-explore: distributor_sellthrough {
-  hidden: yes
-}
 
 explore: shopify_orders_fulfillments {
   label: "Shopify Orders & Fulfillments"
@@ -78,14 +64,32 @@ explore: shopify_orders_fulfillments {
     type: left_outer
     relationship: one_to_many
     sql_on: ${shopify_orders_line_items_view.order_date} = ${dim_calendar.date_date}
-            and ${shopify_orders_line_items_view.sku} not in ('TEST2','TEST3') ;;
+      and ${shopify_orders_line_items_view.sku} not in ('TEST2','TEST3') ;;
   }
   join: shopify_fulfillments_line_items_view {
     type: left_outer
     relationship: one_to_many
     sql_on: ${shopify_fulfillments_line_items_view.fulfillment_date} = ${dim_calendar.date_date}
-            and ${shopify_fulfillments_line_items_view.sku} not in ('TEST2','TEST3') ;;
+      and ${shopify_fulfillments_line_items_view.sku} not in ('TEST2','TEST3') ;;
   }
+}
+
+explore: shopify_orders_line_items_view {
+  label: "Shopify Orders"
+  description: "Shopify line item order data. By default includes SKUs that don't count toward revenue (replacement units, Owls For Good), which can be filtered out using Revenue SKU dimension. Excludes test SKUs."
+  hidden: yes
+  sql_always_where: ${shopify_orders_line_items_view.sku} not in ('TEST2','TEST3') ;;
+}
+
+explore: shopify_fulfillments_line_items_view {
+  label: "Shopify Fulfillments"
+  description: "Shopify line item fulfillments data. By default includes SKUs that don't count toward revenue (replacement units, Owls For Good), which can be filtered out using Revenue SKU dimension. Excludes test SKUs."
+  hidden: yes
+  sql_always_where: ${shopify_fulfillments_line_items_view.sku} not in ('TEST2','TEST3') ;;
+}
+
+explore: distributor_sellthrough {
+  hidden: yes
 }
 
 explore: monthly_hardware_goals_eom_projections {
