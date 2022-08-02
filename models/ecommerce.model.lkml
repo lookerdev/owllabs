@@ -1,7 +1,7 @@
 connection: "redshift"
 label: "E-Commerce"
 
-include: "/views/orders_view.view.lkml"                # include all views in the views/ folder in this project
+include: "/views/orders_view.view.lkml"  # include all views in the views/ folder in this project
 include: "/views/orders_line_items_view.view.lkml"
 include: "/views/orders_fulfillments_view.view.lkml"
 include: "/views/dim_calendar.view.lkml"
@@ -23,7 +23,7 @@ include: "/views/distributor_sellthrough.view.lkml"
 
 
 explore: all_orders_fulfillments {
-  hidden: yes
+  # hidden: yes
   label: "All Orders & Fulfillments"
   description: "Sales data from Shopify, Amazon, Sourcenext, and historical distributor Starin. By default includes SKUs that don't count toward revenue (replacement units, Owls For Good), which can be filtered out using Revenue SKU dimension. Excludes test SKUs. All Orders and All Fulfillments tables are joined on date and does not link orders and fulfillments to each other."
   view_name: dim_calendar
