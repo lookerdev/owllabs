@@ -1,6 +1,6 @@
 view: nps_surveys {
   label: "NPS Surveys"
-  sql_table_name: public.nps_surveys_redshift ;;
+  sql_table_name: nps.nps_surveys ;;
 
 ## DIMENSIONS
 
