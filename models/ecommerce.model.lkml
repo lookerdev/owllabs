@@ -89,7 +89,8 @@ explore: shopify_fulfillments_line_items_view {
 }
 
 explore: distributor_sellthrough {
-  hidden: yes
+  label: "DEV - Distributor Sellthrough"
+  # hidden: yes
 }
 
 explore: monthly_hardware_goals_eom_projections {

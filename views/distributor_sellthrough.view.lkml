@@ -4,13 +4,6 @@ view: distributor_sellthrough {
 
 # DIMENSIONS
 
-  dimension: row_num {
-    primary_key: yes
-    hidden: yes
-    type: number
-    sql: ${TABLE}.row_num ;;
-  }
-
   dimension: base_cost {
     hidden: yes
     type: number
@@ -22,10 +15,24 @@ view: distributor_sellthrough {
     sql: ${TABLE}.currency ;;
   }
 
-  dimension: customer_address {
+  dimension: customer_name {
     group_label: "Customer Info"
     type: string
-    sql: ${TABLE}.customer_address ;;
+    sql: ${TABLE}.customer_name ;;
+  }
+
+  dimension: customer_address_line1 {
+    label: "Customer Address"
+    group_label: "Customer Info"
+    type: string
+    sql: ${TABLE}.customer_address_line1 ;;
+  }
+
+  dimension: customer_address_line2 {
+    hidden: yes
+    group_label: "Customer Info"
+    type: string
+    sql: ${TABLE}.customer_address_line2 ;;
   }
 
   dimension: customer_city {
@@ -34,22 +41,16 @@ view: distributor_sellthrough {
     sql: ${TABLE}.customer_city ;;
   }
 
-  dimension: customer_country {
-    group_label: "Customer Info"
-    type: string
-    sql: ${TABLE}.customer_country ;;
-  }
-
-  dimension: customer_name {
-    group_label: "Customer Info"
-    type: string
-    sql: ${TABLE}.customer_name ;;
-  }
-
   dimension: customer_state {
     group_label: "Customer Info"
     type: string
     sql: ${TABLE}.customer_state ;;
+  }
+
+  dimension: customer_country {
+    group_label: "Customer Info"
+    type: string
+    sql: ${TABLE}.customer_country ;;
   }
 
   dimension: customer_zip {
@@ -69,20 +70,24 @@ view: distributor_sellthrough {
     sql: ${TABLE}.extended_base_cost ;;
   }
 
-  dimension: file_date {
-    type: string
-    sql: ${TABLE}.file_date ;;
-  }
-
-  dimension: filename {
-    type: string
-    sql: ${TABLE}.filename ;;
-  }
-
-  dimension: reseller_address {
+  dimension: reseller_name {
     group_label: "Reseller Info"
     type: string
-    sql: ${TABLE}.reseller_address ;;
+    sql: ${TABLE}.reseller_name ;;
+  }
+
+  dimension: reseller_address_line1 {
+    label: "Reseller Address"
+    group_label: "Reseller Info"
+    type: string
+    sql: ${TABLE}.reseller_address_line1 ;;
+  }
+
+  dimension: reseller_address_line2 {
+    hidden: yes
+    group_label: "Reseller Info"
+    type: string
+    sql: ${TABLE}.reseller_address_line2 ;;
   }
 
   dimension: reseller_city {
@@ -91,22 +96,16 @@ view: distributor_sellthrough {
     sql: ${TABLE}.reseller_city ;;
   }
 
-  dimension: reseller_country {
-    group_label: "Reseller Info"
-    type: string
-    sql: ${TABLE}.reseller_country ;;
-  }
-
-  dimension: reseller_name {
-    group_label: "Reseller Info"
-    type: string
-    sql: ${TABLE}.reseller_name ;;
-  }
-
   dimension: reseller_state {
     group_label: "Reseller Info"
     type: string
     sql: ${TABLE}.reseller_state ;;
+  }
+
+  dimension: reseller_country {
+    group_label: "Reseller Info"
+    type: string
+    sql: ${TABLE}.reseller_country ;;
   }
 
   dimension: reseller_zip {
@@ -116,7 +115,7 @@ view: distributor_sellthrough {
   }
 
   dimension: serial_numbers {
-    hidden: yes
+    # hidden: yes
     type: string
     sql: ${TABLE}.serial_numbers ;;
   }
@@ -141,6 +140,7 @@ view: distributor_sellthrough {
   }
 
   dimension: sku {
+    label: "SKU"
     type: string
     sql: ${TABLE}.sku ;;
   }
@@ -150,34 +150,88 @@ view: distributor_sellthrough {
     sql: ${TABLE}.warehouse ;;
   }
 
+  dimension: transaction_reference_no {
+    label: "Transaction Reference #"
+    description: "Depending on Dsitributor this is Order #, Invoice #, or PO #."
+    type: string
+    sql: ${TABLE}.transaction_reference_no ;;
+  }
+
+  dimension: salesforce_caseid {
+    label: "Salesforce Case ID"
+    type: string
+    sql: ${TABLE}.salesforce_caseid ;;
+  }
+
+  dimension: file_date {
+    # hidden: yes
+    type: string
+    sql: ${TABLE}.file_date ;;
+  }
+
+  dimension: filename {
+    label: "File Name"
+    # hidden: yes
+    type: string
+    sql: ${TABLE}.filename ;;
+  }
+
+  dimension: primary_key {
+    primary_key: yes
+    # hidden: yes
+    type: string
+    sql: ${TABLE}.primary_key ;;
+  }
+
+  dimension: uuid {
+    hidden: yes
+    type: string
+    sql: ${TABLE}.uuid ;;
+  }
+
+  dimension: timestamp {
+    hidden: yes
+    type: date
+    sql: ${TABLE}.timestamp ;;
+  }
+
+
+
+
 # MEASURES
 
   measure: count {
+    label: "Count of Records"
     type: count
-    drill_fields: [reseller_name, customer_name, filename]
+    drill_fields: [distributor, reseller_name, customer_name]
   }
 
-  measure: total_base_cost {
+  measure: sum_base_cost {
+    label: "Total Base Cost"
     type: sum
     sql: ${base_cost} ;;
   }
 
-  measure: average_base_cost {
+  measure: avg_base_cost {
+    label: "Avg. Base Cost"
     type: average
     sql: ${base_cost} ;;
   }
 
-  measure: total_extended_base_cost {
+  measure: sum_extended_base_cost {
+    label: "Total Extended Base Cost"
     type: sum
     sql: ${extended_base_cost} ;;
   }
 
-  measure: average_extended_base_cost {
+  measure: avg_extended_base_cost {
+    label: "Avg. Extended Base Cost"
     type: average
     sql: ${extended_base_cost} ;;
   }
 
-  measure: total_ship_quantity {
+  measure: sum_ship_quantity {
+    label: "Total Ship Quantity"
     type: sum
     sql: ${ship_quantity} ;;
   }

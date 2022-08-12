@@ -270,7 +270,7 @@ view: meeting_records {
   measure: durationseconds {
     hidden: yes
     label: "Total Meeting Seconds"
-    group_label: "Meeting Duration"
+    group_label: "Total Meeting Duration"
     description: "Total sum of meeting seconds for all devices"
     type: sum
     sql: ${durationseconds_per_meeting} ;;
@@ -283,6 +283,17 @@ view: meeting_records {
     type: number
     sql: sum(${durationseconds_per_meeting}) / 60.0 ;;
     value_format: "0" # integer
+  }
+
+
+  measure: durationminutes_test {
+    # label: "Total Meeting Minutes"
+    hidden: yes
+    group_label: "Total Meeting Duration"
+    description: "Total sum of meeting minutes for all devices"
+    type: number
+    sql: sum(${durationseconds_per_meeting}) * 1.0 / 60 ;;
+    # value_format: "0" # integer
   }
 
   measure: durationhours {
