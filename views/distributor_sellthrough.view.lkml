@@ -210,24 +210,28 @@ view: distributor_sellthrough {
     label: "Total Base Cost"
     type: sum
     sql: ${base_cost} ;;
+    value_format: "0.00"
   }
 
   measure: avg_base_cost {
     label: "Avg. Base Cost"
     type: average
     sql: ${base_cost} ;;
+    value_format: "0.00"
   }
 
   measure: sum_extended_base_cost {
     label: "Total Extended Base Cost"
     type: sum
     sql: ${extended_base_cost} ;;
+    value_format: "0.00"
   }
 
   measure: avg_extended_base_cost {
     label: "Avg. Extended Base Cost"
     type: average
     sql: ${extended_base_cost} ;;
+    value_format: "0.00"
   }
 
   measure: sum_ship_quantity {
