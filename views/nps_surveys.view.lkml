@@ -94,7 +94,6 @@ view: nps_surveys {
   }
 
   dimension: response_id {
-    hidden: yes
     group_label: "Qualtrics Metadata"
     type: string
     sql: ${TABLE}.response_id ;;

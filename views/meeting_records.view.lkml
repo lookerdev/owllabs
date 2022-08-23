@@ -169,7 +169,6 @@ view: meeting_records {
     sql: ${TABLE}.neithertalktimeseconds ;;
   }
 
-
   dimension: waspaired {
     type: yesno
     label: "Device Paired"
@@ -200,20 +199,15 @@ view: meeting_records {
     # value_format: "0" # integer
   }
 
-  dimension: hour {
-    hidden: yes
-    type: number
-    sql: extract(hour from ${startdate_raw}) ;;
-  }
-
+# Cohort analysis
   dimension_group: owl_connect_return_after_first_mtg {
     hidden: yes
     type: duration
     # sql_start: ${devices.first_owl_connect_mtg_5_mins_date} ;;
     sql_start: ${device_view.first_owl_connect_mtg_5_mins_date} ;;
     sql_end: ${startdate_date} ;;
+    # intervals: [day, month]
   }
-
 
 
 
@@ -283,17 +277,6 @@ view: meeting_records {
     type: number
     sql: sum(${durationseconds_per_meeting}) / 60.0 ;;
     value_format: "0" # integer
-  }
-
-
-  measure: durationminutes_test {
-    # label: "Total Meeting Minutes"
-    hidden: yes
-    group_label: "Total Meeting Duration"
-    description: "Total sum of meeting minutes for all devices"
-    type: number
-    sql: sum(${durationseconds_per_meeting}) * 1.0 / 60 ;;
-    # value_format: "0" # integer
   }
 
   measure: durationhours {
@@ -382,6 +365,71 @@ view: meeting_records {
     value_format: "0.0"
   }
 
+# % paired meetings
+  measure: count_paired_meetings {
+    hidden: yes
+    filters: [waspaired: "Yes"]
+    type: count_distinct
+    sql: ${id} ;;
+  }
+
+  measure: percent_paired_meetings {
+    label: "% Paired Meetings"
+    description: "Percentage of total meetings where the primary device was paired. Please note this measure will not be accurate if the Was Paired filter is used"
+    type: number
+    value_format: "0.0%"
+    sql: ${count_paired_meetings} * 1.0 / ${count_meetings} ;;
+  }
+
+
+
+# NEEDED?
+  dimension: hour {
+    hidden: yes
+    type: number
+    sql: extract(hour from ${startdate_raw}) ;;
+  }
+
+
+# cohort analysis test
+# start dates for only paired meetings
+  dimension_group: startdate_paired {
+    hidden: yes
+    label: "Paired Meeting Start"
+    description: "The datetime at which a meeting using Owl Connect began"
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: case when ${waspaired} is True then ${TABLE}.startdate::timestamp else null end ;; # have to cast as timestamp for the date parts (year, etc) to work
+    # allow_fill: yes
+  }
+
+# TEST
+  measure: durationminutes_test {
+    # label: "Total Meeting Minutes"
+    hidden: yes
+    group_label: "Total Meeting Duration"
+    description: "Total sum of meeting minutes for all devices"
+    type: number
+    sql: sum(${durationseconds_per_meeting}) * 1.0 / 60 ;;
+    # value_format: "0" # integer
+  }
+
+  measure: avg_meeting_length_minutes_test {
+    hidden: yes
+    # label: "Avg. Minutes per Meeting"
+    type: number
+    # value_format: "0"
+    value_format: "0.0"
+    sql: ${durationminutes} / ${count_meetings};;
+  }
 
   # measure: max_number_meetings {
   #   label: "Maximum Number of Meetings"
