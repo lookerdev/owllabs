@@ -184,13 +184,13 @@ view: distributor_sellthrough {
   }
 
   dimension: uuid {
-    hidden: yes
+    # hidden: yes
     type: string
     sql: ${TABLE}.uuid ;;
   }
 
   dimension: timestamp {
-    hidden: yes
+    # hidden: yes
     type: date
     sql: ${TABLE}.timestamp ;;
   }
@@ -245,6 +245,4 @@ view: distributor_sellthrough {
     type: date
     sql: max(${ship_date}) ;;
   }
-
-
 }

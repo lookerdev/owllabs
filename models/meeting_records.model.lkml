@@ -49,41 +49,6 @@ include: "/views/devices.view.lkml"
   # }
 }
 
-explore: paired_meeting_records {
-  hidden: yes
-  view_name: meeting_records
-  description: "Data for devices that have had at least one paired meeting. Does not include TESTNAME products."
-  # fields: [meeting_records*, device_registrations*, ] # may not be needed
-  sql_always_where: ${waspaired} is true ;;
-  join: device_view {
-    # view_label: "Please replace with corresponding column from Devices subcategory"
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${meeting_records.deviceuuid} = ${device_view.uuid} ;;
-  }
-  # join: devices {
-  #   type: left_outer
-  #   relationship: many_to_one
-  #   sql_on: ${meeting_records.deviceuuid} = ${devices.deviceuuid} ;;
-  # }
-  join:  device_registrations {
-    type: left_outer
-    relationship: many_to_many # this will change once I remove the funky registration dupes
-    sql_on: ${meeting_records.deviceuuid} = ${device_registrations.deviceuuid} ;;
-  }
-  join: salesforce_accounts {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: lower(${device_registrations.sf_accounts_join_key}) = lower(${salesforce_accounts.device_registrations_join_key});;
-  }
-  # join: barn_channels {
-  #   type: left_outer
-  #   relationship: many_to_one
-  #   sql_on: ${devices.channel_id} = ${barn_channels.channel_id} ;;
-  # }
-}
-
-
 # MOVED TO DEVICE_DATA - DON'T USE
  explore: device_view {
   hidden: yes
