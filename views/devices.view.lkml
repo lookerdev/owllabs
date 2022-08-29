@@ -6,7 +6,7 @@ view: devices {
 # Dimensions
 
   dimension: device_id {
-    primary_key: yes
+    # primary_key: yes
     label: "Device ID"
     description: "Unique identifier for each device record"
     type: number
@@ -15,7 +15,7 @@ view: devices {
 
   dimension: alias {
     # label: "Device Alias"
-    description: "Customer's chosen nickname for device, User Given Name field in Barn UI"
+    description: "Customer's chosen nickname for device, User Given Name field in Barn website"
     type: string
     sql: ${TABLE}.device_alias ;;
   }
@@ -27,7 +27,7 @@ view: devices {
   }
 
   dimension: display_name {
-    hidden: yes
+    # hidden: yes
     label: "Device Display Name"
     type: string
     sql: coalesce(${alias}, ${device_name}) ;;
@@ -228,16 +228,6 @@ view: devices {
     label: "Status"
     type: string
     sql: ${TABLE}.device_status_text ;;
-    # sql: (CASE when ${TABLE}.device_status = 0 then 'New'
-    #           when ${TABLE}.device_status = 1 then 'Active'
-    #           when ${TABLE}.device_status = 2 then 'Requires Update'
-    #           when ${TABLE}.device_status = 3 then 'Updating'
-    #           when ${TABLE}.device_status = 4 then 'Inactive'
-    #           when ${TABLE}.device_status = 5 then 'Downloading Update'
-    #           when ${TABLE}.device_status = 6 then 'Offline'
-    #           when ${TABLE}.device_status = 7 then 'Archive'
-    #           else 'Not Defined'
-    #           end) ;;
   }
 
   dimension: deviceuuid {
@@ -249,7 +239,7 @@ view: devices {
 
   dimension: record_source {
     hidden: yes
-    description: "place where this record is from"
+    # description: "place where this record is from"
     type: string
     sql: ${TABLE}.record_source ;;
   }

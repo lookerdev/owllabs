@@ -177,8 +177,9 @@ view: device_registrations {
   # }
 
   measure: count_companies {
-    hidden: yes
+    # hidden: yes
     label: "Count of Registered Companies"
+    description: "Distinct count of company_id"
     type: count_distinct
     sql: ${company_id} ;;
   }

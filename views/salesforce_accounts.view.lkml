@@ -51,25 +51,25 @@ view: salesforce_accounts {
   }
 
 # # move to Salesforce Accounts view
-#   dimension: devices_registered {
-#     hidden: yes
-#     label: "# Registered Devices per Company"
-#     description: "Number of registered devices per company"
-#     type: number
-#     sql: ${TABLE}.devices_registered ;;
-#   }
+  dimension: devices_registered {
+    hidden: yes
+    label: "# Registered Devices per Company"
+    description: "Number of registered devices per company"
+    type: number
+    sql: ${TABLE}.devices_registered ;;
+  }
 
 
-#   dimension: devices_registered_bins {
-#     hidden: yes
-#     label: "# Registered Devices per Company - bins"
-#     description: "Number of registered devices per company, grouped into bins."
-#     # label: "Count Devices Registered to Company"
-#     type: bin
-#     style: integer
-#     tiers: [1, 2, 5, 11, 21,]
-#     sql: ${devices_registered}  ;;
-#   }
+  dimension: devices_registered_bins {
+    hidden: yes
+    label: "# Registered Devices per Company - bins"
+    description: "Number of registered devices per company, grouped into bins."
+    # label: "Count Devices Registered to Company"
+    type: bin
+    style: integer
+    tiers: [1, 2, 5, 11, 21,]
+    sql: ${devices_registered}  ;;
+  }
 
   # dimension: count_owls_per_company {
   #   type: number
