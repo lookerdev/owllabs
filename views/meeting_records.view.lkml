@@ -306,10 +306,10 @@ view: meeting_records {
 
   measure: avg_meeting_length_minutes {
     label: "Avg. Minutes per Meeting"
-    type: number
+    type: average
     value_format: "0"
-    # value_format: "0.0"
-    sql: ${durationminutes} / ${count_meetings};;
+    sql: ${durationminutes_per_meeting};;
+    # sql: ${durationminutes} / ${count_meetings};;
   }
 
 # talk time
@@ -411,25 +411,15 @@ view: meeting_records {
     # allow_fill: yes
   }
 
-# TEST
-  measure: durationminutes_test {
-    # label: "Total Meeting Minutes"
+  dimension_group: owl_connect_return_after_first_mtg_test {
     hidden: yes
-    group_label: "Total Meeting Duration"
-    description: "Total sum of meeting minutes for all devices"
-    type: number
-    sql: sum(${durationseconds_per_meeting}) * 1.0 / 60 ;;
-    # value_format: "0" # integer
+    type: duration
+    # sql_start: ${devices.first_owl_connect_mtg_5_mins_date} ;;
+    sql_start: ${device_view.first_owl_connect_mtg_5_mins_date} ;;
+    sql_end: ${startdate_paired_date} ;;
+    # intervals: [day, month]
   }
 
-  measure: avg_meeting_length_minutes_test {
-    hidden: yes
-    # label: "Avg. Minutes per Meeting"
-    type: number
-    # value_format: "0"
-    value_format: "0.0"
-    sql: ${durationminutes} / ${count_meetings};;
-  }
 
   # measure: max_number_meetings {
   #   label: "Maximum Number of Meetings"
