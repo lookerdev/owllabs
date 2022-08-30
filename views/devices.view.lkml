@@ -245,7 +245,7 @@ view: devices {
   }
 
   dimension_group: first_owl_connect_mtg_5_mins {
-    # hidden: yes
+    hidden: yes
     label: "First Owl Connect Meeting >= 5 Minutes"
     type: time
     timeframes: [
