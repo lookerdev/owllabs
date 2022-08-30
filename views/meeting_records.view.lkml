@@ -204,7 +204,7 @@ view: meeting_records {
     hidden: yes
     type: duration
     # sql_start: ${devices.first_owl_connect_mtg_5_mins_date} ;;
-    sql_start: ${device_view.first_owl_connect_mtg_5_mins_date} ;;
+    sql_start: ${devices.first_owl_connect_mtg_5_mins_date} ;;
     sql_end: ${startdate_date} ;;
     # intervals: [day, month]
   }
