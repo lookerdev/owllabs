@@ -15,7 +15,7 @@ view: device_view {
   }
 
   dimension: alias {
-    hidden: yes
+    # hidden: yes
     label: "Device Alias"
     description: "Customer's chosen nickname for device, User Given Name field in Barn UI"
     type: string
@@ -23,27 +23,27 @@ view: device_view {
   }
 
   dimension: device_name {
-    hidden: yes
+    # hidden: yes
     type: string
     sql: ${TABLE}.device_name ;;
   }
 
   dimension: display_name {
-    hidden: yes
+    # hidden: yes
     label: "Device Display Name"
     type: string
     sql: coalesce(${alias}, ${device_name}) ;;
   }
 
   dimension: channel_id {
-    hidden: yes
+    # hidden: yes
     label: "Channel ID"
     type: number
     sql: ${TABLE}.channel_id ;;
   }
 
   dimension: channel_name {
-    hidden: yes
+    # hidden: yes
     label: "Barn Channel Name"
     description: "Name of Barn channel device belongs to"
     type: string
@@ -51,7 +51,7 @@ view: device_view {
   }
 
   dimension: barn_channel_category {
-    hidden: yes
+    # hidden: yes
     description: "Public = customer-facing, Internal = testing, Beta = beta testing"
     type: string
     sql: ${TABLE}.channel_category;;
@@ -63,14 +63,14 @@ view: device_view {
   }
 
   dimension: bootloaderversion {
-    hidden: yes
+    # hidden: yes
     label: "Bootloader Version"
     type:  string
     sql: ${TABLE}.bootloaderversion ;;
   }
 
   dimension_group: checkedinat {
-    hidden: yes
+    # hidden: yes
     label: "Most Recent Device Check-In"
     type: time
     timeframes: [
@@ -101,7 +101,7 @@ view: device_view {
   }
 
   dimension_group: device_activation_date {
-    hidden: yes
+    # hidden: yes
     label: "Device Activation"
     type: time
     timeframes: [
@@ -132,21 +132,21 @@ view: device_view {
   }
 
   dimension: device_hardware_serial_number {
-    hidden: yes
+    # hidden: yes
     label: "Hardware Serial Number"
     type: string
     sql: ${TABLE}.device_hardware_serial_number ;;
   }
 
   dimension: device_hardware_version {
-    hidden: yes
+    # hidden: yes
     label: "Hardware Version"
     type: string
     sql: ${TABLE}.device_hardware_version ;;
   }
 
   dimension: lastip {
-    hidden: yes
+    # hidden: yes
     label: "Last IP Address"
     description: "Device's most recent IP address, captured during most recent check-in"
     type: string
@@ -154,33 +154,33 @@ view: device_view {
   }
 
   dimension: lastgeo {
-    hidden: yes
+    # hidden: yes
     label: "Last Geo"
     type: string
     sql: ${TABLE}.lastgeo ;;
   }
 
   dimension: last_location {
-    hidden: yes
+    # hidden: yes
     type: string
     sql: ${TABLE}.device_last_location ;;
   }
 
   dimension: macaddress {
-    hidden: yes
+    # hidden: yes
     label: "MAC Address"
     type: string
     sql: ${TABLE}.macaddress ;;
   }
 
   dimension: parent_settings {
-    hidden: yes
+    # hidden: yes
     type: string
     sql: ${TABLE}.device_parent_settings ;;
   }
 
   dimension: pcb_version {
-    hidden: yes
+    # hidden: yes
     label: "PCB Version"
     # hidden: yes
     type: string
@@ -194,7 +194,7 @@ view: device_view {
   }
 
   dimension: product_name {
-    hidden: yes
+    # hidden: yes
     label: "Device Type"
     description: "Device product type"
     type: string
@@ -202,20 +202,20 @@ view: device_view {
   }
 
   dimension: serial {
-    hidden: yes
+    # hidden: yes
     label: "Software Serial Number"
     type: string
     sql: ${TABLE}.device_serial_number ;;
   }
 
   dimension: settings {
-    hidden: yes
+    # hidden: yes
     type: string
     sql: ${TABLE}.device_settings ;;
   }
 
   dimension: software_version {
-    hidden: yes
+    # hidden: yes
     label: "Software Version"
     description: "Device's most recent software version (decimal expansion format), captured during most recent check-in"
     type: string
@@ -223,7 +223,7 @@ view: device_view {
   }
 
   dimension: software_version_number{
-    hidden: yes
+    # hidden: yes
     label: "Software Version (integer)"
     description: "Device's most recent software version (integer format), captured during most recent check-in"
     type: number
@@ -239,7 +239,7 @@ view: device_view {
   }
 
   dimension: status_text {
-    hidden: yes
+    # hidden: yes
     label: "Device Status"
     type: string
     sql: ${TABLE}.device_status_text ;;
@@ -256,7 +256,7 @@ view: device_view {
   }
 
   dimension: uuid {
-    hidden: yes
+    # hidden: yes
     label: "Device UUID"
     description: "Unique identifier for each device"
     type: string
@@ -271,7 +271,7 @@ view: device_view {
   }
 
   dimension_group: first_owl_connect_mtg_5_mins {
-    hidden: yes
+    # hidden: yes
     label: "First Owl Connect Meeting >= 5 Minutes"
     type: time
     timeframes: [
@@ -326,7 +326,7 @@ view: device_view {
 
 # Measures
   measure: device_count {
-    hidden: yes
+    # hidden: yes
     label: "Count of Devices"
     description: "Count of unique deviceuuid"
     type: count_distinct
