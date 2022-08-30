@@ -19,7 +19,7 @@ include: "/views/devices.view.lkml"
 # explore: meeting_records2 {
 #   hidden: yes
 #   view_name: meeting_records
-#   # meeting_records.years_owl_connect_return_after_first_mtg" needs to join to devices instead of device_view
+#   # meeting_records.years_owl_connect_return_after_first_mtg needs to join to devices instead of device_view
 #   label: "Meeting Records"
 #   description: "Data for devices that have had at least one meeting. Does not include TESTNAME products."
 #   join: devices {
