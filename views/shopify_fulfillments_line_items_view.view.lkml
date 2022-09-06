@@ -1,9 +1,7 @@
-# The name of this view in Looker is "Shopify Fulfillments View"
 view: shopify_fulfillments_line_items_view {
   label: "Shopify Fulfillments"
-  # The sql_table_name parameter indicates the underlying database table
-  # to be used for all fields in this view.
   sql_table_name: public.shopify_fulfillments_line_items_view ;;
+  drill_fields: [shipping_address_company, shopify_order_name, sum_revenue_usd]
 
 
 # # DIMENSIONS
@@ -63,7 +61,8 @@ view: shopify_fulfillments_line_items_view {
     type: string
     sql: ${TABLE}.billing_address_phone ;;
   }
- dimension: billing_address_province {
+
+  dimension: billing_address_province {
     label: "Bill State/Province Name"
     group_label: "Billing Address"
     type: string
@@ -308,6 +307,7 @@ view: shopify_fulfillments_line_items_view {
   dimension: sales_rep {
     type: string
     sql: ${TABLE}.sales_rep_name;;
+    # drill_fields: [billing_address_company, shopify_order_name, sum_revenue_usd]
   }
 
   dimension: sku {
@@ -676,6 +676,7 @@ view: shopify_fulfillments_line_items_view {
     type: sum
     value_format_name: usd
     sql: ${revenue_usd} ;;
+    # drill_fields: [billing_address_company, shopify_order_name, sum_revenue_usd]
   }
 
 }
