@@ -1,5 +1,5 @@
 view: blackboxes {
-  sql_table_name: owlbarn.blackboxes ;;
+sql_table_name: owlbarn.blackboxes ;;
   drill_fields: [id]
 
   dimension: id {
@@ -41,16 +41,22 @@ view: blackboxes {
     sql: ${TABLE}.nappstarts ;;
   }
 
+  dimension: nbadornosignalowlnetdisconnects {
+    label: "nBadOrNoSignalOwlNetDisconnects"
+    type: number
+    sql: ${TABLE}.nbadornosignalowlnetdisconnects ;;
+  }
+
   dimension: ncrashboot {
     label: "nCrashBoot"
     type: number
     sql: ${TABLE}.ncrashboot ;;
   }
 
-  dimension: neyesflashingseconds {
-    label: "nEyesFlashingSeconds"
+  dimension: nlonelystreamingpairingsurrenders {
+    label: "nLonelyStreamingPairingSurrenders"
     type: number
-    sql: ${TABLE}.neyesflashingseconds ;;
+    sql: ${TABLE}.nlonelystreamingpairingsurrenders ;;
   }
 
   dimension: nmeetingminutes {
@@ -77,10 +83,16 @@ view: blackboxes {
     sql: ${TABLE}.nmeetings ;;
   }
 
-  dimension: nnosecondaryaudiominutes {
-    label: "nNoSecondaryAudioMinutes"
+  dimension: nnoprimaryowlnetpairingfails {
+    label: "nNoPrimaryOwlNetPairingFails"
     type: number
-    sql: ${TABLE}.nnosecondaryaudiominutes ;;
+    sql: ${TABLE}.nnoprimaryowlnetpairingfails ;;
+  }
+
+  dimension: nowlnetpairingsuccesses {
+    label: "nOwlNetPairingSuccesses"
+    type: number
+    sql: ${TABLE}.nowlnetpairingsuccesses ;;
   }
 
   dimension: npinnedaoiminutes {
@@ -101,16 +113,46 @@ view: blackboxes {
     sql: ${TABLE}.npowerup ;;
   }
 
-  dimension: nprimarypanelminutes {
-    label: "nPrimaryPanelMinutes"
+  dimension: nprimaryowlnetdisconnects {
+    label: "nPrimaryOwlNetDisconnects"
     type: number
-    sql: ${TABLE}.nprimarypanelminutes ;;
+    sql: ${TABLE}.nprimaryowlnetdisconnects ;;
   }
 
-  dimension: nsecondarypanelminutes {
-    label: "nSecondaryPanelMinutes"
+  dimension: nsecondaryowlnetdisconnects {
+    label: "nSecondaryOwlNetDisconnects"
     type: number
-    sql: ${TABLE}.nsecondarypanelminutes ;;
+    sql: ${TABLE}.nsecondaryowlnetdisconnects ;;
+  }
+
+  dimension: nsecondaryusbowlnetdisconnects {
+    label: "nSecondaryUsbOwlNetDisconnects"
+    type: number
+    sql: ${TABLE}.nsecondaryusbowlnetdisconnects ;;
+  }
+
+  dimension: nsecondaryusbowlnetpairingfailures {
+    label: "nSecondaryUsbOwlNetPairingFailures"
+    type: number
+    sql: ${TABLE}.nsecondaryusbowlnetpairingfailures ;;
+  }
+
+  dimension: nstreamingpairingsuccesses {
+    label: "nStreamingPairingSuccesses"
+    type: number
+    sql: ${TABLE}.nstreamingpairingsuccesses ;;
+  }
+
+  dimension: ntotalowlnetpairingfails {
+    label: "nTotalOwlNetPairingFails"
+    type: number
+    sql: ${TABLE}.ntotalowlnetpairingfails ;;
+  }
+
+  dimension: ntotalstreamingpairingsurrenders {
+    label: "nTotalStreamingPairingSurrenders"
+    type: number
+    sql: ${TABLE}.ntotalstreamingpairingsurrenders ;;
   }
 
   dimension: nuptimeminutes {
@@ -129,6 +171,18 @@ view: blackboxes {
     label: "nUsbStateFixups"
     type: number
     sql: ${TABLE}.nusbstatefixups ;;
+  }
+
+  dimension: peerinfo {
+    label: "peerInfo"
+    type: string
+    sql: ${TABLE}.peerinfo ;;
+  }
+
+  dimension: peerswserial {
+    label: "peerSwSerial"
+    type: string
+    sql: ${TABLE}.peerswserial ;;
   }
 
   dimension: rawdata {
@@ -157,6 +211,7 @@ view: blackboxes {
     ]
     sql: ${TABLE}.updatedat ;;
   }
+
 
 # MEASURES
 
