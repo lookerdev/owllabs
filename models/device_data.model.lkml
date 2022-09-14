@@ -8,6 +8,7 @@ include: "/views/device_checkins.view.lkml"
 include: "/views/shopify_orders_serial_numbers.view.lkml"
 include: "/views/most_recent_update_attempt.view.lkml"
 include: "/views/barn_channels.view.lkml"
+include: "/views/blackboxes.view.lkml"
 
 # include: "/views/device_meetingdates_v.view.lkml"
 
@@ -88,4 +89,8 @@ explore: barn_channels {
     relationship: one_to_many
     sql_on: ${devices.deviceuuid} = ${device_registrations.deviceuuid} ;;
   }
+}
+
+explore: blackboxes {
+  description: "Most recent Blackbox snapshot from device most recent check-in"
 }

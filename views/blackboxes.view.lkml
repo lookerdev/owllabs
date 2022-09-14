@@ -161,6 +161,7 @@ view: blackboxes {
 # MEASURES
 
   # measure: count {
+  #   label: "Count of Blackbox Records"
   #   type: count
   #   drill_fields: [id]
   # }
