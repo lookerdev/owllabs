@@ -44,7 +44,7 @@ view: meeting_records_test {
 
   dimension: deviceuuid {
     # hidden: yes
-    label: "Device UUID"
+    label: "DeviceUUID"
     description: "Unique identifier for each device"
     type: string
     sql: ${TABLE}.deviceuuid ;;
@@ -378,9 +378,5 @@ view: meeting_records_test {
     sql: ${durationminutes} * 1.0 / ${count_devices} ;;
     value_format: "0.##"
   }
-
-
-
-
 
 }

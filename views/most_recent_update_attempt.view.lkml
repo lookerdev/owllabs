@@ -26,7 +26,7 @@ view: most_recent_update_attempt {
   }
 
   dimension: deviceuuid {
-    label: "Device UUID"
+    label: "DeviceUUID"
     type: string
     sql: ${TABLE}.deviceuuid ;;
   }

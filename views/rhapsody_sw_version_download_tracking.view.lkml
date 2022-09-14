@@ -60,7 +60,7 @@ view: rhapsody_sw_version_download_tracking {
   }
 
   dimension: deviceuuid {
-    label: "Device UUID"
+    label: "DeviceUUID"
     # description: "Unique ID for each user that has ordered"
     type: string
     sql: ${TABLE}.deviceuuid ;;

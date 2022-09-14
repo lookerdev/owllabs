@@ -32,7 +32,7 @@ view: device_updates_downloads {
 
   dimension: deviceuuid {
     # hidden: yes
-    label: "Device UUID"
+    label: "DeviceUUID"
     type: string
     sql: ${TABLE}.deviceuuid ;;
   }

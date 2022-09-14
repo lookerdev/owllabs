@@ -43,7 +43,7 @@ view: meeting_records {
   }
 
   dimension: deviceuuid {
-    label: "Device UUID"
+    label: "DeviceUUID"
     description: "Unique identifier for each device"
     type: string
     sql: ${TABLE}.deviceuuid ;;

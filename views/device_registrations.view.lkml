@@ -49,7 +49,7 @@ view: device_registrations {
   }
 
   dimension: deviceuuid {
-    label: "Registered Device UUID"
+    label: "Registered DeviceUUID"
     type: string
     sql: ${TABLE}.deviceuuid ;;
   }
