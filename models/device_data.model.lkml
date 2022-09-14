@@ -91,6 +91,6 @@ explore: barn_channels {
   }
 }
 
-explore: blackboxes {
-  description: "Most recent Blackbox snapshot from device most recent check-in"
-}
+# explore: blackboxes {
+#   description: "Most recent Blackbox snapshot from device most recent check-in"
+# }
