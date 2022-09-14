@@ -9,7 +9,8 @@ include: "/views/shopify_orders_serial_numbers.view.lkml"
 include: "/views/most_recent_update_attempt.view.lkml"
 include: "/views/barn_channels.view.lkml"
 
-# !!! CHANGE ALL DEVICE_VIEW FIELDS COPIED FROM MEETING_RECORDS EXPLORE TO DEVICES
+# include: "/views/device_meetingdates_v.view.lkml"
+
 
 
 explore: devices {
@@ -44,6 +45,11 @@ explore: devices {
     relationship: many_to_one
     sql_on: ${devices.channel_id} = ${barn_channels.channel_id} ;;
   }
+  # join: device_meetingdates_v {
+  #   type: left_outer
+  #   relationship: one_to_one
+  #   sql_on: ${devices.deviceuuid} = ${device_meetingdates_v.deviceuuid} ;;
+  # }
 }
 
 

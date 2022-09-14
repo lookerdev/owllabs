@@ -85,8 +85,9 @@ view: shopify_orders_serial_numbers {
   }
 
   measure: count_serials {
-    hidden: yes
-    label: "Count of Serial Numbers"
+    # hidden: yes
+    label: "Count of Ordered Serial Numbers"
+    description: "These are serial numbers included in the notes field of a Shopify order. Please note that not all serial numbers are captured this way."
     type: count_distinct
     sql: ${serial_number} ;;
   }
