@@ -1,11 +1,6 @@
-# The name of this view in Looker is "Blackboxes"
 view: blackboxes {
-  # The sql_table_name parameter indicates the underlying database table
-  # to be used for all fields in this view.
   sql_table_name: owlbarn.blackboxes ;;
   drill_fields: [id]
-  # This primary key is the unique key for this table in the underlying database.
-  # You need to define a primary key in a view in order to join to other views.
 
   dimension: id {
     primary_key: yes
@@ -13,10 +8,8 @@ view: blackboxes {
     sql: ${TABLE}.id ;;
   }
 
-  # Dates and timestamps can be represented in Looker using a dimension group of type: time.
-  # Looker converts dates and timestamps to the specified timeframes within the dimension group.
-
   dimension_group: createdat {
+    label: "Created At"
     type: time
     timeframes: [
       raw,
@@ -30,10 +23,6 @@ view: blackboxes {
     sql: ${TABLE}.createdat ;;
   }
 
-  # Here's what a typical dimension looks like in LookML.
-  # A dimension is a groupable field that can be used to filter query results.
-  # This dimension will be called "Deviceuuid" in Explore.
-
   dimension: deviceuuid {
     label: "DeviceUUID"
     type: string
@@ -41,101 +30,121 @@ view: blackboxes {
   }
 
   dimension: lastbadboot {
+    label: "lastBadBoot"
     type: string
     sql: ${TABLE}.lastbadboot ;;
   }
 
   dimension: nappstarts {
+    label: "nAppStarts"
     type: number
     sql: ${TABLE}.nappstarts ;;
   }
 
   dimension: ncrashboot {
+    label: "nCrashBoot"
     type: number
     sql: ${TABLE}.ncrashboot ;;
   }
 
   dimension: neyesflashingseconds {
+    label: "nEyesFlashingSeconds"
     type: number
     sql: ${TABLE}.neyesflashingseconds ;;
   }
 
   dimension: nmeetingminutes {
+    label: "nMeetingMinutes"
     type: number
     sql: ${TABLE}.nmeetingminutes ;;
   }
 
   dimension: nmeetingminutesasprimary {
+    label: "nMeetingMinutesAsPrimary"
     type: number
     sql: ${TABLE}.nmeetingminutesasprimary ;;
   }
 
   dimension: nmeetingminutesassecondary {
+    label: "nMeetingMinutesAsSecondary"
     type: number
     sql: ${TABLE}.nmeetingminutesassecondary ;;
   }
 
   dimension: nmeetings {
+    label: "nMeetings"
     type: number
     sql: ${TABLE}.nmeetings ;;
   }
 
   dimension: nnosecondaryaudiominutes {
+    label: "nNoSecondaryAudioMinutes"
     type: number
     sql: ${TABLE}.nnosecondaryaudiominutes ;;
   }
 
   dimension: npinnedaoiminutes {
+    label: "nPinnedAoiMinutes"
     type: number
     sql: ${TABLE}.npinnedaoiminutes ;;
   }
 
   dimension: npinnedaois {
+    label: "nPinnedAois"
     type: number
     sql: ${TABLE}.npinnedaois ;;
   }
 
   dimension: npowerup {
+    label: "nPowerUp"
     type: number
     sql: ${TABLE}.npowerup ;;
   }
 
   dimension: nprimarypanelminutes {
+    label: "nPrimaryPanelMinutes"
     type: number
     sql: ${TABLE}.nprimarypanelminutes ;;
   }
 
   dimension: nsecondarypanelminutes {
+    label: "nSecondaryPanelMinutes"
     type: number
     sql: ${TABLE}.nsecondarypanelminutes ;;
   }
 
   dimension: nuptimeminutes {
+    label: "nUpTimeMinutes"
     type: number
     sql: ${TABLE}.nuptimeminutes ;;
   }
 
   dimension: nuptimesincebootminutes {
+    label: "nUpTimeSinceBootMinutes"
     type: number
     sql: ${TABLE}.nuptimesincebootminutes ;;
   }
 
   dimension: nusbstatefixups {
+    label: "nUsbStateFixups"
     type: number
     sql: ${TABLE}.nusbstatefixups ;;
   }
 
   dimension: rawdata {
+    label: "rawData"
     type: string
     sql: ${TABLE}.rawdata ;;
   }
 
   dimension: spkrvolume {
+    label: "spkrVolume"
     type: number
     sql: ${TABLE}.spkrvolume ;;
   }
 
   dimension_group: updatedat {
+    label: "Updated At"
     type: time
     timeframes: [
       raw,
@@ -151,19 +160,19 @@ view: blackboxes {
 
 # MEASURES
 
-  measure: count {
-    type: count
-    drill_fields: [id]
-  }
+  # measure: count {
+  #   type: count
+  #   drill_fields: [id]
+  # }
 
-  measure: total_nappstarts {
-    type: sum
-    sql: ${nappstarts} ;;
-  }
+  # measure: total_nappstarts {
+  #   type: sum
+  #   sql: ${nappstarts} ;;
+  # }
 
-  measure: average_nappstarts {
-    type: average
-    sql: ${nappstarts} ;;
-  }
+  # measure: average_nappstarts {
+  #   type: average
+  #   sql: ${nappstarts} ;;
+  # }
 
 }
