@@ -361,6 +361,7 @@ view: meeting_records {
 
   measure: avg_mtgs_per_customer {
     label: "Avg. # Meetings per Customer"
+    type: number
     sql: ${count_meetings} * 1.0 / ${device_registrations.count_domain} ;;
     value_format: "0.0"
   }
