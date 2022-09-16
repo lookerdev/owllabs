@@ -209,8 +209,8 @@ view: device_registrations {
     type: count
   }
 
-
   # measure: devices_per_company {
   #   sql: ${meeting_records.count_devices} / ${count_companies} ;;
   # }
+
 }
