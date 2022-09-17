@@ -117,7 +117,7 @@ view: all_orders {
   dimension: world_region {
     type: string
     sql: ${TABLE}.world_region ;;
-    drill_fields: [country_name]
+    # drill_fields: [country_name]
   }
 
   dimension: sku_quantity_ordered {

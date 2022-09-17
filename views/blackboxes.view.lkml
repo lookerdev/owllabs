@@ -9,7 +9,7 @@ sql_table_name: owlbarn.blackboxes ;;
   }
 
   dimension_group: createdat {
-    label: "Created At"
+    label: "Created"
     type: time
     timeframes: [
       raw,
@@ -198,7 +198,7 @@ sql_table_name: owlbarn.blackboxes ;;
   }
 
   dimension_group: updatedat {
-    label: "Updated At"
+    label: "Updated"
     type: time
     timeframes: [
       raw,
