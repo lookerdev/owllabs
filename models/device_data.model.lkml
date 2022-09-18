@@ -92,5 +92,14 @@ explore: barn_channels {
 }
 
 # explore: blackboxes {
-  # description: "Blackbox snapshot from devices' most recent check-ins"
+#   description: "Blackbox snapshot from devices' most recent check-ins"
+#   fields: UPDATE THIS LIST [ALL_FIELDS*,
+#     -devices.most_recent_meeting_date, -devices.most_recent_meeting_raw,
+#     -devices.most_recent_meeting_length_minutes]
+#   join: devices {
+#     type: inner
+#     relationship: one_to_one
+#     sql_on: ${blackboxes.deviceuuid} = ${devices.deviceuuid} ;;
+#   }
+#   # join: barn_channels {}
 # }
