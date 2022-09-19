@@ -93,6 +93,7 @@ explore: barn_channels {
 
 # explore: blackboxes {
 #   description: "Blackbox snapshot from devices' most recent check-ins"
+# https://cloud.google.com/looker/docs/reference/param-explore-fields
 #   fields: UPDATE THIS LIST [ALL_FIELDS*,
 #     -devices.most_recent_meeting_date, -devices.most_recent_meeting_raw,
 #     -devices.most_recent_meeting_length_minutes]

@@ -32,6 +32,33 @@ view: all_orders {
     END ;;
   }
 
+  parameter: pivot_picker {
+    hidden: yes
+    label: "Slice Dimension"
+    type: string
+    default_value: "sales_channel"
+    allowed_value: {
+      value: "sales_channel"
+      label: "Sales Channel"
+    }
+    allowed_value: {
+      value: "world_region"
+      label: "World Region"
+    }
+  }
+
+  dimension: dynamic_pivot {
+    hidden: yes
+    # label: "Slice Dimension"
+    description: "Use with Slice Dimension parameter"
+    type: string
+    sql:
+    CASE
+    WHEN {% parameter pivot_picker %} = 'sales_channel' THEN ${sales_channel}
+    WHEN {% parameter pivot_picker %} = 'world_region' THEN ${world_region}
+    END ;;
+  }
+
   dimension: row_number {
     primary_key: yes
     hidden: yes
