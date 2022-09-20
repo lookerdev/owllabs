@@ -6,15 +6,14 @@ view: devices {
 # Dimensions
 
   dimension: device_id {
-    # primary_key: yes
-    label: "Device ID"
+    primary_key: yes
+    label: "ID"
     description: "Unique identifier for each device record"
     type: number
     sql: ${TABLE}.device_id ;;
   }
 
   dimension: alias {
-    # label: "Device Alias"
     description: "Customer's chosen nickname for device, User Given Name field in Barn website"
     type: string
     sql: ${TABLE}.device_alias ;;
@@ -28,7 +27,7 @@ view: devices {
 
   dimension: display_name {
     # hidden: yes
-    label: "Device Display Name"
+    label: "Display Name"
     type: string
     sql: coalesce(${alias}, ${device_name}) ;;
   }
@@ -95,7 +94,7 @@ view: devices {
   }
 
   dimension_group: activated {
-    label: "Device Activation"
+    label: "Activation"
     type: time
     timeframes: [
       raw,
