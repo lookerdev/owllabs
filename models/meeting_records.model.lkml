@@ -15,7 +15,8 @@ include: "/views/devices.view.lkml"
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
 
-
+# creating a dupe explore to exchange devices_view.view for devices.view. Duping prevents more analytics to be built on top of meeting_records, long term plan is to rebuild all current analytics with the new explore (or maybe I can replace the explore name being used?)
+# once the explore has been changed over then remove the og meeting_records explore
 # explore: meeting_records2 {
 #   hidden: yes
 #   view_name: meeting_records
