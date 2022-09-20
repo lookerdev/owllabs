@@ -392,35 +392,6 @@ view: meeting_records {
   }
 
 
-# cohort analysis test
-# start dates for only paired meetings
-  dimension_group: startdate_paired {
-    hidden: yes
-    label: "Paired Meeting Start"
-    description: "The datetime at which a meeting using Owl Connect began"
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: case when ${waspaired} is True then ${TABLE}.startdate::timestamp else null end ;; # have to cast as timestamp for the date parts (year, etc) to work
-    # allow_fill: yes
-  }
-
-  dimension_group: owl_connect_return_after_first_mtg_test {
-    hidden: yes
-    type: duration
-    # sql_start: ${devices.first_owl_connect_mtg_5_mins_date} ;;
-    sql_start: ${device_view.first_owl_connect_mtg_5_mins_date} ;;
-    sql_end: ${startdate_paired_date} ;;
-    # intervals: [day, month]
-  }
-
 
   # measure: max_number_meetings {
   #   label: "Maximum Number of Meetings"
