@@ -91,16 +91,21 @@ explore: barn_channels {
   }
 }
 
-# explore: blackboxes {
-#   description: "Blackbox snapshot from devices' most recent check-ins"
+explore: blackboxes {
+  hidden: yes
+  description: "Blackbox snapshot from devices' most recent check-ins"
 # https://cloud.google.com/looker/docs/reference/param-explore-fields
 #   fields: UPDATE THIS LIST [ALL_FIELDS*,
 #     -devices.most_recent_meeting_date, -devices.most_recent_meeting_raw,
 #     -devices.most_recent_meeting_length_minutes]
-#   join: devices {
-#     type: inner
-#     relationship: one_to_one
-#     sql_on: ${blackboxes.deviceuuid} = ${devices.deviceuuid} ;;
-#   }
-#   # join: barn_channels {}
-# }
+  join: devices {
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${blackboxes.deviceuuid} = ${devices.deviceuuid} ;;
+  }
+  join: barn_channels {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${devices.channel_id} = ${barn_channels.channel_id} ;;
+  }
+}
