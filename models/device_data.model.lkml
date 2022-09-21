@@ -92,7 +92,6 @@ explore: barn_channels {
 }
 
 explore: blackboxes {
-  hidden: yes
   description: "Blackbox snapshot from devices' most recent check-ins"
 # https://cloud.google.com/looker/docs/reference/param-explore-fields
 #   fields: UPDATE THIS LIST [ALL_FIELDS*,
@@ -100,7 +99,7 @@ explore: blackboxes {
 #     -devices.most_recent_meeting_length_minutes]
   join: devices {
     type: left_outer
-    relationship: one_to_one
+    relationship: one_to_one # technically it's many_to_one since there are 68 deviceuuids with more than one record, but should be one_to_one
     sql_on: ${blackboxes.deviceuuid} = ${devices.deviceuuid} ;;
   }
   join: barn_channels {
