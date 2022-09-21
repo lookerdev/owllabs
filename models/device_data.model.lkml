@@ -92,7 +92,6 @@ explore: barn_channels {
 }
 
 explore: blackboxes {
-  hidden: yes
   description: "Blackbox snapshot from devices' most recent check-ins"
 # https://cloud.google.com/looker/docs/reference/param-explore-fields
 #   fields: UPDATE THIS LIST [ALL_FIELDS*,
