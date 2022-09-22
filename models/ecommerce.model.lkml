@@ -56,7 +56,7 @@ explore: all_fulfillments {
 
 
 explore: shopify_orders_fulfillments {
-  # hidden: yes
+  hidden: yes
   label: "Shopify Orders & Fulfillments"
   description: "Sales data from Shopify. By default includes SKUs that don't count toward revenue (replacement units, Owls For Good), which can be filtered out using Revenue SKU dimension. Excludes test SKUs."
   view_name: dim_calendar
@@ -76,14 +76,14 @@ explore: shopify_orders_fulfillments {
 }
 
 explore: shopify_orders_line_items_view {
-  hidden: yes
+  # hidden: yes
   label: "Shopify Orders"
   description: "Shopify order data including line-item detail. By default includes SKUs that don't count toward revenue (replacement units, Owls For Good), which can be filtered out using Revenue SKU dimension. Excludes test SKUs."
   sql_always_where: ${shopify_orders_line_items_view.sku} not in ('TEST2','TEST3') ;;
 }
 
 explore: shopify_fulfillments_line_items_view {
-  hidden: yes
+  # hidden: yes
   label: "Shopify Fulfillments"
   description: "Shopify fulfillments data including line-item detail. By default includes SKUs that don't count toward revenue (replacement units, Owls For Good), which can be filtered out using Revenue SKU dimension. Excludes test SKUs."
   sql_always_where: ${shopify_fulfillments_line_items_view.sku} not in ('TEST2','TEST3') ;;
