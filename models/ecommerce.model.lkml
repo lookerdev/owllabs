@@ -23,7 +23,7 @@ include: "/views/distributor_sellthrough.view.lkml"
 
 
 explore: all_orders_fulfillments {
-  # hidden: yes
+  hidden: yes
   label: "All Orders & Fulfillments"
   description: "Sales data from Shopify, Amazon, Sourcenext, and historical distributor Starin. By default includes SKUs that don't count toward revenue (replacement units, Owls For Good), which can be filtered out using Revenue SKU dimension. Excludes test SKUs. All Orders and All Fulfillments tables are joined on date and does not link orders and fulfillments to each other."
   view_name: dim_calendar
@@ -43,13 +43,13 @@ explore: all_orders_fulfillments {
 }
 
 explore: all_orders {
-  hidden: yes
+  # hidden: yes
   description: "Order data from Shopify, Amazon, Sourcenext, and historical distributor Starin. Does not include Salesforce opportunitites. By default includes SKUs that don't count toward revenue (replacement units, Owls For Good), which can be filtered out using Revenue SKU dimension. Excludes test SKUs."
   sql_always_where: ${all_orders.sku} not in ('TEST2','TEST3') ;;
 }
 
 explore: all_fulfillments {
-  hidden: yes
+  # hidden: yes
   description: "Shipment data from Shopify, Amazon, Sourcenext, and historical distributor Starin. Does not include Salesforce opportunitites. By default includes SKUs that don't count toward revenue (replacement units, Owls For Good), which can be filtered out using Revenue SKU dimension. Excludes test SKUs."
   sql_always_where: ${all_fulfillments.sku} not in ('TEST2','TEST3') ;;
 }
