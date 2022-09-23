@@ -127,6 +127,7 @@ view: all_fulfillments {
   dimension: world_region {
     type: string
     sql: ${TABLE}.world_region ;;
+    drill_fields: [country_name]
     # html:
     # {% if value == 'Asia Pacific' %}
     #   # <p style="background-color: red">{{ value }}</p>
