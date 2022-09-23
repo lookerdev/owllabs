@@ -73,7 +73,8 @@ view: all_orders {
   }
 
   dimension: country_name {
-    label: "Market Region"
+    # label: "Market Region"
+    description: "Billing address country, previously labeled 'Market Region'"
     type: string
     sql: ${TABLE}.country_name ;;
   }
@@ -120,7 +121,7 @@ view: all_orders {
   }
 
   dimension: revenue_sku {
-    description: "Identifies if SKU counts towards revenue. Yes = yes it does / No = nope (Replacement, Owl For Good, and Test SKUs)."
+    description: "Identifies if SKU counts towards revenue. Yes = yes it does / No = nope it doesn't (Replacement, Owl For Good, and Test SKUs)."
     type: yesno
     sql: case when ${sku} in ('MTW100-1000-RPL','MTW100-2000 - Replacement','MTW100-2000-RPL','MTW200-1000-RPL','MTW200-1000-RPL-CA','MTW200-2000 - Replacement','MTW200-2000-RPL','MTW200-4000 - RPL','MTW300-1000-RPL','PTW100-1000-RPL','REF100-1000','REF200-1000','REF200-2000','Replacement AC Line Cord','Replacement Power Supply','Replacement USB Cable (6.5-Foot)','REPLC - NA','REPLC - UK','REPLC - US/CA','REPLC100-1000','REPLC100-1000-NA','REPLC100-2000','REPLC100-2001','REPLCMHQ101-1000','REPLCMHQ102-0000','REPLCMHQ103-0000','REPLCWBO100-1000','REPLCWBO101-0000','REPPS','REPPS - Universal','REPUSB','REPUSB - Universal','TEST2','TEST3','VAT','WBC100-1000-RPL') then False
       else True end;;
@@ -144,7 +145,7 @@ view: all_orders {
   dimension: world_region {
     type: string
     sql: ${TABLE}.world_region ;;
-    # drill_fields: [country_name]
+    drill_fields: [country_name]
   }
 
   dimension: sku_quantity_ordered {

@@ -1,13 +1,11 @@
-# The name of this view in Looker is "Shopify Orders View"
 view: shopify_orders_line_items_view {
   label: "Shopify Orders"
-  # The sql_table_name parameter indicates the underlying database table
-  # to be used for all fields in this view.
   sql_table_name: public.shopify_orders_line_items_view ;;
 
 
   dimension: billing_address_company {
-    label: "Billing Company"
+    label: "Bill Company Name"
+    group_label: "Billing Address"
     type: string
     sql: ${TABLE}.billing_address_company ;;
   }
@@ -39,7 +37,10 @@ view: shopify_orders_line_items_view {
   }
 
   dimension: country_name {
-    label: "Market Region"
+    # label: "Market Region"
+    label: "Bill Country Name"
+    description: "Billing address country, previously labeled 'Market Region'"
+    group_label: "Billing Address"
     type: string
     sql: ${TABLE}.country_name ;;
   }
