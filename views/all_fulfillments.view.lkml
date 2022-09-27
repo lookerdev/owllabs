@@ -274,6 +274,12 @@ view: all_fulfillments {
     sql: ${TABLE}.tablemount_quantity_shipped ;;
   }
 
+  dimension: tripod_quantity_shipped {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.tripod_quantity_shipped ;;
+  }
+
   dimension: usbextension_quantity_shipped {
     hidden: yes
     type: number
@@ -485,6 +491,14 @@ view: all_fulfillments {
     group_label: "Accessories"
     type: sum
     sql: ${tablemount_quantity_shipped} ;;
+    drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, sum_tablemount_quantity_shipped]
+  }
+
+  measure: sum_tripod_quantity_shipped {
+    label: "Tripod Quantity Shipped"
+    group_label: "Accessories"
+    type: sum
+    sql: ${tripod_quantity_shipped} ;;
     drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, sum_tablemount_quantity_shipped]
   }
 
