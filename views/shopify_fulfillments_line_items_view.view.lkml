@@ -528,80 +528,92 @@ view: shopify_fulfillments_line_items_view {
 
   measure: sum_ceilingmount_quantity_shipped {
     label: "Ceiling Mount Bundle Quantity Shipped"
+    group_label: "Accessories"
     type: sum
     sql: ${ceilingmount_quantity_shipped} ;;
   }
 
   measure: sum_cuecards_quantity_shipped {
     label: "Cue Cards Quantity Shipped"
+    group_label: "Accessories"
     type: sum
     sql: ${cuecards_quantity_shipped} ;;
   }
 
   measure: sum_hardcase_quantity_shipped {
     label: "Hard Case Quantity Shipped"
+    group_label: "Accessories"
     type: sum
     sql: ${hardcase_quantity_shipped} ;;
   }
 
   measure: sum_hq_quantity_shipped {
     label: "Meeting HQ Quantity Shipped"
+    group_label: "Hardware"
     type: sum
     sql: ${hq_quantity_shipped} ;;
   }
 
   measure: sum_linecord_quantity_shipped {
     label: "Line Cord Quantity Shipped"
+    group_label: "Accessories"
     type: sum
     sql: ${linecord_quantity_shipped} ;;
   }
 
   measure: sum_lockadapter_quantity_shipped {
     label: "Lock Adapter Quantity Shipped"
+    group_label: "Accessories"
     type: sum
     sql: ${lockadapter_quantity_shipped} ;;
   }
 
   measure: sum_markers_quantity_shipped {
-    label: "Markers Quantity Shipped"
+    label: "Whiteboard Markers Quantity Shipped"
+    group_label: "Accessories"
     type: sum
     sql: ${markers_quantity_shipped} ;;
   }
 
   measure: sum_mic_quantity_shipped {
-    label: "Extension Mic Quantity Shipped"
+    label: "Expansion Mic Quantity Shipped"
+    group_label: "Hardware"
     type: sum
     sql: ${mic_quantity_shipped} ;;
   }
 
   measure: sum_mo3_quantity_shipped {
     label: "Meeting Owl 3 Quantity Shipped"
+    group_label: "Hardware"
     type: sum
     sql: ${mo3_quantity_shipped} ;;
   }
 
   measure: sum_og_quantity_shipped {
-    label: "Meeting Owl OG Quantity Shipped"
+    label: "Meeting Owl Quantity Shipped"
+    group_label: "Hardware"
     type: sum
-    # sql: ${TABLE}.og_quantity_shipped ;;
     sql: ${og_quantity_shipped} ;;
   }
 
   measure: sum_owlcare_quantity_shipped {
+    hidden: yes
     label: "Owl Care Quantity Shipped"
+    # group_label: "Digital"
     type: sum
-    # sql: ${TABLE}.owlcare_quantity_shipped ;;
     sql: ${owlcare_quantity_shipped} ;;
   }
 
   measure: sum_powersupply_quantity_shipped {
     label: "Power Supply Quantity Shipped"
+    group_label: "Accessories"
     type: sum
     sql: ${powersupply_quantity_shipped} ;;
   }
 
   measure: sum_pro_quantity_shipped {
     label: "Meeting Owl Pro Quantity Shipped"
+    group_label: "Hardware"
     type: sum
     sql: ${pro_quantity_shipped} ;;
   }
@@ -623,42 +635,49 @@ view: shopify_fulfillments_line_items_view {
   measure: sum_subscription_quantity_shipped {
     hidden: yes
     label: "Subscription Quantity Shipped"
+    # group_label: "Digital"
     type: sum
     sql: ${subscription_quantity_shipped} ;;
   }
 
   measure: sum_tablemount_quantity_shipped {
     label: "Table Mount Quantity Shipped"
+    group_label: "Accessories"
     type: sum
     sql: ${tablemount_quantity_shipped} ;;
   }
 
   measure: sum_tripod_quantity_shipped {
     label: "Tripod Quantity Shipped"
+    group_label: "Accessories"
     type: sum
     sql: ${tripod_quantity_shipped} ;;
   }
 
   measure: sum_usbconversioncable_quantity_shipped {
     label: "USB Conversion Cable Quantity Shipped"
+    group_label: "Accessories"
     type: sum
     sql: ${usbconversioncable_quantity_shipped} ;;
   }
 
   measure: sum_usbextension_quantity_shipped {
     label: "USB Extension Cable Quantity Shipped"
+    group_label: "Accessories"
     type: sum
     sql: ${usbextension_quantity_shipped} ;;
   }
 
   measure: sum_wbo_quantity_shipped {
     label: "Whiteboard Owl Quantity Shipped"
+    group_label: "Hardware"
     type: sum
     sql: ${wbo_quantity_shipped} ;;
   }
 
   measure: sum_wbtags_quantity_shipped {
     label: "Whiteboard Tags Quantity Shipped"
+    group_label: "Accessories"
     type: sum
     sql: ${wbtags_quantity_shipped} ;;
   }
@@ -666,6 +685,7 @@ view: shopify_fulfillments_line_items_view {
   measure: sum_owls_quantity_shipped {
     label: "All Owls Quantity Shipped"
     description: "Combination of OG, MOP, and MO3 units"
+    group_label: "Hardware"
     type: sum
     sql: ${owls_quantity_shipped} ;;
   }
@@ -673,18 +693,21 @@ view: shopify_fulfillments_line_items_view {
   measure: sum_hardware_quantity_shipped {
     label: "All Hardware Quantity Shipped"
     description: "Combination of OG, MOP, MO3, WBO, and HQ units"
+    group_label: "Hardware"
     type: sum
     sql: ${hardware_quantity_shipped} ;;
   }
 
   measure: sum_revenue {
     label: "Revenue"
+    group_label: "Revenue"
     type: sum
     sql: ${revenue} ;;
   }
 
   measure: sum_revenue_usd {
     label: "Revenue - USD"
+    group_label: "Revenue"
     type: sum
     value_format_name: usd
     sql: ${revenue_usd} ;;

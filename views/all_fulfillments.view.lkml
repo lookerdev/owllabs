@@ -434,15 +434,15 @@ view: all_fulfillments {
     label: "Meeting Owl Quantity Shipped"
     group_label: "Hardware"
     type: sum
-    # sql: ${TABLE}.og_quantity_shipped ;;
     sql: ${og_quantity_shipped} ;;
     drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, sum_og_quantity_shipped]
   }
 
   measure: sum_owlcare_quantity_shipped {
+    hidden: yes
     label: "Owl Care Quantity Shipped"
+    group_label: "Digital"
     type: sum
-    # sql: ${TABLE}.owlcare_quantity_shipped ;;
     sql: ${owlcare_quantity_shipped} ;;
     drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, sum_owlcare_quantity_shipped]
   }
@@ -451,7 +451,6 @@ view: all_fulfillments {
     label: "Power Supply Quantity Shipped"
     group_label: "Accessories"
     type: sum
-    # sql: ${TABLE}.powersupply_quantity_shipped ;;
     sql: ${powersupply_quantity_shipped} ;;
     drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, sum_powersupply_quantity_shipped]
   }

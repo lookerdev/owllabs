@@ -250,8 +250,6 @@ view: shopify_orders_line_items_view {
     sql: ${TABLE}.world_region ;;
   }
 
-
-
   dimension: allitems_quantity_ordered {
     hidden: yes
     type: number
@@ -440,92 +438,91 @@ view: shopify_orders_line_items_view {
 
   measure: sum_ceilingmount_quantity_ordered {
     label: "Ceiling Mount Quantity Ordered"
-    # group_label: "Accessories"
+    group_label: "Accessories"
     type: sum
     sql: ${ceilingmount_quantity_ordered} ;;
   }
 
   measure: sum_cuecards_quantity_ordered {
-    # hidden: yes
     label: "Cue Cards Quantity Ordered"
-    # group_label: "Accessories"
+    group_label: "Accessories"
     type: sum
     sql: ${cuecards_quantity_ordered} ;;
   }
 
   measure: sum_hardcase_quantity_ordered {
-    # hidden: yes
     label: "Hard Case Quantity Ordered"
-    # group_label: "Accessories"
+    group_label: "Accessories"
     type: sum
     sql: ${hardcase_quantity_ordered} ;;
   }
 
   measure: sum_hq_quantity_ordered {
     label: "Meeting HQ Quantity Ordered"
-    # group_label: "Hardware"
+    group_label: "Hardware"
     type: sum
     sql: ${hq_quantity_ordered} ;;
   }
 
   measure: sum_linecord_quantity_ordered {
     label: "Line Cord Quantity Ordered"
-    # group_label: "Accessories"
+    group_label: "Accessories"
     type: sum
     sql: ${linecord_quantity_ordered} ;;
   }
 
   measure: sum_lockadapter_quantity_ordered {
     label: "Lock Adapter Quantity Ordered"
-    # group_label: "Accessories"
+    group_label: "Accessories"
     type: sum
     sql: ${lockadapter_quantity_ordered} ;;
   }
 
   measure: sum_markers_quantity_ordered {
-    label: "Markers Quantity Ordered"
-    # group_label: "Accessories"
+    label: "Whiteboard Markers Quantity Ordered"
+    group_label: "Accessories"
     type: sum
     sql: ${markers_quantity_ordered} ;;
   }
 
   measure: sum_mic_quantity_ordered {
-    label: "Extension Mic Quantity Ordered"
-    # group_label: "Hardware"
+    label: "Expansion Mic Quantity Ordered"
+    group_label: "Hardware"
     type: sum
     sql: ${mic_quantity_ordered} ;;
   }
 
   measure: sum_mo3_quantity_ordered {
     label: "Meeting Owl 3 Quantity Ordered"
-    # group_label: "Hardware"
+    group_label: "Hardware"
     type: sum
     sql: ${mo3_quantity_ordered} ;;
   }
 
   measure: sum_og_quantity_ordered {
-    label: "Meeting Owl OG Quantity Ordered"
-    # group_label: "Hardware"
+    label: "Meeting Owl Quantity Ordered"
+    group_label: "Hardware"
     type: sum
     sql: ${og_quantity_ordered} ;;
   }
 
   measure: sum_owlcare_quantity_ordered {
     label: "Owl Care Quantity Ordered"
+    group_label: "Digital"
     type: sum
     sql: ${owlcare_quantity_ordered} ;;
   }
 
   measure: sum_powersupply_quantity_ordered {
     label: "Power Supply Quantity Ordered"
-    # group_label: "Accessories"
+    group_label: "Accessories"
     type: sum
     sql: ${powersupply_quantity_ordered} ;;
   }
 
   measure: sum_pro_quantity_ordered {
     label: "Meeting Owl Pro Quantity Ordered"
-    # group_label: "Hardware"
+    group_label: "Hardware"
     type: sum
     sql: ${pro_quantity_ordered} ;;
   }
@@ -539,66 +536,69 @@ view: shopify_orders_line_items_view {
 
   measure: sum_replacement_unit_ordered {
     hidden: yes
-    # group_label: "Hardware"
     type: sum
     sql: ${replacement_unit_ordered} ;;
   }
 
   measure: sum_subscription_quantity_ordered {
     label: "Subscription Quantity Ordered"
+    group_label: "Digital"
     type: sum
     sql: ${subscription_quantity_ordered} ;;
   }
 
   measure: sum_tablemount_quantity_ordered {
     label: "Table Mount Quantity Ordered"
-    # group_label: "Accessories"
+    group_label: "Accessories"
     type: sum
     sql: ${tablemount_quantity_ordered} ;;
   }
 
   measure: sum_tripod_quantity_ordered {
     label: "Tripod Quantity Ordered"
-    # group_label: "Accessories"
+    group_label: "Accessories"
     type: sum
     sql: ${tripod_quantity_ordered} ;;
   }
 
   measure: sum_usbconversioncable_quantity_ordered {
     label: "USB Conversion Cable Quantity Ordered"
-    # group_label: "Accessories"
+    group_label: "Accessories"
     type: sum
     sql: ${usbconversioncable_quantity_ordered} ;;
   }
 
   measure: sum_usbextension_quantity_ordered {
     label: "USB Extension Cable Quantity Ordered"
-    # group_label: "Accessories"
+    group_label: "Accessories"
     type: sum
     sql: ${usbextension_quantity_ordered} ;;
   }
 
   measure: sum_wbo_quantity_ordered {
     label: "Whiteboard Owl Quantity Ordered"
+    group_label: "Hardware"
     type: sum
     sql: ${wbo_quantity_ordered} ;;
   }
 
   measure: sum_wbtags_quantity_ordered {
     label: "Whiteboard Tags Quantity Ordered"
-    # group_label: "Accessories"
+    group_label: "Accessories"
     type: sum
     sql: ${wbtags_quantity_ordered} ;;
   }
 
   measure: sum_pre_tax_price {
     label: "Subtotal Price"
+    group_label: "Subtotal"
     type: sum
     sql: ${pre_tax_price} ;;
   }
 
   measure: sum_pre_tax_price_usd {
     label: "Subtotal Price - USD"
+    group_label: "Subtotal"
     type: sum
     value_format_name: usd
     sql: ${pre_tax_price_usd} ;;
@@ -607,6 +607,7 @@ view: shopify_orders_line_items_view {
   measure: sum_owls_quantity_ordered {
     label: "All Owls Quantity Ordered"
     description: "Combination of OG, MOP, and MO3 units"
+    group_label: "Hardware"
     type: sum
     sql: ${owls_quantity_ordered} ;;
   }
@@ -614,6 +615,7 @@ view: shopify_orders_line_items_view {
   measure: sum_hardware_quantity_ordered {
     label: "All Hardware Quantity Ordered"
     description: "Combination of OG, MOP, MO3, WBO, and HQ units"
+    group_label: "Hardware"
     type: sum
     sql: ${hardware_quantity_ordered} ;;
   }
