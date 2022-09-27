@@ -366,6 +366,12 @@ view: shopify_orders_line_items_view {
     sql: ${TABLE}.tablemount_quantity_ordered ;;
   }
 
+  dimension: tripod_quantity_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.tripod_quantity_ordered ;;
+  }
+
   dimension: usbconversioncable_quantity_ordered {
     hidden: yes
     type: number
@@ -550,6 +556,13 @@ view: shopify_orders_line_items_view {
     # group_label: "Accessories"
     type: sum
     sql: ${tablemount_quantity_ordered} ;;
+  }
+
+  measure: sum_tripod_quantity_ordered {
+    label: "Tripod Quantity Ordered"
+    # group_label: "Accessories"
+    type: sum
+    sql: ${tripod_quantity_ordered} ;;
   }
 
   measure: sum_usbconversioncable_quantity_ordered {
