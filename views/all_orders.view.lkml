@@ -431,6 +431,7 @@ view: all_orders {
   }
 
   measure: sum_owlcare_quantity_ordered {
+    hidden: yes
     label: "Owl Care Quantity Ordered"
     type: sum
     sql: ${owlcare_quantity_ordered} ;;
