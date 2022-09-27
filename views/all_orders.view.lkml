@@ -335,6 +335,7 @@ view: all_orders {
   }
 
   measure: sum_allitems_quantity_ordered {
+    hidden: yes
     label: "All Items Quantity Ordered"
     type: sum
     sql: ${allitems_quantity_ordered} ;;
@@ -453,6 +454,7 @@ view: all_orders {
   }
 
   measure: sum_raas_quantity_ordered {
+    hidden: yes
     label: "RaaS Quantity Ordered"
     group_label: "Hardware"
     type: sum

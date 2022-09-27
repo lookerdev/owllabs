@@ -339,6 +339,7 @@ view: all_fulfillments {
   }
 
   measure: sum_allitems_quantity_shipped {
+    hidden: yes
     label: "All Items Quantity Shipped"
     type: sum
     sql: ${allitems_quantity_shipped} ;;
@@ -464,6 +465,7 @@ view: all_fulfillments {
   }
 
   measure: sum_raas_quantity_shipped {
+    hidden: yes
     label: "RaaS Quantity Shipped"
     type: sum
     sql: ${raas_quantity_shipped} ;;

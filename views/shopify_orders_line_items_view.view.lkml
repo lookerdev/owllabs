@@ -425,8 +425,8 @@ view: shopify_orders_line_items_view {
   }
 
   measure: sum_allitems_quantity_ordered {
-    label: "All Items Quantity Ordered"
     hidden: yes
+    label: "All Items Quantity Ordered"
     type: sum
     sql: ${allitems_quantity_ordered} ;;
   }
@@ -533,7 +533,6 @@ view: shopify_orders_line_items_view {
   measure: sum_raas_quantity_ordered {
     hidden: yes
     label: "RaaS Quantity Ordered"
-    # group_label: "Hardware"
     type: sum
     sql: ${raas_quantity_ordered} ;;
   }
