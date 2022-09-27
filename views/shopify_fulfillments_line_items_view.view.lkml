@@ -459,6 +459,12 @@ view: shopify_fulfillments_line_items_view {
     sql: ${TABLE}.tablemount_quantity_shipped ;;
   }
 
+  dimension: tripod_quantity_shipped {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.tripod_quantity_shipped ;;
+  }
+
   dimension: usbconversioncable_quantity_shipped {
     hidden: yes
     type: number
@@ -625,6 +631,12 @@ view: shopify_fulfillments_line_items_view {
     label: "Table Mount Quantity Shipped"
     type: sum
     sql: ${tablemount_quantity_shipped} ;;
+  }
+
+  measure: sum_tripod_quantity_shipped {
+    label: "Tripod Quantity Shipped"
+    type: sum
+    sql: ${tripod_quantity_shipped} ;;
   }
 
   measure: sum_usbconversioncable_quantity_shipped {
