@@ -2,7 +2,7 @@ view: all_fulfillments {
   sql_table_name: public.all_fulfillments ;;
 
 
-## DIMENSIONS
+## PARAMETERS
 
   parameter: timeframe_picker {
     label: "Date Granularity"
@@ -21,6 +21,35 @@ view: all_fulfillments {
       value: "date_month"
       label: "Month"
     }
+  }
+
+  parameter: pivot_picker {
+    hidden: yes
+    # label: "Slice Dimension"
+    type: string
+    default_value: "sales_channel"
+    allowed_value: {
+      value: "sales_channel"
+      label: "Sales Channel"
+    }
+    allowed_value: {
+      value: "world_region"
+      label: "World Region"
+    }
+  }
+
+## DIMENSIONS
+
+  dimension: dynamic_pivot {
+    hidden: yes
+    # label: "Slice Dimension"
+    description: "Use with Slice Dimension parameter"
+    type: string
+    sql:
+    CASE
+    WHEN {% parameter pivot_picker %} = 'sales_channel' THEN ${sales_channel}
+    WHEN {% parameter pivot_picker %} = 'world_region' THEN ${world_region}
+    END ;;
   }
 
   dimension: dynamic_timeframe {
