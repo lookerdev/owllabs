@@ -1,7 +1,8 @@
 view: all_orders {
   sql_table_name: public.all_orders ;;
 
-## DIMENSIONS
+
+## PARAMETERS
 
   parameter: timeframe_picker {
     label: "Date Granularity"
@@ -22,19 +23,9 @@ view: all_orders {
     }
   }
 
-  dimension: dynamic_timeframe {
-    type: string
-    sql:
-    CASE
-    WHEN {% parameter timeframe_picker %} = 'date_date' THEN TO_DATE(${order_date}, 'YYYY-MM-DD')
-    WHEN {% parameter timeframe_picker %} = 'date_week' THEN TO_DATE(${order_week}, 'YYYY-MM-DD')
-    WHEN {% parameter timeframe_picker %} = 'date_month' THEN TO_DATE(${order_month}, 'YYYY-MM')
-    END ;;
-  }
-
   parameter: pivot_picker {
     hidden: yes
-    label: "Slice Dimension"
+    # label: "Slice Dimension"
     type: string
     default_value: "sales_channel"
     allowed_value: {
@@ -47,6 +38,9 @@ view: all_orders {
     }
   }
 
+
+## DIMENSIONS
+
   dimension: dynamic_pivot {
     hidden: yes
     # label: "Slice Dimension"
@@ -56,6 +50,16 @@ view: all_orders {
     CASE
     WHEN {% parameter pivot_picker %} = 'sales_channel' THEN ${sales_channel}
     WHEN {% parameter pivot_picker %} = 'world_region' THEN ${world_region}
+    END ;;
+  }
+
+  dimension: dynamic_timeframe {
+    type: string
+    sql:
+    CASE
+    WHEN {% parameter timeframe_picker %} = 'date_date' THEN TO_DATE(${order_date}, 'YYYY-MM-DD')
+    WHEN {% parameter timeframe_picker %} = 'date_week' THEN TO_DATE(${order_week}, 'YYYY-MM-DD')
+    WHEN {% parameter timeframe_picker %} = 'date_month' THEN TO_DATE(${order_month}, 'YYYY-MM')
     END ;;
   }
 
