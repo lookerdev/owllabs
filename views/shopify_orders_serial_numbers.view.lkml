@@ -63,7 +63,8 @@ view: shopify_orders_serial_numbers {
     hidden: yes
     label: "Hardware Serial Number"
     type: string
-    sql: ${TABLE}.hardware_serial_number_validated ;;
+    sql: ${TABLE}.hardware_serial_number ;;
+    # sql: ${TABLE}.hardware_serial_number_validated ;;
   }
 
   dimension: product_name {
