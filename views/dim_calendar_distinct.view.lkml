@@ -54,6 +54,24 @@ view: dim_calendar_distinct {
     # html: {{ rendered_value | date: "%b %Y" }} ;;
   }
 
+# CREATE A QUARTER-YEAR DATE DIMENSION - NEITHER OF THESE OPTIONS WORK
+
+  # dimension: quarter_year_date_convert {
+  #   # this is a date so can sort
+  #   label: "Quarter-Year"
+  #   type: date_quarter
+  #   # sql: to_date(${TABLE}.year || '-' || ${TABLE}.quarter, 'YYYY-Q') ;;
+  #   sql: ${month_year_date_convert} ;;
+  #   # html: {{ rendered_value | date: "%b %Y" }} ;;
+  # }
+
+  # dimension: quarter_year {
+  #   label: "Quarter-Year"
+  #   # type: string
+  #   sql: ${year} || '-' || ${quarter_name} ;;
+  #   # html: {{ rendered_value | date: "%b %Y" }} ;;
+  # }
+
   dimension: period_name{
     hidden: yes
     label: "Accounting Period"
