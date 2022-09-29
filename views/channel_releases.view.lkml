@@ -1,5 +1,5 @@
 view: channel_releases {
-  sql_table_name: public.channel_releases_view ;;
+  sql_table_name: owlbarn_views.channelreleases_v ;;
 
 
 # DIMENSIONS
