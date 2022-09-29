@@ -57,10 +57,8 @@ view: shopify_orders_serial_numbers {
     sql: coalesce(${TABLE}.billing_address_company, ${TABLE}.shipping_address_company, ${TABLE}.customer_default_address_company) ;;
   }
 
-  # hardware_serial_number (unvalidated)
-
   dimension: serial_number {
-    hidden: yes
+    # hidden: yes
     label: "Hardware Serial Number"
     type: string
     sql: ${TABLE}.hardware_serial_number ;;
@@ -74,8 +72,6 @@ view: shopify_orders_serial_numbers {
     type: string
     sql: ${TABLE}.device_type;;
   }
-
-  # dimension: sales_channel {}
 
 
 # MEASURES
