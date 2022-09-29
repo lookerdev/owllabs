@@ -210,6 +210,14 @@ view: devices {
     sql: ${TABLE}.device_software_version_number ;;
   }
 
+  dimension: software_version_family {
+    label: "Current Software Version Family"
+    # description: "Device's most recent software version (integer format), captured during most recent check-in"
+    type: number
+    value_format: "0"
+    sql: ${TABLE}.software_version_family ;;
+  }
+
   dimension: is_current_version {
     description: "Whether the device's Current Software Version is the most recent production release to that device's Barn Channel."
     type: yesno

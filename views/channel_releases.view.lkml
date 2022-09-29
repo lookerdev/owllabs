@@ -146,6 +146,12 @@ view: channel_releases {
     sql: ${TABLE}.release_version_decimal ;;
   }
 
+  dimension: release_version_family {
+    label: "Release Software Version Family"
+    type: number
+    sql: ${TABLE}.release_version_family ;;
+  }
+
   dimension: is_current_version {
     description: "Whether this release version is the most recent prod release for the channel."
     type: yesno
