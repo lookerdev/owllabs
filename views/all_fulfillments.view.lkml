@@ -529,7 +529,7 @@ view: all_fulfillments {
     group_label: "Accessories"
     type: sum
     sql: ${tripod_quantity_shipped} ;;
-    drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, sum_tablemount_quantity_shipped]
+    drill_fields: [fulfillment_number, shipping_address_company, sales_channel, world_region, sum_tripod_quantity_shipped]
   }
 
   measure: sum_usbextension_quantity_shipped {

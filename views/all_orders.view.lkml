@@ -488,7 +488,7 @@ view: all_orders {
     group_label: "Accessories"
     type: sum
     sql: ${tripod_quantity_ordered} ;;
-    drill_fields: [sales_channel, world_region, order_number, country_name, sku, sum_tablemount_quantity_ordered]
+    drill_fields: [sales_channel, world_region, order_number, country_name, sku, sum_tripod_quantity_ordered]
   }
 
   measure: sum_subscription_quantity_ordered {
