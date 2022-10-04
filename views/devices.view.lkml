@@ -330,6 +330,7 @@ view: devices {
 
 
 # Measures
+# update name - count_deviceuuid
   measure: device_count {
     label: "Count of Devices"
     description: "Count of unique deviceuuids"
