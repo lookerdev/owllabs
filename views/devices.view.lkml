@@ -26,7 +26,6 @@ view: devices {
   }
 
   dimension: display_name {
-    # hidden: yes
     label: "Display Name"
     type: string
     sql: coalesce(${alias}, ${device_name}) ;;
