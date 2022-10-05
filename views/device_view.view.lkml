@@ -15,7 +15,6 @@ view: device_view {
   }
 
   dimension: alias {
-    # hidden: yes
     label: "Device Alias"
     description: "Customer's chosen nickname for device, User Given Name field in Barn UI"
     type: string
@@ -23,27 +22,23 @@ view: device_view {
   }
 
   dimension: device_name {
-    # hidden: yes
     type: string
     sql: ${TABLE}.device_name ;;
   }
 
   dimension: display_name {
-    # hidden: yes
     label: "Device Display Name"
     type: string
     sql: coalesce(${alias}, ${device_name}) ;;
   }
 
   dimension: channel_id {
-    # hidden: yes
     label: "Channel ID"
     type: number
     sql: ${TABLE}.channel_id ;;
   }
 
   dimension: channel_name {
-    # hidden: yes
     label: "Barn Channel Name"
     description: "Name of Barn channel device belongs to"
     type: string
@@ -51,26 +46,18 @@ view: device_view {
   }
 
   dimension: barn_channel_category {
-    # hidden: yes
     description: "Public = customer-facing, Internal = testing, Beta = beta testing"
     type: string
     sql: ${TABLE}.channel_category;;
-    # sql: case when ${channel_name} in ('Beta1','Beta2','BETA2020107FindFreeOwl','BETA2020109VoiceCameraLock','BETA2Production','Beta3','BetaActive','BetaCustomers','BetaRetired','BetaKOZ','RhapsodyBeta') then 'Beta'
-    # when ${channel_name} in ('AnastasiaTest','AudioTest','AutoWhiteBalance','BCATest','BETA1TESTERS','BETA2USERS','BobTest','CanadiaTest','CausewayStOwls','CausewayStPROD','CausewayStQA','CausewayStUnits','CausewayStWhiteboardOwls','ChrisEngTest','ChrisHTest','ChristineSQA','ChristineTest','DesktopAppDevOTATest','DoNotUpdate','ErinHbPairedOwlTest','ErinTest','FATESTALL','FATESTOTA','GooglePreReleaseDec18','GucciTest','HBIRDBETATESTEROWLS','IlyaTest','Internal','InternalAlpha','InternalUsers','Isolated','JBTest','JohnOiotOTA','LenaTest','LifeTest','MarkInternalTestFlock','OTATEST10100','PeterTest','PhuTest','PressAndMarketing','PrestonTest','Processing','QA','RAALLVERSIONTEST','RAOTATESTV18','RDPreRelease','RetiredEng','RevertOTA99998TestKey','RevertOTA99999999','RobertTest','RussTest','RyanJCustomersQA','RyanTest','SarahAudioTest','SourceNextOffice','SpenserTest','SQAAnastasia','SQAJeffTest','SQAnastasia','SterlingTest','TomTest','V1ToV2Upgrade','VCCertsAudioTest','WBsavenshareProOldPOC','YukiTesting','ZoomUi') then 'Internal'
-    # when ${channel_name} in ('OVERRIDE','overrideQA') then 'Override'
-    # when ${channel_name} in ('00019Customers','0001Customers','1080PhasedRollout','1090PhasedRollout','AmazonVendorCentral','ANZ','ChromeIssueOTA','ConferenceRooms','Customers','DesktopAppBeta','Europe','LodiSchools','LodiSchoolsPhasedRollout','PhasedRollout','ResellerCustomers','Returns','SomervilleOfficeConferenceRoom','Unknown') then 'Public'
-    # end;;
   }
 
   dimension: bootloaderversion {
-    # hidden: yes
     label: "Bootloader Version"
     type:  string
     sql: ${TABLE}.bootloaderversion ;;
   }
 
   dimension_group: checkedinat {
-    # hidden: yes
     label: "Most Recent Device Check-In"
     type: time
     timeframes: [
@@ -101,7 +88,6 @@ view: device_view {
   }
 
   dimension_group: device_activation_date {
-    # hidden: yes
     label: "Device Activation"
     type: time
     timeframes: [
@@ -132,21 +118,18 @@ view: device_view {
   }
 
   dimension: device_hardware_serial_number {
-    # hidden: yes
     label: "Hardware Serial Number"
     type: string
     sql: ${TABLE}.device_hardware_serial_number ;;
   }
 
   dimension: device_hardware_version {
-    # hidden: yes
     label: "Hardware Version"
     type: string
     sql: ${TABLE}.device_hardware_version ;;
   }
 
   dimension: lastip {
-    # hidden: yes
     label: "Last IP Address"
     description: "Device's most recent IP address, captured during most recent check-in"
     type: string
@@ -154,14 +137,12 @@ view: device_view {
   }
 
   dimension: lastgeo {
-    # hidden: yes
     label: "Last Geo"
     type: string
     sql: ${TABLE}.lastgeo ;;
   }
 
   dimension: last_location {
-    # hidden: yes
     type: string
     sql: ${TABLE}.device_last_location ;;
   }
@@ -174,15 +155,12 @@ view: device_view {
   }
 
   dimension: parent_settings {
-    # hidden: yes
     type: string
     sql: ${TABLE}.device_parent_settings ;;
   }
 
   dimension: pcb_version {
-    # hidden: yes
     label: "PCB Version"
-    # hidden: yes
     type: string
     sql: ${TABLE}.device_pcb_version ;;
   }
@@ -194,7 +172,6 @@ view: device_view {
   }
 
   dimension: product_name {
-    # hidden: yes
     label: "Device Type"
     description: "Device product type"
     type: string
@@ -202,20 +179,17 @@ view: device_view {
   }
 
   dimension: serial {
-    # hidden: yes
     label: "Software Serial Number"
     type: string
     sql: ${TABLE}.device_serial_number ;;
   }
 
   dimension: settings {
-    # hidden: yes
     type: string
     sql: ${TABLE}.device_settings ;;
   }
 
   dimension: software_version {
-    # hidden: yes
     label: "Software Version"
     description: "Device's most recent software version (decimal expansion format), captured during most recent check-in"
     type: string
@@ -223,7 +197,6 @@ view: device_view {
   }
 
   dimension: software_version_number{
-    # hidden: yes
     label: "Software Version (integer)"
     description: "Device's most recent software version (integer format), captured during most recent check-in"
     type: number
@@ -256,7 +229,6 @@ view: device_view {
   }
 
   dimension: uuid {
-    # hidden: yes
     label: "DeviceUUID"
     description: "Unique identifier for each device"
     type: string
@@ -271,7 +243,7 @@ view: device_view {
   }
 
   dimension_group: first_owl_connect_mtg_5_mins {
-    # hidden: yes
+    hidden: yes
     label: "First Owl Connect Meeting >= 5 Minutes"
     type: time
     timeframes: [
@@ -326,7 +298,6 @@ view: device_view {
 
 # Measures
   measure: device_count {
-    # hidden: yes
     label: "Count of Devices"
     description: "Count of unique deviceuuid"
     type: count_distinct
