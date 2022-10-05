@@ -201,7 +201,7 @@ view: meeting_records {
 
 # Cohort analysis
   dimension_group: owl_connect_return_after_first_mtg {
-    # hidden: yes
+    hidden: yes
     type: duration
     # sql_start: ${devices.first_owl_connect_mtg_5_mins_date} ;;
     sql_start: ${device_view.first_owl_connect_mtg_5_mins_date} ;;
