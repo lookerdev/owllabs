@@ -214,25 +214,25 @@ view: shopify_orders_line_items_view {
     sql: ${TABLE}.sku ;;
   }
 
-  dimension: revenue_sku {
-    description: "Identifies if SKU counts towards revenue. True = yes it does / False = nope (Replacement, Owl For Good, and Test SKUs)."
+dimension: revenue_sku {
+    description: "Identifies if SKU counts towards revenue. 'No' includes replacement, Owl for Good, and test SKUs."
     type: yesno
-    # sql: case when ${sku} in ('BND100-1000','BND200-1000','BND300-0002','BND300-0002','BND300-0003','BND300-0004','BND300-0005','BND300-0006','BND300-0007','BND300-0008','BND300-0009','BND300-0010','BND300-0011','BND300-0012','BND300-0013','BND300-0019','BND300-0020','BND300-1000','BND301-1000','BND302-1000','PPKU200-1000','PPKU200-2000','MTW100-1000-RPL','MTW100-2000 - Replacement','MTW100-2000-RPL','MTW200-1000-NI','MTW200-1000-RPL','MTW200-1000-RPL-CA','MTW200-2000 - Replacement','MTW200-2000-RPL','MTW200-4000 - RPL','MTW300-1000-RPL','PTW100-1000-RPL','REF100-1000','REF200-1000','REF200-2000','Replacement AC Line Cord','Replacement Power Supply','Replacement USB Cable (6.5-Foot)','REPLC - NA','REPLC - UK','REPLC - US/CA','REPLC100-1000','REPLC100-1000-NA','REPLC100-2000','REPLC100-2001','REPLCMHQ101-1000','REPLCMHQ102-0000','REPLCMHQ103-0000','REPLCWBO100-1000','REPLCWBO101-0000','REPPS','REPPS - Universal','REPUSB','REPUSB - Universal','TEST2','TEST3','WBC100-1000-RPL') then False
-    #   else True end;;
-    sql: CASE WHEN ${sku} LIKE 'BND%' THEN False
-              WHEN ${sku} LIKE 'PPKU%' THEN False
-              WHEN ${sku} IN ('MTW100-1000-RPL','MTW100-2000 - Replacement','MTW100-2000-RPL','MTW200-1000-NI','MTW200-1000-RPL','MTW200-1000-RPL-CA','MTW200-2000 - Replacement','MTW200-2000-RPL','MTW200-4000 - RPL','MTW300-1000-RPL','PTW100-1000-RPL','REF100-1000','REF200-1000','REF200-2000','Replacement AC Line Cord','Replacement Power Supply','Replacement USB Cable (6.5-Foot)','REPLC - NA','REPLC - UK','REPLC - US/CA','REPLC100-1000','REPLC100-1000-NA','REPLC100-2000','REPLC100-2001','REPLCMHQ101-1000','REPLCMHQ102-0000','REPLCMHQ103-0000','REPLCWBO100-1000','REPLCWBO101-0000','REPPS','REPPS - Universal','REPUSB','REPUSB - Universal','TEST2','TEST3','WBC100-1000-RPL') then False
-              ELSE True END ;;
+    sql: CASE WHEN ${sku} IN ('MTW100-1000-RPL','MTW100-2000 - Replacement','MTW100-2000-RPL','MTW200-1000-NI','MTW200-1000-RPL','MTW200-1000-RPL-CA','MTW200-2000 - Replacement','MTW200-2000-RPL','MTW200-4000 - RPL','MTW200-4000-RPL','MTW300-1000-RPL','MTW300-2000-RPL','PTW100-1000-RPL','REF100-1000','REF200-1000','REF200-2000','Replacement AC Line Cord','Replacement Power Supply','Replacement USB Cable (6.5-Foot)','REPLC - NA','REPLC - UK','REPLC - US/CA','REPLC100-1000','REPLC100-1000-NA','REPLC100-2000','REPLC100-2001','REPLCMHQ101-1000','REPLCMHQ102-0000','REPLCMHQ103-0000','REPLCWBO100-1000','REPLCWBO101-0000','REPPS - Universal','REPPS','REPUSB - Universal','REPUSB','TEST2','TEST3','VAT','WBC100-1000-RPL') then False
+      ELSE True END ;;
+    # sql: CASE WHEN ${sku} LIKE 'BND%' THEN False
+    #           WHEN ${sku} LIKE 'PPKU%' THEN False
+    #           WHEN ${sku} IN ('MTW100-1000-RPL','MTW100-2000 - Replacement','MTW100-2000-RPL','MTW200-1000-NI','MTW200-1000-RPL','MTW200-1000-RPL-CA','MTW200-2000 - Replacement','MTW200-2000-RPL','MTW200-4000 - RPL','MTW200-4000-RPL','MTW300-1000-RPL','MTW300-2000-RPL','PTW100-1000-RPL','REF100-1000','REF200-1000','REF200-2000','Replacement AC Line Cord','Replacement Power Supply','Replacement USB Cable (6.5-Foot)','REPLC - NA','REPLC - UK','REPLC - US/CA','REPLC100-1000','REPLC100-1000-NA','REPLC100-2000','REPLC100-2001','REPLCMHQ101-1000','REPLCMHQ102-0000','REPLCMHQ103-0000','REPLCWBO100-1000','REPLCWBO101-0000','REPPS - Universal','REPPS','REPUSB - Universal','REPUSB','TEST2','TEST3','VAT','WBC100-1000-RPL') then False
+    #           ELSE True END ;;
   }
 
-  dimension: bundle_sku {
-    description: "Identifies whether SKU is a bundle parent SKU or not"
-    # hidden: yes
-    type: yesno
-    sql: CASE WHEN ${sku} LIKE 'BND%' THEN True
-              WHEN ${sku} LIKE 'PPKU%' THEN True
-              ELSE False End ;;
-  }
+  # dimension: bundle_sku {
+  #   description: "Identifies whether SKU is a bundle parent SKU"
+  #   # hidden: yes
+  #   type: yesno
+  #   sql: CASE WHEN ${sku} LIKE 'BND%' THEN True
+  #             WHEN ${sku} LIKE 'PPKU%' THEN True
+  #             ELSE False End ;;
+  # }
 
   dimension: store {
     type: string
