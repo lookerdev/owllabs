@@ -1,9 +1,6 @@
 connection: "redshift"
 label: "E-Commerce"
 
-include: "/views/orders_view.view.lkml"  # include all views in the views/ folder in this project
-include: "/views/orders_line_items_view.view.lkml"
-include: "/views/orders_fulfillments_view.view.lkml"
 include: "/views/dim_calendar.view.lkml"
 include: "/views/netsuite_orders.view.lkml"
 include: "/views/netsuite_orders_line_items.view.lkml"
@@ -15,10 +12,6 @@ include: "/views/monthly_hardware_goals_eom_projections.view.lkml"
 include: "/views/distributor_sellthrough.view.lkml"
 
 include: "/views/sales/*.view.lkml"
-# include: "/views/shopify_orders_line_items_view.view.lkml"
-# include: "/views/shopify_fulfillments_line_items_view.view.lkml"
-# include: "/views/all_orders.view.lkml"
-# include: "/views/all_fulfillments.view.lkml"
 
 
 
@@ -135,7 +128,13 @@ explore: netsuite_orders_fulfillments {
   # }
 }
 
-# archive
+
+
+# ARCHIVE
+include: "/views/archive/orders_view.view.lkml"  # include all views in the views/ folder in this project
+include: "/views/archive/orders_line_items_view.view.lkml"
+include: "/views/archive/orders_fulfillments_view.view.lkml"
+
 explore: orders_view {
   hidden: yes
   label: "Orders Explore (orig)"

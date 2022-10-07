@@ -3,7 +3,6 @@ label: "Device Data"
 # label: "Usage"
 
 include: "/views/meeting_records.view.lkml"
-include: "/views/device_view.view.lkml"
 include: "/views/device_registrations.view.lkml"
 include: "/views/salesforce_accounts.view.lkml"
 include: "/views/device_checkins.view.lkml"
@@ -11,9 +10,8 @@ include: "/views/shopify_orders_serial_numbers.view.lkml"
 include: "/views/most_recent_update_attempt.view.lkml"
 include: "/views/barn_channels.view.lkml"
 include: "/views/devices.view.lkml"
-# include: "/*.explore.lkml"
-# include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
+include: "/views/archive/device_view.view.lkml"
 
 
 # explore: meeting_records2 {
