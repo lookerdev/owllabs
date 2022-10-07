@@ -5,7 +5,7 @@ include: "/**/*.view.lkml"                # include all views in the views/ fold
 
 
 explore: devices_test {
-  hidden: yes
+  # hidden: yes
   view_name: devices
   description: "Data for all devices in the Barn Devices table or that have been recorded in Shopify orders. Does not include TESTNAME products."
   # Devices is the master table in this Explore, all other tables/data are dependent on the records in Devices
@@ -20,7 +20,7 @@ explore: devices_test {
 
 
 explore: devices_extend {
-  hidden: yes
+  # hidden: yes
   join: barn_channels {
     type: left_outer
     relationship: many_to_one
@@ -30,5 +30,5 @@ explore: devices_extend {
 
 
 explore: device_base {
-  hidden: yes
+  # hidden: yes
 }
