@@ -1,8 +1,8 @@
 # directs devices.view to barn channels to compare sw version
 # rename devices_barn_channel_extend or something?
 
-include: "/views/devices.view.lkml"
-include: "/views/barn_channels.view.lkml"
+include: "/views/barn/devices.view.lkml"
+include: "/views/barn/barn_channels.view.lkml"
 
 view: devices_extend {
   extends: [devices]
