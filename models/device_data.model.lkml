@@ -1,16 +1,8 @@
 connection: "redshift"
 
-include: "/views/meeting_records.view.lkml"
-include: "/views/devices.view.lkml"
-include: "/views/device_registrations.view.lkml"
+include: "/views/barn/*.view.lkml"
 include: "/views/salesforce_accounts.view.lkml"
-include: "/views/device_checkins.view.lkml"
 include: "/views/shopify_orders_serial_numbers.view.lkml"
-include: "/views/most_recent_update_attempt.view.lkml"
-include: "/views/barn_channels.view.lkml"
-include: "/views/blackboxes.view.lkml"
-
-# include: "/views/device_meetingdates_v.view.lkml"
 
 
 

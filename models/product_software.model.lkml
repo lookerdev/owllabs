@@ -1,15 +1,6 @@
 connection: "redshift"
 
-# include: "/views/*.view.lkml"                # include all views in the views/ folder in this project
-# include: "/**/*.view.lkml"                 # include all views in this project
-# include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
-include: "/views/rhapsody_sw_version_download_tracking.view.lkml"
-include: "/views/devices_per_channel_release.view.lkml"
-include: "/views/device_updates_downloads.view.lkml"
-include: "/views/devices.view.lkml"
-include: "/views/barn_channels.view.lkml"
-include: "/views/channel_releases.view.lkml"
-include: "/views/device_registrations.view.lkml"
+include: "/views/barn/*.view.lkml"
 
 
 explore: rhapsody_sw_version_download_tracking {
