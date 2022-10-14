@@ -34,13 +34,11 @@ explore: all_orders_fulfillments {
 }
 
 explore: all_orders {
-  # hidden: yes
   description: "Order data from Shopify, Amazon, Sourcenext, and historical distributor Starin. Does not include Salesforce opportunitites. By default includes SKUs that don't count toward revenue (replacement units, Owls For Good), which can be filtered out using Revenue SKU dimension. Excludes test SKUs."
   sql_always_where: ${all_orders.sku} not in ('TEST2','TEST3') ;;
 }
 
 explore: all_fulfillments {
-  # hidden: yes
   description: "Shipment data from Shopify, Amazon, Sourcenext, and historical distributor Starin. Does not include Salesforce opportunitites. By default includes SKUs that don't count toward revenue (replacement units, Owls For Good), which can be filtered out using Revenue SKU dimension. Excludes test SKUs."
   sql_always_where: ${all_fulfillments.sku} not in ('TEST2','TEST3') ;;
 }
@@ -67,22 +65,18 @@ explore: shopify_orders_fulfillments {
 }
 
 explore: shopify_orders_line_items_view {
-  # hidden: yes
   label: "Shopify Orders"
   description: "Shopify order data including line-item detail. By default includes SKUs that don't count toward revenue (replacement units, Owls For Good), which can be filtered out using Revenue SKU dimension. Excludes test SKUs."
   sql_always_where: ${shopify_orders_line_items_view.sku} not in ('TEST2','TEST3') ;;
 }
 
 explore: shopify_fulfillments_line_items_view {
-  # hidden: yes
   label: "Shopify Fulfillments"
   description: "Shopify fulfillments data including line-item detail. By default includes SKUs that don't count toward revenue (replacement units, Owls For Good), which can be filtered out using Revenue SKU dimension. Excludes test SKUs."
   sql_always_where: ${shopify_fulfillments_line_items_view.sku} not in ('TEST2','TEST3') ;;
 }
 
 explore: distributor_sellthrough {
-  # label: "Distributor Sellthrough"
-  # hidden: yes
   description: "IN DEVELOPEMENT - Sellthrough fulfillment data gathered from distributor reports."
 }
 

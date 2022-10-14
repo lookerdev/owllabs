@@ -25,7 +25,6 @@ explore: devices_per_channel_release {
 explore: device_update_attempts {
   label: "Device Update Attempts"
   # description: ""
-  # hidden: yes
   view_name: device_updates_downloads
   # fields: [device_updates_downloads*, devices.device_hardware_serial_number, devices.product_name, devices.barn_channel_category, devices.channel_name]
   fields: [device_updates_downloads*, devices.hardware_serial, devices.product_name, barn_channels.channel_category, barn_channels.slug] # this line goes with addition of barn_channels view
@@ -42,7 +41,6 @@ explore: device_update_attempts {
 }
 
 explore: releases_per_channel {
-  # hidden: yes
   label: "Releases per Barn Channel"
   fields: [barn_channels*, channel_releases*, devices.device_count, device_registrations.count_registered_devices]
   view_name: barn_channels
