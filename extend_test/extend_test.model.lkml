@@ -19,7 +19,7 @@ explore: devices_test {
 }
 
 
-explore: devices_extend {
+explore: extend_devices {
   hidden: yes
   join: barn_channels {
     type: left_outer

@@ -4,7 +4,7 @@
 include: "/views/barn/devices.view.lkml"
 include: "/views/barn/barn_channels.view.lkml"
 
-view: devices_extend {
+view: extend_devices {
   extends: [devices]
 
 
