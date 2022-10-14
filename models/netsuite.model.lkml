@@ -18,12 +18,10 @@ include: "/views/shopify_orders.view.lkml"
     label: "Revenue & Fulfillments by Item"
     join: revenue_by_item_looker {
       type: inner
-      # type: left_outer
       relationship: one_to_many
       sql_on: ${revenue_by_item_looker.accounting_period_name} = ${dim_calendar_distinct.period_name} ;;
     }
     join: item_fulfillments_looker {
-      # type: left_outer
       type: inner
       relationship: one_to_many
       sql_on: ${dim_calendar_distinct.period_name} = ${item_fulfillments_looker.period} ;;
