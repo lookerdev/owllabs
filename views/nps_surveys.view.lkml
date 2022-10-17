@@ -378,8 +378,9 @@ view: nps_surveys {
   }
 
   dimension: nps_bucket_int {
-    label: "NPS Bucket Integer"
-    # hidden: yes
+    label: "Net Promoter Category Integer"
+    description: "This value is used to calculate NPS score. Promoter is assiged 1, Passive is assigned 0, and Detractor is assigned -1"
+    group_label: "Net Promoter Category"
     type: number
     sql: case when ${recommend_score} in (9,10) then 1
               when ${recommend_score} in (7,8) then 0
@@ -389,6 +390,8 @@ view: nps_surveys {
 
   dimension: nps_bucket {
     label: "Net Promoter Category"
+    description: "Promoter: score of 9 or 10, Passive: score or 7 or 8, Detractor: score of 0-6"
+    group_label: "Net Promoter Category"
     type: string
     sql: case when ${recommend_score} in (9,10) then 'Promoter'
               when ${recommend_score} in (7,8) then 'Passive'
@@ -400,6 +403,7 @@ view: nps_surveys {
 
   measure: nps_score {
     label: "NPS Score"
+    description: "Calculated by subtracting the count of Detractors from count of Promoters, dividing by the total number of responses, and multiplying by 100"
     type: number
     sql: ((sum(${nps_bucket_int}) * 1.0) / count(${recommend_score})) * 100 ;;
     value_format: "0"
@@ -407,12 +411,14 @@ view: nps_surveys {
 
   measure: count_scores {
     label: "Count of Scores"
+    description: "Total count of submitted recommendation scores"
     type: number
     sql: count(${recommend_score}) ;;
   }
 
   measure: count {
     label: "Count of Surveys"
+    description: "Total count of survey Response IDs"
     type: count
     drill_fields: [device, company_name]
   }
