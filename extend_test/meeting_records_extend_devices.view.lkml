@@ -3,7 +3,7 @@
 include: "/views/barn/devices.view.lkml"
 include: "/views/barn/meeting_records.view.lkml"
 
-view: extend-devices_include_barn_channels {
+view: meeting_records_extend_devices {
   extends: [meeting_records]
 
 
