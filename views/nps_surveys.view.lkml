@@ -364,6 +364,7 @@ view: nps_surveys {
   }
 
   dimension: test_response {
+    hidden: yes
     description: "Flag indicates whether the response is an internal test of survey (Yes) or an actual submission (No)"
     group_label: "Filters"
     type: yesno
