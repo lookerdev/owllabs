@@ -363,13 +363,12 @@ view: nps_surveys {
     }
   }
 
-  dimension: test_response {
-    hidden: yes
-    description: "Flag indicates whether the response is an internal test of survey (Yes) or an actual submission (No)"
-    group_label: "Filters"
-    type: yesno
-    sql: ${TABLE}.test_response ;;
-  }
+  # dimension: test_response {
+  #   description: "Flag indicates whether the response is an internal test of survey (Yes) or an actual submission (No)"
+  #   group_label: "Filters"
+  #   type: yesno
+  #   sql: ${TABLE}.test_response ;;
+  # }
 
   dimension: dupe_response {
     description: "Flag indicates if an additional response was submitted by the same email address for the same device and survey iteration"
