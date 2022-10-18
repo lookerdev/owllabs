@@ -1,5 +1,8 @@
 view: device_meetingdates_v {
-  label: "Usage Summary"
+  label: "Meeting Dates"
+  # label: "Meetings Summary"
+  # label: "Usage Summary"
+  # label: "Usage Sample"
   sql_table_name: owlbarn_views.device_meetingdates_v ;;
 
   dimension: deviceuuid {
