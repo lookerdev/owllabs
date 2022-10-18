@@ -11,22 +11,26 @@ view: salesforce_accounts {
   }
 
   dimension: company_name {
+    # description: "Salesforce Account "
     type: string
     sql: ${TABLE}.name ;;
   }
 
   dimension: email_domain {
+    # description: "Salesforce Account email domain. This field is used to pair appropriate Salesforce Account to device registration information."
+    # These fields are pulled from Salesforce based on the registration domain for each device.
     type: string
     sql: ${TABLE}.company_domain_name_c ;;
   }
 
   dimension: industry {
+    # description: "Granular company categorization"
     type: string
     sql: ${TABLE}.industry ;;
   }
 
   dimension: industry_group {
-    # hidden: yes
+    # description: "High-level/broad grouping of Industry"
     type: string
     sql: ${TABLE}.industry_group ;;
   }
