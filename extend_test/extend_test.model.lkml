@@ -20,6 +20,7 @@ include: "/**/*.view.lkml"                # include all views in the views/ fold
 
 
 explore: devices_extend_barn_channels {
+  # label: "Devices"
   hidden: yes
   join: barn_channels {
     type: left_outer

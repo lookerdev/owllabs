@@ -1,11 +1,11 @@
-# directs devices.view to barn channels to compare sw version
-# rename devices_barn_channel_extend or something?
+# joins devices.view to barn_channels.view
 
-include: "/views/barn/devices.view.lkml"
-include: "/views/barn/barn_channels.view.lkml"
+include: "/extend_test/devices_base.view.lkml" # extending this view
+include: "/views/barn/barn_channels.view.lkml" # joining to this view
 
 view: devices_extend_barn_channels {
-  extends: [devices]
+  label: "Devices"
+  extends: [devices_base]
 
 
   dimension: is_current_version {
@@ -13,6 +13,4 @@ view: devices_extend_barn_channels {
     type: yesno
     sql: ${software_version_number} = ${barn_channels.current_version} ;;
   }
-
-
 }
