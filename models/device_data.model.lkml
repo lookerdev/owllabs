@@ -36,11 +36,11 @@ explore: devices {
     relationship: many_to_one
     sql_on: ${devices.channel_id} = ${barn_channels.channel_id} ;;
   }
-  # join: device_meetingdates_v {
-  #   type: left_outer
-  #   relationship: one_to_one
-  #   sql_on: ${devices.deviceuuid} = ${device_meetingdates_v.deviceuuid} ;;
-  # }
+  join: device_meetingdates_v {
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${devices.deviceuuid} = ${device_meetingdates_v.deviceuuid} ;;
+  }
 }
 
 
