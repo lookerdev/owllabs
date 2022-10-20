@@ -31,7 +31,7 @@ view: devices {
     sql: coalesce(${alias}, ${device_name}) ;;
   }
 
-# possibly remove this column from table, can replace with barn_channels view
+# needed to join to barn_channels
   dimension: channel_id {
     label: "Channel ID"
     hidden: yes
@@ -39,22 +39,22 @@ view: devices {
     sql: ${TABLE}.channel_id ;;
   }
 
-# possibly remove this column from table, can replace with barn_channels view
-  dimension: channel_name {
-    hidden: yes
-    label: "Barn Channel Name"
-    description: "Name of Barn channel device belongs to"
-    type: string
-    sql: ${TABLE}.channel_name ;;
-  }
+# # possibly remove this column from table, can replace with barn_channels view
+#   dimension: channel_name {
+#     hidden: yes
+#     label: "Barn Channel Name"
+#     description: "Name of Barn channel device belongs to"
+#     type: string
+#     sql: ${TABLE}.channel_name ;;
+#   }
 
-# possibly remove this column from table, can replace with barn_channels view
-  dimension: barn_channel_category {
-    hidden: yes
-    description: "Public = customer-facing, Internal = testing, Beta = beta testing"
-    type: string
-    sql: ${TABLE}.channel_category;;
-  }
+# # possibly remove this column from table, can replace with barn_channels view
+#   dimension: barn_channel_category {
+#     hidden: yes
+#     description: "Public = customer-facing, Internal = testing, Beta = beta testing"
+#     type: string
+#     sql: ${TABLE}.channel_category;;
+#   }
 
   dimension: bootloaderversion {
     label: "Bootloader Version"
@@ -242,21 +242,6 @@ view: devices {
     sql: ${TABLE}.record_source ;;
   }
 
-  dimension_group: first_owl_connect_mtg_5_mins {
-    hidden: yes
-    label: "First Owl Connect Meeting >= 5 Minutes"
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.first_owl_connect_meeting_date_longer_than_5_mins::timestamp ;;
-  }
-
   dimension_group: updatedat {
     hidden: yes
     sql: ${TABLE}.updatedat ;;
@@ -327,6 +312,26 @@ view: devices {
   }
 
 
+# cohort analysis
+  dimension_group: first_owl_connect_mtg_5_mins {
+    hidden: yes
+    label: "First Owl Connect Meeting >= 5 Minutes"
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.first_owl_connect_meeting_date_longer_than_5_mins::timestamp ;;
+  }
+
+
+
+
+
 
 # Measures
 # update name - count_deviceuuid
@@ -335,7 +340,7 @@ view: devices {
     description: "Count of unique deviceuuids"
     type: count_distinct
     sql: ${deviceuuid} ;;
-    drill_fields: [device_id, deviceuuid, device_name, product_name, channel_name]
+    drill_fields: [device_id, deviceuuid, device_name, product_name]
   }
 
   # dimension: 6mth_average_local_talk_time_minutes {
