@@ -39,10 +39,9 @@ include: "/views/archive/device_view.view.lkml"
 # }
 
  explore: meeting_records {
+  hidden: yes
   description: "Data for devices that have had at least one meeting. Does not include TESTNAME products."
-  # fields: [meeting_records*, device_registrations*, ] # may not be needed
   join: device_view {
-    # view_label: "Please replace with corresponding column from Devices subcategory"
       type: left_outer
       relationship: many_to_one
       sql_on: ${meeting_records.deviceuuid} = ${device_view.uuid} ;;
