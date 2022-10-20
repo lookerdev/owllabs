@@ -10,9 +10,6 @@ include: "/views/shopify_orders_serial_numbers.view.lkml"
 include: "/views/archive/device_view.view.lkml"
 
 
-
-include: "/extend_test/*.view.lkml"
-
 # explore: meeting_records {
 #   description: "Data for devices that have had at least one meeting. Does not include TESTNAME products."
 #   join: device_view {
