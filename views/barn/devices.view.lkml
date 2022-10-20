@@ -5,12 +5,19 @@ view: devices {
 
 # Dimensions
 
-  dimension: device_id {
-    primary_key: yes
-    label: "ID"
-    description: "Unique identifier for each device record"
-    type: number
-    sql: ${TABLE}.device_id ;;
+  dimension_group: activated {
+    label: "Activation"
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.device_activation_date::timestamp ;;
   }
 
   dimension: alias {
@@ -19,47 +26,18 @@ view: devices {
     sql: ${TABLE}.device_alias ;;
   }
 
-  dimension: device_name {
-    label: "Name"
-    type: string
-    sql: ${TABLE}.device_name ;;
+  dimension: bootloaderversion {
+    label: "Bootloader Version"
+    type:  string
+    sql: ${TABLE}.bootloaderversion ;;
   }
 
-  dimension: display_name {
-    label: "Display Name"
-    type: string
-    sql: coalesce(${alias}, ${device_name}) ;;
-  }
-
-# needed to join to barn_channels
+# to join to barn_channels
   dimension: channel_id {
     label: "Channel ID"
     hidden: yes
     type: number
     sql: ${TABLE}.channel_id ;;
-  }
-
-# # possibly remove this column from table, can replace with barn_channels view
-#   dimension: channel_name {
-#     hidden: yes
-#     label: "Barn Channel Name"
-#     description: "Name of Barn channel device belongs to"
-#     type: string
-#     sql: ${TABLE}.channel_name ;;
-#   }
-
-# # possibly remove this column from table, can replace with barn_channels view
-#   dimension: barn_channel_category {
-#     hidden: yes
-#     description: "Public = customer-facing, Internal = testing, Beta = beta testing"
-#     type: string
-#     sql: ${TABLE}.channel_category;;
-#   }
-
-  dimension: bootloaderversion {
-    label: "Bootloader Version"
-    type:  string
-    sql: ${TABLE}.bootloaderversion ;;
   }
 
   dimension_group: checkedinat {
@@ -92,21 +70,6 @@ view: devices {
     sql: ${TABLE}.device_record_create_date::timestamp ;;
   }
 
-  dimension_group: activated {
-    label: "Activation"
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.device_activation_date::timestamp ;;
-  }
-
   dimension_group: deletedat {
     hidden: yes
     label: "Device Record Delete"
@@ -120,6 +83,33 @@ view: devices {
       year
     ]
     sql: ${TABLE}.device_record_delete_date::timestamp ;;
+  }
+
+  dimension: device_id {
+    primary_key: yes
+    label: "ID"
+    description: "Unique identifier for each device record"
+    type: number
+    sql: ${TABLE}.device_id ;;
+  }
+
+  dimension: deviceuuid {
+    label: "DeviceUUID"
+    description: "Unique identifier for each device"
+    type: string
+    sql: ${TABLE}.deviceuuid ;;
+  }
+
+  dimension: device_name {
+    label: "Name"
+    type: string
+    sql: ${TABLE}.device_name ;;
+  }
+
+  dimension: display_name {
+    label: "Display Name"
+    type: string
+    sql: coalesce(${alias}, ${device_name}) ;;
   }
 
   dimension: hardware_serial {
@@ -209,12 +199,6 @@ view: devices {
     sql: ${TABLE}.device_software_version_number ;;
   }
 
-  # dimension: is_current_version {
-  #   description: "Whether the device's Current Software Version is the most recent production release to that device's Barn Channel."
-  #   type: yesno
-  #   sql: ${software_version_number} = ${barn_channels.current_version} ;;
-  #   }
-
   dimension: status_number {
     hidden: yes
     # description: "Status Values: 0 - New, 1 - Active, 2 - Requires Update, 3 - Updating, 4 - Inactive, 5 - Downloading Update, 6 - Offline, 7 - Archived"
@@ -226,13 +210,6 @@ view: devices {
     label: "Status"
     type: string
     sql: ${TABLE}.device_status_text ;;
-  }
-
-  dimension: deviceuuid {
-    label: "DeviceUUID"
-    description: "Unique identifier for each device"
-    type: string
-    sql: ${TABLE}.deviceuuid ;;
   }
 
   dimension: record_source {
