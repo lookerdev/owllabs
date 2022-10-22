@@ -530,7 +530,6 @@ view: monthly_hardware_goals_eom_projections {
     group_label: "EOM Order Projections"
     type: number
     value_format: "#,##0"
-    # sql: (sum(${all_owls_ordered}) / /*days in month so far*/ (DATE_PART(DAYOFYEAR,CURRENT_DATE) - (DATE_PART(DAYOFYEAR,${order_month_first_day}) - 1))) * /*total days in month*/ ((DATE_PART(DAYOFYEAR,${order_month_last_day}) - DATE_PART(DAYOFYEAR,${order_month_first_day})) + 1) ;;
     sql: (sum(${mop_ordered}) / /*days in month so far*/ (DATE_PART(DAYOFYEAR,CURRENT_DATE) - (DATE_PART(DAYOFYEAR,${month_start}) - 1))) * /*total days in month*/ ((DATE_PART(DAYOFYEAR,${month_end}) - DATE_PART(DAYOFYEAR,${month_start})) + 1) ;;
   }
 
@@ -540,7 +539,6 @@ view: monthly_hardware_goals_eom_projections {
     group_label: "EOM Order Projections"
     type: number
     value_format: "#,##0"
-    # sql: (sum(${hq_ordered}) / /*days in month so far*/ (DATE_PART(DAYOFYEAR,CURRENT_DATE) - (DATE_PART(DAYOFYEAR,${order_month_first_day}) - 1))) * /*total days in month*/ ((DATE_PART(DAYOFYEAR,${order_month_last_day}) - DATE_PART(DAYOFYEAR,${order_month_first_day})) + 1) ;;
     sql: (sum(${hq_ordered}) / /*days in month so far*/ (DATE_PART(DAYOFYEAR,CURRENT_DATE) - (DATE_PART(DAYOFYEAR,${month_start}) - 1))) * /*total days in month*/  ((DATE_PART(DAYOFYEAR,${month_end}) - DATE_PART(DAYOFYEAR,${month_start})) + 1) ;;
   }
 
@@ -550,7 +548,6 @@ view: monthly_hardware_goals_eom_projections {
     group_label: "EOM Order Projections"
     type: number
     value_format: "#,##0"
-    # sql: (sum(${wbo_ordered}) / /*days in month so far*/ (DATE_PART(DAYOFYEAR,CURRENT_DATE) - (DATE_PART(DAYOFYEAR,${order_month_first_day}) - 1))) * /*total days in month*/ ((DATE_PART(DAYOFYEAR,${order_month_last_day}) - DATE_PART(DAYOFYEAR,${order_month_first_day})) + 1) ;;
     sql: (sum(${wbo_ordered}) / /*days in month so far*/ (DATE_PART(DAYOFYEAR,CURRENT_DATE) - (DATE_PART(DAYOFYEAR,${month_start}) - 1))) * /*total days in month*/ ((DATE_PART(DAYOFYEAR,${month_end}) - DATE_PART(DAYOFYEAR,${month_start})) + 1) ;;
   }
 
@@ -561,7 +558,6 @@ view: monthly_hardware_goals_eom_projections {
     group_label: "EOM Order Projections"
     type: number
     value_format: "#,##0"
-    # sql: (sum(${all_owls_ordered}) / /*days in month so far*/ (DATE_PART(DAYOFYEAR,CURRENT_DATE) - (DATE_PART(DAYOFYEAR,${order_month_first_day}) - 1))) * /*total days in month*/ ((DATE_PART(DAYOFYEAR,${order_month_last_day}) - DATE_PART(DAYOFYEAR,${order_month_first_day})) + 1) ;;
     sql: (sum(${all_owls_ordered}) / /*days in month so far*/ (DATE_PART(DAYOFYEAR,CURRENT_DATE) - (DATE_PART(DAYOFYEAR,${month_start}) - 1))) * /*total days in month*/ ((DATE_PART(DAYOFYEAR,${month_end}) - DATE_PART(DAYOFYEAR,${month_start})) + 1) ;;
   }
 
@@ -573,7 +569,6 @@ view: monthly_hardware_goals_eom_projections {
     # group_label: "All Hardware EOM Projections"
     type: number
     value_format: "#,##0"
-    # sql: (sum(${all_hardware_ordered}) / (DATE_PART(DAYOFYEAR,CURRENT_DATE) - (DATE_PART(DAYOFYEAR,${order_month_first_day}) - 1))/*days in month so far*/) * ((DATE_PART(DAYOFYEAR,${order_month_last_day}) - DATE_PART(DAYOFYEAR,${order_month_first_day})) + 1) /*total days in month*/ ;;
     sql: (sum(${all_hardware_ordered}) / /*days in month so far*/ (DATE_PART(DAYOFYEAR,CURRENT_DATE) - (DATE_PART(DAYOFYEAR,${month_start}) - 1))) * /*total days in month*/ ((DATE_PART(DAYOFYEAR,${month_end}) - DATE_PART(DAYOFYEAR,${month_start})) + 1)  ;;
   }
 
@@ -585,7 +580,6 @@ view: monthly_hardware_goals_eom_projections {
     group_label: "EOM Fulfillment Projections % of Goal"
     type: number
     value_format_name: percent_0
-    # sql: ((sum(${all_owls_shipped}) / (DATE_PART(DAYOFYEAR,CURRENT_DATE) - (DATE_PART(DAYOFYEAR,${fulfillment_month_first_day}) - 1))/*days in month so far*/) * ((DATE_PART(DAYOFYEAR,${fulfillment_month_last_day}) - DATE_PART(DAYOFYEAR,${fulfillment_month_first_day})) + 1)) / sum(${all_owls_goal}) ;;
     sql: ((sum(${mop_shipped}) / /*days in month so far*/ (DATE_PART(DAYOFYEAR,CURRENT_DATE) - (DATE_PART(DAYOFYEAR,${month_start}) - 1))) * /*total days in month*/ ((DATE_PART(DAYOFYEAR,${month_end}) - DATE_PART(DAYOFYEAR,${month_start})) + 1)) / sum(${mop_goal}) ;;
   }
 
@@ -594,7 +588,6 @@ view: monthly_hardware_goals_eom_projections {
     group_label: "EOM Fulfillment Projections % of Goal"
     type: number
     value_format_name: percent_0
-    # sql: ((sum(${all_owls_shipped}) / (DATE_PART(DAYOFYEAR,CURRENT_DATE) - (DATE_PART(DAYOFYEAR,${fulfillment_month_first_day}) - 1))/*days in month so far*/) * ((DATE_PART(DAYOFYEAR,${fulfillment_month_last_day}) - DATE_PART(DAYOFYEAR,${fulfillment_month_first_day})) + 1)) / sum(${all_owls_goal}) ;;
     sql: ((sum(${hq_shipped}) / /*days in month so far*/ (DATE_PART(DAYOFYEAR,CURRENT_DATE) - (DATE_PART(DAYOFYEAR,${month_start}) - 1))) * /*total days in month*/ ((DATE_PART(DAYOFYEAR,${month_end}) - DATE_PART(DAYOFYEAR,${month_start})) + 1)) / sum(${hq_goal}) ;;
   }
 
@@ -603,7 +596,6 @@ view: monthly_hardware_goals_eom_projections {
     group_label: "EOM Fulfillment Projections % of Goal"
     type: number
     value_format_name: percent_0
-    # sql: ((sum(${all_owls_shipped}) / (DATE_PART(DAYOFYEAR,CURRENT_DATE) - (DATE_PART(DAYOFYEAR,${fulfillment_month_first_day}) - 1))/*days in month so far*/) * ((DATE_PART(DAYOFYEAR,${fulfillment_month_last_day}) - DATE_PART(DAYOFYEAR,${fulfillment_month_first_day})) + 1)) / sum(${all_owls_goal}) ;;
     sql: ((sum(${wbo_shipped}) / /*days in month so far*/ (DATE_PART(DAYOFYEAR,CURRENT_DATE) - (DATE_PART(DAYOFYEAR,${month_start}) - 1))) * /*total days in month*/ ((DATE_PART(DAYOFYEAR,${month_end}) - DATE_PART(DAYOFYEAR,${month_start})) + 1)) / sum(${wbo_goal}) ;;
   }
 
@@ -613,7 +605,6 @@ view: monthly_hardware_goals_eom_projections {
     group_label: "EOM Fulfillment Projections % of Goal"
     type: number
     value_format_name: percent_0
-    # sql: ((sum(${all_owls_shipped}) / (DATE_PART(DAYOFYEAR,CURRENT_DATE) - (DATE_PART(DAYOFYEAR,${fulfillment_month_first_day}) - 1))/*days in month so far*/) * ((DATE_PART(DAYOFYEAR,${fulfillment_month_last_day}) - DATE_PART(DAYOFYEAR,${fulfillment_month_first_day})) + 1)) / sum(${all_owls_goal}) ;;
     sql: ((sum(${all_owls_shipped}) / /*days in month so far*/ (DATE_PART(DAYOFYEAR,CURRENT_DATE) - (DATE_PART(DAYOFYEAR,${month_start}) - 1))) * /*total days in month*/ ((DATE_PART(DAYOFYEAR,${month_end}) - DATE_PART(DAYOFYEAR,${month_start})) + 1)) / sum(${all_owls_goal}) ;;
   }
 
@@ -622,7 +613,6 @@ view: monthly_hardware_goals_eom_projections {
     group_label: "EOM Fulfillment Projections % of Goal"
     type: number
     value_format_name: percent_0
-    # sql: ((sum(${all_owls_shipped}) / (DATE_PART(DAYOFYEAR,CURRENT_DATE) - (DATE_PART(DAYOFYEAR,${fulfillment_month_first_day}) - 1))/*days in month so far*/) * ((DATE_PART(DAYOFYEAR,${fulfillment_month_last_day}) - DATE_PART(DAYOFYEAR,${fulfillment_month_first_day})) + 1)) / sum(${all_owls_goal}) ;;
     sql: ((sum(${all_hardware_shipped}) / /*days in month so far*/ (DATE_PART(DAYOFYEAR,CURRENT_DATE) - (DATE_PART(DAYOFYEAR,${month_start}) - 1))) * /*total days in month*/ ((DATE_PART(DAYOFYEAR,${month_end}) - DATE_PART(DAYOFYEAR,${month_start})) + 1)) / sum(${all_hardware_goal}) ;;
   }
 
