@@ -9,8 +9,8 @@ view: monthly_hardware_goals_eom_projections {
               ordered AS (SELECT
                           EXTRACT(month FROM order_date) AS order_month,
                           EXTRACT(year FROM order_date) AS order_year,
-                          CAST(date_trunc('month', order_date) AS date) AS order_month_first_day,
-                          last_day(CAST(order_date AS date)) AS order_month_last_day,
+                          --CAST(date_trunc('month', order_date) AS date) AS order_month_first_day,
+                          --last_day(CAST(order_date AS date)) AS order_month_last_day,
                           sum(pro_quantity_ordered) AS all_pro_ordered,
                           sum(hq_quantity_ordered) AS all_hq_ordered,
                           sum(wbo_quantity_ordered) AS all_wbo_ordered,
@@ -25,8 +25,8 @@ view: monthly_hardware_goals_eom_projections {
               shipped AS (SELECT
                           EXTRACT(month FROM fulfillment_date) AS fulfillment_month,
                           EXTRACT(year FROM fulfillment_date) AS fulfillment_year,
-                          CAST(date_trunc('month', fulfillment_date) AS date) AS fulfillment_month_first_day,
-                          last_day(CAST(fulfillment_date AS date)) AS fulfillment_month_last_day,
+                          --CAST(date_trunc('month', fulfillment_date) AS date) AS fulfillment_month_first_day,
+                          --last_day(CAST(fulfillment_date AS date)) AS fulfillment_month_last_day,
                           sum(pro_quantity_shipped) AS all_pro_shipped,
                           sum(hq_quantity_shipped) AS all_hq_shipped,
                           sum(wbo_quantity_shipped) AS all_wbo_shipped,
@@ -111,17 +111,17 @@ view: monthly_hardware_goals_eom_projections {
     sql: ${TABLE}.month_end ;;
   }
 
-  dimension: fulfillment_month_first_day {
-    hidden: yes
-    type: date
-    sql: ${TABLE}.fulfillment_month_first_day ;;
-  }
+  # dimension: fulfillment_month_first_day {
+  #   hidden: yes
+  #   type: date
+  #   sql: ${TABLE}.fulfillment_month_first_day ;;
+  # }
 
-  dimension: fulfillment_month_last_day {
-    hidden: yes
-    type: date
-    sql: ${TABLE}.fulfillment_month_last_day ;;
-  }
+  # dimension: fulfillment_month_last_day {
+  #   hidden: yes
+  #   type: date
+  #   sql: ${TABLE}.fulfillment_month_last_day ;;
+  # }
 
   dimension: mop_shipped {
     hidden: yes
@@ -159,17 +159,17 @@ view: monthly_hardware_goals_eom_projections {
     sql: ${mop_shipped} + ${hq_shipped} + ${wbo_shipped} + ${mo3_shipped} ;;
   }
 
-  dimension: order_month_first_day {
-    hidden: yes
-    type: date
-    sql: ${TABLE}.order_month_first_day ;;
-  }
+  # dimension: order_month_first_day {
+  #   hidden: yes
+  #   type: date
+  #   sql: ${TABLE}.order_month_first_day ;;
+  # }
 
-  dimension: order_month_last_day {
-    hidden: yes
-    type: date
-    sql: ${TABLE}.order_month_last_day ;;
-  }
+  # dimension: order_month_last_day {
+  #   hidden: yes
+  #   type: date
+  #   sql: ${TABLE}.order_month_last_day ;;
+  # }
 
   dimension: mop_ordered {
     hidden: yes
