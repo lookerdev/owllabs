@@ -1,75 +1,75 @@
 view: monthly_hardware_goals_eom_projections {
   label: "Monthly Sales Goals & EOM Projections"
-  # sql_table_name: public.monthly_hardware_goals_fulfillments ;;
+  sql_table_name: public.monthly_hardware_goals_v ;;
   # drill_fields: []
 
-  derived_table: {
-    sql: WITH goals AS (SELECT * FROM public.monthly_hardware_goals_gsheet
-                       ),
-              ordered AS (SELECT
-                          EXTRACT(month FROM order_date) AS order_month,
-                          EXTRACT(year FROM order_date) AS order_year,
-                          --CAST(date_trunc('month', order_date) AS date) AS order_month_first_day,
-                          --last_day(CAST(order_date AS date)) AS order_month_last_day,
-                          sum(pro_quantity_ordered) AS all_pro_ordered,
-                          sum(hq_quantity_ordered) AS all_hq_ordered,
-                          sum(wbo_quantity_ordered) AS all_wbo_ordered,
-                          sum(mo3_quantity_ordered) AS all_mo3_ordered
-                          FROM all_orders
-                          WHERE sku NOT IN ('EXM100-1000-RPL','MTW100-1000-RPL','MTW100-2000 - Replacement','MTW100-2000-RPL','MTW200-1000-RPL','MTW200-1000-RPL-CA','MTW200-2000 - Replacement','MTW200-2000-RPL','MTW200-4000 - RPL','MTW200-4000-RPL','MTW300-1000-RPL','MTW300-2000-RPL','PTW100-1000-RPL','REF100-1000','REF200-1000','REF200-2000','Replacement AC Line Cord','Replacement Power Supply','Replacement USB Cable (6.5-Foot)','REPLC - NA','REPLC - UK','REPLC - US/CA','REPLC100-1000','REPLC100-1000-NA','REPLC100-2000','REPLC100-2001','REPLCMHQ101-1000','REPLCMHQ102-0000','REPLCMHQ103-0000','REPLCWBO100-1000','REPLCWBO101-0000','REPPS - Universal','REPPS','REPUSB - Universal','REPUSB','TEST2','TEST3','VAT','WBC100-1000-RPL') /*exclude replacements skus*/
-                          GROUP BY EXTRACT(month FROM order_date),
-                                   EXTRACT(year FROM order_date),
-                                   CAST(date_trunc('month', order_date) AS date),
-                                   last_day(CAST(order_date AS date))
-                          ),
-              shipped AS (SELECT
-                          EXTRACT(month FROM fulfillment_date) AS fulfillment_month,
-                          EXTRACT(year FROM fulfillment_date) AS fulfillment_year,
-                          --CAST(date_trunc('month', fulfillment_date) AS date) AS fulfillment_month_first_day,
-                          --last_day(CAST(fulfillment_date AS date)) AS fulfillment_month_last_day,
-                          sum(pro_quantity_shipped) AS all_pro_shipped,
-                          sum(hq_quantity_shipped) AS all_hq_shipped,
-                          sum(wbo_quantity_shipped) AS all_wbo_shipped,
-                          sum(mo3_quantity_shipped) AS all_mo3_shipped
-                          FROM all_fulfillments
-                          WHERE sku NOT IN ('EXM100-1000-RPL','MTW100-1000-RPL','MTW100-2000 - Replacement','MTW100-2000-RPL','MTW200-1000-RPL','MTW200-1000-RPL-CA','MTW200-2000 - Replacement','MTW200-2000-RPL','MTW200-4000 - RPL','MTW200-4000-RPL','MTW300-1000-RPL','MTW300-2000-RPL','PTW100-1000-RPL','REF100-1000','REF200-1000','REF200-2000','Replacement AC Line Cord','Replacement Power Supply','Replacement USB Cable (6.5-Foot)','REPLC - NA','REPLC - UK','REPLC - US/CA','REPLC100-1000','REPLC100-1000-NA','REPLC100-2000','REPLC100-2001','REPLCMHQ101-1000','REPLCMHQ102-0000','REPLCMHQ103-0000','REPLCWBO100-1000','REPLCWBO101-0000','REPPS - Universal','REPPS','REPUSB - Universal','REPUSB','TEST2','TEST3','VAT','WBC100-1000-RPL') /*exclude replacements skus*/
-                          GROUP BY EXTRACT(month FROM fulfillment_date),
-                                   EXTRACT(year FROM fulfillment_date),
-                                   CAST(date_trunc('month', fulfillment_date) AS date),
-                                   last_day(CAST(fulfillment_date AS date))
-                          )
-          SELECT
-          goals.month_name,
-          goals.month_number,
-          goals.year,
-          CAST(goals.month_start AS date) AS month_start,
-          CAST(goals.month_end AS date) AS month_end,
-          goals.owls_goal AS mop_goal,
-          goals.hq_goal,
-          goals.wbo_goal,
-          goals.total_hardware_goal,
-          --ordered.order_month_first_day,
-          --ordered.order_month_last_day,
-          ordered.all_pro_ordered,
-          ordered.all_hq_ordered,
-          ordered.all_wbo_ordered,
-          ordered.all_mo3_ordered,
-          --shipped.fulfillment_month_first_day,
-          --shipped.fulfillment_month_last_day,
-          shipped.all_pro_shipped,
-          shipped.all_hq_shipped,
-          shipped.all_wbo_shipped,
-          shipped.all_mo3_shipped
-          FROM goals
-          inner join shipped
-             on shipped.fulfillment_month = goals.month_number
-             and shipped.fulfillment_year = goals."year"
-          inner join ordered
-            on ordered.order_month = goals.month_number
-            and ordered.order_year = goals."year"
-          order by month_start desc
- ;;
-  }
+#   derived_table: {
+#     sql: WITH goals AS (SELECT * FROM public.monthly_hardware_goals_gsheet
+#                       ),
+#               ordered AS (SELECT
+#                           EXTRACT(month FROM order_date) AS order_month,
+#                           EXTRACT(year FROM order_date) AS order_year,
+#                           --CAST(date_trunc('month', order_date) AS date) AS order_month_first_day,
+#                           --last_day(CAST(order_date AS date)) AS order_month_last_day,
+#                           sum(pro_quantity_ordered) AS all_pro_ordered,
+#                           sum(hq_quantity_ordered) AS all_hq_ordered,
+#                           sum(wbo_quantity_ordered) AS all_wbo_ordered,
+#                           sum(mo3_quantity_ordered) AS all_mo3_ordered
+#                           FROM all_orders
+#                           WHERE sku NOT IN ('EXM100-1000-RPL','MTW100-1000-RPL','MTW100-2000 - Replacement','MTW100-2000-RPL','MTW200-1000-RPL','MTW200-1000-RPL-CA','MTW200-2000 - Replacement','MTW200-2000-RPL','MTW200-4000 - RPL','MTW200-4000-RPL','MTW300-1000-RPL','MTW300-2000-RPL','PTW100-1000-RPL','REF100-1000','REF200-1000','REF200-2000','Replacement AC Line Cord','Replacement Power Supply','Replacement USB Cable (6.5-Foot)','REPLC - NA','REPLC - UK','REPLC - US/CA','REPLC100-1000','REPLC100-1000-NA','REPLC100-2000','REPLC100-2001','REPLCMHQ101-1000','REPLCMHQ102-0000','REPLCMHQ103-0000','REPLCWBO100-1000','REPLCWBO101-0000','REPPS - Universal','REPPS','REPUSB - Universal','REPUSB','TEST2','TEST3','VAT','WBC100-1000-RPL') /*exclude replacements skus*/
+#                           GROUP BY EXTRACT(month FROM order_date),
+#                                   EXTRACT(year FROM order_date),
+#                                   CAST(date_trunc('month', order_date) AS date),
+#                                   last_day(CAST(order_date AS date))
+#                           ),
+#               shipped AS (SELECT
+#                           EXTRACT(month FROM fulfillment_date) AS fulfillment_month,
+#                           EXTRACT(year FROM fulfillment_date) AS fulfillment_year,
+#                           --CAST(date_trunc('month', fulfillment_date) AS date) AS fulfillment_month_first_day,
+#                           --last_day(CAST(fulfillment_date AS date)) AS fulfillment_month_last_day,
+#                           sum(pro_quantity_shipped) AS all_pro_shipped,
+#                           sum(hq_quantity_shipped) AS all_hq_shipped,
+#                           sum(wbo_quantity_shipped) AS all_wbo_shipped,
+#                           sum(mo3_quantity_shipped) AS all_mo3_shipped
+#                           FROM all_fulfillments
+#                           WHERE sku NOT IN ('EXM100-1000-RPL','MTW100-1000-RPL','MTW100-2000 - Replacement','MTW100-2000-RPL','MTW200-1000-RPL','MTW200-1000-RPL-CA','MTW200-2000 - Replacement','MTW200-2000-RPL','MTW200-4000 - RPL','MTW200-4000-RPL','MTW300-1000-RPL','MTW300-2000-RPL','PTW100-1000-RPL','REF100-1000','REF200-1000','REF200-2000','Replacement AC Line Cord','Replacement Power Supply','Replacement USB Cable (6.5-Foot)','REPLC - NA','REPLC - UK','REPLC - US/CA','REPLC100-1000','REPLC100-1000-NA','REPLC100-2000','REPLC100-2001','REPLCMHQ101-1000','REPLCMHQ102-0000','REPLCMHQ103-0000','REPLCWBO100-1000','REPLCWBO101-0000','REPPS - Universal','REPPS','REPUSB - Universal','REPUSB','TEST2','TEST3','VAT','WBC100-1000-RPL') /*exclude replacements skus*/
+#                           GROUP BY EXTRACT(month FROM fulfillment_date),
+#                                   EXTRACT(year FROM fulfillment_date),
+#                                   CAST(date_trunc('month', fulfillment_date) AS date),
+#                                   last_day(CAST(fulfillment_date AS date))
+#                           )
+#           SELECT
+#           goals.month_name,
+#           goals.month_number,
+#           goals.year,
+#           CAST(goals.month_start AS date) AS month_start,
+#           CAST(goals.month_end AS date) AS month_end,
+#           goals.owls_goal AS mop_goal,
+#           goals.hq_goal,
+#           goals.wbo_goal,
+#           goals.total_hardware_goal,
+#           --ordered.order_month_first_day,
+#           --ordered.order_month_last_day,
+#           ordered.all_pro_ordered,
+#           ordered.all_hq_ordered,
+#           ordered.all_wbo_ordered,
+#           ordered.all_mo3_ordered,
+#           --shipped.fulfillment_month_first_day,
+#           --shipped.fulfillment_month_last_day,
+#           shipped.all_pro_shipped,
+#           shipped.all_hq_shipped,
+#           shipped.all_wbo_shipped,
+#           shipped.all_mo3_shipped
+#           FROM goals
+#           inner join shipped
+#             on shipped.fulfillment_month = goals.month_number
+#             and shipped.fulfillment_year = goals."year"
+#           inner join ordered
+#             on ordered.order_month = goals.month_number
+#             and ordered.order_year = goals."year"
+#           order by month_start desc
+# ;;
+#   }
 
 
 ## DIMENSIONS
@@ -126,25 +126,25 @@ view: monthly_hardware_goals_eom_projections {
   dimension: mop_shipped {
     hidden: yes
     type: number
-    sql: ${TABLE}.all_pro_shipped ;;
+    sql: ${TABLE}.pro_shipped ;;
   }
 
   dimension: hq_shipped {
     hidden: yes
     type: number
-    sql: ${TABLE}.all_hq_shipped ;;
+    sql: ${TABLE}.hq_shipped ;;
   }
 
   dimension: wbo_shipped {
     hidden: yes
     type: number
-    sql: ${TABLE}.all_wbo_shipped ;;
+    sql: ${TABLE}.wbo_shipped ;;
   }
 
   dimension: mo3_shipped {
     hidden: yes
     type: number
-    sql: ${TABLE}.all_mo3_shipped ;;
+    sql: ${TABLE}.mo3_shipped ;;
   }
 
   dimension: all_owls_shipped {
@@ -174,25 +174,25 @@ view: monthly_hardware_goals_eom_projections {
   dimension: mop_ordered {
     hidden: yes
     type: number
-    sql: ${TABLE}.all_pro_ordered ;;
+    sql: ${TABLE}.pro_ordered ;;
   }
 
   dimension: hq_ordered {
     hidden: yes
     type: number
-    sql: ${TABLE}.all_hq_ordered ;;
+    sql: ${TABLE}.hq_ordered ;;
   }
 
   dimension: wbo_ordered {
     hidden: yes
     type: number
-    sql: ${TABLE}.all_wbo_ordered ;;
+    sql: ${TABLE}.wbo_ordered ;;
   }
 
   dimension: mo3_ordered {
     hidden: yes
     type: number
-    sql: ${TABLE}.all_mo3_ordered ;;
+    sql: ${TABLE}.mo3_ordered ;;
   }
 
   dimension: all_owls_ordered {
@@ -205,12 +205,6 @@ view: monthly_hardware_goals_eom_projections {
     hidden: yes
     type: number
     sql: ${mop_ordered} + ${hq_ordered} + ${wbo_ordered} + ${mo3_ordered} ;;
-  }
-
-  dimension: mop_goal {
-    hidden: yes
-    type: number
-    sql: ${TABLE}.mop_goal ;;
   }
 
   dimension: hq_goal {
@@ -228,7 +222,7 @@ view: monthly_hardware_goals_eom_projections {
   dimension: all_owls_goal {
     hidden: yes
     type: number
-    sql: ${TABLE}.mop_goal ;;
+    sql: ${TABLE}.owls_goal ;;
   }
 
   dimension: all_hardware_goal {
@@ -242,15 +236,7 @@ view: monthly_hardware_goals_eom_projections {
     type: number
     # value_format: "0\%"
     value_format_name: percent_0
-    sql: ${all_owls_shipped}/nullif(${mop_goal},0) ;;
-  }
-
-  dimension: percent_of_goal_mop {
-    hidden: yes
-    type: number
-    # value_format: "0\%"
-    value_format_name: percent_0
-    sql: ${mop_shipped}/nullif(${mop_goal},0) ;;
+    sql: ${all_owls_shipped}/nullif(${all_owls_goal},0) ;;
   }
 
   dimension: percent_of_goal_hq {
@@ -282,15 +268,6 @@ view: monthly_hardware_goals_eom_projections {
 
 # SHIPMENTS
 
-  measure: sum_mop_shipped {
-    label: "MOPs Fulfilled MTD"
-    description: "Number of MOPs shipped this month to date"
-    group_label: "MTD Fulfillments"
-    type: sum
-    sql: ${mop_shipped} ;;
-    html: {{ rendered_value }} || {{ percent_of_goal_mop._rendered_value }} of goal ;;
-  }
-
   measure: sum_hq_shipped {
     label: "HQs Fulfilled MTD"
     description: "Number of HQs shipped this month to date"
@@ -309,17 +286,7 @@ view: monthly_hardware_goals_eom_projections {
     html: {{ rendered_value }} || {{ percent_of_goal_wbo._rendered_value }} of goal ;;
   }
 
-  measure: sum_mo3_shipped {
-    label: "WBOs Fulfilled MTD"
-    description: "Number of WBOs shipped this month to date"
-    group_label: "MTD Fulfillments"
-    type: sum
-    sql: ${mo3_shipped} ;;
-    html: {{ rendered_value }} || {{ percent_of_goal_wbo._rendered_value }} of goal ;;
-  }
-
   measure: sum_all_owls_shipped {
-    hidden: yes
     label: "All Owls Fulfilled MTD"
     description: "Number of Owls shipped this month to date"
     group_label: "MTD Fulfillments"
@@ -340,15 +307,6 @@ view: monthly_hardware_goals_eom_projections {
 
 # ORDERS
 
-  measure: sum_mop_ordered {
-    label: "MOPs Ordered MTD"
-    description: "Number of MOPs ordered this month to date"
-    group_label: "MTD Orders"
-    type: sum
-    sql: ${mop_ordered} ;;
-    # html: {{ rendered_value }} || {{ percent_of_goal_all_owls._rendered_value }} of goal ;;
-  }
-
   measure: sum_hq_ordered {
     label: "HQs Ordered MTD"
     description: "Number of HQs ordered this month to date"
@@ -368,7 +326,7 @@ view: monthly_hardware_goals_eom_projections {
   }
 
   measure: sum_all_owls_ordered {
-    hidden: yes
+    # hidden: yes
     label: "All Owls Ordered MTD"
     description: "Number of Owls ordered this month to date"
     group_label: "MTD Orders"
@@ -389,13 +347,6 @@ view: monthly_hardware_goals_eom_projections {
 
 # FULFILLMENT OPERATING GOALS
 
-  measure: sum_mop_goal {
-    label: "MOP Fulfillment Goal"
-    group_label: "Sales Goals"
-    type: sum
-    sql: ${mop_goal} ;;
-  }
-
   measure: sum_hq_goal {
     label: "HQ Fulfillment Goal"
     group_label: "Sales Goals"
@@ -411,7 +362,7 @@ view: monthly_hardware_goals_eom_projections {
   }
 
   measure: sum_all_owls_goal {
-    hidden: yes
+    # hidden: yes
     label: "All Owls Fulfillment Goal"
     group_label: "Sales Goals"
     type: sum
@@ -427,24 +378,6 @@ view: monthly_hardware_goals_eom_projections {
 
 
 # FULFILLMENT GOAL REMAINING
-
-  measure: all_owls_goal_remaining {
-    hidden: yes
-    description: "Number of Owls that need to be shipped to meet this month's goal"
-    group_label: "Goal Remaining"
-    type: number
-    sql: sum(${all_owls_goal}) - sum(${all_owls_shipped}) ;;
-    html: {{ rendered_value }} remaining of {{ all_owls_goal._rendered_value }} ;;
-  }
-
-  measure: mop_goal_remaining {
-    label: "MOP Goal Remaining"
-    description: "Number of MOPs that need to be shipped to meet this month's goal"
-    group_label: "Goal Remaining"
-    type: number
-    sql: sum(${mop_goal}) - sum(${mop_shipped}) ;;
-    html: {{ rendered_value }} remaining of {{ mop_goal._rendered_value }} ;;
-  }
 
   measure: hq_goal_remaining {
     label: "HQ Goal Remaining"
@@ -464,6 +397,15 @@ view: monthly_hardware_goals_eom_projections {
     html: {{ rendered_value }} remaining of {{ wbo_goal._rendered_value }} ;;
   }
 
+  measure: all_owls_goal_remaining {
+    # hidden: yes
+    description: "Number of Owls that need to be shipped to meet this month's goal"
+    group_label: "Goal Remaining"
+    type: number
+    sql: sum(${all_owls_goal}) - sum(${all_owls_shipped}) ;;
+    html: {{ rendered_value }} remaining of {{ all_owls_goal._rendered_value }} ;;
+  }
+
   measure: all_hardware_goal_remaining {
     description: "Number of total hardware that need to be shipped to meet this month's goal"
     group_label: "Goal Remaining"
@@ -474,15 +416,6 @@ view: monthly_hardware_goals_eom_projections {
 
 
 # EOM FULFILLMENT PROJECTIONS
-
-  measure: eom_fulfillment_projection_mop {
-    label: "MOP EOM Fulfillment Projection"
-    description: "Predicted number of MOPs fulfilled by end of month"
-    group_label: "EOM Fulfillment Projections"
-    type: number
-    value_format: "#,##0"
-    sql: (sum(${mop_shipped}) / /*days in month so far*/ (DATE_PART(DAYOFYEAR,CURRENT_DATE) - (DATE_PART(DAYOFYEAR,${month_start}) - 1))) * /*total days in month*/ ((DATE_PART(DAYOFYEAR,${month_end}) - DATE_PART(DAYOFYEAR,${month_start})) + 1) ;;
-  }
 
   measure: eom_fulfillment_projection_hq {
     label: "HQ EOM Fulfillment Projection"
@@ -503,7 +436,7 @@ view: monthly_hardware_goals_eom_projections {
   }
 
   measure: eom_fulfillment_projection_all_owls {
-    hidden: yes
+    # hidden: yes
     label: "All Owls EOM Fulfillment Projection"
     description: "Predicted number of Owls fulfilled by end of month"
     group_label: "EOM Fulfillment Projections"
@@ -524,15 +457,6 @@ view: monthly_hardware_goals_eom_projections {
 
 # EOM ORDER PROJECTIONS
 
-  measure: eom_order_projection_mop {
-    label: "MOP EOM Order Projection"
-    description: "Predicted number of MOPs ordered by end of month"
-    group_label: "EOM Order Projections"
-    type: number
-    value_format: "#,##0"
-    sql: (sum(${mop_ordered}) / /*days in month so far*/ (DATE_PART(DAYOFYEAR,CURRENT_DATE) - (DATE_PART(DAYOFYEAR,${month_start}) - 1))) * /*total days in month*/ ((DATE_PART(DAYOFYEAR,${month_end}) - DATE_PART(DAYOFYEAR,${month_start})) + 1) ;;
-  }
-
   measure: eom_order_projection_hq {
     label: "HQ EOM Order Projection"
     description: "Predicted number of HQs ordered by end of month"
@@ -552,7 +476,7 @@ view: monthly_hardware_goals_eom_projections {
   }
 
   measure: eom_order_projection_all_owls {
-    hidden: yes
+    # hidden: yes
     label: "All Owls EOM Order Projection"
     description: "Predicted number of Owls ordered by end of month"
     group_label: "EOM Order Projections"
@@ -575,14 +499,6 @@ view: monthly_hardware_goals_eom_projections {
 
 # PERCENT EOM TO GOAL
 
-  measure: percent_eom_to_goal_mop {
-    label: "MOP EOM Fulfillment Projection % of Goal"
-    group_label: "EOM Fulfillment Projections % of Goal"
-    type: number
-    value_format_name: percent_0
-    sql: ((sum(${mop_shipped}) / /*days in month so far*/ (DATE_PART(DAYOFYEAR,CURRENT_DATE) - (DATE_PART(DAYOFYEAR,${month_start}) - 1))) * /*total days in month*/ ((DATE_PART(DAYOFYEAR,${month_end}) - DATE_PART(DAYOFYEAR,${month_start})) + 1)) / sum(${mop_goal}) ;;
-  }
-
   measure: percent_eom_to_goal_hq {
     label: "HQ EOM Fulfillment Projection % of Goal"
     group_label: "EOM Fulfillment Projections % of Goal"
@@ -600,7 +516,7 @@ view: monthly_hardware_goals_eom_projections {
   }
 
   measure: percent_eom_to_goal_all_owls {
-    hidden: yes
+    # hidden: yes
     label: "All Owls EOM Fulfillment Projection % of Goal"
     group_label: "EOM Fulfillment Projections % of Goal"
     type: number
@@ -615,5 +531,103 @@ view: monthly_hardware_goals_eom_projections {
     value_format_name: percent_0
     sql: ((sum(${all_hardware_shipped}) / /*days in month so far*/ (DATE_PART(DAYOFYEAR,CURRENT_DATE) - (DATE_PART(DAYOFYEAR,${month_start}) - 1))) * /*total days in month*/ ((DATE_PART(DAYOFYEAR,${month_end}) - DATE_PART(DAYOFYEAR,${month_start})) + 1)) / sum(${all_hardware_goal}) ;;
   }
+
+
+
+
+# DELETE
+
+  dimension: mop_goal {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.owls_goal ;;
+  }
+
+  dimension: percent_of_goal_mop {
+    hidden: yes
+    type: number
+    # value_format: "0\%"
+    value_format_name: percent_0
+    sql: ${mop_shipped}/nullif(${mop_goal},0) ;;
+  }
+
+  # measure: percent_eom_to_goal_mop {
+  #   label: "MOP EOM Fulfillment Projection % of Goal"
+  #   group_label: "EOM Fulfillment Projections % of Goal"
+  #   type: number
+  #   value_format_name: percent_0
+  #   sql: ((sum(${mop_shipped}) / /*days in month so far*/ (DATE_PART(DAYOFYEAR,CURRENT_DATE) - (DATE_PART(DAYOFYEAR,${month_start}) - 1))) * /*total days in month*/ ((DATE_PART(DAYOFYEAR,${month_end}) - DATE_PART(DAYOFYEAR,${month_start})) + 1)) / sum(${mop_goal}) ;;
+  # }
+
+  # measure: sum_mop_goal {
+  #   label: "MOP Fulfillment Goal"
+  #   group_label: "Sales Goals"
+  #   type: sum
+  #   sql: ${mop_goal} ;;
+  # }
+
+# remove
+  measure: mop_goal_remaining {
+    hidden: yes
+    label: "MOP Goal Remaining"
+    description: "Number of MOPs that need to be shipped to meet this month's goal"
+    group_label: "Goal Remaining"
+    type: number
+    sql: sum(${all_owls_goal}) - sum(${mop_shipped}) ;;
+    html: {{ rendered_value }} remaining of {{ mop_goal._rendered_value }} ;;
+  }
+
+  measure: sum_mop_ordered {
+    hidden: yes
+    label: "MOPs Ordered MTD"
+    description: "Number of MOPs ordered this month to date"
+    group_label: "MTD Orders"
+    type: sum
+    sql: ${mop_ordered} ;;
+    # html: {{ rendered_value }} || {{ percent_of_goal_all_owls._rendered_value }} of goal ;;
+  }
+
+  measure: eom_fulfillment_projection_mop {
+    hidden: yes
+    label: "MOP EOM Fulfillment Projection"
+    description: "Predicted number of MOPs fulfilled by end of month"
+    group_label: "EOM Fulfillment Projections"
+    type: number
+    value_format: "#,##0"
+    sql: (sum(${mop_shipped}) / /*days in month so far*/ (DATE_PART(DAYOFYEAR,CURRENT_DATE) - (DATE_PART(DAYOFYEAR,${month_start}) - 1))) * /*total days in month*/ ((DATE_PART(DAYOFYEAR,${month_end}) - DATE_PART(DAYOFYEAR,${month_start})) + 1) ;;
+  }
+
+  measure: eom_order_projection_mop {
+    hidden: yes
+    label: "MOP EOM Order Projection"
+    description: "Predicted number of MOPs ordered by end of month"
+    group_label: "EOM Order Projections"
+    type: number
+    value_format: "#,##0"
+    sql: (sum(${mop_ordered}) / /*days in month so far*/ (DATE_PART(DAYOFYEAR,CURRENT_DATE) - (DATE_PART(DAYOFYEAR,${month_start}) - 1))) * /*total days in month*/ ((DATE_PART(DAYOFYEAR,${month_end}) - DATE_PART(DAYOFYEAR,${month_start})) + 1) ;;
+  }
+
+  measure: sum_mop_shipped {
+    hidden: yes
+    label: "MOPs Fulfilled MTD"
+    description: "Number of MOPs shipped this month to date"
+    group_label: "MTD Fulfillments"
+    type: sum
+    sql: ${mop_shipped} ;;
+    html: {{ rendered_value }} || {{ percent_of_goal_mop._rendered_value }} of goal ;;
+  }
+
+  measure: sum_mo3_shipped {
+    hidden: yes
+    label: "MO3 Fulfilled MTD"
+    description: "Number of WBOs shipped this month to date"
+    group_label: "MTD Fulfillments"
+    type: sum
+    sql: ${mo3_shipped} ;;
+    html: {{ rendered_value }} || {{ percent_of_goal_wbo._rendered_value }} of goal ;;
+  }
+
+
+
 
 }
