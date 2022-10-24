@@ -4,7 +4,7 @@ view: monthly_hardware_goals_eom_projections {
   # drill_fields: []
 
   derived_table: {
-    sql: WITH goals AS (SELECT * FROM public.monthly_hardware_goals
+    sql: WITH goals AS (SELECT * FROM public.monthly_hardware_goals_gsheet
                        ),
               ordered AS (SELECT
                           EXTRACT(month FROM order_date) AS order_month,
