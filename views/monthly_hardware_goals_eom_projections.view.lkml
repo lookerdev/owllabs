@@ -286,6 +286,26 @@ view: monthly_hardware_goals_eom_projections {
     html: {{ rendered_value }} || {{ percent_of_goal_wbo._rendered_value }} of goal ;;
   }
 
+  # measure: sum_mop_shipped {
+  #   hidden: yes
+  #   label: "MOPs Fulfilled MTD"
+  #   description: "Number of MOPs shipped this month to date"
+  #   group_label: "MTD Fulfillments"
+  #   type: sum
+  #   sql: ${mop_shipped} ;;
+  #   html: {{ rendered_value }} || {{ percent_of_goal_mop._rendered_value }} of goal ;;
+  # }
+
+  # measure: sum_mo3_shipped {
+  #   hidden: yes
+  #   label: "MO3 Fulfilled MTD"
+  #   description: "Number of WBOs shipped this month to date"
+  #   group_label: "MTD Fulfillments"
+  #   type: sum
+  #   sql: ${mo3_shipped} ;;
+  #   html: {{ rendered_value }} || {{ percent_of_goal_wbo._rendered_value }} of goal ;;
+  # }
+
   measure: sum_all_owls_shipped {
     label: "All Owls Fulfilled MTD"
     description: "Number of Owls shipped this month to date"
@@ -346,6 +366,16 @@ view: monthly_hardware_goals_eom_projections {
 
 
 # FULFILLMENT OPERATING GOALS
+
+  # measure: sum_mop_ordered {
+  #   hidden: yes
+  #   label: "MOPs Ordered MTD"
+  #   description: "Number of MOPs ordered this month to date"
+  #   group_label: "MTD Orders"
+  #   type: sum
+  #   sql: ${mop_ordered} ;;
+  #   # html: {{ rendered_value }} || {{ percent_of_goal_all_owls._rendered_value }} of goal ;;
+  # }
 
   measure: sum_hq_goal {
     label: "HQ Fulfillment Goal"
@@ -565,69 +595,5 @@ view: monthly_hardware_goals_eom_projections {
   #   type: sum
   #   sql: ${mop_goal} ;;
   # }
-
-# remove
-  measure: mop_goal_remaining {
-    hidden: yes
-    label: "MOP Goal Remaining"
-    description: "Number of MOPs that need to be shipped to meet this month's goal"
-    group_label: "Goal Remaining"
-    type: number
-    sql: sum(${all_owls_goal}) - sum(${mop_shipped}) ;;
-    html: {{ rendered_value }} remaining of {{ mop_goal._rendered_value }} ;;
-  }
-
-  measure: sum_mop_ordered {
-    hidden: yes
-    label: "MOPs Ordered MTD"
-    description: "Number of MOPs ordered this month to date"
-    group_label: "MTD Orders"
-    type: sum
-    sql: ${mop_ordered} ;;
-    # html: {{ rendered_value }} || {{ percent_of_goal_all_owls._rendered_value }} of goal ;;
-  }
-
-  measure: eom_fulfillment_projection_mop {
-    hidden: yes
-    label: "MOP EOM Fulfillment Projection"
-    description: "Predicted number of MOPs fulfilled by end of month"
-    group_label: "EOM Fulfillment Projections"
-    type: number
-    value_format: "#,##0"
-    sql: (sum(${mop_shipped}) / /*days in month so far*/ (DATE_PART(DAYOFYEAR,CURRENT_DATE) - (DATE_PART(DAYOFYEAR,${month_start}) - 1))) * /*total days in month*/ ((DATE_PART(DAYOFYEAR,${month_end}) - DATE_PART(DAYOFYEAR,${month_start})) + 1) ;;
-  }
-
-  measure: eom_order_projection_mop {
-    hidden: yes
-    label: "MOP EOM Order Projection"
-    description: "Predicted number of MOPs ordered by end of month"
-    group_label: "EOM Order Projections"
-    type: number
-    value_format: "#,##0"
-    sql: (sum(${mop_ordered}) / /*days in month so far*/ (DATE_PART(DAYOFYEAR,CURRENT_DATE) - (DATE_PART(DAYOFYEAR,${month_start}) - 1))) * /*total days in month*/ ((DATE_PART(DAYOFYEAR,${month_end}) - DATE_PART(DAYOFYEAR,${month_start})) + 1) ;;
-  }
-
-  measure: sum_mop_shipped {
-    hidden: yes
-    label: "MOPs Fulfilled MTD"
-    description: "Number of MOPs shipped this month to date"
-    group_label: "MTD Fulfillments"
-    type: sum
-    sql: ${mop_shipped} ;;
-    html: {{ rendered_value }} || {{ percent_of_goal_mop._rendered_value }} of goal ;;
-  }
-
-  measure: sum_mo3_shipped {
-    hidden: yes
-    label: "MO3 Fulfilled MTD"
-    description: "Number of WBOs shipped this month to date"
-    group_label: "MTD Fulfillments"
-    type: sum
-    sql: ${mo3_shipped} ;;
-    html: {{ rendered_value }} || {{ percent_of_goal_wbo._rendered_value }} of goal ;;
-  }
-
-
-
 
 }
