@@ -2,6 +2,61 @@ view: all_orders {
   sql_table_name: public.all_orders ;;
 
 
+  dimension: hardware_included {
+    type: string
+    sql: CASE WHEN ${sku} = 'BND100-1000' THEN 'MOP,HQ,WBO'
+              WHEN ${sku} = 'BND200-1000' THEN 'MOP,WBO'
+              WHEN ${sku} = 'BND300-0002' THEN 'MO3'
+              WHEN ${sku} = 'BND300-0003' THEN 'MO3,MIC'
+              WHEN ${sku} = 'BND300-0004' THEN 'MO3,HQ'
+              WHEN ${sku} = 'BND300-0005' THEN 'MO3'
+              WHEN ${sku} = 'BND300-0006' THEN 'MO3,MIC'
+              WHEN ${sku} = 'BND300-0007' THEN 'MO3,MIC'
+              WHEN ${sku} = 'BND300-0008' THEN 'MO3'
+              WHEN ${sku} = 'BND300-0009' THEN 'MO3,HQ'
+              WHEN ${sku} = 'BND300-0010' THEN 'MO3,WBO'
+              WHEN ${sku} = 'BND300-0011' THEN 'MO3,HQ,WBO'
+              WHEN ${sku} = 'BND300-0012' THEN 'MO3,MIC'
+              WHEN ${sku} = 'BND300-0013' THEN 'MO3'
+              WHEN ${sku} = 'BND300-0014' THEN 'MO3,HQ'
+              WHEN ${sku} = 'BND300-0015' THEN 'MO3,WBO'
+              WHEN ${sku} = 'BND300-0016' THEN 'MO3,HQ,WBO'
+              WHEN ${sku} = 'BND300-0017' THEN 'MO3'
+              WHEN ${sku} = 'BND300-0018' THEN 'MO3'
+              WHEN ${sku} = 'BND300-0019' THEN 'MO3,MIC'
+              WHEN ${sku} = 'BND300-0020' THEN 'MO3,MIC'
+              WHEN ${sku} = 'BND300-1000' THEN 'MOP,HQ'
+              WHEN ${sku} = 'BND301-1000' THEN 'MOP,HQ'
+              WHEN ${sku} = 'BND302-1000' THEN 'MO3,HQ'
+              END
+                  ;;
+  }
+
+  parameter: hardware_picker {
+    label: "Hardware Included"
+    type: unquoted
+    # type: string
+    allowed_value: {
+      value: "MO3"
+      # label: "MO3"
+    }
+    allowed_value: {
+      value: "MOP"
+      # label: "MO3"
+    }
+    allowed_value: {
+      value: "HQ"
+      # label: "HQ"
+    }
+  }
+
+  dimension: sku_filter {
+    type: string
+    suggest_dimension: hardware_picker
+    sql: CASE WHEN ${hardware_included} like '%{% parameter hardware_picker %}%' then ${sku} end;;
+  }
+
+
 ## PARAMETERS
 
   parameter: timeframe_picker {
