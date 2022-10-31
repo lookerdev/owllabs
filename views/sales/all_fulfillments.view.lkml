@@ -374,7 +374,7 @@ view: all_fulfillments {
     label: "All Items Quantity Shipped"
     type: sum
     sql: ${allitems_quantity_shipped} ;;
-    drill_fields: [sales_channel, world_region, sku,  sum_allitems_quantity_shipped]
+    drill_fields: [sales_channel, world_region, sku,  order_number, sum_allitems_quantity_shipped]
   }
 
   measure: sum_bundle_quantity_shipped {
@@ -382,7 +382,7 @@ view: all_fulfillments {
     hidden: yes
     type: sum
     sql: ${bundle_quantity_shipped} ;;
-    drill_fields: [sales_channel, world_region, sku, sum_bundle_quantity_shipped]
+    drill_fields: [sales_channel, world_region, sku, order_number, sum_bundle_quantity_shipped]
   }
 
   measure: sum_ceilingmount_quantity_shipped {
@@ -390,7 +390,7 @@ view: all_fulfillments {
     group_label: "Accessories"
     type: sum
     sql: ${ceilingmount_quantity_shipped} ;;
-    drill_fields: [sales_channel, world_region, sku, sum_ceilingmount_quantity_shipped]
+    drill_fields: [sales_channel, world_region, sku, order_number, sum_ceilingmount_quantity_shipped]
   }
 
   measure: sum_cuecards_quantity_shipped {
@@ -398,7 +398,7 @@ view: all_fulfillments {
     group_label: "Accessories"
     type: sum
     sql: ${cuecards_quantity_shipped} ;;
-    drill_fields: [sales_channel, world_region, sku, sum_cuecards_quantity_shipped]
+    drill_fields: [sales_channel, world_region, sku, order_number, sum_cuecards_quantity_shipped]
   }
 
   measure: sum_hardcase_quantity_shipped {
@@ -406,7 +406,7 @@ view: all_fulfillments {
     group_label: "Accessories"
     type: sum
     sql: ${hardcase_quantity_shipped} ;;
-    drill_fields: [sales_channel, world_region, sku, sum_hardcase_quantity_shipped]
+    drill_fields: [sales_channel, world_region, sku, order_number, sum_hardcase_quantity_shipped]
   }
 
   measure: sum_hq_quantity_shipped {
@@ -414,7 +414,7 @@ view: all_fulfillments {
     group_label: "Hardware"
     type: sum
     sql: ${hq_quantity_shipped} ;;
-    drill_fields: [sales_channel, world_region, sku, sum_hq_quantity_shipped]
+    drill_fields: [sales_channel, world_region, sku, order_number, sum_hq_quantity_shipped]
   }
 
   measure: sum_linecord_quantity_shipped {
@@ -422,7 +422,7 @@ view: all_fulfillments {
     group_label: "Accessories"
     type: sum
     sql: ${linecord_quantity_shipped} ;;
-    drill_fields: [sales_channel, world_region, sku, sum_linecord_quantity_shipped]
+    drill_fields: [sales_channel, world_region, sku, order_number, sum_linecord_quantity_shipped]
   }
 
   measure: sum_lockadapter_quantity_shipped {
@@ -431,7 +431,7 @@ view: all_fulfillments {
     type: sum
     # sql: ${TABLE}.lockadapter_quantity_shipped ;;
     sql: ${lockadapter_quantity_shipped} ;;
-    drill_fields: [sales_channel, world_region, sku, sum_lockadapter_quantity_shipped]
+    drill_fields: [sales_channel, world_region, sku, order_number, sum_lockadapter_quantity_shipped]
   }
 
   measure: sum_markers_quantity_shipped {
@@ -440,7 +440,7 @@ view: all_fulfillments {
     type: sum
     # sql: ${TABLE}.lockadapter_quantity_shipped ;;
     sql: ${markers_quantity_shipped} ;;
-    drill_fields: [sales_channel, world_region, sku, sum_markers_quantity_shipped]
+    drill_fields: [sales_channel, world_region, sku, order_number, sum_markers_quantity_shipped]
   }
 
   measure: sum_mic_quantity_shipped {
@@ -449,7 +449,7 @@ view: all_fulfillments {
     type: sum
     # sql: ${TABLE}.lockadapter_quantity_shipped ;;
     sql: ${mic_quantity_shipped} ;;
-    drill_fields: [sales_channel, world_region, sku, sum_mic_quantity_shipped]
+    drill_fields: [sales_channel, world_region, sku, order_number, sum_mic_quantity_shipped]
   }
 
   measure: sum_mo3_quantity_shipped {
@@ -458,7 +458,7 @@ view: all_fulfillments {
     type: sum
     # sql: ${TABLE}.lockadapter_quantity_shipped ;;
     sql: ${mo3_quantity_shipped} ;;
-    drill_fields: [sales_channel, world_region, sku, sum_mo3_quantity_shipped]
+    drill_fields: [sales_channel, world_region, sku, order_number, sum_mo3_quantity_shipped]
   }
 
   measure: sum_og_quantity_shipped {
@@ -466,7 +466,7 @@ view: all_fulfillments {
     group_label: "Hardware"
     type: sum
     sql: ${og_quantity_shipped} ;;
-    drill_fields: [sales_channel, world_region, sku, sum_og_quantity_shipped]
+    drill_fields: [sales_channel, world_region, sku, order_number, sum_og_quantity_shipped]
   }
 
   measure: sum_owlcare_quantity_shipped {
@@ -475,7 +475,7 @@ view: all_fulfillments {
     group_label: "Digital"
     type: sum
     sql: ${owlcare_quantity_shipped} ;;
-    drill_fields: [sales_channel, world_region, sku, sum_owlcare_quantity_shipped]
+    drill_fields: [sales_channel, world_region, sku, order_number, sum_owlcare_quantity_shipped]
   }
 
   measure: sum_powersupply_quantity_shipped {
@@ -483,7 +483,7 @@ view: all_fulfillments {
     group_label: "Accessories"
     type: sum
     sql: ${powersupply_quantity_shipped} ;;
-    drill_fields: [sales_channel, world_region, sku, sum_powersupply_quantity_shipped]
+    drill_fields: [sales_channel, world_region, sku, order_number, sum_powersupply_quantity_shipped]
   }
 
   measure: sum_pro_quantity_shipped {
@@ -491,7 +491,7 @@ view: all_fulfillments {
     group_label: "Hardware"
     type: sum
     sql: ${pro_quantity_shipped} ;;
-    drill_fields: [sales_channel, world_region, sku, sum_pro_quantity_shipped]
+    drill_fields: [sales_channel, world_region, sku, order_number, sum_pro_quantity_shipped]
   }
 
   measure: sum_raas_quantity_shipped {
@@ -499,7 +499,7 @@ view: all_fulfillments {
     label: "RaaS Quantity Shipped"
     type: sum
     sql: ${raas_quantity_shipped} ;;
-    drill_fields: [sales_channel, world_region, sku, sum_raas_quantity_shipped]
+    drill_fields: [sales_channel, world_region, sku, order_number, sum_raas_quantity_shipped]
   }
 
   measure: sum_replacement_unit_shipped {
@@ -507,7 +507,7 @@ view: all_fulfillments {
     label: "Replacement Quantity Shipped"
     type: sum
     sql: ${replacement_unit_shipped} ;;
-    drill_fields: [sales_channel, world_region, sku, sum_raas_quantity_shipped]
+    drill_fields: [sales_channel, world_region, sku, order_number, sum_raas_quantity_shipped]
   }
 
   measure: sum_subscription_quantity_shipped {
@@ -515,7 +515,7 @@ view: all_fulfillments {
     hidden: yes
     type: sum
     sql: ${subscription_quantity_shipped} ;;
-    drill_fields: [sales_channel, world_region, sku, sum_subscription_quantity_shipped]
+    drill_fields: [sales_channel, world_region, sku, order_number, sum_subscription_quantity_shipped]
   }
 
   measure: sum_tablemount_quantity_shipped {
@@ -523,7 +523,7 @@ view: all_fulfillments {
     group_label: "Accessories"
     type: sum
     sql: ${tablemount_quantity_shipped} ;;
-    drill_fields: [sales_channel, world_region, sku, sum_tablemount_quantity_shipped]
+    drill_fields: [sales_channel, world_region, sku, order_number, sum_tablemount_quantity_shipped]
   }
 
   measure: sum_tripod_quantity_shipped {
@@ -531,7 +531,7 @@ view: all_fulfillments {
     group_label: "Accessories"
     type: sum
     sql: ${tripod_quantity_shipped} ;;
-    drill_fields: [sales_channel, world_region, sku, sum_tripod_quantity_shipped]
+    drill_fields: [sales_channel, world_region, sku, order_number, sum_tripod_quantity_shipped]
   }
 
   measure: sum_usbextension_quantity_shipped {
@@ -539,7 +539,7 @@ view: all_fulfillments {
     group_label: "Accessories"
     type: sum
     sql: ${usbextension_quantity_shipped} ;;
-    drill_fields: [sales_channel, world_region, sku, sum_usbextension_quantity_shipped]
+    drill_fields: [sales_channel, world_region, sku, order_number, sum_usbextension_quantity_shipped]
   }
 
   measure: sum_usbconversioncable_quantity_shipped {
@@ -547,7 +547,7 @@ view: all_fulfillments {
     group_label: "Accessories"
     type: sum
     sql: ${usbconversioncable_quantity_shipped} ;;
-    drill_fields: [sales_channel, world_region, sku, sum_usbconversioncable_quantity_shipped]
+    drill_fields: [sales_channel, world_region, sku, order_number, sum_usbconversioncable_quantity_shipped]
   }
 
   measure: sum_wbo_quantity_shipped {
@@ -555,7 +555,7 @@ view: all_fulfillments {
     group_label: "Hardware"
     type: sum
     sql: ${wbo_quantity_shipped} ;;
-    drill_fields: [sales_channel, world_region, sku, sum_wbo_quantity_shipped]
+    drill_fields: [sales_channel, world_region, sku, order_number, sum_wbo_quantity_shipped]
   }
 
   measure: sum_wbtags_quantity_shipped {
@@ -563,7 +563,7 @@ view: all_fulfillments {
     group_label: "Accessories"
     type: sum
     sql: ${wbtags_quantity_shipped} ;;
-    drill_fields: [sales_channel, world_region, sku, sum_wbtags_quantity_shipped]
+    drill_fields: [sales_channel, world_region, sku, order_number, sum_wbtags_quantity_shipped]
   }
 
   measure: sum_owls_quantity_shipped {
@@ -572,7 +572,7 @@ view: all_fulfillments {
     description: "Combination of OG, MOP, and MO3 units"
     type: sum
     sql: ${owls_quantity_shipped} ;;
-    drill_fields: [sales_channel, world_region, sku, sum_owls_quantity_shipped]
+    drill_fields: [sales_channel, world_region, sku, order_number, sum_owls_quantity_shipped]
   }
 
   measure: sum_hardware_quantity_shipped {
@@ -581,7 +581,7 @@ view: all_fulfillments {
     description: "Combination of OG, MOP, MO3, WBO, and HQ units"
     type: sum
     sql: ${hardware_quantity_shipped} ;;
-    drill_fields: [sales_channel, world_region, sku, sum_hardware_quantity_shipped]
+    drill_fields: [sales_channel, world_region, sku, order_number, sum_hardware_quantity_shipped]
   }
 
   # measure: most_recent_amazon_date {}
