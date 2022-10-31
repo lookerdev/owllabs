@@ -71,7 +71,8 @@ view: all_orders {
   }
 
   dimension: billing_address_company {
-    label: "Customer"
+    # customer
+    label: "Billing Company Name"
     type: string
     sql: ${TABLE}.billing_address_company ;;
   }
@@ -337,7 +338,7 @@ view: all_orders {
     description: "Count of orders for each SKU"
     type: sum
     sql: ${sku_quantity_ordered} ;;
-    drill_fields: [sales_channel, world_region, order_number, sku, sum_sku_quantity_ordered]
+    drill_fields: [sales_channel, world_region, order_number, billing_address_company, sku, sum_sku_quantity_ordered]
   }
 
   measure: sum_allitems_quantity_ordered {
@@ -345,7 +346,7 @@ view: all_orders {
     label: "All Items Quantity Ordered"
     type: sum
     sql: ${allitems_quantity_ordered} ;;
-    drill_fields: [sales_channel, world_region, order_number, sku, sum_allitems_quantity_ordered]
+    drill_fields: [sales_channel, world_region, order_number, billing_address_company, sku, sum_allitems_quantity_ordered]
   }
 
   measure: sum_bundle_quantity_ordered {
@@ -353,7 +354,7 @@ view: all_orders {
     hidden: yes
     type: sum
     sql: ${bundle_quantity_ordered} ;;
-    drill_fields: [sales_channel, world_region, order_number, sku, sum_bundle_quantity_ordered]
+    drill_fields: [sales_channel, world_region, order_number, billing_address_company, sku, sum_bundle_quantity_ordered]
   }
 
   measure: sum_ceilingmount_quantity_ordered {
@@ -361,7 +362,7 @@ view: all_orders {
     group_label: "Accessories"
     type: sum
     sql: ${ceilingmount_quantity_ordered} ;;
-    drill_fields: [sales_channel, world_region, order_number, sku, sum_ceilingmount_quantity_ordered]
+    drill_fields: [sales_channel, world_region, order_number, billing_address_company, sku, sum_ceilingmount_quantity_ordered]
   }
 
   measure: sum_cuecards_quantity_ordered {
@@ -369,7 +370,7 @@ view: all_orders {
     group_label: "Accessories"
     type: sum
     sql: ${cuecards_quantity_ordered} ;;
-    drill_fields: [sales_channel, world_region, order_number, sku, sum_cuecards_quantity_ordered]
+    drill_fields: [sales_channel, world_region, order_number, billing_address_company, sku, sum_cuecards_quantity_ordered]
   }
 
   measure: sum_hardcase_quantity_ordered {
@@ -377,7 +378,7 @@ view: all_orders {
     group_label: "Accessories"
     type: sum
     sql: ${hardcase_quantity_ordered} ;;
-    drill_fields: [sales_channel, world_region, order_number, sku, sum_hardcase_quantity_ordered]
+    drill_fields: [sales_channel, world_region, order_number, billing_address_company, sku, sum_hardcase_quantity_ordered]
   }
 
   measure: sum_hq_quantity_ordered {
@@ -385,7 +386,7 @@ view: all_orders {
     group_label: "Hardware"
     type: sum
     sql: ${hq_quantity_ordered} ;;
-    drill_fields: [sales_channel, world_region, order_number, sku, sum_hq_quantity_ordered]
+    drill_fields: [sales_channel, world_region, order_number, billing_address_company, sku, sum_hq_quantity_ordered]
   }
 
   measure: sum_linecord_quantity_ordered {
@@ -393,7 +394,7 @@ view: all_orders {
     group_label: "Accessories"
     type: sum
     sql: ${linecord_quantity_ordered} ;;
-    drill_fields: [sales_channel, world_region, order_number, sku, sum_linecord_quantity_ordered]
+    drill_fields: [sales_channel, world_region, order_number, billing_address_company, sku, sum_linecord_quantity_ordered]
   }
 
   measure: sum_lockadapter_quantity_ordered {
@@ -401,7 +402,7 @@ view: all_orders {
     group_label: "Accessories"
     type: sum
     sql: ${lockadapter_quantity_ordered} ;;
-    drill_fields: [sales_channel, world_region, order_number, sku, sum_lockadapter_quantity_ordered]
+    drill_fields: [sales_channel, world_region, order_number, billing_address_company, sku, sum_lockadapter_quantity_ordered]
   }
 
   measure: sum_markers_quantity_ordered {
@@ -409,7 +410,7 @@ view: all_orders {
     group_label: "Accessories"
     type: sum
     sql: ${markers_quantity_ordered} ;;
-    drill_fields: [sales_channel, world_region, order_number, sku, sum_markers_quantity_ordered]
+    drill_fields: [sales_channel, world_region, order_number, billing_address_company, sku, sum_markers_quantity_ordered]
   }
 
   measure: sum_mic_quantity_ordered {
@@ -417,7 +418,7 @@ view: all_orders {
     group_label: "Hardware"
     type: sum
     sql: ${mic_quantity_ordered} ;;
-    drill_fields: [sales_channel, world_region, order_number, sku, sum_mic_quantity_ordered]
+    drill_fields: [sales_channel, world_region, order_number, billing_address_company, sku, sum_mic_quantity_ordered]
   }
 
   measure: sum_mo3_quantity_ordered {
@@ -425,7 +426,7 @@ view: all_orders {
     group_label: "Hardware"
     type: sum
     sql: ${mo3_quantity_ordered} ;;
-    drill_fields: [sales_channel, world_region, order_number, sku, sum_mo3_quantity_ordered]
+    drill_fields: [sales_channel, world_region, order_number, billing_address_company, sku, sum_mo3_quantity_ordered]
   }
 
   measure: sum_og_quantity_ordered {
@@ -433,7 +434,7 @@ view: all_orders {
     group_label: "Hardware"
     type: sum
     sql: ${og_quantity_ordered} ;;
-    drill_fields: [sales_channel, world_region, order_number, sku, sum_og_quantity_ordered]
+    drill_fields: [sales_channel, world_region, order_number, billing_address_company, sku, sum_og_quantity_ordered]
   }
 
   measure: sum_owlcare_quantity_ordered {
@@ -441,7 +442,7 @@ view: all_orders {
     label: "Owl Care Quantity Ordered"
     type: sum
     sql: ${owlcare_quantity_ordered} ;;
-    drill_fields: [sales_channel, world_region, order_number, sku, sum_owlcare_quantity_ordered]
+    drill_fields: [sales_channel, world_region, order_number, billing_address_company, sku, sum_owlcare_quantity_ordered]
   }
 
   measure: sum_powersupply_quantity_ordered {
@@ -449,7 +450,7 @@ view: all_orders {
     group_label: "Accessories"
     type: sum
     sql: ${powersupply_quantity_ordered} ;;
-    drill_fields: [sales_channel, world_region, order_number, sku, sum_powersupply_quantity_ordered]
+    drill_fields: [sales_channel, world_region, order_number, billing_address_company, sku, sum_powersupply_quantity_ordered]
   }
 
   measure: sum_pro_quantity_ordered {
@@ -457,7 +458,7 @@ view: all_orders {
     group_label: "Hardware"
     type: sum
     sql: ${pro_quantity_ordered} ;;
-    drill_fields: [sales_channel, world_region, order_number, sku, sum_pro_quantity_ordered]
+    drill_fields: [sales_channel, world_region, order_number, billing_address_company, sku, sum_pro_quantity_ordered]
   }
 
   measure: sum_raas_quantity_ordered {
@@ -466,7 +467,7 @@ view: all_orders {
     group_label: "Hardware"
     type: sum
     sql: ${raas_quantity_ordered} ;;
-    drill_fields: [sales_channel, world_region, order_number, sku, sum_raas_quantity_ordered]
+    drill_fields: [sales_channel, world_region, order_number, billing_address_company, sku, sum_raas_quantity_ordered]
   }
 
   measure: sum_replacement_unit_ordered {
@@ -474,7 +475,7 @@ view: all_orders {
     label: "Replacement Quantity Ordered"
     type: sum
     sql: ${replacement_unit_ordered} ;;
-    drill_fields: [sales_channel, world_region, order_number, sku, sum_replacement_unit_ordered]
+    drill_fields: [sales_channel, world_region, order_number, billing_address_company, sku, sum_replacement_unit_ordered]
   }
 
   measure: sum_tablemount_quantity_ordered {
@@ -482,7 +483,7 @@ view: all_orders {
     group_label: "Accessories"
     type: sum
     sql: ${tablemount_quantity_ordered} ;;
-    drill_fields: [sales_channel, world_region, order_number, sku, sum_tablemount_quantity_ordered]
+    drill_fields: [sales_channel, world_region, order_number, billing_address_company, sku, sum_tablemount_quantity_ordered]
   }
 
   measure: sum_tripod_quantity_ordered {
@@ -490,7 +491,7 @@ view: all_orders {
     group_label: "Accessories"
     type: sum
     sql: ${tripod_quantity_ordered} ;;
-    drill_fields: [sales_channel, world_region, order_number, sku, sum_tripod_quantity_ordered]
+    drill_fields: [sales_channel, world_region, order_number, billing_address_company, sku, sum_tripod_quantity_ordered]
   }
 
   measure: sum_subscription_quantity_ordered {
@@ -498,7 +499,7 @@ view: all_orders {
     label: "Subscription Quantity Ordered"
     type: sum
     sql: ${subscription_quantity_ordered} ;;
-    drill_fields: [sales_channel, world_region, order_number, sku, sum_subscription_quantity_ordered]
+    drill_fields: [sales_channel, world_region, order_number, billing_address_company, sku, sum_subscription_quantity_ordered]
   }
 
   measure: sum_usbconversioncable_quantity_ordered {
@@ -506,7 +507,7 @@ view: all_orders {
     group_label: "Accessories"
     type: sum
     sql: ${usbconversioncable_quantity_ordered} ;;
-    drill_fields: [sales_channel, world_region, order_number, sku, sum_usbconversioncable_quantity_ordered]
+    drill_fields: [sales_channel, world_region, order_number, billing_address_company, sku, sum_usbconversioncable_quantity_ordered]
   }
 
   measure: sum_usbextension_quantity_ordered {
@@ -514,7 +515,7 @@ view: all_orders {
     group_label: "Accessories"
     type: sum
     sql: ${usbextension_quantity_ordered} ;;
-    drill_fields: [sales_channel, world_region, order_number, sku, sum_usbextension_quantity_ordered]
+    drill_fields: [sales_channel, world_region, order_number, billing_address_company, sku, sum_usbextension_quantity_ordered]
   }
 
   measure: sum_wbo_quantity_ordered {
@@ -522,7 +523,7 @@ view: all_orders {
     group_label: "Hardware"
     type: sum
     sql: ${wbo_quantity_ordered} ;;
-    drill_fields: [sales_channel, world_region, order_number, sku, sum_wbo_quantity_ordered]
+    drill_fields: [sales_channel, world_region, order_number, billing_address_company, sku, sum_wbo_quantity_ordered]
   }
 
   measure: sum_wbtags_quantity_ordered {
@@ -530,7 +531,7 @@ view: all_orders {
     group_label: "Accessories"
     type: sum
     sql: ${wbtags_quantity_ordered} ;;
-    drill_fields: [sales_channel, world_region, order_number, sku, sum_wbtags_quantity_ordered]
+    drill_fields: [sales_channel, world_region, order_number, billing_address_company, sku, sum_wbtags_quantity_ordered]
   }
 
   measure: sum_owls_quantity_ordered {
@@ -539,7 +540,7 @@ view: all_orders {
     group_label: "Hardware"
     type: sum
     sql: ${owls_quantity_ordered} ;;
-    drill_fields: [sales_channel, world_region, order_number, sku, sum_owls_quantity_ordered]
+    drill_fields: [sales_channel, world_region, order_number, billing_address_company, sku, sum_owls_quantity_ordered]
   }
 
   measure: sum_hardware_quantity_ordered {
@@ -548,7 +549,7 @@ view: all_orders {
     group_label: "Hardware"
     type: sum
     sql: ${hardware_quantity_ordered} ;;
-    drill_fields: [sales_channel, world_region, order_number, sku, sum_hardware_quantity_ordered]
+    drill_fields: [sales_channel, world_region, order_number, billing_address_company, sku, sum_hardware_quantity_ordered]
   }
 
   measure: max_date {
