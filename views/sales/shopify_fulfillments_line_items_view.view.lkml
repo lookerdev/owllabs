@@ -286,22 +286,10 @@ view: shopify_fulfillments_line_items_view {
     sql: ${TABLE}.order_name ;;
   }
 
-  dimension: shopify_tags_cam {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.shopify_tags_cam ;;
-  }
-
   dimension: cam_name {
     label: "CAM"
     type: string
     sql: ${TABLE}.cam_name ;;
-  }
-
-  dimension: shopify_tags_sales_rep {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.shopify_tags_sales_rep ;;
   }
 
   dimension: sales_rep {
