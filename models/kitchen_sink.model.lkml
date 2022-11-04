@@ -3,12 +3,7 @@
 
 connection: "redshift"
 
-include: "/views/devices.view"
-include: "/views/barn_channels.view"
-include: "/views/device_view.view"
-include: "/views/device_registrations.view"
-include: "/views/device_checkins.view"
-include: "/views/meeting_records.view"
+include: "/views/barn/**.view"
 include: "/views/dim_calendar.view"
 
 explore: devices {
@@ -22,21 +17,22 @@ explore: devices {
   # It is also necessary to join Device_View because Meeting Records
   # has a cohort analysis that uses it.
   # But we omit both as users will not inspect either here.
-  fields: [
-    ALL_FIELDS*,
-    -barn_channels*,
-    -device_view*,
-  ]
-  join: barn_channels {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${channel_id} = ${barn_channels.channel_id}   ;;
-  }
-  join: device_view {
-    type: left_outer
-    relationship: one_to_one
-    sql_on: ${devices.deviceuuid} = ${device_view.uuid} ;;
-  }
+  # 11/4/22 - with the extends applied for meeting_records and devices, it's no longer necessary to join barn_channels or devices_view tables to this explore
+  # fields: [
+  #   ALL_FIELDS*,
+  #   -barn_channels*,
+  #   -device_view*,
+  # ]
+  # join: barn_channels {
+  #   type: left_outer
+  #   relationship: many_to_one
+  #   sql_on: ${channel_id} = ${barn_channels.channel_id}   ;;
+  # }
+  # join: device_view {
+  #   type: left_outer
+  #   relationship: one_to_one
+  #   sql_on: ${devices.deviceuuid} = ${device_view.uuid} ;;
+  # }
   join: device_registrations {
     type: left_outer
     relationship: one_to_many
@@ -61,17 +57,18 @@ explore: timelines {
   # meeting records that requires device_view.
   # It is non-sensical to join device_view to dim_calendar since
   # devices are not temporal, so we exclude the offending fields.
-  fields: [
-    ALL_FIELDS*,
-    -meeting_records.seconds_owl_connect_return_after_first_mtg,
-    -meeting_records.minutes_owl_connect_return_after_first_mtg,
-    -meeting_records.hours_owl_connect_return_after_first_mtg,
-    -meeting_records.days_owl_connect_return_after_first_mtg,
-    -meeting_records.weeks_owl_connect_return_after_first_mtg,
-    -meeting_records.months_owl_connect_return_after_first_mtg,
-    -meeting_records.quarters_owl_connect_return_after_first_mtg,
-    -meeting_records.years_owl_connect_return_after_first_mtg,
-  ]
+  # with the addition of the meeting_records explore, the owl_connect_return_after_first_mtg fields are no longer included in meeting_records and don't need to be filtered out
+  # fields: [
+  #   ALL_FIELDS*,
+  #   -meeting_records.seconds_owl_connect_return_after_first_mtg,
+  #   -meeting_records.minutes_owl_connect_return_after_first_mtg,
+  #   -meeting_records.hours_owl_connect_return_after_first_mtg,
+  #   -meeting_records.days_owl_connect_return_after_first_mtg,
+  #   -meeting_records.weeks_owl_connect_return_after_first_mtg,
+  #   -meeting_records.months_owl_connect_return_after_first_mtg,
+  #   -meeting_records.quarters_owl_connect_return_after_first_mtg,
+  #   -meeting_records.years_owl_connect_return_after_first_mtg,
+  # ]
   join: device_checkins {
     type: left_outer
     relationship: one_to_many
