@@ -9,12 +9,6 @@ include: "/views/netsuite_orders.view.lkml"
 include: "/views/shopify_orders.view.lkml"
 
 
-# include: "*.dashboard.lookml"
-
-# include all views in the views/ folder in this project
-# include: "/**/*.view.lkml"                 # include all views in this project
-# include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
-
 
 # keep hidden, doesn't need to be accessible outside of Revenue Report dashboard
 # should I rename this explore...? If I do I'll have to replace everything in the dashboard using it...
@@ -24,12 +18,10 @@ include: "/views/shopify_orders.view.lkml"
     label: "Revenue & Fulfillments by Item"
     join: revenue_by_item_looker {
       type: inner
-      # type: left_outer
       relationship: one_to_many
       sql_on: ${revenue_by_item_looker.accounting_period_name} = ${dim_calendar_distinct.period_name} ;;
     }
     join: item_fulfillments_looker {
-      # type: left_outer
       type: inner
       relationship: one_to_many
       sql_on: ${dim_calendar_distinct.period_name} = ${item_fulfillments_looker.period} ;;
