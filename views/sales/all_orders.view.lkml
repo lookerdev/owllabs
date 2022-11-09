@@ -263,6 +263,18 @@ view: all_orders {
     sql: ${TABLE}.replacement_unit_ordered ;;
   }
 
+  dimension: softcase_quantity_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.softcase_quantity_ordered ;;
+  }
+
+  dimension: stand_quantity_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.stand_quantity_ordered ;;
+  }
+
   dimension: subscription_quantity_ordered {
     hidden: yes
     type: number
@@ -500,6 +512,22 @@ view: all_orders {
     type: sum
     sql: ${subscription_quantity_ordered} ;;
     drill_fields: [sales_channel, world_region, order_number, billing_address_company, sku, sum_subscription_quantity_ordered]
+  }
+
+  measure: sum_softcase_quantity_ordered {
+    label: "Soft Case Quantity Ordered"
+    group_label: "Accessories"
+    type: sum
+    sql: ${softcase_quantity_ordered} ;;
+    drill_fields: [sales_channel, world_region, order_number, billing_address_company, sku, sum_softcase_quantity_ordered]
+  }
+
+  measure: sum_stand_quantity_ordered {
+    label: "Stand Quantity Ordered"
+    group_label: "Accessories"
+    type: sum
+    sql: ${stand_quantity_ordered} ;;
+    drill_fields: [sales_channel, world_region, order_number, billing_address_company, sku, sum_stand_quantity_ordered]
   }
 
   measure: sum_usbconversioncable_quantity_ordered {
