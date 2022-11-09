@@ -294,6 +294,18 @@ view: all_fulfillments {
     sql: ${TABLE}.replacement_unit_shipped ;;
   }
 
+  dimension: softcase_quantity_shipped {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.softcase_quantity_shipped ;;
+  }
+
+  dimension: stand_quantity_shipped {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.stand_quantity_shipped ;;
+  }
+
   dimension: subscription_quantity_shipped {
     hidden: yes
     type: number
@@ -509,6 +521,22 @@ view: all_fulfillments {
     type: sum
     sql: ${replacement_unit_shipped} ;;
     drill_fields: [sales_channel, world_region, order_number, fulfillment_number, shipping_address_company, sku, sum_raas_quantity_shipped]
+  }
+
+  measure: sum_softcase_quantity_shipped {
+    label: "Soft Case Quantity Shipped"
+    group_label: "Accessories"
+    type: sum
+    sql: ${softcase_quantity_shipped} ;;
+    drill_fields: [sales_channel, world_region, order_number, fulfillment_number, shipping_address_company, sku, sum_softcase_quantity_shipped]
+  }
+
+  measure: sum_stand_quantity_shipped {
+    label: "Stand Quantity Shipped"
+    group_label: "Accessories"
+    type: sum
+    sql: ${stand_quantity_shipped} ;;
+    drill_fields: [sales_channel, world_region, order_number, fulfillment_number, shipping_address_company, sku, sum_stand_quantity_shipped]
   }
 
   measure: sum_subscription_quantity_shipped {
