@@ -67,6 +67,7 @@ view: all_fulfillments {
     description: "Shipment address country, previously labeled 'Market Region'"
     type: string
     sql: ${TABLE}.country_name ;;
+    map_layer_name: countries
   }
 
   # dimension: distribution_channel {
