@@ -127,13 +127,13 @@ view: devices {
   dimension: lastip {
     label: "Last IP Address"
     description: "Device's most recent IP address, captured during most recent check-in"
-    # hidden: yes
     type: string
     sql: ${TABLE}.device_last_ip_address ;;
   }
 
   dimension: lastgeo {
     label: "Last Geo"
+    description: "Format is City | Region | Country | Longitude | Latitude | Timezone, translated from Last IP Address"
     type: string
     sql: ${TABLE}.lastgeo ;;
   }
