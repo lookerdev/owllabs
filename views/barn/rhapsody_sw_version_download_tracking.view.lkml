@@ -41,7 +41,7 @@ view: rhapsody_sw_version_download_tracking {
         left join b
           on a.deviceuuid = b.deviceuuid
           and b.rnk = 1
-        left join public.devices_view dv
+        left join owlbarn_views.devices_v dv
           on a.deviceuuid = dv.deviceuuid
         where a.rnk = 1
           and b.deviceuuid is not null
