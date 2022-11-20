@@ -12,20 +12,20 @@ view: devices_per_channel_release {
           cast(b.createdat as timestamp) as channel_release_date
           from (
              select
-             devices_view.channel_id ,
-             devices_view.channel_name ,
-             devices_view.product_name,
-             devices_view.device_software_version,
-             devices_view.device_software_version_number,
+             devices_v.channel_id ,
+             devices_v.channel_name ,
+             devices_v.product_name,
+             devices_v.device_software_version,
+             devices_v.device_software_version_number,
              count(1) as registered_device_count
           --   ,count(device_registrations_view.deviceuuid) as device_count
-             from public.devices_view
+             from owlbarn_views.devices_v
              inner join public.device_registrations_view
-              on devices_view.deviceuuid  = device_registrations_view.deviceuuid
+              on devices_v.deviceuuid  = device_registrations_view.deviceuuid
              where 1=1
-              and {% condition software_version_select %} devices_view.device_software_version_number {% endcondition %}
-             group by devices_view.channel_id, devices_view.channel_name, devices_view.product_name, devices_view.device_software_version_number, devices_view.device_software_version
-             order by devices_view.device_software_version_number desc
+              and {% condition software_version_select %} devices_v.device_software_version_number {% endcondition %}
+             group by devices_v.channel_id, devices_v.channel_name, devices_v.product_name, devices_v.device_software_version_number, devices_v.device_software_version
+             order by devices_v.device_software_version_number desc
           ) a
           left join (
              select

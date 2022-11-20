@@ -1,7 +1,6 @@
 view: devices {
-  sql_table_name: public.devices_view ;;
+  sql_table_name: owlbarn_views.devices_v ;;
   drill_fields: [device_id]
-  # label: "Devices - new"
 
 # Dimensions
 

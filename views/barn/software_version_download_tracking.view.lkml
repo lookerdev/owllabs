@@ -43,7 +43,7 @@ from a
 left join b
   on a.deviceuuid = b.deviceuuid
   and b.rnk = 1
-left join public.devices_view dv
+left join owlbarn_views.devices_v dv
   on dv.deviceuuid = a.deviceuuid
 where 1=1
   and dv.product_name in ('Meeting Owl 3','Meeting Owl Pro','Source Next Owl Pro')
