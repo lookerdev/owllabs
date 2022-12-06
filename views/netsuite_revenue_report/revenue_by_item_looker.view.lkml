@@ -132,7 +132,7 @@ view: revenue_by_item_looker {
   # }
 
   dimension: document_type {
-    label: "Document Type"
+    label: "Transaction Type"
     type: string
     sql: ${TABLE}.transaction_type ;;
   }
@@ -143,8 +143,7 @@ view: revenue_by_item_looker {
   }
 
   dimension: transaction_number {
-    label: "Document Number"
-    # hidden: yes
+    label: "Transaction Number"
     type: string
     sql: ${TABLE}.transaction_number ;;
   }
