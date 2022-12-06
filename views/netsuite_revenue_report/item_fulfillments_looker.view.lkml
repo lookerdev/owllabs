@@ -77,6 +77,7 @@ view: item_fulfillments_looker{
   }
 
   dimension: document_number {
+    label: "Transaction Number"
     type: string
     sql: ${TABLE}.document_number ;;
   }
