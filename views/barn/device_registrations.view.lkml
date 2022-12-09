@@ -1,6 +1,5 @@
 view: device_registrations {
-  # sql_table_name: public.device_registrations_view ;;
-  sql_table_name: (select * from public.device_registrations_view where source <> 2) ;;
+  sql_table_name: owlbarn_views.device_registrations_v ;;
 
   dimension: channel_id {
     label: "Channel ID"
