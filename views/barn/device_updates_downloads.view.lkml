@@ -1,6 +1,6 @@
 view: device_updates_downloads {
   label: "Device Update Downloads"
-  sql_table_name: public.deviceupdatesdownloads_view ;;
+  sql_table_name: owlbarn_views.deviceupdatesdownloads_v ;;
   drill_fields: [id]
   # This primary key is the unique key for this table in the underlying database.
   # You need to define a primary key in a view in order to join to other views.

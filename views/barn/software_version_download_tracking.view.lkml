@@ -12,7 +12,7 @@ dd.deviceuuid,
 dd.software_release_version_number,
 dd.software_release_version,
 dd.createdat
-from public.deviceupdatesdownloads_view dd
+from owlbarn_views.deviceupdatesdownloads_v dd
 where dd.software_release_version_number < 4000000 /*sw rev we care about*/
 and dd.software_release_version_number > 1000000 /*filters out uat versions*/
 ),
@@ -24,7 +24,7 @@ dd.deviceuuid,
 dd.software_release_version_number,
 dd.software_release_version,
 dd.createdat
-from public.deviceupdatesdownloads_view dd
+from owlbarn_views.deviceupdatesdownloads_v dd
 where dd.software_release_version_number >= 4000000 /*sw rev we care about*/
 and dd.software_release_version_number < 8888888 /*filters out uat versions*/
 )
