@@ -133,8 +133,32 @@ view: all_fulfillments {
   }
 
   dimension: sku_name {
+    hidden: yes
     type: string
     sql: ${TABLE}.sku_name ;;
+  }
+
+  dimension: sku_name_group {
+    label: "SKU Name"
+    type: string
+    sql: case when ${sku} = 'ACC100-1000' then 'Owl Lock Adapter'
+              when ${sku} in ('ACC100-2000','ACC100-2000-CA','ACC100-2001') then 'USB Extension Cable (16 Feet/5M)'
+              when ${sku} = 'ACCMTW100-0000' then 'Meeting Owl Hard Case'
+              when ${sku} = 'ACCMTW300-0000' then 'Meeting Owl 3 Lock Adapter'
+              when ${sku} = 'ACCMTW300-0002' then 'USB C to C Cable (16 Feet / 4.87M)'
+              when ${sku} = 'EXM100-1000' then 'Expansion Mic'
+              when ${sku} in ('MTW100-1000','MTW100-1000-CA','MTW100-2000') then 'Meeting Owl'
+              when ${sku} in ('MTW200-1000','MTW200-2000','MTW200-3000','MTW200-4000') then 'Meeting Owl Pro'
+              when ${sku} in ('MTW300-1000','MTW300-2000') then 'Meeting Owl 3'
+              when ${sku} = 'OCW100-1000' then 'Owl Care - Meeting Owl'
+              --when ${sku} in ('PPK100-0000','PPK100-2000') then 'Premium Pack: Meeting Owl'
+              --when ${sku} in ('PPK200-0000','PPK200-0000-CAAR') then 'Premium Pack: Meeting Owl Pro'
+              when ${sku} = 'PTW100-1000' then 'Meeting HQ'
+              when ${sku} = 'SUB100-1000' then 'Meeting HQ Subscription'
+              when ${sku} = 'SUB200-1000' then 'Whiteboard Owl Subscription'
+              when ${sku} = 'WBC100-1000' then 'Whiteboard Owl'
+              else ${sku_name}
+        end;;
   }
 
   dimension: revenue_sku {
