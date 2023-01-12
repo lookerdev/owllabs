@@ -24,7 +24,7 @@ explore: devices {
   join: shopify_orders_serial_numbers {
     type: left_outer
     relationship: one_to_one
-    sql_on: lower(${devices.hardware_serial}) = lower(${shopify_orders_serial_numbers.serial_number}) ;;
+    sql_on: lower(${devices.hardware_serial}) = lower(${shopify_orders_serial_numbers.serial_validated}) ;;
   }
   join: most_recent_update_attempt {
     type: left_outer
