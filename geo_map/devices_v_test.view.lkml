@@ -252,8 +252,10 @@ view: devices_v_test {
   dimension: location {
     group_label: "Last Geo"
     type: location
-    sql_latitude:round(${lastgeo_latitude},2) ;;
-    sql_longitude:round(${lastgeo_longitude},2) ;;
+    # sql_latitude:round(${lastgeo_latitude},2) ;;
+    # sql_longitude:round(${lastgeo_longitude},2) ;;
+    sql_latitude:${lastgeo_latitude} ;;
+    sql_longitude:${lastgeo_longitude} ;;
   }
 
   dimension: macaddress {
