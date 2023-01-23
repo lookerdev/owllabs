@@ -20,19 +20,14 @@ view: devices_v_test {
     sql: ${TABLE}.bruinlastconnectto ;;
   }
 
-  dimension: channel_category {
-    type: string
-    sql: ${TABLE}.channel_category ;;
-  }
-
   dimension: channel_id {
     type: number
     sql: ${TABLE}.channel_id ;;
   }
 
-  dimension: channel_name {
+  dimension: country_name {
     type: string
-    sql: ${TABLE}.channel_name ;;
+    sql: ${TABLE}.country_name ;;
   }
 
   # Dates and timestamps can be represented in Looker using a dimension group of type: time.
@@ -342,6 +337,6 @@ view: devices_v_test {
 
   measure: count {
     type: count
-    drill_fields: [channel_name, product_name, device_name]
+    drill_fields: [product_name, device_name]
   }
 }
