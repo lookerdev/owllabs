@@ -56,7 +56,7 @@ view: devices {
 
   dimension_group: createdat {
     hidden: yes
-    description: "Device Record Creation"
+    description: "Device Record Create"
     type: time
     timeframes: [
       raw,
@@ -67,21 +67,6 @@ view: devices {
       year
     ]
     sql: ${TABLE}.device_record_create_date::timestamp ;;
-  }
-
-  dimension_group: deletedat {
-    hidden: yes
-    label: "Device Record Delete"
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.device_record_delete_date::timestamp ;;
   }
 
   dimension: device_id {
@@ -136,6 +121,51 @@ view: devices {
     type: string
     sql: ${TABLE}.lastgeo ;;
   }
+
+  # dimension: lastgeo_city {
+  #   group_label: "Last Geo"
+  #   type: string
+  #   sql: ${TABLE}.lastgeo_city ;;
+  # }
+
+  # dimension: lastgeo_country {
+  #   group_label: "Last Geo"
+  #   type: string
+  #   sql: ${TABLE}.lastgeo_country ;;
+  # }
+
+  # dimension: lastgeo_latitude {
+  #   group_label: "Last Geo"
+  #   type: number
+  #   sql: ${TABLE}.lastgeo_latitude ;;
+  # }
+
+  # dimension: lastgeo_longitude {
+  #   group_label: "Last Geo"
+  #   type: number
+  #   sql: ${TABLE}.lastgeo_longitude ;;
+  # }
+
+  # dimension: lastgeo_region {
+  #   group_label: "Last Geo"
+  #   type: string
+  #   sql: ${TABLE}.lastgeo_region ;;
+  # }
+
+  # dimension: lastgeo_timezone {
+  #   group_label: "Last Geo"
+  #   type: string
+  #   sql: ${TABLE}.lastgeo_timezone ;;
+  # }
+
+  # dimension: location {
+  #   group_label: "Last Geo"
+  #   type: location
+  #   # sql_latitude:round(${lastgeo_latitude},2) ;;
+  #   # sql_longitude:round(${lastgeo_longitude},2) ;;
+  #   sql_latitude:${lastgeo_latitude} ;;
+  #   sql_longitude:${lastgeo_longitude} ;;
+  # }
 
   dimension: last_location {
     type: string
@@ -198,6 +228,11 @@ view: devices {
     sql: ${TABLE}.device_software_version_number ;;
   }
 
+  # dimension: software_version_family {
+  #   type: number
+  #   sql: ${TABLE}.software_version_family ;;
+  # }
+
   dimension: status_number {
     hidden: yes
     # description: "Status Values: 0 - New, 1 - Active, 2 - Requires Update, 3 - Updating, 4 - Inactive, 5 - Downloading Update, 6 - Offline, 7 - Archived"
@@ -240,22 +275,36 @@ view: devices {
     sql: ${TABLE}.settings_timestamp ;;
   }
 
+  dimension: bruinlastconnectto {
+    label: "Bruin Last Connect To"
+    group_label: "Bruin Connect"
+    sql: ${TABLE}.bruinlastconnectto ;;
+  }
+
   dimension_group: lastconnectedbruintime {
     label: "Last Connected Bruin Time"
     group_label: "Bruin Connect"
     sql: ${TABLE}.lastconnectedbruintime ;;
   }
 
+  # dimension_group: lastconnectedbruintime {
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     time,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     year
+  #   ]
+  #   sql: ${TABLE}.lastconnectedbruintime ;;
+  # }
+
   dimension: lastconnectedbruinstatus {
     label: "Last Connected Bruin Status"
     group_label: "Bruin Connect"
     sql: ${TABLE}.lastconnectedbruinstatus ;;
-  }
-
-  dimension: bruinlastconnectto {
-    label: "Bruin Last Connect To"
-    group_label: "Bruin Connect"
-    sql: ${TABLE}.bruinlastconnectto ;;
   }
 
   dimension_group: most_recent_meeting {
