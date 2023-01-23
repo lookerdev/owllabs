@@ -228,10 +228,13 @@ view: devices {
     sql: ${TABLE}.device_software_version_number ;;
   }
 
-  # dimension: software_version_family {
-  #   type: number
-  #   sql: ${TABLE}.software_version_family ;;
-  # }
+  dimension: software_version_family {
+    hidden: yes
+    label: "Current Software Version Family"
+    # description: "The first "
+    type: number
+    sql: ${TABLE}.software_version_family ;;
+  }
 
   dimension: status_number {
     hidden: yes
