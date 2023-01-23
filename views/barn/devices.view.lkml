@@ -110,64 +110,75 @@ view: devices {
 
   dimension: lastip {
     label: "Last IP Address"
-    description: "Device's most recent IP address, captured during most recent check-in"
+    description: "Device most recent IP address, captured from most recent check-in"
     type: string
     sql: ${TABLE}.device_last_ip_address ;;
   }
 
   dimension: lastgeo {
     label: "Last Geo"
+    # group_label: "Last Geo"
     description: "Format is City | Region | Country | Longitude | Latitude | Timezone, translated from Last IP Address"
     type: string
     sql: ${TABLE}.lastgeo ;;
   }
 
-  # dimension: lastgeo_city {
-  #   group_label: "Last Geo"
-  #   type: string
-  #   sql: ${TABLE}.lastgeo_city ;;
-  # }
+  dimension: lastgeo_city {
+    hidden: yes
+    # group_label: "Last Geo"
+    type: string
+    sql: ${TABLE}.lastgeo_city ;;
+  }
 
-  # dimension: lastgeo_country {
-  #   group_label: "Last Geo"
-  #   type: string
-  #   sql: ${TABLE}.lastgeo_country ;;
-  # }
+  dimension: lastgeo_country {
+    hidden: yes
+    # group_label: "Last Geo"
+    type: string
+    sql: ${TABLE}.lastgeo_country ;;
+  }
 
-  # dimension: lastgeo_latitude {
-  #   group_label: "Last Geo"
-  #   type: number
-  #   sql: ${TABLE}.lastgeo_latitude ;;
-  # }
+  dimension: lastgeo_latitude {
+    hidden: yes
+    # group_label: "Last Geo"
+    type: number
+    sql: ${TABLE}.lastgeo_latitude ;;
+  }
 
-  # dimension: lastgeo_longitude {
-  #   group_label: "Last Geo"
-  #   type: number
-  #   sql: ${TABLE}.lastgeo_longitude ;;
-  # }
+  dimension: lastgeo_longitude {
+    hidden: yes
+    # group_label: "Last Geo"
+    type: number
+    sql: ${TABLE}.lastgeo_longitude ;;
+  }
 
-  # dimension: lastgeo_region {
-  #   group_label: "Last Geo"
-  #   type: string
-  #   sql: ${TABLE}.lastgeo_region ;;
-  # }
+  dimension: lastgeo_region {
+    hidden: yes
+    # hidden: yes
+    # group_label: "Last Geo"
+    type: string
+    sql: ${TABLE}.lastgeo_region ;;
+  }
 
-  # dimension: lastgeo_timezone {
-  #   group_label: "Last Geo"
-  #   type: string
-  #   sql: ${TABLE}.lastgeo_timezone ;;
-  # }
+  dimension: lastgeo_timezone {
+    hidden: yes
+    # group_label: "Last Geo"
+    type: string
+    sql: ${TABLE}.lastgeo_timezone ;;
+  }
 
-  # dimension: location {
-  #   group_label: "Last Geo"
-  #   type: location
-  #   # sql_latitude:round(${lastgeo_latitude},2) ;;
-  #   # sql_longitude:round(${lastgeo_longitude},2) ;;
-  #   sql_latitude:${lastgeo_latitude} ;;
-  #   sql_longitude:${lastgeo_longitude} ;;
-  # }
+  dimension: location {
+    hidden: yes
+    label: "Last Geo Location"
+    # group_label: "Last Geo"
+    type: location
+    # sql_latitude:round(${lastgeo_latitude},2) ;;
+    # sql_longitude:round(${lastgeo_longitude},2) ;;
+    sql_latitude:${lastgeo_latitude} ;;
+    sql_longitude:${lastgeo_longitude} ;;
+  }
 
   dimension: last_location {
+    description: "Device most recent meeting location, captured from most recent check-in"
     type: string
     sql: ${TABLE}.device_last_location ;;
   }
