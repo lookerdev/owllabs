@@ -18,10 +18,10 @@ view: devices_per_channel_release {
              devices_v.device_software_version,
              devices_v.device_software_version_number,
              count(1) as registered_device_count
-          --   ,count(device_registrations_view.deviceuuid) as device_count
+          --   ,count(device_registrations_v.deviceuuid) as device_count
              from owlbarn_views.devices_v
-             inner join public.device_registrations_view
-              on devices_v.deviceuuid  = device_registrations_view.deviceuuid
+             inner join owlbarn_views.device_registrations_v
+              on devices_v.deviceuuid  = device_registrations_v.deviceuuid
              where 1=1
               and {% condition software_version_select %} devices_v.device_software_version_number {% endcondition %}
              group by devices_v.channel_id, devices_v.channel_name, devices_v.product_name, devices_v.device_software_version_number, devices_v.device_software_version
