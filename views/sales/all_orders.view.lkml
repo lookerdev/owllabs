@@ -452,7 +452,7 @@ view: all_orders {
 
   measure: sum_mic_quantity_ordered {
     label: "Expansion Mic Quantity Ordered"
-    group_label: "Hardware"
+    group_label: "Accessories"
     type: sum
     sql: ${mic_quantity_ordered} ;;
     drill_fields: [sales_channel, world_region, order_number, billing_address_company, sku, sum_mic_quantity_ordered]
