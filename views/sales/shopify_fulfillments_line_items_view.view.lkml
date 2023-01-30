@@ -567,7 +567,7 @@ view: shopify_fulfillments_line_items_view {
 
   measure: sum_mic_quantity_shipped {
     label: "Expansion Mic Quantity Shipped"
-    group_label: "Hardware"
+    group_label: "Accessories"
     type: sum
     sql: ${mic_quantity_shipped} ;;
   }

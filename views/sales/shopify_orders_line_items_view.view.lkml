@@ -480,7 +480,7 @@ view: shopify_orders_line_items_view {
 
   measure: sum_mic_quantity_ordered {
     label: "Expansion Mic Quantity Ordered"
-    group_label: "Hardware"
+    group_label: "Accessories"
     type: sum
     sql: ${mic_quantity_ordered} ;;
   }
