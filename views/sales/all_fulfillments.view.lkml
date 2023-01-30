@@ -164,7 +164,7 @@ view: all_fulfillments {
   dimension: revenue_sku {
     description: "Identifies if SKU counts towards revenue. 'No' includes replacement, Owl for Good, and test SKUs."
     type: yesno
-    sql: CASE WHEN ${sku} IN ('EXM100-1000-RPL','MTW100-1000-RPL','MTW100-2000 - Replacement','MTW100-2000-RPL','MTW200-1000-RPL','MTW200-1000-RPL-CA','MTW200-2000 - Replacement','MTW200-2000-RPL','MTW200-4000 - RPL','MTW200-4000-RPL','MTW300-1000-RPL','MTW300-2000-RPL','PTW100-1000-RPL','REF100-1000','REF200-1000','REF200-2000','Replacement AC Line Cord','Replacement Power Supply','Replacement USB Cable (6.5-Foot)','REPLC - NA','REPLC - UK','REPLC - US/CA','REPLC100-1000','REPLC100-1000-NA','REPLC100-2000','REPLC100-2001','REPLCMHQ101-1000','REPLCMHQ102-0000','REPLCMHQ103-0000','REPLCWBO100-1000','REPLCWBO101-0000','REPPS - Universal','REPPS','REPUSB - Universal','REPUSB','TEST2','TEST3','VAT','WBC100-1000-RPL','MTW300-2000-DEMO') then False
+    sql: CASE WHEN ${sku} IN ('EXM100-1000-RPL','EXM100-1000-DEMO','MTW100-1000-RPL','MTW100-2000 - Replacement','MTW100-2000-RPL','MTW200-1000-RPL','MTW200-1000-RPL-CA','MTW200-2000 - Replacement','MTW200-2000-RPL','MTW200-4000 - RPL','MTW200-4000-RPL','MTW300-1000-RPL','MTW300-2000-RPL','PTW100-1000-RPL','REF100-1000','REF200-1000','REF200-2000','Replacement AC Line Cord','Replacement Power Supply','Replacement USB Cable (6.5-Foot)','REPLC - NA','REPLC - UK','REPLC - US/CA','REPLC100-1000','REPLC100-1000-NA','REPLC100-2000','REPLC100-2001','REPLCMHQ101-1000','REPLCMHQ102-0000','REPLCMHQ103-0000','REPLCWBO100-1000','REPLCWBO101-0000','REPPS - Universal','REPPS','REPUSB - Universal','REPUSB','TEST2','TEST3','VAT','WBC100-1000-RPL','MTW300-2000-DEMO') then False
       ELSE True END ;;
     # sql: CASE WHEN ${sku} LIKE 'BND%' THEN False
     #           WHEN ${sku} LIKE 'PPKU%' THEN False
@@ -637,6 +637,102 @@ view: all_fulfillments {
     sql: ${hardware_quantity_shipped} ;;
     drill_fields: [sales_channel, world_region, order_number, fulfillment_number, shipping_address_company, sku, sum_hardware_quantity_shipped]
   }
+
+
+
+  # measure: ceilingmount_revenue {
+  #   # label: "Expansion Mic Estimated Revenue"
+  #   group_label: "Estimated Revenue"
+  #   type: number
+  #   # value_format_name: usd
+  #   value_format: "$#,##0"
+  #   sql: ${sum_ceilingmount_quantity_shipped} * 49 ;;
+  # }
+
+  # measure: hardcase_revenue {
+  #   # label: "Expansion Mic Estimated Revenue"
+  #   group_label: "Estimated Revenue"
+  #   type: number
+  #   # value_format_name: usd
+  #   value_format: "$#,##0"
+  #   sql: ${sum_hardcase_quantity_shipped} * 199 ;;
+  # }
+
+  # measure: lockadapter_revenue {
+  #   # label: "Expansion Mic Estimated Revenue"
+  #   group_label: "Estimated Revenue"
+  #   type: number
+  #   # value_format_name: usd
+  #   value_format: "$#,##0"
+  #   sql: ${sum_lockadapter_quantity_shipped} * 49 ;;
+  # }
+
+  # measure: markers_revenue {
+  #   # label: "Expansion Mic Estimated Revenue"
+  #   group_label: "Estimated Revenue"
+  #   type: number
+  #   # value_format_name: usd
+  #   value_format: "$#,##0"
+  #   sql: ${sum_markers_quantity_shipped} * 15 ;;
+  # }
+
+  # measure: mic_revenue {
+  #   label: "Expansion Mic Estimated Revenue"
+  #   group_label: "Estimated Revenue"
+  #   type: number
+  #   # value_format_name: usd
+  #   value_format: "$#,##0"
+  #   sql: ${sum_mic_quantity_shipped} * 249 ;;
+  # }
+
+  # measure: softcase_revenue {
+  #   # label: "Expansion Mic Estimated Revenue"
+  #   group_label: "Estimated Revenue"
+  #   type: number
+  #   # value_format_name: usd
+  #   value_format: "$#,##0"
+  #   sql: ${sum_softcase_quantity_shipped} * 149 ;;
+  # }
+
+  # measure: stand_revenue {
+  #   # label: "Expansion Mic Estimated Revenue"
+  #   group_label: "Estimated Revenue"
+  #   type: number
+  #   # value_format_name: usd
+  #   value_format: "$#,##0"
+  #   sql: ${sum_stand_quantity_shipped} * 99 ;;
+  # }
+
+  # measure: tablemount_revenue {
+  #   # label: "Expansion Mic Estimated Revenue"
+  #   group_label: "Estimated Revenue"
+  #   type: number
+  #   # value_format_name: usd
+  #   value_format: "$#,##0"
+  #   sql: ${sum_tablemount_quantity_shipped} * 19 ;;
+  # }
+
+  # measure: tripod_revenue {
+  #   # label: "Expansion Mic Estimated Revenue"
+  #   group_label: "Estimated Revenue"
+  #   type: number
+  #   # value_format_name: usd
+  #   value_format: "$#,##0"
+  #   sql: ${sum_tripod_quantity_shipped} * 149 ;;
+  # }
+
+
+# USB C to C 16' cable - $29
+# USB C to A 16' cable - $29
+# USB C to C 6' cable - $22
+# USB C to A 6' cable - $22
+
+
+
+
+
+
+
 
   # measure: most_recent_amazon_date {}
 
