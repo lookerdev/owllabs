@@ -640,101 +640,103 @@ view: all_fulfillments {
 
 
 
-  # measure: ceilingmount_revenue {
-  #   # label: "Expansion Mic Estimated Revenue"
-  #   group_label: "Estimated Revenue"
-  #   type: number
-  #   # value_format_name: usd
-  #   value_format: "$#,##0"
-  #   sql: ${sum_ceilingmount_quantity_shipped} * 49 ;;
-  # }
+  measure: ceilingmount_revenue {
+    # label: "Expansion Mic Estimated Revenue"
+    group_label: "Estimated Revenue"
+    type: number
+    # value_format_name: usd
+    value_format: "$#,##0"
+    sql: ${sum_ceilingmount_quantity_shipped} * 49 ;;
+  }
 
-  # measure: hardcase_revenue {
-  #   # label: "Expansion Mic Estimated Revenue"
-  #   group_label: "Estimated Revenue"
-  #   type: number
-  #   # value_format_name: usd
-  #   value_format: "$#,##0"
-  #   sql: ${sum_hardcase_quantity_shipped} * 199 ;;
-  # }
+  measure: hardcase_revenue {
+    # label: "Expansion Mic Estimated Revenue"
+    group_label: "Estimated Revenue"
+    type: number
+    # value_format_name: usd
+    value_format: "$#,##0"
+    sql: ${sum_hardcase_quantity_shipped} * 199 ;;
+  }
 
-  # measure: lockadapter_revenue {
-  #   # label: "Expansion Mic Estimated Revenue"
-  #   group_label: "Estimated Revenue"
-  #   type: number
-  #   # value_format_name: usd
-  #   value_format: "$#,##0"
-  #   sql: ${sum_lockadapter_quantity_shipped} * 49 ;;
-  # }
+  measure: lockadapter_revenue {
+    # label: "Expansion Mic Estimated Revenue"
+    group_label: "Estimated Revenue"
+    type: number
+    # value_format_name: usd
+    value_format: "$#,##0"
+    sql: ${sum_lockadapter_quantity_shipped} * 49 ;;
+  }
 
-  # measure: markers_revenue {
-  #   # label: "Expansion Mic Estimated Revenue"
-  #   group_label: "Estimated Revenue"
-  #   type: number
-  #   # value_format_name: usd
-  #   value_format: "$#,##0"
-  #   sql: ${sum_markers_quantity_shipped} * 15 ;;
-  # }
+  measure: markers_revenue {
+    # label: "Expansion Mic Estimated Revenue"
+    group_label: "Estimated Revenue"
+    type: number
+    # value_format_name: usd
+    value_format: "$#,##0"
+    sql: ${sum_markers_quantity_shipped} * 15 ;;
+  }
 
-  # measure: mic_revenue {
-  #   # hidden: yes
-  #   label: "Expansion Mic Estimated Revenue"
-  #   group_label: "Estimated Revenue"
-  #   type: number
-  #   # value_format_name: usd
-  #   value_format: "$#,##0"
-  #   sql: ${sum_mic_quantity_shipped} * 249 ;;
-  # }
+  measure: mic_revenue {
+    # hidden: yes
+    label: "Expansion Mic Estimated Revenue"
+    group_label: "Estimated Revenue"
+    type: number
+    # value_format_name: usd
+    value_format: "$#,##0"
+    sql: ${sum_mic_quantity_shipped} * 249 ;;
+  }
 
-  # measure: softcase_revenue {
-  #   # label: "Expansion Mic Estimated Revenue"
-  #   group_label: "Estimated Revenue"
-  #   type: number
-  #   # value_format_name: usd
-  #   value_format: "$#,##0"
-  #   sql: ${sum_softcase_quantity_shipped} * 149 ;;
-  # }
+  measure: softcase_revenue {
+    # label: "Expansion Mic Estimated Revenue"
+    group_label: "Estimated Revenue"
+    type: number
+    # value_format_name: usd
+    value_format: "$#,##0"
+    sql: ${sum_softcase_quantity_shipped} * 149 ;;
+  }
 
-  # measure: stand_revenue {
-  #   # label: "Expansion Mic Estimated Revenue"
-  #   group_label: "Estimated Revenue"
-  #   type: number
-  #   # value_format_name: usd
-  #   value_format: "$#,##0"
-  #   sql: ${sum_stand_quantity_shipped} * 99 ;;
-  # }
+  measure: stand_revenue {
+    # label: "Expansion Mic Estimated Revenue"
+    group_label: "Estimated Revenue"
+    type: number
+    # value_format_name: usd
+    value_format: "$#,##0"
+    sql: ${sum_stand_quantity_shipped} * 99 ;;
+  }
 
-  # measure: tablemount_revenue {
-  #   # label: "Expansion Mic Estimated Revenue"
-  #   group_label: "Estimated Revenue"
-  #   type: number
-  #   # value_format_name: usd
-  #   value_format: "$#,##0"
-  #   sql: ${sum_tablemount_quantity_shipped} * 19 ;;
-  # }
+  measure: tablemount_revenue {
+    # label: "Expansion Mic Estimated Revenue"
+    group_label: "Estimated Revenue"
+    type: number
+    # value_format_name: usd
+    value_format: "$#,##0"
+    sql: ${sum_tablemount_quantity_shipped} * 19 ;;
+  }
 
-  # measure: tripod_revenue {
-  #   # label: "Expansion Mic Estimated Revenue"
-  #   group_label: "Estimated Revenue"
-  #   type: number
-  #   # value_format_name: usd
-  #   value_format: "$#,##0"
-  #   sql: ${sum_tripod_quantity_shipped} * 149 ;;
-  # }
+  measure: tripod_revenue {
+    # label: "Expansion Mic Estimated Revenue"
+    group_label: "Estimated Revenue"
+    type: number
+    # value_format_name: usd
+    value_format: "$#,##0"
+    sql: ${sum_tripod_quantity_shipped} * 149 ;;
+  }
 
-  # measure: usbconversioncable_revenue {
-  #   # hidden: yes
-  #   # label: "Expansion Mic Estimated Revenue"
-  #   group_label: "Estimated Revenue"
-  #   type: number
-  #   # value_format_name: usd
-  #   value_format: "$#,##0"
-  #   sql: case when ${sku} = 'ACCMTW300-0001' then ${sum_usbconversioncable_quantity_shipped} * 22 /*USB C to C Cable (6 Feet / 1.8M)*/
-  #             when ${sku} = 'ACCMTW300-0002' then ${sum_usbconversioncable_quantity_shipped} * 29 /*USB C to C Cable (16 Feet / 4.87M)*/
-  #             when ${sku} = 'ACCMTW300-0003' then ${sum_usbconversioncable_quantity_shipped} * 22 /*USB C to A Cable (6 Feet / 1.8M)*/
-  #             when ${sku} = 'ACCMTW300-0004' then ${sum_usbconversioncable_quantity_shipped} * 29 /*USB C to A Cable (16 Feet / 4.87M)*/
-  #             end ;;
-  # }
+  measure: usbconversioncable_revenue {
+    # hidden: yes
+    # label: "Expansion Mic Estimated Revenue"
+    group_label: "Estimated Revenue"
+    type: number
+    # value_format_name: usd
+    value_format: "$#,##0"
+    sql: case when ${sku} = 'ACCMTW300-0001' then ${sum_usbconversioncable_quantity_shipped} * 22 /*USB C to C Cable (6 Feet / 1.8M)*/
+              when ${sku} = 'ACCMTW300-0002' then ${sum_usbconversioncable_quantity_shipped} * 29 /*USB C to C Cable (16 Feet / 4.87M)*/
+              when ${sku} = 'ACCMTW300-0003' then ${sum_usbconversioncable_quantity_shipped} * 22 /*USB C to A Cable (6 Feet / 1.8M)*/
+              when ${sku} = 'ACCMTW300-0004' then ${sum_usbconversioncable_quantity_shipped} * 29 /*USB C to A Cable (16 Feet / 4.87M)*/
+              end ;;
+  }
+
+  #
 
   # measure: most_recent_amazon_date {}
 
