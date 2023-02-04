@@ -1,5 +1,6 @@
 connection: "redshift"
 label: "E-Commerce"
+# label: "Sales Data"
 
 include: "/views/dim_calendar.view.lkml"
 include: "/views/netsuite_orders.view.lkml"
@@ -77,7 +78,7 @@ explore: shopify_fulfillments_line_items_view {
 }
 
 explore: distributor_sellthrough {
-  description: "IN DEVELOPEMENT - Sellthrough fulfillment data gathered from distributor reports."
+  description: "IN DEVELOPMENT - Sellthrough fulfillment data gathered from distributor reports."
 }
 
 explore: monthly_hardware_goals_eom_projections {
