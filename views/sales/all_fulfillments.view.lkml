@@ -677,6 +677,7 @@ view: all_fulfillments {
   # }
 
   # measure: mic_revenue {
+  #   # hidden: yes
   #   label: "Expansion Mic Estimated Revenue"
   #   group_label: "Estimated Revenue"
   #   type: number
@@ -721,18 +722,19 @@ view: all_fulfillments {
   #   sql: ${sum_tripod_quantity_shipped} * 149 ;;
   # }
 
-
-# USB C to C 16' cable - $29
-# USB C to A 16' cable - $29
-# USB C to C 6' cable - $22
-# USB C to A 6' cable - $22
-
-
-
-
-
-
-
+  # measure: usbconversioncable_revenue {
+  #   # hidden: yes
+  #   # label: "Expansion Mic Estimated Revenue"
+  #   group_label: "Estimated Revenue"
+  #   type: number
+  #   # value_format_name: usd
+  #   value_format: "$#,##0"
+  #   sql: case when ${sku} = 'ACCMTW300-0001' then ${sum_usbconversioncable_quantity_shipped} * 22 /*USB C to C Cable (6 Feet / 1.8M)*/
+  #             when ${sku} = 'ACCMTW300-0002' then ${sum_usbconversioncable_quantity_shipped} * 29 /*USB C to C Cable (16 Feet / 4.87M)*/
+  #             when ${sku} = 'ACCMTW300-0003' then ${sum_usbconversioncable_quantity_shipped} * 22 /*USB C to A Cable (6 Feet / 1.8M)*/
+  #             when ${sku} = 'ACCMTW300-0004' then ${sum_usbconversioncable_quantity_shipped} * 29 /*USB C to A Cable (16 Feet / 4.87M)*/
+  #             end ;;
+  # }
 
   # measure: most_recent_amazon_date {}
 
