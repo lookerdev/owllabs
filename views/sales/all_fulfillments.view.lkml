@@ -641,7 +641,8 @@ view: all_fulfillments {
 
 
   measure: ceilingmount_revenue {
-    # label: "Expansion Mic Estimated Revenue"
+    hidden: yes
+    label: "Ceiling Mount Estimated Revenue"
     group_label: "Estimated Revenue"
     type: number
     # value_format_name: usd
@@ -650,7 +651,8 @@ view: all_fulfillments {
   }
 
   measure: hardcase_revenue {
-    # label: "Expansion Mic Estimated Revenue"
+    hidden: yes
+    label: "Hard Case Estimated Revenue"
     group_label: "Estimated Revenue"
     type: number
     # value_format_name: usd
@@ -659,7 +661,8 @@ view: all_fulfillments {
   }
 
   measure: lockadapter_revenue {
-    # label: "Expansion Mic Estimated Revenue"
+    hidden: yes
+    label: "Lock Adapter Estimated Revenue"
     group_label: "Estimated Revenue"
     type: number
     # value_format_name: usd
@@ -668,7 +671,8 @@ view: all_fulfillments {
   }
 
   measure: markers_revenue {
-    # label: "Expansion Mic Estimated Revenue"
+    hidden: yes
+    label: "Whiteboard Markers Estimated Revenue"
     group_label: "Estimated Revenue"
     type: number
     # value_format_name: usd
@@ -677,7 +681,7 @@ view: all_fulfillments {
   }
 
   measure: mic_revenue {
-    # hidden: yes
+    hidden: yes
     label: "Expansion Mic Estimated Revenue"
     group_label: "Estimated Revenue"
     type: number
@@ -687,7 +691,8 @@ view: all_fulfillments {
   }
 
   measure: softcase_revenue {
-    # label: "Expansion Mic Estimated Revenue"
+    hidden: yes
+    label: "Soft Case Estimated Revenue"
     group_label: "Estimated Revenue"
     type: number
     # value_format_name: usd
@@ -696,7 +701,8 @@ view: all_fulfillments {
   }
 
   measure: stand_revenue {
-    # label: "Expansion Mic Estimated Revenue"
+    hidden: yes
+    label: "Stand Estimated Revenue"
     group_label: "Estimated Revenue"
     type: number
     # value_format_name: usd
@@ -705,7 +711,8 @@ view: all_fulfillments {
   }
 
   measure: tablemount_revenue {
-    # label: "Expansion Mic Estimated Revenue"
+    hidden: yes
+    label: "Table Mount Estimated Revenue"
     group_label: "Estimated Revenue"
     type: number
     # value_format_name: usd
@@ -714,7 +721,8 @@ view: all_fulfillments {
   }
 
   measure: tripod_revenue {
-    # label: "Expansion Mic Estimated Revenue"
+    hidden: yes
+    label: "Tripod Estimated Revenue"
     group_label: "Estimated Revenue"
     type: number
     # value_format_name: usd
@@ -723,8 +731,8 @@ view: all_fulfillments {
   }
 
   measure: usbconversioncable_revenue {
-    # hidden: yes
-    # label: "Expansion Mic Estimated Revenue"
+    hidden: yes
+    label: "USB Conversion Cable Estimated Revenue"
     group_label: "Estimated Revenue"
     type: number
     # value_format_name: usd
@@ -735,8 +743,6 @@ view: all_fulfillments {
               when ${sku} = 'ACCMTW300-0004' then ${sum_usbconversioncable_quantity_shipped} * 29 /*USB C to A Cable (16 Feet / 4.87M)*/
               end ;;
   }
-
-  #
 
   # measure: most_recent_amazon_date {}
 
