@@ -96,6 +96,53 @@ view: devices {
     sql: coalesce(${alias}, ${device_name}) ;;
   }
 
+
+
+  dimension: firstowlconnectasprimary {
+    hidden: yes
+    label: "firstowlconnectasprimary"
+    group_label: "Owl Connect"
+    description: "Device's first date in a paired meeting as the Primary device"
+    type: date
+    sql: ${TABLE}.firstowlconnectasprimary ;;
+  }
+
+  dimension: pairedasprimary {
+    hidden: yes
+    label: "Ever Paired as Primary?"
+    group_label: "Owl Connect"
+    description: "If the device has ever participated in a paired meeting as the primary device"
+    type: yesno
+    sql: ${TABLE}.firstowlconnectasprimary ;;
+  }
+
+  dimension: firstowlconnectassecondary {
+    hidden: yes
+    label: "firstowlconnectassecondary"
+    group_label: "Owl Connect"
+    description: "Device's first date in a paired meeting as any device other than Primary"
+    type: date
+    sql: ${TABLE}.firstowlconnectassecondary ;;
+  }
+
+  dimension: pairedassecondary {
+    hidden: yes
+    label: "Ever Paired as Secondary?"
+    group_label: "Owl Connect"
+    description: "If the device has ever participated in a paired meeting as a device connected to the primary"
+    type: yesno
+    sql: ${TABLE}.firstowlconnectassecondary ;;
+  }
+
+  # dimension: everconnected {
+  #   label: "Ever Paired in any capacity?"
+  #   group_label: "Owl Connect"
+  #   description: "If the device has ever participated in a paired meeting, regardless of device role"
+  #   type: yesno
+  #   sql: coalesce(${firstowlconnectasprimary}, ${firstowlconnectassecondary}) ;;
+  # }
+
+
   dimension: hardware_serial {
     label: "Hardware Serial Number"
     type: string
@@ -207,6 +254,7 @@ view: devices {
   }
 
   dimension: product_name {
+    # bypass_suggest_restrictions: yes
     label: "Device Type"
     description: "Device product type"
     type: string
