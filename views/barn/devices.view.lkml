@@ -56,7 +56,7 @@ view: devices {
 
   dimension_group: createdat {
     hidden: yes
-    description: "Device Record Creation"
+    description: "Device Record Create"
     type: time
     timeframes: [
       raw,
@@ -67,21 +67,6 @@ view: devices {
       year
     ]
     sql: ${TABLE}.device_record_create_date::timestamp ;;
-  }
-
-  dimension_group: deletedat {
-    hidden: yes
-    label: "Device Record Delete"
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.device_record_delete_date::timestamp ;;
   }
 
   dimension: device_id {
@@ -111,6 +96,53 @@ view: devices {
     sql: coalesce(${alias}, ${device_name}) ;;
   }
 
+
+
+  dimension: firstowlconnectasprimary {
+    hidden: yes
+    label: "firstowlconnectasprimary"
+    group_label: "Owl Connect"
+    description: "Device's first date in a paired meeting as the Primary device"
+    type: date
+    sql: ${TABLE}.firstowlconnectasprimary ;;
+  }
+
+  dimension: pairedasprimary {
+    hidden: yes
+    label: "Ever Paired as Primary?"
+    group_label: "Owl Connect"
+    description: "If the device has ever participated in a paired meeting as the primary device"
+    type: yesno
+    sql: ${TABLE}.firstowlconnectasprimary ;;
+  }
+
+  dimension: firstowlconnectassecondary {
+    hidden: yes
+    label: "firstowlconnectassecondary"
+    group_label: "Owl Connect"
+    description: "Device's first date in a paired meeting as any device other than Primary"
+    type: date
+    sql: ${TABLE}.firstowlconnectassecondary ;;
+  }
+
+  dimension: pairedassecondary {
+    hidden: yes
+    label: "Ever Paired as Secondary?"
+    group_label: "Owl Connect"
+    description: "If the device has ever participated in a paired meeting as a device connected to the primary"
+    type: yesno
+    sql: ${TABLE}.firstowlconnectassecondary ;;
+  }
+
+  # dimension: everconnected {
+  #   label: "Ever Paired in any capacity?"
+  #   group_label: "Owl Connect"
+  #   description: "If the device has ever participated in a paired meeting, regardless of device role"
+  #   type: yesno
+  #   sql: coalesce(${firstowlconnectasprimary}, ${firstowlconnectassecondary}) ;;
+  # }
+
+
   dimension: hardware_serial {
     label: "Hardware Serial Number"
     type: string
@@ -125,19 +157,75 @@ view: devices {
 
   dimension: lastip {
     label: "Last IP Address"
-    description: "Device's most recent IP address, captured during most recent check-in"
+    description: "Device most recent IP address, captured from most recent check-in"
     type: string
     sql: ${TABLE}.device_last_ip_address ;;
   }
 
   dimension: lastgeo {
     label: "Last Geo"
+    # group_label: "Last Geo"
     description: "Format is City | Region | Country | Longitude | Latitude | Timezone, translated from Last IP Address"
     type: string
     sql: ${TABLE}.lastgeo ;;
   }
 
+  dimension: lastgeo_city {
+    hidden: yes
+    # group_label: "Last Geo"
+    type: string
+    sql: ${TABLE}.lastgeo_city ;;
+  }
+
+  dimension: lastgeo_country {
+    hidden: yes
+    # group_label: "Last Geo"
+    type: string
+    sql: ${TABLE}.lastgeo_country ;;
+  }
+
+  dimension: lastgeo_latitude {
+    hidden: yes
+    # group_label: "Last Geo"
+    type: number
+    sql: ${TABLE}.lastgeo_latitude ;;
+  }
+
+  dimension: lastgeo_longitude {
+    hidden: yes
+    # group_label: "Last Geo"
+    type: number
+    sql: ${TABLE}.lastgeo_longitude ;;
+  }
+
+  dimension: lastgeo_region {
+    hidden: yes
+    # hidden: yes
+    # group_label: "Last Geo"
+    type: string
+    sql: ${TABLE}.lastgeo_region ;;
+  }
+
+  dimension: lastgeo_timezone {
+    hidden: yes
+    # group_label: "Last Geo"
+    type: string
+    sql: ${TABLE}.lastgeo_timezone ;;
+  }
+
+  dimension: location {
+    hidden: yes
+    label: "Last Geo Location"
+    # group_label: "Last Geo"
+    type: location
+    # sql_latitude:round(${lastgeo_latitude},2) ;;
+    # sql_longitude:round(${lastgeo_longitude},2) ;;
+    sql_latitude:${lastgeo_latitude} ;;
+    sql_longitude:${lastgeo_longitude} ;;
+  }
+
   dimension: last_location {
+    description: "Device most recent meeting location, captured from most recent check-in"
     type: string
     sql: ${TABLE}.device_last_location ;;
   }
@@ -166,6 +254,7 @@ view: devices {
   }
 
   dimension: product_name {
+    # bypass_suggest_restrictions: yes
     label: "Device Type"
     description: "Device product type"
     type: string
@@ -196,6 +285,14 @@ view: devices {
     type: number
     value_format: "0"
     sql: ${TABLE}.device_software_version_number ;;
+  }
+
+  dimension: software_version_family {
+    hidden: yes
+    label: "Current Software Version Family"
+    # description: "The first "
+    type: number
+    sql: ${TABLE}.software_version_family ;;
   }
 
   dimension: status_number {
@@ -240,22 +337,36 @@ view: devices {
     sql: ${TABLE}.settings_timestamp ;;
   }
 
+  dimension: bruinlastconnectto {
+    label: "Bruin Last Connect To"
+    group_label: "Bruin Connect"
+    sql: ${TABLE}.bruinlastconnectto ;;
+  }
+
   dimension_group: lastconnectedbruintime {
     label: "Last Connected Bruin Time"
     group_label: "Bruin Connect"
     sql: ${TABLE}.lastconnectedbruintime ;;
   }
 
+  # dimension_group: lastconnectedbruintime {
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     time,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     year
+  #   ]
+  #   sql: ${TABLE}.lastconnectedbruintime ;;
+  # }
+
   dimension: lastconnectedbruinstatus {
     label: "Last Connected Bruin Status"
     group_label: "Bruin Connect"
     sql: ${TABLE}.lastconnectedbruinstatus ;;
-  }
-
-  dimension: bruinlastconnectto {
-    label: "Bruin Last Connect To"
-    group_label: "Bruin Connect"
-    sql: ${TABLE}.bruinlastconnectto ;;
   }
 
   dimension_group: most_recent_meeting {
