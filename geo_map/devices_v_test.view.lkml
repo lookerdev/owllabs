@@ -6,9 +6,6 @@ view: devices_v_test {
   # No primary key is defined for this view. In order to join this view in an Explore,
   # define primary_key: yes on a dimension that has no repeated values.
 
-  # Here's what a typical dimension looks like in LookML.
-  # A dimension is a groupable field that can be used to filter query results.
-  # This dimension will be called "Bootloaderversion" in Explore.
 
   dimension: bootloaderversion {
     type: string
@@ -25,10 +22,6 @@ view: devices_v_test {
     sql: ${TABLE}.channel_id ;;
   }
 
-  dimension: country_name {
-    type: string
-    sql: ${TABLE}.country_name ;;
-  }
 
   # Dates and timestamps can be represented in Looker using a dimension group of type: time.
   # Looker converts dates and timestamps to the specified timeframes within the dimension group.
@@ -63,6 +56,7 @@ view: devices_v_test {
   }
 
   dimension: device_id {
+    primary_key: yes
     type: string
     sql: ${TABLE}.device_id ;;
   }
@@ -334,6 +328,23 @@ view: devices_v_test {
     ]
     sql: ${TABLE}.updatedat ;;
   }
+
+  dimension: country_shortname {
+    type: string
+    sql: ${TABLE}.country_shortname ;;
+  }
+
+  dimension: iso2 {
+    type: string
+    sql: ${TABLE}.iso2 ;;
+  }
+
+  dimension: iso3 {
+    type: string
+    sql: ${TABLE}.iso3 ;;
+    map_layer_name: world_countries_layer
+  }
+
 
   measure: count {
     type: count
