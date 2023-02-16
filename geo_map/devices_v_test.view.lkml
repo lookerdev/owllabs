@@ -1,10 +1,5 @@
-# The name of this view in Looker is "Devices V Test"
 view: devices_v_test {
-  # The sql_table_name parameter indicates the underlying database table
-  # to be used for all fields in this view.
   sql_table_name: test.devices_v_test ;;
-  # No primary key is defined for this view. In order to join this view in an Explore,
-  # define primary_key: yes on a dimension that has no repeated values.
 
 
   dimension: bootloaderversion {
@@ -21,10 +16,6 @@ view: devices_v_test {
     type: number
     sql: ${TABLE}.channel_id ;;
   }
-
-
-  # Dates and timestamps can be represented in Looker using a dimension group of type: time.
-  # Looker converts dates and timestamps to the specified timeframes within the dimension group.
 
   dimension_group: device_activation {
     type: time
@@ -196,57 +187,6 @@ view: devices_v_test {
     sql: ${TABLE}.lastconnectedbruintime ;;
   }
 
-  dimension: lastgeo {
-    group_label: "Last Geo"
-    type: string
-    sql: ${TABLE}.lastgeo ;;
-  }
-
-  dimension: lastgeo_city {
-    group_label: "Last Geo"
-    type: string
-    sql: ${TABLE}.lastgeo_city ;;
-  }
-
-  dimension: lastgeo_country {
-    group_label: "Last Geo"
-    type: string
-    sql: ${TABLE}.lastgeo_country ;;
-  }
-
-  dimension: lastgeo_latitude {
-    group_label: "Last Geo"
-    type: number
-    sql: ${TABLE}.lastgeo_latitude ;;
-  }
-
-  dimension: lastgeo_longitude {
-    group_label: "Last Geo"
-    type: number
-    sql: ${TABLE}.lastgeo_longitude ;;
-  }
-
-  dimension: lastgeo_region {
-    group_label: "Last Geo"
-    type: string
-    sql: ${TABLE}.lastgeo_region ;;
-  }
-
-  dimension: lastgeo_timezone {
-    group_label: "Last Geo"
-    type: string
-    sql: ${TABLE}.lastgeo_timezone ;;
-  }
-
-  dimension: location {
-    group_label: "Last Geo"
-    type: location
-    # sql_latitude:round(${lastgeo_latitude},2) ;;
-    # sql_longitude:round(${lastgeo_longitude},2) ;;
-    sql_latitude:${lastgeo_latitude} ;;
-    sql_longitude:${lastgeo_longitude} ;;
-  }
-
   dimension: macaddress {
     type: string
     sql: ${TABLE}.macaddress ;;
@@ -329,20 +269,78 @@ view: devices_v_test {
     sql: ${TABLE}.updatedat ;;
   }
 
+# LAST GEO
+
+  dimension: lastgeo {
+    group_label: "Last Geo"
+    type: string
+    sql: ${TABLE}.lastgeo ;;
+  }
+
+  dimension: lastgeo_city {
+    group_label: "Last Geo"
+    type: string
+    sql: ${TABLE}.lastgeo_city ;;
+  }
+
+  dimension: lastgeo_latitude {
+    group_label: "Last Geo"
+    type: number
+    sql: ${TABLE}.lastgeo_latitude ;;
+  }
+
+  dimension: lastgeo_longitude {
+    group_label: "Last Geo"
+    type: number
+    sql: ${TABLE}.lastgeo_longitude ;;
+  }
+
+  dimension: lastgeo_region {
+    group_label: "Last Geo"
+    type: string
+    sql: ${TABLE}.lastgeo_region ;;
+  }
+
+  dimension: lastgeo_timezone {
+    group_label: "Last Geo"
+    type: string
+    sql: ${TABLE}.lastgeo_timezone ;;
+  }
+
+  dimension: location {
+    group_label: "Last Geo"
+    type: location
+    # sql_latitude:round(${lastgeo_latitude},2) ;;
+    # sql_longitude:round(${lastgeo_longitude},2) ;;
+    # sql_latitude:round(${lastgeo_latitude},3) ;;
+    # sql_longitude:round(${lastgeo_longitude},3) ;;
+    sql_latitude:${lastgeo_latitude} ;;
+    sql_longitude:${lastgeo_longitude} ;;
+  }
+
   dimension: country_shortname {
+    group_label: "Last Geo"
     type: string
     sql: ${TABLE}.country_shortname ;;
   }
 
-  dimension: iso2 {
+  dimension: lastgeo_country_iso2 {
+    group_label: "Last Geo"
     type: string
-    sql: ${TABLE}.iso2 ;;
+    sql: ${TABLE}.lastgeo_country_iso2 ;;
   }
 
-  dimension: iso3 {
+  dimension: lastgeo_country_iso3 {
+    group_label: "Last Geo"
     type: string
-    sql: ${TABLE}.iso3 ;;
+    sql: ${TABLE}.lastgeo_country_iso3 ;;
     map_layer_name: world_countries_layer
+  }
+
+  dimension: lastgeo_world_region {
+    group_label: "Last Geo"
+    type: string
+    sql: ${TABLE}.lastgeo_world_region ;;
   }
 
 

@@ -26,5 +26,13 @@ map_layer: world_countries_layer {
   file: "/geo_map/world_countries.json"
   max_zoom_level: 12
   min_zoom_level: 2
-  property_key: "iso3"
+  # property_key: "iso3"
+  property_key: "lastgeo_country_iso3"
+}
+
+map_layer: europe_countries_layer {
+  file: "/geo_map/europe_countries.json"
+  max_zoom_level: 12
+  min_zoom_level: 2
+  property_key: "lastgeo_country_iso3"
 }
