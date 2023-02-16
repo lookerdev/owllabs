@@ -237,6 +237,7 @@ view: devices {
   }
 
   dimension: parent_settings {
+    hidden: yes
     type: string
     sql: ${TABLE}.device_parent_settings ;;
   }
@@ -268,6 +269,7 @@ view: devices {
   }
 
   dimension: settings {
+    hidden: yes
     type: string
     sql: ${TABLE}.device_settings ;;
   }
