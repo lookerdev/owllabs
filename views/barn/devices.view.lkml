@@ -302,59 +302,65 @@ view: devices {
 
   dimension: lastgeo {
     label: "Last Geo"
-    # group_label: "Last Geo"
+    # group_label: "Last Geo Location"
     description: "Geographic location of device's most recent meeting. Format is City | Region | Country | Longitude | Latitude | Timezone, translated from Last IP Address"
     type: string
     sql: ${TABLE}.lastgeo ;;
   }
 
-  dimension: lastgeo_city {
-    hidden: yes
-    group_label: "Last Geo"
-    type: string
-    sql: ${TABLE}.lastgeo_city ;;
-  }
-
- # dimension: lastgeo_country_iso2 {
+  # dimension: lastgeo_country_iso2 {
   dimension: lastgeo_country {
     hidden: yes
-    group_label: "Last Geo"
+    group_label: "Last Geo Location"
     type: string
     sql: ${TABLE}.lastgeo_country_iso2 ;;
   }
 
+  dimension: lastgeo_city {
+    hidden: yes
+    label: "Last Geo City"
+    group_label: "Last Geo Location"
+    type: string
+    sql: ${TABLE}.lastgeo_city ;;
+  }
+
   dimension: lastgeo_latitude {
     hidden: yes
-    group_label: "Last Geo"
+    label: "Last Geo Latitude"
+    group_label: "Last Geo Location"
     type: number
     sql: ${TABLE}.lastgeo_latitude ;;
   }
 
   dimension: lastgeo_longitude {
     hidden: yes
-    group_label: "Last Geo"
+    label: "Last Geo Longitude"
+    group_label: "Last Geo Location"
     type: number
     sql: ${TABLE}.lastgeo_longitude ;;
   }
 
   dimension: lastgeo_region {
     hidden: yes
-    group_label: "Last Geo"
+    label: "Last Geo Region"
+    description: "US states, CA provinces, etc."
+    group_label: "Last Geo Location"
     type: string
     sql: ${TABLE}.lastgeo_region ;;
   }
 
   dimension: lastgeo_timezone {
     hidden: yes
-    group_label: "Last Geo"
+    label: "Last Geo Time Zone"
+    group_label: "Last Geo Location"
     type: string
     sql: ${TABLE}.lastgeo_timezone ;;
   }
 
   dimension: location {
     hidden: yes
-    label: "Last Geo Location (Lat/Long combo)"
-    group_label: "Last Geo"
+    label: "Last Geo Latitude/Longitude"
+    group_label: "Last Geo Location"
     type: location
     # sql_latitude:round(${lastgeo_latitude},6) ;;
     # sql_longitude:round(${lastgeo_longitude},6) ;;
@@ -365,7 +371,7 @@ view: devices {
   dimension: lastgeo_world_region {
     hidden: yes
     label: "Last Geo World Region"
-    group_label: "Last Geo"
+    group_label: "Last Geo Location"
     type: string
     sql: ${TABLE}.lastgeo_world_region ;;
   }
