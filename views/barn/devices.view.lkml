@@ -308,14 +308,6 @@ view: devices {
     sql: ${TABLE}.lastgeo ;;
   }
 
-  # dimension: lastgeo_country_iso2 {
-  dimension: lastgeo_country {
-    hidden: yes
-    group_label: "Last Geo Location"
-    type: string
-    sql: ${TABLE}.lastgeo_country_iso2 ;;
-  }
-
   dimension: lastgeo_city {
     hidden: yes
     label: "Last Geo City"

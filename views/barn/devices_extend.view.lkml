@@ -17,13 +17,20 @@ view: devices_extend {
 
 
 # includes references to map layer
-  dimension: lastgeo_country_shortname {
+  dimension: lastgeo_country_iso2 {
     hidden: yes
-    label: "Last Geo Country Name"
     group_label: "Last Geo Location"
     type: string
-    sql: ${TABLE}.lastgeo_country_shortname ;;
-    # map_layer_name: europe_countries_layer
+    sql: ${TABLE}.lastgeo_country_iso2 ;;
+  }
+
+  dimension: lastgeo_country_iso2_europemap {
+    hidden: yes
+    label: "Last Geo Country ISO Alpha-2 Code - Europe Mapping"
+    group_label: "Last Geo Location"
+    type: string
+    sql: ${TABLE}.lastgeo_country_iso2 ;;
+    map_layer_name: europe_countries_layer
   }
 
   dimension: lastgeo_country_iso3 {
@@ -35,13 +42,13 @@ view: devices_extend {
     # map_layer_name: europe_countries_layer
   }
 
-  dimension: lastgeo_country_iso2_europemap {
+  dimension: lastgeo_country_shortname {
     hidden: yes
-    label: "Last Geo Country ISO Alpha-2 Code - Europe Mapping"
+    label: "Last Geo Country Name"
     group_label: "Last Geo Location"
     type: string
-    sql: ${TABLE}.lastgeo_country_iso2 ;;
-    map_layer_name: europe_countries_layer
+    sql: ${TABLE}.lastgeo_country_shortname ;;
+    # map_layer_name: europe_countries_layer
   }
 
 }
