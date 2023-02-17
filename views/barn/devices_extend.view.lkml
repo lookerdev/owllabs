@@ -19,7 +19,7 @@ view: devices_extend {
 # includes references to map layer(s)
 
   dimension: lastgeo_country_shortname_europemap {
-    # hidden: yes
+    hidden: yes
     label: "Last Geo Country Name"
     # description: "only for use in European region maps"
     group_label: "Last Geo Location"
