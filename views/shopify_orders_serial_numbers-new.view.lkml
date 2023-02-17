@@ -1,3 +1,6 @@
+# this is a replication of shopify_orders_serial_numbers.view.lkml with additional fields, those fields organized by category
+# not yet being used in any explores
+
 view: shopify_orders_serial_numbers {
   sql_table_name: public.shopify_orders_serial_numbers ;;
   label: "Shopify Order Details"
