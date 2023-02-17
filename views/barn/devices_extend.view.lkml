@@ -4,7 +4,8 @@
 include: "/views/barn/devices.view.lkml" # extending this view
 include: "/views/barn/barn_channels.view.lkml" # joining to this view
 
-view: devices_extend_barn_channels {
+# view: devices_extend_barn_channels {
+view: devices_extend {
   extends: [devices]
 
 # joins devices.view to barn_channels.view
