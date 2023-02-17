@@ -302,14 +302,14 @@ view: devices {
 
   dimension: lastgeo {
     label: "Last Geo"
-    # group_label: "Last Geo Location"
+    group_label: "Last Geo Location"
     description: "Geographic location of device's most recent meeting. Format is City | Region | Country | Longitude | Latitude | Timezone, translated from Last IP Address"
     type: string
     sql: ${TABLE}.lastgeo ;;
   }
 
   dimension: lastgeo_city {
-    hidden: yes
+    # hidden: yes
     label: "Last Geo City"
     group_label: "Last Geo Location"
     type: string
@@ -333,7 +333,7 @@ view: devices {
   }
 
   dimension: lastgeo_region {
-    hidden: yes
+    # hidden: yes
     label: "Last Geo Region"
     description: "US states, CA provinces, etc."
     group_label: "Last Geo Location"
@@ -342,7 +342,7 @@ view: devices {
   }
 
   dimension: lastgeo_timezone {
-    hidden: yes
+    # hidden: yes
     label: "Last Geo Time Zone"
     group_label: "Last Geo Location"
     type: string
@@ -350,7 +350,7 @@ view: devices {
   }
 
   dimension: location {
-    hidden: yes
+    # hidden: yes
     label: "Last Geo Latitude/Longitude"
     group_label: "Last Geo Location"
     type: location
@@ -377,7 +377,7 @@ view: devices {
   }
 
   dimension: lastgeo_country_shortname {
-    hidden: yes
+    # hidden: yes
     label: "Last Geo Country Name"
     group_label: "Last Geo Location"
     type: string
@@ -385,7 +385,7 @@ view: devices {
   }
 
   dimension: lastgeo_world_region {
-    hidden: yes
+    # hidden: yes
     label: "Last Geo World Region"
     group_label: "Last Geo Location"
     type: string
