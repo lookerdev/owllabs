@@ -360,6 +360,30 @@ view: devices {
     sql_longitude:${lastgeo_longitude} ;;
   }
 
+  dimension: lastgeo_country_iso2 {
+    hidden: yes
+    label: "Last Geo Country ISO Alpha-2 Code"
+    group_label: "Last Geo Location"
+    type: string
+    sql: ${TABLE}.lastgeo_country_iso2 ;;
+  }
+
+  dimension: lastgeo_country_iso3 {
+    hidden: yes
+    label: "Last Geo Country ISO Alpha-3 Code"
+    group_label: "Last Geo Location"
+    type: string
+    sql: ${TABLE}.lastgeo_country_iso3 ;;
+  }
+
+  dimension: lastgeo_country_shortname {
+    hidden: yes
+    label: "Last Geo Country Name"
+    group_label: "Last Geo Location"
+    type: string
+    sql: ${TABLE}.lastgeo_country_shortname ;;
+  }
+
   dimension: lastgeo_world_region {
     hidden: yes
     label: "Last Geo World Region"
