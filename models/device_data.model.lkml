@@ -47,8 +47,7 @@ map_layer: europe_countries_layer {
   file: "/maps/europe_countries.json"
   max_zoom_level: 12
   min_zoom_level: 2
-  # property_key: "id"
-  property_key: "lastgeo_country_iso3_eumap"
+  property_key: "NAME"
 }
 
 explore: device_checkins {
