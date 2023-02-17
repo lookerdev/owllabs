@@ -6,7 +6,6 @@ include: "/views/shopify_orders_serial_numbers.view.lkml"
 
 
 
-
 explore: devices {
   from: devices_extend_barn_channels # https://cloud.google.com/looker/docs/reference/param-explore-from?version=22.16&lookml=new
   description: "Data for all devices in the Barn Devices table or that have been recorded in Shopify orders. Does not include TESTNAME products."
@@ -43,6 +42,12 @@ explore: devices {
   }
 }
 
+map_layer: europe_countries_layer {
+  file: "/maps/europe_countries.json"
+  max_zoom_level: 12
+  min_zoom_level: 2
+  property_key: "id"
+}
 
 explore: device_checkins {
   persist_for: "8 hours"
