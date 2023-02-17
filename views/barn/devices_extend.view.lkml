@@ -16,25 +16,16 @@ view: devices_extend {
   }
 
 
-# includes references to map layer
-
-  dimension: lastgeo_country_iso2_europemap {
-    hidden: yes
-    label: "Last Geo Country ISO Alpha-2 Code - Europe Mapping"
-    description: "only for use in European region maps"
-    group_label: "Last Geo Location"
-    type: string
-    sql: ${TABLE}.lastgeo_country_iso2 ;;
-    map_layer_name: europe_countries_layer
-  }
+# includes references to map layer(s)
 
   dimension: lastgeo_country_shortname_europemap {
-    hidden: yes
+    # hidden: yes
     label: "Last Geo Country Name"
+    # description: "only for use in European region maps"
     group_label: "Last Geo Location"
     type: string
     sql: ${TABLE}.lastgeo_country_shortname ;;
-    # map_layer_name: europe_countries_layer
+    map_layer_name: europe_countries_layer
   }
 
 }
