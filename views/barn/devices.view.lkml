@@ -74,6 +74,7 @@ view: devices {
     label: "ID"
     description: "Unique identifier for each device record"
     type: number
+    # type: string
     sql: ${TABLE}.device_id ;;
   }
 
@@ -96,8 +97,281 @@ view: devices {
     sql: coalesce(${alias}, ${device_name}) ;;
   }
 
+  dimension: hardware_serial {
+    label: "Hardware Serial Number"
+    type: string
+    sql: ${TABLE}.device_hardware_serial_number ;;
+  }
+
+  dimension: hardware_version {
+    label: "Hardware Version"
+    type: string
+    sql: ${TABLE}.device_hardware_version ;;
+  }
+
+  dimension: lastip {
+    label: "Last IP Address"
+    description: "Device most recent IP address, captured from most recent check-in"
+    type: string
+    sql: ${TABLE}.device_last_ip_address ;;
+  }
+
+  dimension: last_location {
+    description: "Device most recent meeting location, captured from most recent check-in"
+    type: string
+    sql: ${TABLE}.device_last_location ;;
+  }
+
+  dimension: macaddress {
+    label: "MAC Address"
+    type: string
+    sql: ${TABLE}.macaddress ;;
+  }
+
+  dimension: parent_settings {
+    # currently trimmed to 256 characters
+    hidden: yes
+    type: string
+    sql: ${TABLE}.device_parent_settings ;;
+  }
+
+  dimension: pcb_version {
+    label: "PCB Version"
+    type: string
+    sql: ${TABLE}.device_pcb_version ;;
+  }
+
+  dimension: product_id {
+    label: "Product ID"
+    type: number
+    sql: ${TABLE}.product_id ;;
+  }
+
+  dimension: product_name {
+    # bypass_suggest_restrictions: yes
+    label: "Device Type"
+    description: "Device product type"
+    type: string
+    sql: ${TABLE}.product_name;;
+  }
+
+  dimension: software_serial {
+    label: "Software Serial Number"
+    type: string
+    sql: ${TABLE}.device_serial_number ;;
+  }
+
+  dimension: settings {
+    # currently trimmed to 256 characters
+    hidden: yes
+    type: string
+    sql: ${TABLE}.device_settings ;;
+  }
+
+  dimension: software_version {
+    label: "Current Software Version"
+    description: "Device's most recent software version (decimal expansion format), captured during most recent check-in"
+    type: string
+    sql: ${TABLE}.device_software_version ;;
+  }
+
+  dimension: software_version_number {
+    label: "Current Software Version (integer)"
+    description: "Device's most recent software version (integer format), captured during most recent check-in"
+    type: number
+    value_format: "0"
+    sql: ${TABLE}.device_software_version_number ;;
+  }
+
+  dimension: software_version_family {
+    # hidden: yes
+    label: "Current Software Version Family"
+    # description: "The first "
+    type: number
+    sql: ${TABLE}.software_version_family ;;
+  }
+
+  dimension: status_number {
+    hidden: yes
+    # description: "Status Values: 0 - New, 1 - Active, 2 - Requires Update, 3 - Updating, 4 - Inactive, 5 - Downloading Update, 6 - Offline, 7 - Archived"
+    type: number
+    sql: ${TABLE}.device_status ;;
+  }
+
+  dimension: status_text {
+    label: "Status"
+    type: string
+    sql: ${TABLE}.device_status_text ;;
+  }
+
+  dimension: record_source {
+    hidden: yes
+    # description: "place where this record is from"
+    type: string
+    sql: ${TABLE}.record_source ;;
+  }
+
+  dimension_group: updatedat {
+    hidden: yes
+    sql: ${TABLE}.updatedat ;;
+  }
+
+  dimension_group: retiredat {
+    hidden: yes
+    sql: ${TABLE}.retiredat ;;
+  }
+
+  dimension: settings_version {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.settings_version ;;
+  }
+
+  dimension: settings_timestamp {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.settings_timestamp ;;
+  }
+
+## ADD TYPE
+  dimension: bruinlastconnectto {
+    label: "Bruin Last Connect To"
+    description: "Hardware serial of the device this Bruin most recently connected with"
+    group_label: "Bruin Connect"
+    type: string
+    sql: ${TABLE}.bruinlastconnectto ;;
+  }
+
+## ADD TYPE
+  dimension_group: lastconnectedbruintime {
+    label: "Last Connected Bruin Time"
+    group_label: "Bruin Connect"
+    datatype: datetime
+    # type: time
+    #   timeframes: [
+    #     raw,
+    #     time,
+    #     date,
+    #     week,
+    #     month,
+    #     quarter,
+    #     year
+    #   ]
+    sql: ${TABLE}.lastconnectedbruintime ;;
+  }
+
+## CONVERT TO BOOL
+  dimension: lastconnectedbruinstatus {
+    label: "Last Connected Bruin Status"
+    group_label: "Bruin Connect"
+    # type: yesno
+    type: string
+    sql: ${TABLE}.lastconnectedbruinstatus ;;
+  }
+
+  dimension_group: most_recent_meeting {
+    label: "Most Recent Meeting"
+    type: time
+    timeframes: [
+      raw,
+      date,
+      time,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.most_recent_meeting_date::timestamp ;;
+  }
+
+  dimension: most_recent_meeting_length_seconds {
+    hidden: yes
+    label: "Most Recent Meeting Length (seconds)"
+    type: number
+    sql: ${TABLE}.most_recent_meeting_length_seconds ;;
+  }
+
+  dimension: most_recent_meeting_length_minutes {
+    label: "Most Recent Meeting Length (minutes)"
+    description: "Length in minutes of device's most recent meeting."
+    type: number
+    sql: ${most_recent_meeting_length_seconds} / 60 ;;
+  }
+
+## LASTGEO
+
+  dimension: lastgeo {
+    label: "Last Geo"
+    # group_label: "Last Geo"
+    description: "Geographic location of device's most recent meeting. Format is City | Region | Country | Longitude | Latitude | Timezone, translated from Last IP Address"
+    type: string
+    sql: ${TABLE}.lastgeo ;;
+  }
+
+  dimension: lastgeo_city {
+    hidden: yes
+    group_label: "Last Geo"
+    type: string
+    sql: ${TABLE}.lastgeo_city ;;
+  }
+
+ # dimension: lastgeo_country_iso2 {
+  dimension: lastgeo_country {
+    hidden: yes
+    group_label: "Last Geo"
+    type: string
+    sql: ${TABLE}.lastgeo_country_iso2 ;;
+  }
+
+  dimension: lastgeo_latitude {
+    hidden: yes
+    group_label: "Last Geo"
+    type: number
+    sql: ${TABLE}.lastgeo_latitude ;;
+  }
+
+  dimension: lastgeo_longitude {
+    hidden: yes
+    group_label: "Last Geo"
+    type: number
+    sql: ${TABLE}.lastgeo_longitude ;;
+  }
+
+  dimension: lastgeo_region {
+    hidden: yes
+    group_label: "Last Geo"
+    type: string
+    sql: ${TABLE}.lastgeo_region ;;
+  }
+
+  dimension: lastgeo_timezone {
+    hidden: yes
+    group_label: "Last Geo"
+    type: string
+    sql: ${TABLE}.lastgeo_timezone ;;
+  }
+
+  dimension: location {
+    hidden: yes
+    label: "Last Geo Location (Lat/Long combo)"
+    group_label: "Last Geo"
+    type: location
+    # sql_latitude:round(${lastgeo_latitude},6) ;;
+    # sql_longitude:round(${lastgeo_longitude},6) ;;
+    sql_latitude:${lastgeo_latitude} ;;
+    sql_longitude:${lastgeo_longitude} ;;
+  }
+
+  dimension: lastgeo_world_region {
+    hidden: yes
+    label: "Last Geo World Region"
+    group_label: "Last Geo"
+    type: string
+    sql: ${TABLE}.lastgeo_world_region ;;
+  }
 
 
+## OWL CONNECT USAGE
   dimension: firstowlconnectasprimary {
     hidden: yes
     label: "firstowlconnectasprimary"
@@ -142,263 +416,6 @@ view: devices {
   #   sql: coalesce(${firstowlconnectasprimary}, ${firstowlconnectassecondary}) ;;
   # }
 
-
-  dimension: hardware_serial {
-    label: "Hardware Serial Number"
-    type: string
-    sql: ${TABLE}.device_hardware_serial_number ;;
-  }
-
-  dimension: hardware_version {
-    label: "Hardware Version"
-    type: string
-    sql: ${TABLE}.device_hardware_version ;;
-  }
-
-  dimension: lastip {
-    label: "Last IP Address"
-    description: "Device most recent IP address, captured from most recent check-in"
-    type: string
-    sql: ${TABLE}.device_last_ip_address ;;
-  }
-
-  dimension: lastgeo {
-    label: "Last Geo"
-    # group_label: "Last Geo"
-    description: "Format is City | Region | Country | Longitude | Latitude | Timezone, translated from Last IP Address"
-    type: string
-    sql: ${TABLE}.lastgeo ;;
-  }
-
-  dimension: lastgeo_city {
-    hidden: yes
-    # group_label: "Last Geo"
-    type: string
-    sql: ${TABLE}.lastgeo_city ;;
-  }
-
-  dimension: lastgeo_country {
-    hidden: yes
-    # group_label: "Last Geo"
-    type: string
-    sql: ${TABLE}.lastgeo_country ;;
-  }
-
-  dimension: lastgeo_latitude {
-    hidden: yes
-    # group_label: "Last Geo"
-    type: number
-    sql: ${TABLE}.lastgeo_latitude ;;
-  }
-
-  dimension: lastgeo_longitude {
-    hidden: yes
-    # group_label: "Last Geo"
-    type: number
-    sql: ${TABLE}.lastgeo_longitude ;;
-  }
-
-  dimension: lastgeo_region {
-    hidden: yes
-    # hidden: yes
-    # group_label: "Last Geo"
-    type: string
-    sql: ${TABLE}.lastgeo_region ;;
-  }
-
-  dimension: lastgeo_timezone {
-    hidden: yes
-    # group_label: "Last Geo"
-    type: string
-    sql: ${TABLE}.lastgeo_timezone ;;
-  }
-
-  dimension: location {
-    hidden: yes
-    label: "Last Geo Location"
-    # group_label: "Last Geo"
-    type: location
-    # sql_latitude:round(${lastgeo_latitude},2) ;;
-    # sql_longitude:round(${lastgeo_longitude},2) ;;
-    sql_latitude:${lastgeo_latitude} ;;
-    sql_longitude:${lastgeo_longitude} ;;
-  }
-
-  dimension: last_location {
-    description: "Device most recent meeting location, captured from most recent check-in"
-    type: string
-    sql: ${TABLE}.device_last_location ;;
-  }
-
-  dimension: macaddress {
-    label: "MAC Address"
-    type: string
-    sql: ${TABLE}.macaddress ;;
-  }
-
-  dimension: parent_settings {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.device_parent_settings ;;
-  }
-
-  dimension: pcb_version {
-    label: "PCB Version"
-    type: string
-    sql: ${TABLE}.device_pcb_version ;;
-  }
-
-  dimension: product_id {
-    label: "Product ID"
-    type: number
-    sql: ${TABLE}.product_id ;;
-  }
-
-  dimension: product_name {
-    # bypass_suggest_restrictions: yes
-    label: "Device Type"
-    description: "Device product type"
-    type: string
-    sql: ${TABLE}.product_name;;
-  }
-
-  dimension: software_serial {
-    label: "Software Serial Number"
-    type: string
-    sql: ${TABLE}.device_serial_number ;;
-  }
-
-  dimension: settings {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.device_settings ;;
-  }
-
-  dimension: software_version {
-    label: "Current Software Version"
-    description: "Device's most recent software version (decimal expansion format), captured during most recent check-in"
-    type: string
-    sql: ${TABLE}.device_software_version ;;
-  }
-
-  dimension: software_version_number {
-    label: "Current Software Version (integer)"
-    description: "Device's most recent software version (integer format), captured during most recent check-in"
-    type: number
-    value_format: "0"
-    sql: ${TABLE}.device_software_version_number ;;
-  }
-
-  dimension: software_version_family {
-    hidden: yes
-    label: "Current Software Version Family"
-    # description: "The first "
-    type: number
-    sql: ${TABLE}.software_version_family ;;
-  }
-
-  dimension: status_number {
-    hidden: yes
-    # description: "Status Values: 0 - New, 1 - Active, 2 - Requires Update, 3 - Updating, 4 - Inactive, 5 - Downloading Update, 6 - Offline, 7 - Archived"
-    type: number
-    sql: ${TABLE}.device_status ;;
-  }
-
-  dimension: status_text {
-    label: "Status"
-    type: string
-    sql: ${TABLE}.device_status_text ;;
-  }
-
-  dimension: record_source {
-    hidden: yes
-    # description: "place where this record is from"
-    type: string
-    sql: ${TABLE}.record_source ;;
-  }
-
-  dimension_group: updatedat {
-    hidden: yes
-    sql: ${TABLE}.updatedat ;;
-  }
-
-  dimension_group: retiredat {
-    hidden: yes
-    sql: ${TABLE}.retiredat ;;
-  }
-
-  dimension: settings_version {
-    # hidden: yes
-    type: number
-    sql: ${TABLE}.settings_version ;;
-  }
-
-  dimension: settings_timestamp {
-    # hidden: yes
-    type: number
-    sql: ${TABLE}.settings_timestamp ;;
-  }
-
-  dimension: bruinlastconnectto {
-    label: "Bruin Last Connect To"
-    group_label: "Bruin Connect"
-    sql: ${TABLE}.bruinlastconnectto ;;
-  }
-
-  dimension_group: lastconnectedbruintime {
-    label: "Last Connected Bruin Time"
-    group_label: "Bruin Connect"
-    sql: ${TABLE}.lastconnectedbruintime ;;
-  }
-
-  # dimension_group: lastconnectedbruintime {
-  #   type: time
-  #   timeframes: [
-  #     raw,
-  #     time,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   sql: ${TABLE}.lastconnectedbruintime ;;
-  # }
-
-  dimension: lastconnectedbruinstatus {
-    label: "Last Connected Bruin Status"
-    group_label: "Bruin Connect"
-    sql: ${TABLE}.lastconnectedbruinstatus ;;
-  }
-
-  dimension_group: most_recent_meeting {
-    label: "Most Recent Meeting"
-    type: time
-    timeframes: [
-      raw,
-      date,
-      time,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.most_recent_meeting_date::timestamp ;;
-  }
-
-  dimension: most_recent_meeting_length_seconds {
-    hidden: yes
-    label: "Most Recent Meeting Length (seconds)"
-    type: number
-    sql: ${TABLE}.most_recent_meeting_length_seconds ;;
-  }
-
-  dimension: most_recent_meeting_length_minutes {
-    label: "Most Recent Meeting Length (minutes)"
-    description: "Length in minutes of device's most recent meeting."
-    type: number
-    sql: ${most_recent_meeting_length_seconds} / 60 ;;
-  }
 
 
 # cohort analysis
