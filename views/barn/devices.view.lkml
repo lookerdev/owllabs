@@ -97,6 +97,11 @@ view: devices {
     sql: coalesce(${alias}, ${device_name}) ;;
   }
 
+  # dimension: dsku {
+  #   type: string
+  #   sql: ${TABLE}.dsku ;;
+  # }
+
   dimension: hardware_serial {
     label: "Hardware Serial Number"
     type: string
@@ -108,6 +113,11 @@ view: devices {
     type: string
     sql: ${TABLE}.device_hardware_version ;;
   }
+
+  # dimension: inventorysku {
+  #   type: string
+  #   sql: ${TABLE}.inventorysku ;;
+  # }
 
   dimension: lastip {
     label: "Last IP Address"
@@ -233,7 +243,6 @@ view: devices {
     sql: ${TABLE}.settings_timestamp ;;
   }
 
-## ADD TYPE
   dimension: bruinlastconnectto {
     label: "Bruin Last Connect To"
     description: "Hardware serial of the device this Bruin most recently connected with"
@@ -242,7 +251,6 @@ view: devices {
     sql: ${TABLE}.bruinlastconnectto ;;
   }
 
-## ADD TYPE
   dimension_group: lastconnectedbruintime {
     label: "Last Connected Bruin Time"
     group_label: "Bruin Connect"
@@ -299,7 +307,6 @@ view: devices {
   }
 
 ## LASTGEO
-
   dimension: lastgeo {
     label: "Last Geo"
     group_label: "Last Geo Location"
@@ -392,51 +399,89 @@ view: devices {
     sql: ${TABLE}.lastgeo_world_region ;;
   }
 
+# ## OWL CONNECT USAGE
+#   dimension: firstowlconnectasprimary {
+#     # hidden: yes
+#     label: "Date of First Paired Meeting as Primary Device"
+#     group_label: "Owl Connect"
+#     description: "Device's first date in a paired meeting as the primary device"
+#     type: date_time
+#     sql: ${TABLE}.firstowlconnectasprimary ;;
+#   }
 
-## OWL CONNECT USAGE
-  dimension: firstowlconnectasprimary {
-    hidden: yes
-    label: "firstowlconnectasprimary"
-    group_label: "Owl Connect"
-    description: "Device's first date in a paired meeting as the Primary device"
-    type: date
-    sql: ${TABLE}.firstowlconnectasprimary ;;
-  }
+#   dimension: pairedasprimary {
+#     # hidden: yes
+#     label: "Ever Paired as Primary Device?"
+#     group_label: "Owl Connect"
+#     description: "If device has ever participated in a paired meeting as the primary device"
+#     type: yesno
+#     sql: ${firstowlconnectasprimary} is not null ;;
+#   }
 
-  dimension: pairedasprimary {
-    hidden: yes
-    label: "Ever Paired as Primary?"
-    group_label: "Owl Connect"
-    description: "If the device has ever participated in a paired meeting as the primary device"
-    type: yesno
-    sql: ${TABLE}.firstowlconnectasprimary ;;
-  }
+#   dimension: firstowlconnectassecondary {
+#     # hidden: yes
+#     label: "Date of First Paired Meeting as Secondary Device"
+#     group_label: "Owl Connect"
+#     description: "Device's first date in a paired meeting connected to the primary device, with role other than primary"
+#     type: date_time
+#     sql: ${TABLE}.firstowlconnectassecondary ;;
+#   }
 
-  dimension: firstowlconnectassecondary {
-    hidden: yes
-    label: "firstowlconnectassecondary"
-    group_label: "Owl Connect"
-    description: "Device's first date in a paired meeting as any device other than Primary"
-    type: date
-    sql: ${TABLE}.firstowlconnectassecondary ;;
-  }
+#   dimension: pairedassecondary {
+#     # hidden: yes
+#     label: "Ever Paired as Secondary Device?"
+#     group_label: "Owl Connect"
+#     description: "If device has ever participated in a paired meeting as a device connected to the primary device/as any device other than Primary"
+#     type: yesno
+#     sql: ${firstowlconnectassecondary} is not null ;;
+#   }
 
-  dimension: pairedassecondary {
-    hidden: yes
-    label: "Ever Paired as Secondary?"
-    group_label: "Owl Connect"
-    description: "If the device has ever participated in a paired meeting as a device connected to the primary"
-    type: yesno
-    sql: ${TABLE}.firstowlconnectassecondary ;;
-  }
+#   dimension: pairedasany {
+#     label: "Ever Paired in Any Role?"
+#     group_label: "Owl Connect"
+#     description: "If the device has ever participated in a paired meeting in any capacity, regardless of device role"
+#     type: yesno
+#     sql: coalesce(${firstowlconnectasprimary}, ${firstowlconnectassecondary}) is not null ;;
+#   }
 
-  # dimension: everconnected {
-  #   label: "Ever Paired in any capacity?"
-  #   group_label: "Owl Connect"
-  #   description: "If the device has ever participated in a paired meeting, regardless of device role"
-  #   type: yesno
-  #   sql: coalesce(${firstowlconnectasprimary}, ${firstowlconnectassecondary}) ;;
-  # }
+#   dimension: firstpairedasany {
+#     label: "Date of First Paired Meeting in Any Role"
+#     group_label: "Owl Connect"
+#     # description: "If the device has ever participated in a paired meeting in any capacity, regardless of device role"
+#     type: date_time
+#     sql: coalesce(cast(${firstowlconnectasprimary} as timestamp), cast(${firstowlconnectassecondary} as timestamp)) ;;
+#   }
+
+#   dimension: days_registration_to_paired_mtg {
+#     # label: "Days from Registration to First Paired Meeting"
+#     type: number
+#     sql: DATEDIFF(days, cast(${device_registrations.registration_date} as timestamp),cast(${firstpairedasany} as timestamp)) ;;
+#     # round to how many decimals?
+#   }
+
+
+#   measure: avg_days_registration_to_paired_mtg {
+#     label: "Avg. Days from Registration to First Paired Meeting"
+#     type: average
+#     sql: DATEDIFF(days, cast(${device_registrations.registration_date} as timestamp),cast(${firstpairedasany} as timestamp)) ;;
+#     # round to how many decimals?
+#   }
+
+#   measure: avg_days_registration_to_paired_mtg2 {
+#     # label: "Avg. Days from Registration to First Paired Meeting"
+#     type: average_distinct
+#     sql: DATEDIFF(days, cast(${device_registrations.registration_date} as timestamp),cast(${firstpairedasany} as timestamp)) ;;
+#     # round to how many decimals?
+#   }
+
+#   measure: avg_days_registration_to_paired_mtg3 {
+#     # label: "Avg. Days from Registration to First Paired Meeting"
+#     type: number
+#     sql: sum(${days_registration_to_paired_mtg})/count(${deviceuuid})
+#       ;;
+#     # round to how many decimals?
+#   }
+
 
 
 
@@ -455,9 +500,6 @@ view: devices {
     ]
     sql: ${TABLE}.first_owl_connect_meeting_date_longer_than_5_mins::timestamp ;;
   }
-
-
-
 
 
 
