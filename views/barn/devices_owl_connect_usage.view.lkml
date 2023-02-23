@@ -90,38 +90,22 @@ view: devices_owl_connnect_usage {
     sql: coalesce(${firstowlconnectasprimary}, ${firstowlconnectassecondary}) is not null ;;
   }
 
+# from reg to which date?
   dimension: days_registration_to_paired_mtg {
     hidden: yes
-    # label: "Days from Registration to First Paired Meeting"
+    label: "Days from Registration to First Paired Meeting"
     type: number
     sql: DATEDIFF(days, cast(${device_registrations.registration_date} as timestamp),cast(${firstpairedasany} as timestamp)) ;;
-    # round to how many decimals?
   }
 
   measure: avg_days_registration_to_paired_mtg {
     hidden: yes
     label: "Avg. Days from Registration to First Paired Meeting"
     type: average
-    sql: DATEDIFF(days, cast(${device_registrations.registration_date} as timestamp),cast(${firstpairedasany} as timestamp)) ;;
-    # round to how many decimals?
+    # value_format: "0" # round to how many decimals?
+    sql: ${days_registration_to_paired_mtg} ;;
   }
 
-  measure: avg_days_registration_to_paired_mtg2 {
-    hidden: yes
-    # label: "Avg. Days from Registration to First Paired Meeting"
-    type: average_distinct
-    sql: DATEDIFF(days, cast(${device_registrations.registration_date} as timestamp),cast(${firstpairedasany} as timestamp)) ;;
-    # round to how many decimals?
-  }
-
-  measure: avg_days_registration_to_paired_mtg3 {
-    hidden: yes
-    # label: "Avg. Days from Registration to First Paired Meeting"
-    type: number
-    sql: sum(${days_registration_to_paired_mtg}) * 1.0 / count(${deviceuuid})
-      ;;
-    # round to how many decimals?
-  }
 
 measure: sum_daydiff {
   hidden: yes
