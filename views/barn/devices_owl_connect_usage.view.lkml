@@ -76,18 +76,18 @@ view: devices_owl_connnect_usage {
     sql: ${firstowlconnectassecondary} is not null ;;
   }
 
+  dimension: firstpairedasany {
+    label: "First Paired Meeting Date in Any Role"
+    description: "If the device has ever participated in a paired meeting in any capacity, regardless of device role"
+    type: date_time
+    sql: coalesce(cast(${firstowlconnectasprimary} as timestamp), cast(${firstowlconnectassecondary} as timestamp)) ;;
+  }
+
   dimension: pairedasany {
     label: "Ever Paired in Any Role?"
     description: "If the device has ever participated in a paired meeting in any capacity, regardless of device role"
     type: yesno
     sql: coalesce(${firstowlconnectasprimary}, ${firstowlconnectassecondary}) is not null ;;
-  }
-
-  dimension: firstpairedasany {
-    label: "Date of First Paired Meeting in Any Role"
-    description: "If the device has ever participated in a paired meeting in any capacity, regardless of device role"
-    type: date_time
-    sql: coalesce(cast(${firstowlconnectasprimary} as timestamp), cast(${firstowlconnectassecondary} as timestamp)) ;;
   }
 
   dimension: days_registration_to_paired_mtg {
