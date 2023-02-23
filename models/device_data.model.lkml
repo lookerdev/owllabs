@@ -41,6 +41,11 @@ explore: devices {
     relationship: one_to_one
     sql_on: ${devices.deviceuuid} = ${device_meetingdates_v.deviceuuid} ;;
   }
+  join: devices_owl_connnect_usage {
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${devices_owl_connnect_usage.device_id} = ${devices.device_id} ;;
+  }
 }
 
 map_layer: europe_countries_layer {
