@@ -37,4 +37,9 @@ explore: meeting_records {
     relationship: one_to_one
     sql_on: ${meeting_records.deviceuuid} = ${device_meeting_cohorts_v.deviceuuid} ;;
   }
+  # join: devices_owl_connnect_usage {
+  #   type: left_outer
+  #   relationship: many_to_one
+  #   sql_on: ${meeting_records.deviceuuid} = ${devices_owl_connnect_usage.deviceuuid} ;;
+  # }
 }
