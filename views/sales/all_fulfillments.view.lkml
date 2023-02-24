@@ -641,7 +641,7 @@ view: all_fulfillments {
 
 
   measure: ceilingmount_revenue {
-    # hidden: yes
+    hidden: yes
     label: "Ceiling Mount Estimated Revenue"
     group_label: "Estimated Revenue"
     type: number
@@ -650,7 +650,7 @@ view: all_fulfillments {
   }
 
   measure: hardcase_revenue {
-    # hidden: yes
+    hidden: yes
     label: "Hard Case Estimated Revenue"
     group_label: "Estimated Revenue"
     type: number
@@ -659,7 +659,7 @@ view: all_fulfillments {
   }
 
   measure: lockadapter_revenue {
-    # hidden: yes
+    hidden: yes
     label: "Lock Adapter Estimated Revenue"
     group_label: "Estimated Revenue"
     type: number
@@ -668,7 +668,7 @@ view: all_fulfillments {
   }
 
   measure: markers_revenue {
-    # hidden: yes
+    hidden: yes
     label: "Whiteboard Markers Estimated Revenue"
     group_label: "Estimated Revenue"
     type: number
@@ -677,7 +677,7 @@ view: all_fulfillments {
   }
 
   measure: mic_revenue {
-    # hidden: yes
+    hidden: yes
     label: "Expansion Mic Estimated Revenue"
     group_label: "Estimated Revenue"
     type: number
@@ -686,7 +686,7 @@ view: all_fulfillments {
   }
 
   measure: softcase_revenue {
-    # hidden: yes
+    hidden: yes
     label: "Soft Case Estimated Revenue"
     group_label: "Estimated Revenue"
     type: number
@@ -695,7 +695,7 @@ view: all_fulfillments {
   }
 
   measure: stand_revenue {
-    # hidden: yes
+    hidden: yes
     label: "Stand Estimated Revenue"
     group_label: "Estimated Revenue"
     type: number
@@ -704,7 +704,7 @@ view: all_fulfillments {
   }
 
   measure: tablemount_revenue {
-    # hidden: yes
+    hidden: yes
     label: "Table Mount Estimated Revenue"
     group_label: "Estimated Revenue"
     type: number
@@ -713,7 +713,7 @@ view: all_fulfillments {
   }
 
   measure: tripod_revenue {
-    # hidden: yes
+    hidden: yes
     label: "Tripod Estimated Revenue"
     group_label: "Estimated Revenue"
     type: number
@@ -722,7 +722,7 @@ view: all_fulfillments {
   }
 
    measure: usbconversioncable_revenue {
-    # hidden: yes
+    hidden: yes
     label: "USB Conversion Cable Estimated Revenue"
     group_label: "Estimated Revenue"
     # description: "This is an average value of the 4 SKUs MSRPs"
@@ -737,7 +737,17 @@ view: all_fulfillments {
       ;;
   }
 
+  measure: usbextension_revenue {
+    # hidden: yes
+    label: "USB Extension Cable Estimated Revenue"
+    group_label: "Estimated Revenue"
+    type: number
+    value_format: "$#,##0"
+    sql: ${sum_tripod_quantity_shipped} * 15 ;;
+  }
+
   measure: allaccessories_revenue {
+    hidden: yes
     group_label: "Estimated Revenue"
     type: number
     value_format: "$#,##0"
