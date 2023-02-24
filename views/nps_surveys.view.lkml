@@ -212,35 +212,35 @@ view: nps_surveys {
   }
 
   dimension: calendaring_system_select {
-    label: "Calendaring System"
+    label: "Calendar System"
     description: "Survey question: What calendaring system do you use?"
     group_label: "Survey Questions"
     type: string
-    sql: ${TABLE}.calendaring_system_select ;;
+    sql: ${TABLE}.calendar_system_select ;;
   }
 
   dimension: calendaring_system_text {
-    label: "Calendaring System (Other text)"
-    description: "Survey question: What calendaring system do you use? (Other text)"
+    label: "Calendar System ('Other' text)"
+    description: "Survey question: What calendaring system do you use? ('Other' text)"
     group_label: "Survey Questions"
     type: string
-    sql: ${TABLE}.calendaring_system_text ;;
+    sql: ${TABLE}.calendar_system_text ;;
   }
 
   dimension: videoconferencing_system_select {
-    label: "Videoconferencing System"
+    label: "Videoconference System"
     description: "Survey question: What videoconferencing system do you use?"
     group_label: "Survey Questions"
     type: string
-    sql: ${TABLE}.videoconferencing_system_select ;;
+    sql: ${TABLE}.videoconference_system_select ;;
   }
 
   dimension: videoconferencing_system_text {
-    label: "Videoconferencing System (Other text)"
-    description: "Survey question: What videoconferencing system do you use? (Other text)"
+    label: "Videoconference System ('Other' text)"
+    description: "Survey question: What videoconferencing system do you use? ('Other' text)"
     group_label: "Survey Questions"
     type: string
-    sql: ${TABLE}.videoconferencing_system_text ;;
+    sql: ${TABLE}.videoconference_system_text ;;
   }
 
   dimension: device_predominant_use_select {
@@ -252,8 +252,8 @@ view: nps_surveys {
   }
 
   dimension: device_predominant_use_text {
-    label: "Predominant Use (Other text)"
-    description: "Survey question: Our Owl is used predominantly to (Other text)"
+    label: "Predominant Use ('Other' text)"
+    description: "Survey question: Our Owl is used predominantly to ('Other' text)"
     group_label: "Survey Questions"
     type: string
     sql: ${TABLE}.device_predominant_use_text ;;
@@ -370,12 +370,12 @@ view: nps_surveys {
   #   sql: ${TABLE}.test_response ;;
   # }
 
-  dimension: dupe_response {
-    description: "Flag indicates if an additional response was submitted by the same email address for the same device and survey iteration"
-    group_label: "Filters"
-    type: yesno
-    sql: ${TABLE}.dupe_response ;;
-  }
+  # dimension: dupe_response {
+  #   description: "Flag indicates if an additional response was submitted by the same email address for the same device and survey iteration"
+  #   group_label: "Filters"
+  #   type: yesno
+  #   sql: ${TABLE}.dupe_response ;;
+  # }
 
   dimension: nps_bucket_int {
     label: "Net Promoter Category Integer"
