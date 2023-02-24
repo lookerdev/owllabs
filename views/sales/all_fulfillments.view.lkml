@@ -738,12 +738,12 @@ view: all_fulfillments {
   }
 
   measure: usbextension_revenue {
-    # hidden: yes
+    hidden: yes
     label: "USB Extension Cable Estimated Revenue"
     group_label: "Estimated Revenue"
     type: number
     value_format: "$#,##0"
-    sql: ${sum_tripod_quantity_shipped} * 15 ;;
+    sql: ${sum_usbextension_quantity_shipped} * 15 ;;
   }
 
   measure: allaccessories_revenue {
