@@ -28,4 +28,16 @@ view: devices_extend {
     map_layer_name: europe_countries_layer
   }
 
+  # dimension: lastgeo_country_iso2_middleeast {
+  #   # hidden: yes
+  #   # label: "Last Geo Country ISO Alpha-2 Code"
+  #   group_label: "Last Geo Location"
+  #   type: string
+  #   sql: ${TABLE}.lastgeo_country_iso2 ;;
+  #   map_layer_name: middleeast_countries_layer
+  # }
+
+
+
+
 }
