@@ -55,29 +55,12 @@ map_layer: europe_countries_layer {
   property_key: "NAME"
 }
 
-map_layer: middleeast_geo_layer {
-  file: "/maps/middleeast_geo.json"
-  max_zoom_level: 12
-  min_zoom_level: 2
-  property_key: "ISO"
-}
-
-map_layer: middleeast_topo_layer {
-  file: "/maps/middleeast_topo.json"
-  max_zoom_level: 12
-  min_zoom_level: 2
-  property_key: "ISO"
-}
-
-
-map_layer: menageo_layer {
-  file: "/maps/MENA.geo.json"
+map_layer: mena_layer {
+  file: "/maps/mena.geojson"
   max_zoom_level: 12
   min_zoom_level: 2
   property_key: "code_a3"
 }
-
-
 
 map_layer: worldmap_layer {
   file: "/maps/world_countries.geojson"

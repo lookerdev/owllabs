@@ -375,13 +375,14 @@ view: devices {
     sql: ${TABLE}.lastgeo_country_iso2 ;;
   }
 
-  dimension: lastgeo_country_iso3 {
-    hidden: yes
-    label: "Last Geo Country ISO Alpha-3 Code"
-    group_label: "Last Geo Location"
-    type: string
-    sql: ${TABLE}.lastgeo_country_iso3 ;;
-  }
+# moved to devices_extend
+  # dimension: lastgeo_country_iso3 {
+  #   hidden: yes
+  #   label: "Last Geo Country ISO Alpha-3 Code"
+  #   group_label: "Last Geo Location"
+  #   type: string
+  #   sql: ${TABLE}.lastgeo_country_iso3 ;;
+  # }
 
   dimension: lastgeo_country_shortname {
     # hidden: yes
