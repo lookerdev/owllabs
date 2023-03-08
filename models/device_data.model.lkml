@@ -9,7 +9,7 @@ include: "/views/shopify_orders_serial_numbers.view.lkml"
 explore: devices {
   # from: devices_extend # https://cloud.google.com/looker/docs/reference/param-explore-from?version=22.16&lookml=new
   from: devices_extend
-  description: "Data for all devices in the Barn Devices table or that have been recorded in Shopify orders. Does not include Desktop App products."
+  description: "Data for all devices in the Barn Devices table or that have been recorded in Shopify orders. Does not include Desktop App records."
   fields: [ALL_FIELDS*, -device_registrations.channel_id, -device_registrations.device_hardware_serial_number, -device_registrations.device_id, -device_registrations.product_id, -device_registrations.product_name, -most_recent_update_attempt.deviceuuid, -barn_channels.product_name, -barn_channels.productid]
   join: device_registrations {
     type: left_outer

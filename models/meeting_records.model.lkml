@@ -11,7 +11,7 @@ include: "/views/shopify_orders_serial_numbers.view.lkml"
 
 explore: meeting_records {
   from: meeting_records_extend_devices
-  description: "Data for devices that have had at least one meeting. Does not include TESTNAME products."
+  description: "Data for devices that have had at least one meeting. Does not include Desktop App records."
   join: devices {
     type: left_outer
     relationship: many_to_one
