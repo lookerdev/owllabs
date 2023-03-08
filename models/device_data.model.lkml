@@ -9,7 +9,7 @@ include: "/views/shopify_orders_serial_numbers.view.lkml"
 explore: devices {
   # from: devices_extend # https://cloud.google.com/looker/docs/reference/param-explore-from?version=22.16&lookml=new
   from: devices_extend
-  description: "Data for all devices in the Barn Devices table or that have been recorded in Shopify orders. Does not include TESTNAME products."
+  description: "Data for all devices in the Barn Devices table or that have been recorded in Shopify orders. Does not include Desktop App records."
   fields: [ALL_FIELDS*, -device_registrations.channel_id, -device_registrations.device_hardware_serial_number, -device_registrations.device_id, -device_registrations.product_id, -device_registrations.product_name, -most_recent_update_attempt.deviceuuid, -barn_channels.product_name, -barn_channels.productid]
   join: device_registrations {
     type: left_outer
@@ -92,7 +92,6 @@ explore: barn_channels {
   persist_for: "6 hours"
   label: "Barn Channels"
   description: "Details for all Barn Channels whether there are devices included in the channel or not. Includes data for the devices in each channel."
-  sql_always_where: ${product_name} <> 'TESTNAME' ;;
   fields: [barn_channels*, devices*,  device_registrations.count_registered_devices]
   join: devices {
     type: left_outer
