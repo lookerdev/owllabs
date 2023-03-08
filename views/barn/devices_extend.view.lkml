@@ -28,4 +28,21 @@ view: devices_extend {
     map_layer_name: europe_countries_layer
   }
 
+  dimension: lastgeo_country_iso3_mena {
+    hidden: yes
+    # label: "Last Geo Country ISO Alpha-3 Code"
+    group_label: "Last Geo Location"
+    type: string
+    sql: ${TABLE}.lastgeo_country_iso3 ;;
+    map_layer_name: mena_layer
+  }
+
+  dimension: lastgeo_country_iso3 {
+    label: "Last Geo Country ISO Alpha-3 Code"
+    group_label: "Last Geo Location"
+    type: string
+    sql: ${TABLE}.lastgeo_country_iso3 ;;
+    map_layer_name: worldmap_layer
+  }
+
 }
