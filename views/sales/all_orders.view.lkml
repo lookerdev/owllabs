@@ -342,6 +342,12 @@ view: all_orders {
     sql: ${TABLE}.wbtags_quantity_ordered ;;
   }
 
+  dimension: owlbar_quantity_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.owlbar_quantity_ordered ;;
+  }
+
   dimension: owls_quantity_ordered {
     hidden: yes
     type: number
@@ -351,7 +357,7 @@ view: all_orders {
   dimension: hardware_quantity_ordered {
     hidden: yes
     type: number
-    sql: ${og_quantity_ordered} + ${pro_quantity_ordered} + ${wbo_quantity_ordered} + ${hq_quantity_ordered} + ${mo3_quantity_ordered} ;;
+    sql: ${og_quantity_ordered} + ${pro_quantity_ordered} + ${wbo_quantity_ordered} + ${hq_quantity_ordered} + ${mo3_quantity_ordered} + ${owlbar_quantity_ordered} ;;
   }
 
 
@@ -584,6 +590,14 @@ view: all_orders {
     group_label: "Accessories"
     type: sum
     sql: ${wbtags_quantity_ordered} ;;
+    drill_fields: [sales_channel, world_region, order_number, billing_address_company, sku, sum_wbtags_quantity_ordered]
+  }
+
+  measure: sum_owlbar_quantity_ordered {
+    label: "Owl Bar Quantity Ordered"
+    group_label: "Hardware"
+    type: sum
+    sql: ${owlbar_quantity_ordered} ;;
     drill_fields: [sales_channel, world_region, order_number, billing_address_company, sku, sum_wbtags_quantity_ordered]
   }
 
