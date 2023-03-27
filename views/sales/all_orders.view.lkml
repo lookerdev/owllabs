@@ -598,7 +598,7 @@ view: all_orders {
     group_label: "Hardware"
     type: sum
     sql: ${owlbar_quantity_ordered} ;;
-    drill_fields: [sales_channel, world_region, order_number, billing_address_company, sku, sum_wbtags_quantity_ordered]
+    drill_fields: [sales_channel, world_region, order_number, billing_address_company, sku, sum_owlbar_quantity_ordered]
   }
 
   measure: sum_owls_quantity_ordered {
