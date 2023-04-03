@@ -25,26 +25,6 @@ explore: all_fulfillments {
 }
 
 
-explore: shopify_orders_fulfillments {
-  hidden: yes
-  label: "Shopify Orders & Fulfillments"
-  description: "Sales data from Shopify. By default includes SKUs that don't count toward revenue (replacement units, Owls For Good), which can be filtered out using Revenue SKU dimension. Excludes test SKUs."
-  view_name: dim_calendar
-  sql_always_where: ${dim_calendar.date_date} >= '2017-05-14' and ${dim_calendar.date_date} <= trunc(sysdate) ;;
-  join: shopify_orders_line_items_view {
-    type: left_outer
-    relationship: one_to_many
-    sql_on: ${shopify_orders_line_items_view.order_date} = ${dim_calendar.date_date}
-      and ${shopify_orders_line_items_view.sku} not in ('TEST2','TEST3') ;;
-  }
-  join: shopify_fulfillments_line_items_view {
-    type: left_outer
-    relationship: one_to_many
-    sql_on: ${shopify_fulfillments_line_items_view.fulfillment_date} = ${dim_calendar.date_date}
-      and ${shopify_fulfillments_line_items_view.sku} not in ('TEST2','TEST3') ;;
-  }
-}
-
 explore: shopify_orders_line_items_view {
   label: "Shopify Orders"
   description: "Shopify order data including line-item detail. By default includes SKUs that don't count toward revenue (replacement units, Owls For Good), which can be filtered out using Revenue SKU dimension. Excludes test SKUs."
@@ -79,7 +59,7 @@ explore: monthly_hardware_goals_eom_projections {
 
 explore: all_orders_fulfillments {
   hidden: yes
-  label: "All Orders & Fulfillments"
+  label: "[ARCHIVED] All Orders & Fulfillments"
   description: "Sales data from Shopify, Amazon, Sourcenext, and historical distributor Starin. By default includes SKUs that don't count toward revenue (replacement units, Owls For Good), which can be filtered out using Revenue SKU dimension. Excludes test SKUs. All Orders and All Fulfillments tables are joined on date and does not link orders and fulfillments to each other."
   view_name: dim_calendar
   sql_always_where: ${dim_calendar.date_date} >= '2017-05-14' and ${dim_calendar.date_date} <= trunc(sysdate) ;;
@@ -94,6 +74,26 @@ explore: all_orders_fulfillments {
     relationship: one_to_many
     sql_on: ${dim_calendar.date_date} = ${all_fulfillments.fulfillment_date}
       and ${all_fulfillments.sku} not in ('TEST2','TEST3') ;;
+  }
+}
+
+explore: shopify_orders_fulfillments {
+  hidden: yes
+  label: "[ARCHIVED] Shopify Orders & Fulfillments"
+  description: "Sales data from Shopify. By default includes SKUs that don't count toward revenue (replacement units, Owls For Good), which can be filtered out using Revenue SKU dimension. Excludes test SKUs."
+  view_name: dim_calendar
+  sql_always_where: ${dim_calendar.date_date} >= '2017-05-14' and ${dim_calendar.date_date} <= trunc(sysdate) ;;
+  join: shopify_orders_line_items_view {
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${shopify_orders_line_items_view.order_date} = ${dim_calendar.date_date}
+      and ${shopify_orders_line_items_view.sku} not in ('TEST2','TEST3') ;;
+  }
+  join: shopify_fulfillments_line_items_view {
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${shopify_fulfillments_line_items_view.fulfillment_date} = ${dim_calendar.date_date}
+      and ${shopify_fulfillments_line_items_view.sku} not in ('TEST2','TEST3') ;;
   }
 }
 
