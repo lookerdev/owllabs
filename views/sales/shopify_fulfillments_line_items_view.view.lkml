@@ -689,14 +689,15 @@ view: shopify_fulfillments_line_items_view {
   }
 
   measure: sum_revenue {
-    label: "Revenue"
+    label: "Total Revenue"
+    # description: ""
     group_label: "Revenue"
     type: sum
     sql: ${revenue} ;;
   }
 
   measure: sum_revenue_usd {
-    label: "Revenue - USD"
+    label: "Total Revenue (USD)"
     group_label: "Revenue"
     type: sum
     value_format_name: usd
@@ -704,4 +705,13 @@ view: shopify_fulfillments_line_items_view {
     # drill_fields: [billing_address_company, shopify_order_name, sum_revenue_usd]
   }
 
+  measure: avg_revenue_usd {
+    label: "Avg. Revenue per Order (USD)"
+    description: "Average fulfillment revenue per order"
+    group_label: "Revenue"
+    type: number
+    value_format_name: usd
+    sql: sum(${revenue_usd})/nullif(count(distinct ${shopify_order_name}),0) ;;
+    # drill_fields: [billing_address_company, shopify_order_name, sum_revenue_usd]
+  }
 }
