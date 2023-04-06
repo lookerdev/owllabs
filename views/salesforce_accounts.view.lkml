@@ -32,7 +32,7 @@ view: salesforce_accounts {
   dimension: industry_group {
     # description: "High-level/broad grouping of Industry"
     type: string
-    sql: ${TABLE}.industry_group ;;
+    sql: coalesce(${TABLE}.industry_group, 'Unknown') ;;
   }
 
   dimension: company_size {
