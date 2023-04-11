@@ -72,7 +72,7 @@ map_layer: worldmap_layer {
 
 
 explore: device_checkins {
-  persist_for: "8 hours"
+  persist_for: "10 hours"
   label: "Device Check-ins"
   description: "Device check-in data captured via the Barn. This table has a huge amount of rows and will take some time to load."
   join: devices {
