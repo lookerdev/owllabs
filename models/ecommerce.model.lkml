@@ -57,25 +57,25 @@ explore: monthly_hardware_goals_eom_projections {
 #   }
 # }
 
-explore: all_orders_fulfillments {
-  hidden: yes
-  label: "[ARCHIVED] All Orders & Fulfillments"
-  description: "Sales data from Shopify, Amazon, Sourcenext, and historical distributor Starin. By default includes SKUs that don't count toward revenue (replacement units, Owls For Good), which can be filtered out using Revenue SKU dimension. Excludes test SKUs. All Orders and All Fulfillments tables are joined on date and does not link orders and fulfillments to each other."
-  view_name: dim_calendar
-  sql_always_where: ${dim_calendar.date_date} >= '2017-05-14' and ${dim_calendar.date_date} <= trunc(sysdate) ;;
-  join: all_orders {
-    type: left_outer
-    relationship: one_to_many
-    sql_on: ${dim_calendar.date_date} = ${all_orders.order_date}
-      and ${all_orders.sku} not in ('TEST2','TEST3') ;;
-  }
-  join: all_fulfillments {
-    type: left_outer
-    relationship: one_to_many
-    sql_on: ${dim_calendar.date_date} = ${all_fulfillments.fulfillment_date}
-      and ${all_fulfillments.sku} not in ('TEST2','TEST3') ;;
-  }
-}
+# explore: all_orders_fulfillments {
+#   hidden: yes
+#   label: "[ARCHIVED] All Orders & Fulfillments"
+#   description: "Sales data from Shopify, Amazon, Sourcenext, and historical distributor Starin. By default includes SKUs that don't count toward revenue (replacement units, Owls For Good), which can be filtered out using Revenue SKU dimension. Excludes test SKUs. All Orders and All Fulfillments tables are joined on date and does not link orders and fulfillments to each other."
+#   view_name: dim_calendar
+#   sql_always_where: ${dim_calendar.date_date} >= '2017-05-14' and ${dim_calendar.date_date} <= trunc(sysdate) ;;
+#   join: all_orders {
+#     type: left_outer
+#     relationship: one_to_many
+#     sql_on: ${dim_calendar.date_date} = ${all_orders.order_date}
+#       and ${all_orders.sku} not in ('TEST2','TEST3') ;;
+#   }
+#   join: all_fulfillments {
+#     type: left_outer
+#     relationship: one_to_many
+#     sql_on: ${dim_calendar.date_date} = ${all_fulfillments.fulfillment_date}
+#       and ${all_fulfillments.sku} not in ('TEST2','TEST3') ;;
+#   }
+# }
 
 explore: shopify_orders_fulfillments {
   hidden: yes
