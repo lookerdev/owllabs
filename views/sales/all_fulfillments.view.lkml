@@ -162,11 +162,18 @@ view: all_fulfillments {
   }
 
   dimension: revenue_sku {
+    hidden: yes
     description: "Identifies if SKU counts towards revenue. 'No' includes replacement, Owl for Good, and test SKUs."
     type: yesno
     # sql: CASE WHEN ${sku} IN ('EXM100-1000-RPL','EXM100-1000-DEMO','MTW100-1000-RPL','MTW100-2000 - Replacement','MTW100-2000-RPL','MTW200-1000-RPL','MTW200-1000-RPL-CA','MTW200-2000 - Replacement','MTW200-2000-RPL','MTW200-4000 - RPL','MTW200-4000-RPL','MTW300-1000-RPL','MTW300-2000-RPL','PTW100-1000-RPL','REF100-1000','REF200-1000','REF200-2000','Replacement AC Line Cord','Replacement Power Supply','Replacement USB Cable (6.5-Foot)','REPLC - NA','REPLC - UK','REPLC - US/CA','REPLC100-1000','REPLC100-1000-NA','REPLC100-2000','REPLC100-2001','REPLCMHQ101-1000','REPLCMHQ102-0000','REPLCMHQ103-0000','REPLCWBO100-1000','REPLCWBO101-0000','REPPS - Universal','REPPS','REPUSB - Universal','REPUSB','TEST2','TEST3','VAT','WBC100-1000-RPL','MTW300-2000-DEMO') then False
     #   ELSE True END ;;
     sql: ${TABLE}.revenue_sku ;;
+  }
+
+  dimension: revenue_item {
+    description: "Identifies if item counts towards revenue. 'No' includes any items that was sold for $0 (replacements, Owl for Good, etc.)"
+    type: yesno
+    sql: ${TABLE}.revenue_item ;;
   }
 
   dimension: source {
@@ -406,6 +413,12 @@ view: all_fulfillments {
     drill_fields: [sku_name]
   }
 
+measure: sku_quantity_shipped {
+  type: sum
+  sql: ${TABLE}.sku_quantity_shipped ;;
+}
+
+
   measure: sum_allitems_quantity_shipped {
     hidden: yes
     label: "All Items Quantity Shipped"
@@ -636,8 +649,6 @@ view: all_fulfillments {
     sql: ${hardware_quantity_shipped} ;;
     drill_fields: [sales_channel, world_region, order_number, fulfillment_number, shipping_address_company, sku, sum_hardware_quantity_shipped]
   }
-
-
 
   measure: ceilingmount_revenue {
     hidden: yes
