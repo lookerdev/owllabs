@@ -93,7 +93,7 @@ view: salesforce_accounts {
     label: "Count of Companies"
     type: count_distinct
     sql: ${accountid} ;;
-    drill_fields: [company_name, industry, industry_group]
+    drill_fields: [accountid, company_name, industry, industry_group]
   }
 
   measure: count_domain {
