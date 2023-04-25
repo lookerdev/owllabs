@@ -363,6 +363,7 @@ view: meeting_records {
 
   measure: avg_mtgs_per_customer {
     label: "Avg. # Meetings per Customer"
+    description: "Total count of meetings divded by total count of registration domains"
     type: number
     sql: ${count_meetings} * 1.0 / ${device_registrations.count_domain} ;;
     value_format: "0.0"
@@ -382,6 +383,13 @@ view: meeting_records {
     type: number
     value_format: "0.0%"
     sql: ${count_paired_meetings} * 1.0 / ${count_meetings} ;;
+  }
+
+  measure: avg_meetings_per_day {
+    label: "Avg. Meetings per Day"
+    description: "Count of total meetings divided by count of days"
+    type: number
+    sql: count(${id})/count(distinct ${startdate_date}) ;;
   }
 
 
