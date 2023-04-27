@@ -385,13 +385,13 @@ view: meeting_records {
     sql: ${count_paired_meetings} * 1.0 / ${count_meetings} ;;
   }
 
-  measure: avg_meetings_per_day {
-    label: "Avg. Meetings per Day"
+  measure: avg_meetings_per_day_per_device {
+    # hidden: yes
+    label: "Avg. Meetings per Day per Device"
     description: "Count of total meetings divided by count of days"
     type: number
-    sql: count(${id})/count(distinct ${startdate_date}) ;;
+    sql: (count(distinct ${id})/count(distinct ${startdate_date}))/count(distinct ${deviceuuid}) ;;
   }
-
 
 
 # NEEDED?

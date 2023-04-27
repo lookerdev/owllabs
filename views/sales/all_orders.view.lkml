@@ -102,6 +102,7 @@ view: all_orders {
       raw,
       date,
       week,
+      day_of_week,
       month,
       quarter,
       year
@@ -615,6 +616,46 @@ view: all_orders {
     sql: ${hardware_quantity_ordered} ;;
     drill_fields: [sales_channel, world_region, order_number, billing_address_company, sku, sum_hardware_quantity_ordered]
   }
+
+  # dimension: order_date_weekend {
+  #   type: yesno
+  #   sql: ${TABLE}.order_date_weekend ;;
+  # }
+
+  # dimension: week_part {
+  #   label: "Weekday/Weekend"
+  #   group_label: "Order Date"
+  #   type: string
+  #   sql: case when ${order_day_of_week} in ('Monday','Tuesday','Wednesday','Thursday','Friday') then 'Weekday'
+  #             when ${order_day_of_week} in ('Saturday','Sunday') then 'Weekend'
+  #             end ;;
+  # }
+
+  # measure: count_weeks {
+  #   type: count_distinct
+  #   sql: ${order_week} ;;
+  # }
+
+  # measure: count_day_of_week {
+  #   type: count
+  #   sql: ${order_day_of_week} ;;
+  # }
+
+  # dimension: weekend_orders {
+  #   type: number
+  #   sql: CASE WHEN ${TABLE}.order_date_weekend=True then ${hardware_quantity_ordered} end ;;
+  # }
+
+  # measure: sum_weekend_orders {
+  #   type: sum
+  #   sql: CASE WHEN ${TABLE}.order_date_weekend=True then ${hardware_quantity_ordered} end ;;
+  # }
+
+  # measure: avg_hardware_ordered {
+  #   label: "Avg hardware ordered by day of week"
+  #   type: number
+  #   sql: sum(${hardware_quantity_ordered}) / count(${order_day_of_week}) ;;
+  # }
 
   measure: max_date {
     hidden: yes
