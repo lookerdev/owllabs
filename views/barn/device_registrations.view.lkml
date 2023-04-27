@@ -199,8 +199,7 @@ view: device_registrations {
   measure: avg_owls_per_company {
     label: "Avg. Owls Registered per Company"
     type: number
-    value_format: "0.0"
-    sql: count(distinct ${deviceuuid}) * 1.0/ count(distinct ${company_domain}) ;;
+    sql: count(distinct ${deviceuuid})/ nullif(count(distinct ${company_domain}),0) ;;
   }
 
   measure: count_registrations {
