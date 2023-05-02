@@ -103,6 +103,7 @@ view: all_orders {
       date,
       week,
       day_of_week,
+      day_of_week_index,
       month,
       quarter,
       year
@@ -618,12 +619,13 @@ view: all_orders {
   }
 
   # dimension: order_date_weekend {
+  #   group_label: "WKND AVG"
   #   type: yesno
   #   sql: ${TABLE}.order_date_weekend ;;
   # }
 
   # dimension: week_part {
-  #   label: "Weekday/Weekend"
+  #   # label: "Weekday/Weekend"
   #   group_label: "Order Date"
   #   type: string
   #   sql: case when ${order_day_of_week} in ('Monday','Tuesday','Wednesday','Thursday','Friday') then 'Weekday'
@@ -631,27 +633,58 @@ view: all_orders {
   #             end ;;
   # }
 
+  # dimension: week_part2 {
+  #   # label: "Weekday/Weekend"
+  #   group_label: "Order Date"
+  #   type: string
+  #   sql: case when ${order_day_of_week_index} in (5, 6) then 'Weekend'
+  #             else 'Weekday'
+  #             end ;;
+  # }
+
+
   # measure: count_weeks {
+  #   group_label: "WKND AVG"
   #   type: count_distinct
   #   sql: ${order_week} ;;
   # }
 
   # measure: count_day_of_week {
+  #   group_label: "WKND AVG"
   #   type: count
   #   sql: ${order_day_of_week} ;;
   # }
 
   # dimension: weekend_orders {
+  #   group_label: "WKND AVG"
   #   type: number
   #   sql: CASE WHEN ${TABLE}.order_date_weekend=True then ${hardware_quantity_ordered} end ;;
   # }
 
   # measure: sum_weekend_orders {
+  #   group_label: "WKND AVG"
   #   type: sum
   #   sql: CASE WHEN ${TABLE}.order_date_weekend=True then ${hardware_quantity_ordered} end ;;
   # }
 
+
+  # dimension: weekend_orders2 {
+  #   group_label: "WKND AVG"
+  #   type: number
+  #   sql: CASE WHEN ${order_day_of_week_index} in (5, 6) then ${hardware_quantity_ordered} end ;;
+  # }
+
+
+  # measure: avg_weekend_owl_orders {
+  #   group_label: "WKND AVG"
+  #   type: number
+  #   # sql: CASE WHEN ${order_day_of_week_index} in (5, 6) then (sum(${owls_quantity_ordered}) * 1.0 / count(distinct ${order_date} )) / count(distinct ${order_day_of_week_index})
+  #   # end ;;
+  #   sql: (sum(${owls_quantity_ordered}) * 1.0 / count(distinct ${order_date} )) / count(distinct ${order_day_of_week_index}) ;;
+  # }
+
   # measure: avg_hardware_ordered {
+  #   group_label: "WKND AVG"
   #   label: "Avg hardware ordered by day of week"
   #   type: number
   #   sql: sum(${hardware_quantity_ordered}) / count(${order_day_of_week}) ;;
