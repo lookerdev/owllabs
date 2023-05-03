@@ -103,7 +103,6 @@ view: all_orders {
       date,
       week,
       day_of_week,
-      day_of_week_index,
       month,
       quarter,
       year
@@ -112,6 +111,14 @@ view: all_orders {
     sql: ${TABLE}.order_date::timestamp ;;
     # sql: case when ${TABLE}.source = 'Shopify' then ${TABLE}.order_date AT TIME ZONE 'EDT' else ${TABLE}.order_date end::date ;;
   }
+
+  dimension: week_part {
+    group_label: "Order Date"
+    type: string
+    sql: case when ${order_day_of_week} in ('Saturday','Sunday') then 'Weekend'
+              else 'Weekday'
+              end ;;
+    }
 
   dimension: order_number {
     type: string
@@ -626,11 +633,77 @@ view: all_orders {
     drill_fields: [sales_channel, world_region, order_number, billing_address_company, sku, sum_hardware_quantity_ordered]
   }
 
-
   measure: max_date {
     hidden: yes
     type: date
     sql: max(${order_date}) ;;
   }
+
+
+# Avg sales rates
+
+  measure: avg_hardware_ordered_per_day {
+    hidden: yes
+    label: "Avg. Hardware Daily Rate"
+    group_label: "Avg. Daily Rate"
+    type: number
+    value_format: "0.#"
+    sql: sum(${hardware_quantity_ordered}) * 1.0 / count(distinct ${order_date}) ;;
+  }
+
+  measure: avg_mo3_ordered_per_day {
+    hidden: yes
+    label: "Avg. MO3 Daily Rate"
+    group_label: "Avg. Daily Rate"
+    type: number
+    value_format: "0.#"
+    sql: sum(${mo3_quantity_ordered}) * 1.0 / count(distinct ${order_date}) ;;
+  }
+
+  measure: avg_owlbar_ordered_per_day {
+    hidden: yes
+    label: "Avg. Owl Bar Daily Rate"
+    group_label: "Avg. Daily Rate"
+    type: number
+    value_format: "0.#"
+    sql: sum(${owlbar_quantity_ordered}) * 1.0 / count(distinct ${order_date}) ;;
+  }
+
+  measure: avg_mic_ordered_per_day {
+    hidden: yes
+    label: "Avg. Expansion Mic Daily Rate"
+    group_label: "Avg. Daily Rate"
+    type: number
+    value_format: "0.#"
+    sql: sum(${mic_quantity_ordered}) * 1.0 / count(distinct ${order_date}) ;;
+  }
+
+  measure: avg_hq_ordered_per_day {
+    hidden: yes
+    label: "Avg. Meeting HQ Daily Rate"
+    group_label: "Avg. Daily Rate"
+    type: number
+    value_format: "0.#"
+    sql: sum(${hq_quantity_ordered}) * 1.0 / count(distinct ${order_date}) ;;
+  }
+
+  measure: avg_wbo_ordered_per_day {
+    hidden: yes
+    label: "Avg. Whiteboard Owl Daily Rate"
+    group_label: "Avg. Daily Rate"
+    type: number
+    value_format: "0.#"
+    sql: sum(${wbo_quantity_ordered}) * 1.0 / count(distinct ${order_date}) ;;
+  }
+
+
+  # measure: avg_weekend_owl_orders {
+  #   group_label: "WKND AVG"
+  #   type: number
+  #   # sql: CASE WHEN ${order_day_of_week_index} in (5, 6) then (sum(${owls_quantity_ordered}) * 1.0 / count(distinct ${order_date} )) / count(distinct ${order_day_of_week_index})
+  #   # end ;;
+  #   sql: (sum(${owls_quantity_ordered}) * 1.0 / count(distinct ${order_date} )) / count(distinct ${order_day_of_week_index}) ;;
+  # }
+
 
 }
