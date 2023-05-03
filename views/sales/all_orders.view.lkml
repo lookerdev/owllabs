@@ -368,12 +368,11 @@ view: all_orders {
   #   drill_fields: [country_name, sku_name]
   # }
 
-  # measure: count_orders {
-  #   hidden: yes
-  #   label: "Count of Orders"
-  #   type: count_distinct
-  #   sql: ${order_id} ;;
-  # }
+  measure: count_orders {
+    label: "Count of Orders"
+    type: count_distinct
+    sql: ${order_number} ;;
+  }
 
   measure: sum_sku_quantity_ordered {
     label: "SKU Quantity Ordered"

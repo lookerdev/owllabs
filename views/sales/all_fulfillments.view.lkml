@@ -404,11 +404,12 @@ view: all_fulfillments {
     drill_fields: [sku_name]
   }
 
-measure: sku_quantity_shipped {
-  type: sum
-  sql: ${TABLE}.sku_quantity_shipped ;;
-}
+  # measure: count_fulfillments {}
 
+  measure: sku_quantity_shipped {
+    type: sum
+    sql: ${TABLE}.sku_quantity_shipped ;;
+  }
 
   measure: sum_allitems_quantity_shipped {
     hidden: yes
