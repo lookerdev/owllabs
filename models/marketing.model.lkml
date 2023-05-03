@@ -3,6 +3,16 @@ connection: "redshift"
 include: "/views/dim_calendar.view.lkml"
 include: "/views/google_analytics_traffic_conversion.view.lkml"
 
+# ga4
+include: "//ga_four_block/views/*.view"
+
+# You can use wildcards to include multiple files. For example, to include all view files in the /views/ directory of the e_flights imported project:
+# include: "//e_flights/views/*.view"
+
+# Furthermore, you can use wildcards to scope to specific directory levels or to recursive directories in imported project:
+# include: "//e_flights/*/*.view.lkml"
+# include: "//e_commerce/*/*.view.lkml"
+
 
 
   explore: traffic_conversion {
