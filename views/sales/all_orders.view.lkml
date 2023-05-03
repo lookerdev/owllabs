@@ -372,7 +372,16 @@ view: all_orders {
     label: "Count of Orders"
     type: count_distinct
     sql: ${order_number} ;;
+    drill_fields: [order_number]
+    # drill_fields: [order_number, sku, count_sku]
   }
+
+  # measure: count_sku {
+  #   label: "Count of SKU"
+  #   type: count
+  #   sql: ${sku} ;;
+  # }
+
 
   measure: sum_sku_quantity_ordered {
     label: "SKU Quantity Ordered"
