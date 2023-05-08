@@ -807,7 +807,7 @@ view: all_fulfillments {
 
   measure: avg_mic_fulfilled_per_day {
     # hidden: yes
-    label: "Expansion Mic Avg. Daily Shipments"
+    label: "Mic Avg. Daily Shipments"
     group_label: "Avg. Daily Rate"
     type: number
     value_format: "0.#"
@@ -816,7 +816,7 @@ view: all_fulfillments {
 
   measure: avg_hq_fulfilled_per_day {
     # hidden: yes
-    label: "Meeting HQ Avg. Daily Shipments"
+    label: "MHQ Avg. Daily Shipments"
     group_label: "Avg. Daily Rate"
     type: number
     value_format: "0.#"
@@ -825,7 +825,7 @@ view: all_fulfillments {
 
   measure: avg_wbo_fulfilled_per_day {
     # hidden: yes
-    label: "Whiteboard Owl Avg. Daily Shipments"
+    label: "WBO Avg. Daily Shipments"
     group_label: "Avg. Daily Rate"
     type: number
     value_format: "0.#"

@@ -680,7 +680,7 @@ view: all_orders {
 
   measure: avg_mic_ordered_per_day {
     hidden: yes
-    label: "Expansion Mic Avg. Daily Orders"
+    label: "Mic Avg. Daily Orders"
     group_label: "Avg. Daily Rate"
     type: number
     value_format: "0.#"
@@ -689,7 +689,7 @@ view: all_orders {
 
   measure: avg_hq_ordered_per_day {
     hidden: yes
-    label: "Meeting HQ Avg. Daily Orders"
+    label: "MHQ Avg. Daily Orders"
     group_label: "Avg. Daily Rate"
     type: number
     value_format: "0.#"
@@ -697,8 +697,8 @@ view: all_orders {
   }
 
   measure: avg_wbo_ordered_per_day {
-    hidden: yes
-    label: "Whiteboard Owl Avg. Daily Orders"
+    # hidden: yes
+    label: "WBO Avg. Daily Orders"
     group_label: "Avg. Daily Rate"
     type: number
     value_format: "0.#"
