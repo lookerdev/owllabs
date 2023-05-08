@@ -697,7 +697,7 @@ view: all_orders {
   }
 
   measure: avg_wbo_ordered_per_day {
-    # hidden: yes
+    hidden: yes
     label: "WBO Avg. Daily Orders"
     group_label: "Avg. Daily Rate"
     type: number
