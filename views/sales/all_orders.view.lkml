@@ -653,7 +653,7 @@ view: all_orders {
 
   measure: avg_mop_ordered_per_day {
     hidden: yes
-    label: "Avg. MO3 Daily Rate"
+    label: "Avg. MOP Daily Rate"
     group_label: "Avg. Daily Rate"
     type: number
     value_format: "0.#"
