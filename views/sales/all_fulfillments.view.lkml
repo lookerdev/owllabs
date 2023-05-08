@@ -770,8 +770,8 @@ view: all_fulfillments {
 # Avg sales rates
 
   measure: avg_hardware_fulfilled_per_day {
-    hidden: yes
-    label: "Avg. Hardware Daily Rate"
+    # hidden: yes
+    label: "All Hardware Avg. Daily Shipments"
     group_label: "Avg. Daily Rate"
     type: number
     value_format: "0.#"
@@ -779,8 +779,8 @@ view: all_fulfillments {
   }
 
   measure: avg_mop_fulfilled_per_day {
-    hidden: yes
-    label: "Avg. MOP Daily Rate"
+    # hidden: yes
+    label: "MOP Avg. Daily Shipments"
     group_label: "Avg. Daily Rate"
     type: number
     value_format: "0.#"
@@ -788,8 +788,8 @@ view: all_fulfillments {
   }
 
   measure: avg_mo3_fulfilled_per_day {
-    hidden: yes
-    label: "Avg. MO3 Daily Rate"
+    # hidden: yes
+    label: "MO3 Avg. Daily Shipments"
     group_label: "Avg. Daily Rate"
     type: number
     value_format: "0.#"
@@ -798,7 +798,7 @@ view: all_fulfillments {
 
   # measure: avg_owlbar_fulfilled_per_day {
   #   # hidden: yes
-  #   label: "Avg. Owl Bar Daily Rate"
+  #   label: "Owl Bar Avg. Daily Shipments"
   #   group_label: "Avg. Daily Rate"
   #   type: number
   #   value_format: "0.#"
@@ -806,8 +806,8 @@ view: all_fulfillments {
   # }
 
   measure: avg_mic_fulfilled_per_day {
-    hidden: yes
-    label: "Avg. Expansion Mic Daily Rate"
+    # hidden: yes
+    label: "Expansion Mic Avg. Daily Shipments"
     group_label: "Avg. Daily Rate"
     type: number
     value_format: "0.#"
@@ -815,8 +815,8 @@ view: all_fulfillments {
   }
 
   measure: avg_hq_fulfilled_per_day {
-    hidden: yes
-    label: "Avg. Meeting HQ Daily Rate"
+    # hidden: yes
+    label: "Meeting HQ Avg. Daily Shipments"
     group_label: "Avg. Daily Rate"
     type: number
     value_format: "0.#"
@@ -824,8 +824,8 @@ view: all_fulfillments {
   }
 
   measure: avg_wbo_fulfilled_per_day {
-    hidden: yes
-    label: "Avg. Whiteboard Owl Daily Rate"
+    # hidden: yes
+    label: "Whiteboard Owl Avg. Daily Shipments"
     group_label: "Avg. Daily Rate"
     type: number
     value_format: "0.#"

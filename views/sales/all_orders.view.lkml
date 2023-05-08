@@ -644,7 +644,7 @@ view: all_orders {
 
   measure: avg_hardware_ordered_per_day {
     hidden: yes
-    label: "Avg. Hardware Daily Rate"
+    label: "All Hardware Avg. Daily Orders"
     group_label: "Avg. Daily Rate"
     type: number
     value_format: "0.#"
@@ -653,7 +653,7 @@ view: all_orders {
 
   measure: avg_mop_ordered_per_day {
     hidden: yes
-    label: "Avg. MOP Daily Rate"
+    label: "MOP Avg. Daily Orders"
     group_label: "Avg. Daily Rate"
     type: number
     value_format: "0.#"
@@ -662,7 +662,7 @@ view: all_orders {
 
   measure: avg_mo3_ordered_per_day {
     hidden: yes
-    label: "Avg. MO3 Daily Rate"
+    label: "MO3 Avg. Daily Orders"
     group_label: "Avg. Daily Rate"
     type: number
     value_format: "0.#"
@@ -671,7 +671,7 @@ view: all_orders {
 
   measure: avg_owlbar_ordered_per_day {
     hidden: yes
-    label: "Avg. Owl Bar Daily Rate"
+    label: "Owl Bar Avg. Daily Orders"
     group_label: "Avg. Daily Rate"
     type: number
     value_format: "0.#"
@@ -680,7 +680,7 @@ view: all_orders {
 
   measure: avg_mic_ordered_per_day {
     hidden: yes
-    label: "Avg. Expansion Mic Daily Rate"
+    label: "Expansion Mic Avg. Daily Orders"
     group_label: "Avg. Daily Rate"
     type: number
     value_format: "0.#"
@@ -689,7 +689,7 @@ view: all_orders {
 
   measure: avg_hq_ordered_per_day {
     hidden: yes
-    label: "Avg. Meeting HQ Daily Rate"
+    label: "Meeting HQ Avg. Daily Orders"
     group_label: "Avg. Daily Rate"
     type: number
     value_format: "0.#"
@@ -698,7 +698,7 @@ view: all_orders {
 
   measure: avg_wbo_ordered_per_day {
     hidden: yes
-    label: "Avg. Whiteboard Owl Daily Rate"
+    label: "Whiteboard Owl Avg. Daily Orders"
     group_label: "Avg. Daily Rate"
     type: number
     value_format: "0.#"
