@@ -651,6 +651,15 @@ view: all_orders {
     sql: sum(${hardware_quantity_ordered}) * 1.0 / count(distinct ${order_date}) ;;
   }
 
+  measure: avg_mop_ordered_per_day {
+    hidden: yes
+    label: "Avg. MO3 Daily Rate"
+    group_label: "Avg. Daily Rate"
+    type: number
+    value_format: "0.#"
+    sql: sum(${pro_quantity_ordered}) * 1.0 / count(distinct ${order_date}) ;;
+  }
+
   measure: avg_mo3_ordered_per_day {
     hidden: yes
     label: "Avg. MO3 Daily Rate"
