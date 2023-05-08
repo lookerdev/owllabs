@@ -84,6 +84,7 @@ view: all_fulfillments {
       raw,
       date,
       week,
+      day_of_week,
       month,
       quarter,
       year
@@ -91,6 +92,14 @@ view: all_fulfillments {
     # sql: ${TABLE}.fulfillment_date::date ;;
     sql: ${TABLE}.fulfillment_date::timestamp ;;
     # sql: case when ${TABLE}.source = 'Shopify' then ${TABLE}.fulfillment_date AT TIME ZONE 'EDT' else ${TABLE}.fulfillment_date end ;;
+  }
+
+  dimension: week_part {
+    group_label: "Ship Date"
+    type: string
+    sql: case when ${fulfillment_day_of_week} in ('Saturday','Sunday') then 'Weekend'
+              else 'Weekday'
+              end ;;
   }
 
   dimension: fulfillment_number {
@@ -756,6 +765,72 @@ view: all_fulfillments {
     sql: ${ceilingmount_revenue}+${hardcase_revenue}+${mic_revenue}+${markers_revenue}+${lockadapter_revenue}+${softcase_revenue}+${stand_revenue}+${tablemount_revenue}+${tripod_revenue}+${usbconversioncable_revenue} ;;
   }
 
+
+
+# Avg sales rates
+
+  measure: avg_hardware_fulfilled_per_day {
+    hidden: yes
+    label: "Avg. Hardware Daily Rate"
+    group_label: "Avg. Daily Rate"
+    type: number
+    value_format: "0.#"
+    sql: sum(${hardcase_quantity_shipped}) * 1.0 / count(distinct ${fulfillment_date}) ;;
+  }
+
+  measure: avg_mop_fulfilled_per_day {
+    hidden: yes
+    label: "Avg. MOP Daily Rate"
+    group_label: "Avg. Daily Rate"
+    type: number
+    value_format: "0.#"
+    sql: sum(${pro_quantity_shipped}) * 1.0 / count(distinct ${fulfillment_date}) ;;
+  }
+
+  measure: avg_mo3_fulfilled_per_day {
+    hidden: yes
+    label: "Avg. MO3 Daily Rate"
+    group_label: "Avg. Daily Rate"
+    type: number
+    value_format: "0.#"
+    sql: sum(${mo3_quantity_shipped}) * 1.0 / count(distinct ${fulfillment_date}) ;;
+  }
+
+  # measure: avg_owlbar_fulfilled_per_day {
+  #   # hidden: yes
+  #   label: "Avg. Owl Bar Daily Rate"
+  #   group_label: "Avg. Daily Rate"
+  #   type: number
+  #   value_format: "0.#"
+  #   sql: sum(${owlbar_quantity_ordered}) * 1.0 / count(distinct ${fulfillment_date}) ;;
+  # }
+
+  measure: avg_mic_fulfilled_per_day {
+    hidden: yes
+    label: "Avg. Expansion Mic Daily Rate"
+    group_label: "Avg. Daily Rate"
+    type: number
+    value_format: "0.#"
+    sql: sum(${mic_quantity_shipped}) * 1.0 / count(distinct ${fulfillment_date}) ;;
+  }
+
+  measure: avg_hq_fulfilled_per_day {
+    hidden: yes
+    label: "Avg. Meeting HQ Daily Rate"
+    group_label: "Avg. Daily Rate"
+    type: number
+    value_format: "0.#"
+    sql: sum(${hq_quantity_shipped}) * 1.0 / count(distinct ${fulfillment_date}) ;;
+  }
+
+  measure: avg_wbo_fulfilled_per_day {
+    hidden: yes
+    label: "Avg. Whiteboard Owl Daily Rate"
+    group_label: "Avg. Daily Rate"
+    type: number
+    value_format: "0.#"
+    sql: sum(${wbo_quantity_shipped}) * 1.0 / count(distinct ${fulfillment_date}) ;;
+  }
 
   # measure: most_recent_amazon_date {}
 
