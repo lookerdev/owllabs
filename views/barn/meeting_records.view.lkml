@@ -258,7 +258,7 @@ view: meeting_records {
     label: "Avg. Person Count per Meeting"
     description: "Average number of people captured by device who spoke per meeting"
     type: number
-    sql: ${sum_personcount} * 1.0 / ${count_meetings} ;;
+    sql: ${sum_personcount} * 1.0 / nullif(${count_meetings},0) ;;
     value_format: "0"
   }
 
@@ -294,16 +294,16 @@ view: meeting_records {
     hidden: yes
     label: "Avg. Meeting Hours per Device"
     type: number
-    value_format: "0.00"
-    sql: (${durationhours} * 1.0) / ${count_devices} ;;
+    value_format: "0.0"
+    sql: (${durationhours} * 1.0) / nullif(${count_devices},0) ;;
   }
 
   measure: avg_meetings_per_device {
     hidden: yes
     label: "Avg. Meetings per Device"
     type: number
-    value_format: "0.00"
-    sql: (${count_meetings} * 1.0) / ${count_devices} ;;
+    value_format: "0.0"
+    sql: (${count_meetings} * 1.0) / nullif(${count_devices},0) ;;
   }
 
   measure: avg_meeting_length_minutes {
@@ -365,8 +365,8 @@ view: meeting_records {
     label: "Avg. # Meetings per Customer"
     description: "Total count of meetings divded by total count of registration domains"
     type: number
-    sql: ${count_meetings} * 1.0 / ${device_registrations.count_domain} ;;
-    value_format: "0.0"
+    sql: ${count_meetings} * 1.0 / nullif(${device_registrations.count_domain},0) ;;
+    # value_format: "0.0"
   }
 
 # % paired meetings
@@ -382,7 +382,7 @@ view: meeting_records {
     description: "Percentage of total meetings where the primary device was paired. Please note this measure will not be accurate if the Was Paired filter is used"
     type: number
     value_format: "0.0%"
-    sql: ${count_paired_meetings} * 1.0 / ${count_meetings} ;;
+    sql: ${count_paired_meetings} * 1.0 / nullif(${count_meetings},0) ;;
   }
 
   measure: avg_meetings_per_day_per_device {
