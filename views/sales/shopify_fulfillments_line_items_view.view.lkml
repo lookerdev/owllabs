@@ -404,6 +404,12 @@ view: shopify_fulfillments_line_items_view {
     sql: ${TABLE}.og_quantity_shipped ;;
   }
 
+  dimension: owlbar_quantity_shipped {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.owlbar_quantity_shipped ;;
+  }
+
   dimension: owlcare_quantity_shipped {
     hidden: yes
     type: number
@@ -485,7 +491,7 @@ view: shopify_fulfillments_line_items_view {
   dimension: hardware_quantity_shipped {
     hidden: yes
     type: number
-    sql: ${og_quantity_shipped} + ${pro_quantity_shipped} + ${wbo_quantity_shipped} + ${hq_quantity_shipped} + ${mo3_quantity_shipped} ;;
+    sql: ${og_quantity_shipped} + ${pro_quantity_shipped} + ${wbo_quantity_shipped} + ${hq_quantity_shipped} + ${mo3_quantity_shipped} + ${owlbar_quantity_shipped};;
   }
 
 
@@ -581,6 +587,13 @@ view: shopify_fulfillments_line_items_view {
     group_label: "Hardware"
     type: sum
     sql: ${og_quantity_shipped} ;;
+  }
+
+  measure: sum_owlbar_quantity_shipped {
+    label: "Owl Bar Quantity Shipped"
+    group_label: "Hardware"
+    type: sum
+    sql: ${TABLE}.owlbar_quantity_shipped ;;
   }
 
   measure: sum_owlcare_quantity_shipped {
