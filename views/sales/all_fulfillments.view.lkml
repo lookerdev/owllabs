@@ -808,14 +808,13 @@ view: all_fulfillments {
     sql: sum(${mo3_quantity_shipped}) * 1.0 / count(distinct ${fulfillment_date}) ;;
   }
 
-  # measure: avg_owlbar_fulfilled_per_day {
-  #   # hidden: yes
-  #   label: "Owl Bar Avg. Daily Shipments"
-  #   group_label: "Avg. Daily Rate"
-  #   type: number
-  #   value_format: "0.#"
-  #   sql: sum(${owlbar_quantity_shipped}) * 1.0 / count(distinct ${fulfillment_date}) ;;
-  # }
+  measure: avg_owlbar_fulfilled_per_day {
+    label: "Owl Bar Avg. Daily Shipments"
+    group_label: "Avg. Daily Rate"
+    type: number
+    value_format: "0.#"
+    sql: sum(${owlbar_quantity_shipped}) * 1.0 / count(distinct ${fulfillment_date}) ;;
+  }
 
   measure: avg_mic_fulfilled_per_day {
     # hidden: yes
