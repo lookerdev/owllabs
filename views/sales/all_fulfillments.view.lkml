@@ -295,6 +295,12 @@ view: all_fulfillments {
     sql: ${TABLE}.og_quantity_shipped ;;
   }
 
+  dimension: owlbar_quantity_shipped {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.owlbar_quantity_shipped ;;
+  }
+
   dimension: owlcare_quantity_shipped {
     hidden: yes
     type: number
@@ -388,7 +394,7 @@ view: all_fulfillments {
   dimension: hardware_quantity_shipped {
     hidden: yes
     type: number
-    sql: ${og_quantity_shipped} + ${pro_quantity_shipped} + ${wbo_quantity_shipped} + ${hq_quantity_shipped} + ${mo3_quantity_shipped} ;;
+    sql: ${og_quantity_shipped} + ${pro_quantity_shipped} + ${wbo_quantity_shipped} + ${hq_quantity_shipped} + ${mo3_quantity_shipped} + ${owlbar_quantity_shipped} ;;
   }
 
   dimension: start_of_month {
@@ -507,7 +513,6 @@ view: all_fulfillments {
     label: "Meeting Owl 3 Quantity Shipped"
     group_label: "Hardware"
     type: sum
-    # sql: ${TABLE}.lockadapter_quantity_shipped ;;
     sql: ${mo3_quantity_shipped} ;;
     drill_fields: [sales_channel, world_region, order_number, fulfillment_number, shipping_address_company, sku, sum_mo3_quantity_shipped]
   }
@@ -517,6 +522,14 @@ view: all_fulfillments {
     group_label: "Hardware"
     type: sum
     sql: ${og_quantity_shipped} ;;
+    drill_fields: [sales_channel, world_region, order_number, fulfillment_number, shipping_address_company, sku, sum_og_quantity_shipped]
+  }
+
+  measure: sum_owlbar_quantity_shipped {
+    label: "Owl Bar Quantity Shipped"
+    group_label: "Hardware"
+    type: sum
+    sql: ${owlbar_quantity_shipped} ;;
     drill_fields: [sales_channel, world_region, order_number, fulfillment_number, shipping_address_company, sku, sum_og_quantity_shipped]
   }
 
@@ -788,7 +801,6 @@ view: all_fulfillments {
   }
 
   measure: avg_mo3_fulfilled_per_day {
-    # hidden: yes
     label: "MO3 Avg. Daily Shipments"
     group_label: "Avg. Daily Rate"
     type: number
@@ -802,7 +814,7 @@ view: all_fulfillments {
   #   group_label: "Avg. Daily Rate"
   #   type: number
   #   value_format: "0.#"
-  #   sql: sum(${owlbar_quantity_ordered}) * 1.0 / count(distinct ${fulfillment_date}) ;;
+  #   sql: sum(${owlbar_quantity_shipped}) * 1.0 / count(distinct ${fulfillment_date}) ;;
   # }
 
   measure: avg_mic_fulfilled_per_day {
