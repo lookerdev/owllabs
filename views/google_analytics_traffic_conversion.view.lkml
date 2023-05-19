@@ -74,6 +74,12 @@ view: google_analytics_traffic_conversion {
       sql: ${TABLE}.date::timestamp ;;
     }
 
+    dimension: ga_property {
+      hidden: yes
+      type: string
+      sql: ${TABLE}.ga_property ;;
+    }
+
     dimension: num_affiliates_sessions {
       hidden: yes
       type: number
