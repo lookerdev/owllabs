@@ -102,6 +102,7 @@ view: meeting_records {
     description: "Seconds of meeting with presenter mode enabled"
     type: number
     sql: ${TABLE}.presenterseconds ;;
+    # sql: ${TABLE}.npresenterseconds ;;
   }
 
   dimension_group: startdate {
@@ -183,6 +184,7 @@ view: meeting_records {
     description: "The software version a device had installed at the time of the meeting. Based on software version captured for device at most recent checkin prior to meeting start. If null, this data can't be gathered from the device's checkins (Possible reasons - the most recent checkin for device occurred after the meeting date and sw version could not be determined, no sw version captured at checkin)."
     type: string
     sql: ${TABLE}.softwareversion ;;
+    # sql: ${TABLE}.swversion ;;
   }
 
   dimension: durationseconds_per_meeting {
@@ -200,6 +202,79 @@ view: meeting_records {
     sql: ${TABLE}.durationseconds / 60 ;;
     # value_format: "0" # integer
   }
+
+# NEW MEETING RECORD COLUMNS
+
+  # dimension: cameratemp {
+  #   label: "Camera Temperature"
+  #   type: number
+  #   sql: ${TABLE}.cameratemp ;;
+  # }
+
+  # dimension: cputemp {
+  #   label: "CPU Temperature"
+  #   type: number
+  #   sql: ${TABLE}.cputemp ;;
+  # }
+
+  # dimension: droppedframesduetolatency {
+  #   label: "Dropped Frames Due to Latency"
+  #   type: number
+  #   sql: ${TABLE}.droppedframesduetolatency ;;
+  # }
+
+  # dimension: fps {
+  #   label: "Frames per Second"
+  #   type: number
+  #   sql: ${TABLE}.fps ;;
+  # }
+
+  # dimension: nwhiteboardappseconds {
+  #   label: ""
+  #   type: number
+  #   sql: ${TABLE}.nwhiteboardappseconds ;;
+  # }
+
+  # dimension: nwhiteboardtagflips {
+  #   label: ""
+  #   type: number
+  #   sql: ${TABLE}.nwhiteboardtagflips ;;
+  # }
+
+  # dimension: nwhiteboardtagseconds {
+  #   label: ""
+  #   type: number
+  #   sql: ${TABLE}.nwhiteboardtagseconds ;;
+  # }
+
+  # dimension: paireddevicecount {
+  #   label: ""
+  #   type: number
+  #   sql: ${TABLE}.paireddevicecount ;;
+  # }
+
+  # dimension: paireddevices {
+  #   label: ""
+  #   type: string
+  #   sql: ${TABLE}.paireddevices ;;
+  # }
+
+  # dimension: paireddevicetypes {
+  #   label: ""
+  #   type: string
+  #   sql: ${TABLE}.paireddevicetypes ;;
+  # }
+
+
+# TO BE ADDED LATER
+# bruinserial
+# nbruinmeetingmuted
+# nbruinmeetingseconds
+# nbruinmeetingunmuted
+
+
+
+
 
 # # Cohort analysis
 #   dimension_group: owl_connect_return_after_first_mtg {
