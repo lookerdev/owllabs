@@ -1,6 +1,6 @@
 view: meeting_records {
   label: "Meeting Records"
-  sql_table_name: public.device_meeting_record_view ;;
+  sql_table_name: owlbarn_views.meeting_records_v ;;
   drill_fields: [id]
 
 # Dimensions
@@ -101,8 +101,8 @@ view: meeting_records {
     label: "Presenter Mode (seconds)"
     description: "Seconds of meeting with presenter mode enabled"
     type: number
-    sql: ${TABLE}.presenterseconds ;;
-    # sql: ${TABLE}.npresenterseconds ;;
+    # sql: ${TABLE}.presenterseconds ;;
+    sql: ${TABLE}.npresenterseconds ;;
   }
 
   dimension_group: startdate {
@@ -205,65 +205,75 @@ view: meeting_records {
 
 # NEW MEETING RECORD COLUMNS
 
-  # dimension: cameratemp {
-  #   label: "Camera Temperature"
-  #   type: number
-  #   sql: ${TABLE}.cameratemp ;;
-  # }
+  dimension: cameratemp {
+    label: "Camera Temperature"
+    type: number
+    sql: ${TABLE}.cameratemp ;;
+  }
 
-  # dimension: cputemp {
-  #   label: "CPU Temperature"
-  #   type: number
-  #   sql: ${TABLE}.cputemp ;;
-  # }
+  dimension: cputemp {
+    label: "CPU Temperature"
+    type: number
+    sql: ${TABLE}.cputemp ;;
+  }
 
-  # dimension: droppedframesduetolatency {
-  #   label: "Dropped Frames Due to Latency"
-  #   type: number
-  #   sql: ${TABLE}.droppedframesduetolatency ;;
-  # }
+  dimension: droppedframesduetolatency {
+    label: "Dropped Frames Due to Latency"
+    type: number
+    sql: ${TABLE}.droppedframesduetolatency ;;
+  }
 
-  # dimension: fps {
-  #   label: "Frames per Second"
-  #   type: number
-  #   sql: ${TABLE}.fps ;;
-  # }
+  dimension: fps {
+    label: "Frames per Second"
+    type: number
+    sql: ${TABLE}.fps ;;
+  }
 
-  # dimension: nwhiteboardappseconds {
-  #   label: ""
-  #   type: number
-  #   sql: ${TABLE}.nwhiteboardappseconds ;;
-  # }
+  dimension: nwhiteboardappseconds {
+    label: "Number of Whiteboard App Seconds"
+    description: "Total time spent showing whiteboard when requested through the app UI."
+    type: number
+    sql: ${TABLE}.nwhiteboardappseconds ;;
+  }
 
-  # dimension: nwhiteboardtagflips {
-  #   label: ""
-  #   type: number
-  #   sql: ${TABLE}.nwhiteboardtagflips ;;
-  # }
+  dimension: nwhiteboardtagflips {
+    label: "Number of Whiteboard Tag Flips"
+    description: "Number of tag flips that occured while a WBO was paired."
+    type: number
+    sql: ${TABLE}.nwhiteboardtagflips ;;
+  }
 
-  # dimension: nwhiteboardtagseconds {
-  #   label: ""
-  #   type: number
-  #   sql: ${TABLE}.nwhiteboardtagseconds ;;
-  # }
+  dimension: nwhiteboardtagseconds {
+    label: "Number of Whiteboard Tag Seconds"
+    description: "Total time spent showing whiteboard when requested by tag flip."
+    type: number
+    sql: ${TABLE}.nwhiteboardtagseconds ;;
+  }
 
-  # dimension: paireddevicecount {
-  #   label: ""
-  #   type: number
-  #   sql: ${TABLE}.paireddevicecount ;;
-  # }
+  dimension: paireddevicecount {
+    label: "Number of Paired Devices"
+  description: "Count of unique secondary devices paired via Owl Net in meeting"
+    type: number
+    sql: ${TABLE}.paireddevicecount ;;
+  }
 
-  # dimension: paireddevices {
-  #   label: ""
-  #   type: string
-  #   sql: ${TABLE}.paireddevices ;;
-  # }
+  dimension: paireddevices {
+    label: "Paired Devices"
+    description: "List of secondary devices paired via Owl Net in meeting"
+    type: string
+    sql: ${TABLE}.paireddevices ;;
+  }
 
-  # dimension: paireddevicetypes {
-  #   label: ""
-  #   type: string
-  #   sql: ${TABLE}.paireddevicetypes ;;
-  # }
+  dimension: paireddevicetypes {
+    label: "Paired Device Types"
+  description: "Types of secondary devices paired via Owl Net in meeting"
+    type: string
+    sql: ${TABLE}.paireddevicetypes ;;
+  }
+
+  # UPDATE npresenterseconds ;;
+
+
 
 
 # TO BE ADDED LATER
