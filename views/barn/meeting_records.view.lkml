@@ -218,12 +218,14 @@ view: meeting_records {
 
   dimension: droppedframesduetolatency {
     label: "Dropped Frames Due to Latency"
+    description: "Number of video frames excluded from stream due to video lag."
     type: number
     sql: ${TABLE}.droppedframesduetolatency ;;
   }
 
   dimension: fps {
     label: "Frames per Second"
+    description: "Frequency at which consecutive images are captured or displayed."
     type: number
     sql: ${TABLE}.fps ;;
   }
@@ -252,7 +254,7 @@ view: meeting_records {
   dimension: paireddevicecount {
     label: "Number of Paired Devices"
     group_label: "Paired Devices"
-    description: "Count of unique secondary devices paired via Owl Net in meeting."
+    description: "Count of unique secondary devices paired via OwlNet in meeting."
     type: number
     sql: ${TABLE}.paireddevicecount ;;
   }
@@ -260,7 +262,7 @@ view: meeting_records {
   dimension: paireddevices {
     label: "Paired Devices"
     group_label: "Paired Devices"
-    description: "List of secondary devices paired via Owl Net in meeting."
+    description: "List of secondary devices paired via OwlNet in meeting."
     type: string
     sql: ${TABLE}.paireddevices ;;
   }
