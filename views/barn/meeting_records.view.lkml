@@ -101,7 +101,6 @@ view: meeting_records {
     label: "Presenter Mode (seconds)"
     description: "Seconds of meeting with presenter mode enabled"
     type: number
-    # sql: ${TABLE}.presenterseconds ;;
     sql: ${TABLE}.npresenterseconds ;;
   }
 
@@ -252,26 +251,27 @@ view: meeting_records {
 
   dimension: paireddevicecount {
     label: "Number of Paired Devices"
-  description: "Count of unique secondary devices paired via Owl Net in meeting"
+    group_label: "Paired Devices"
+    description: "Count of unique secondary devices paired via Owl Net in meeting."
     type: number
     sql: ${TABLE}.paireddevicecount ;;
   }
 
   dimension: paireddevices {
     label: "Paired Devices"
-    description: "List of secondary devices paired via Owl Net in meeting"
+    group_label: "Paired Devices"
+    description: "List of secondary devices paired via Owl Net in meeting."
     type: string
     sql: ${TABLE}.paireddevices ;;
   }
 
   dimension: paireddevicetypes {
     label: "Paired Device Types"
-  description: "Types of secondary devices paired via Owl Net in meeting"
+    group_label: "Paired Devices"
+    description: "Types of secondary devices paired via Owl Net in meeting."
     type: string
     sql: ${TABLE}.paireddevicetypes ;;
   }
-
-  # UPDATE npresenterseconds ;;
 
 
 
