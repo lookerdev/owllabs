@@ -21,6 +21,10 @@ view: all_orders {
       value: "date_month"
       label: "Month"
     }
+    # allowed_value: {
+    #   value: "date_quarter"
+    #   label: "Quarter"
+    # }
   }
 
   parameter: pivot_picker {
@@ -60,6 +64,7 @@ view: all_orders {
     WHEN {% parameter timeframe_picker %} = 'date_date' THEN TO_DATE(${order_date}, 'YYYY-MM-DD')
     WHEN {% parameter timeframe_picker %} = 'date_week' THEN TO_DATE(${order_week}, 'YYYY-MM-DD')
     WHEN {% parameter timeframe_picker %} = 'date_month' THEN TO_DATE(${order_month}, 'YYYY-MM')
+    --WHEN {% parameter timeframe_picker %} = 'date_quarter' THEN TO_DATE(${order_quarter}, 'YYYY-qtr')
     END ;;
   }
 
@@ -495,8 +500,9 @@ view: all_orders {
   }
 
   measure: sum_owlcare_quantity_ordered {
-    hidden: yes
+    # hidden: yes
     label: "Owl Care Quantity Ordered"
+    group_label: "Digital"
     type: sum
     sql: ${owlcare_quantity_ordered} ;;
     drill_fields: [sales_channel, world_region, order_number, billing_address_company, sku, sum_owlcare_quantity_ordered]

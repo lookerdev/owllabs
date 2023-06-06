@@ -534,7 +534,7 @@ view: all_fulfillments {
   }
 
   measure: sum_owlcare_quantity_shipped {
-    hidden: yes
+    # hidden: yes
     label: "Owl Care Quantity Shipped"
     group_label: "Digital"
     type: sum
