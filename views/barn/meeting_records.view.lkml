@@ -206,12 +206,14 @@ view: meeting_records {
 
   dimension: cameratemp {
     label: "Camera Temperature"
+    description: "Measured in millidegrees Centigrade."
     type: number
     sql: ${TABLE}.cameratemp ;;
   }
 
   dimension: cputemp {
     label: "CPU Temperature"
+    description: "Measured in degrees Centigrade."
     type: number
     sql: ${TABLE}.cputemp ;;
   }
