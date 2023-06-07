@@ -714,4 +714,120 @@ view: all_orders {
   # }
 
 
+
+## ESTIMATED SUBTOTALS
+
+  measure: ceilingmount_subtotal {
+    hidden: yes
+    label: "Ceiling Mount Estimated Revenue"
+    group_label: "Estimated Revenue"
+    type: number
+    value_format: "$#,##0"
+    sql: ${sum_ceilingmount_quantity_ordered} * 49 ;;
+  }
+
+  measure: hardcase_subtotal {
+    hidden: yes
+    label: "Hard Case Estimated Revenue"
+    group_label: "Estimated Revenue"
+    type: number
+    value_format: "$#,##0"
+    sql: ${sum_hardcase_quantity_ordered} * 199 ;;
+  }
+
+  measure: lockadapter_subtotal {
+    hidden: yes
+    label: "Lock Adapter Estimated Revenue"
+    group_label: "Estimated Revenue"
+    type: number
+    value_format: "$#,##0"
+    sql: ${sum_lockadapter_quantity_ordered} * 49 ;;
+  }
+
+  measure: markers_subtotal {
+    hidden: yes
+    label: "Whiteboard Markers Estimated Revenue"
+    group_label: "Estimated Revenue"
+    type: number
+    value_format: "$#,##0"
+    sql: ${sum_markers_quantity_ordered} * 15 ;;
+  }
+
+  measure: mic_subtotal {
+    hidden: yes
+    label: "Expansion Mic Estimated Revenue"
+    group_label: "Estimated Revenue"
+    type: number
+    value_format: "$#,##0"
+    sql: ${sum_mic_quantity_ordered} * 249 ;;
+  }
+
+  measure: softcase_subtotal {
+    hidden: yes
+    label: "Soft Case Estimated Revenue"
+    group_label: "Estimated Revenue"
+    type: number
+    value_format: "$#,##0"
+    sql: ${sum_softcase_quantity_ordered} * 149 ;;
+  }
+
+  measure: stand_subtotal {
+    hidden: yes
+    label: "Stand Estimated Revenue"
+    group_label: "Estimated Revenue"
+    type: number
+    value_format: "$#,##0"
+    sql: ${sum_stand_quantity_ordered} * 99 ;;
+  }
+
+  measure: tablemount_subtotal {
+    hidden: yes
+    label: "Table Mount Estimated Revenue"
+    group_label: "Estimated Revenue"
+    type: number
+    value_format: "$#,##0"
+    sql: ${sum_tablemount_quantity_ordered} * 19 ;;
+  }
+
+  measure: tripod_subtotal {
+    hidden: yes
+    label: "Tripod Estimated Revenue"
+    group_label: "Estimated Revenue"
+    type: number
+    value_format: "$#,##0"
+    sql: ${sum_tripod_quantity_ordered} * 149 ;;
+  }
+
+  measure: usbconversioncable_subtotal {
+    hidden: yes
+    label: "USB Conversion Cable Estimated Revenue"
+    group_label: "Estimated Revenue"
+    # description: "This is an average value of the 4 SKUs MSRPs"
+    type: number
+    value_format: "$#,##0"
+    # sql: case when ${sku} = 'ACCMTW300-0001' then ${sum_usbconversioncable_quantity_shipped} * 22 /*USB C to C Cable (6 Feet / 1.8M)*/
+    #           when ${sku} = 'ACCMTW300-0002' then ${sum_usbconversioncable_quantity_shipped} * 29 /*USB C to C Cable (16 Feet / 4.87M)*/
+    #           when ${sku} = 'ACCMTW300-0003' then ${sum_usbconversioncable_quantity_shipped} * 22 /*USB C to A Cable (6 Feet / 1.8M)*/
+    #           when ${sku} = 'ACCMTW300-0004' then ${sum_usbconversioncable_quantity_shipped} * 29 /*USB C to A Cable (16 Feet / 4.87M)*/
+    #           end ;;
+    sql: ${sum_usbconversioncable_quantity_ordered} * 25.5 /*avg price*/
+      ;;
+  }
+
+  measure: usbextension_subtotal {
+    hidden: yes
+    label: "USB Extension Cable Estimated Revenue"
+    group_label: "Estimated Revenue"
+    type: number
+    value_format: "$#,##0"
+    sql: ${sum_usbextension_quantity_ordered} * 15 ;;
+  }
+
+  measure: allaccessories_revenue {
+    hidden: yes
+    group_label: "Estimated Revenue"
+    type: number
+    value_format: "$#,##0"
+    sql: ${ceilingmount_subtotal}+${hardcase_subtotal}+${mic_subtotal}+${markers_subtotal}+${lockadapter_subtotal}+${softcase_subtotal}+${stand_subtotal}+${tablemount_subtotal}+${tripod_subtotal}+${usbconversioncable_subtotal} ;;
+    }
 }
