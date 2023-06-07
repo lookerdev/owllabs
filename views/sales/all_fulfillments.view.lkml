@@ -664,6 +664,9 @@ view: all_fulfillments {
     drill_fields: [sales_channel, world_region, order_number, fulfillment_number, shipping_address_company, sku, sum_hardware_quantity_shipped]
   }
 
+
+## ESTIMATED REVENUE
+
   measure: ceilingmount_revenue {
     hidden: yes
     label: "Ceiling Mount Estimated Revenue"
