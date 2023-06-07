@@ -21,10 +21,10 @@ view: all_orders {
       value: "date_month"
       label: "Month"
     }
-    # allowed_value: {
-    #   value: "date_quarter"
-    #   label: "Quarter"
-    # }
+    allowed_value: {
+      value: "date_quarter"
+      label: "Quarter"
+    }
   }
 
   parameter: pivot_picker {
@@ -52,21 +52,20 @@ view: all_orders {
     WHEN {% parameter timeframe_picker %} = 'date_date' THEN TO_DATE(${order_date}, 'YYYY-MM-DD')
     WHEN {% parameter timeframe_picker %} = 'date_week' THEN TO_DATE(${order_week}, 'YYYY-MM-DD')
     WHEN {% parameter timeframe_picker %} = 'date_month' THEN TO_DATE(${order_month}, 'YYYY-MM')
-    --WHEN {% parameter timeframe_picker %} = 'date_quarter' THEN DATE_TRUNC('quarter', ${order_date})
     END ;;
   }
 
-  # dimension: dynamic_timeframe2 {
-  #   type: string
-  #   sql:
-  #   CASE
-  #   --WHEN {% parameter timeframe_picker %} = 'date_date' THEN TO_DATE(${order_date}, 'YYYY-MM-DD')
-  #   --WHEN {% parameter timeframe_picker %} = 'date_week' (TO_CHAR(DATE_TRUNC('month', DATE_TRUNC('week', ${order_date})), 'YYYY-WW'))
-  #   WHEN {% parameter timeframe_picker %} = 'date_month' THEN (TO_CHAR(DATE_TRUNC('month', ${order_date}), 'YYYY-MM'))
-  #   WHEN {% parameter timeframe_picker %} = 'date_quarter' THEN (TO_CHAR(DATE_TRUNC('month', DATE_TRUNC('quarter', ${order_date})), 'YYYY-Q'))
-  #   else 'nothing'
-  #   END ;;
-  # }
+  dimension: dynamic_timeframe2 {
+    type: string
+    sql:
+    CASE
+    --WHEN {% parameter timeframe_picker %} = 'date_date' THEN TO_DATE(${order_date}, 'YYYY-MM-DD')
+    --WHEN {% parameter timeframe_picker %} = 'date_week' (TO_CHAR(DATE_TRUNC('month', DATE_TRUNC('week', ${order_date})), 'YYYY-WW'))
+    WHEN {% parameter timeframe_picker %} = 'date_month' THEN (TO_CHAR(DATE_TRUNC('month', ${order_date}), 'YYYY-MM'))
+    WHEN {% parameter timeframe_picker %} = 'date_quarter' THEN (TO_CHAR(DATE_TRUNC('month', DATE_TRUNC('quarter', ${order_date})), 'YYYY-Q'))
+    else 'nothing'
+    END ;;
+  }
 
 
     # WHEN {% parameter timeframe_picker %} = 'date_quarter' THEN TO_DATE(extract(year from ${order_date})||'-'||extract(quarter from ${order_date}), 'YYYY-Q') # doesn't work
@@ -82,19 +81,19 @@ view: all_orders {
 
 
   dimension: quarter1 { # this is the one I want
-    hidden: yes
+    # hidden: yes
     type: string
     sql: (TO_CHAR(DATE_TRUNC('month', DATE_TRUNC('quarter', ${order_date} )), 'YYYY-Q')) ;;
   }
 
   dimension: week1 {
-    hidden: yes
+    # hidden: yes
     type: string
     sql: (TO_CHAR(DATE_TRUNC('month', DATE_TRUNC('week', ${order_date})), 'YYYY-WW')) ;;
   }
 
   dimension: quarter3 { # first day of quarter
-    hidden: yes
+    # hidden: yes
     type: string
     sql: DATE_TRUNC('quarter', ${order_date}) ;;
   }
