@@ -45,6 +45,67 @@ view: all_orders {
 
 ## DIMENSIONS
 
+  dimension: dynamic_timeframe {
+    type: string
+    sql:
+    CASE
+    WHEN {% parameter timeframe_picker %} = 'date_date' THEN TO_DATE(${order_date}, 'YYYY-MM-DD')
+    WHEN {% parameter timeframe_picker %} = 'date_week' THEN TO_DATE(${order_week}, 'YYYY-MM-DD')
+    WHEN {% parameter timeframe_picker %} = 'date_month' THEN TO_DATE(${order_month}, 'YYYY-MM')
+    --WHEN {% parameter timeframe_picker %} = 'date_quarter' THEN DATE_TRUNC('quarter', ${order_date})
+    END ;;
+  }
+
+  # dimension: dynamic_timeframe2 {
+  #   type: string
+  #   sql:
+  #   CASE
+  #   --WHEN {% parameter timeframe_picker %} = 'date_date' THEN TO_DATE(${order_date}, 'YYYY-MM-DD')
+  #   --WHEN {% parameter timeframe_picker %} = 'date_week' (TO_CHAR(DATE_TRUNC('month', DATE_TRUNC('week', ${order_date})), 'YYYY-WW'))
+  #   WHEN {% parameter timeframe_picker %} = 'date_month' THEN (TO_CHAR(DATE_TRUNC('month', ${order_date}), 'YYYY-MM'))
+  #   WHEN {% parameter timeframe_picker %} = 'date_quarter' THEN (TO_CHAR(DATE_TRUNC('month', DATE_TRUNC('quarter', ${order_date})), 'YYYY-Q'))
+  #   else 'nothing'
+  #   END ;;
+  # }
+
+
+    # WHEN {% parameter timeframe_picker %} = 'date_quarter' THEN TO_DATE(extract(year from ${order_date})||'-'||extract(quarter from ${order_date}), 'YYYY-Q') # doesn't work
+
+  # WHEN {% parameter timeframe_picker %} = 'date_quarter' THEN (TO_CHAR(DATE_TRUNC('month', DATE_TRUNC('quarter', ${order_date} )), 'YYYY-Q'))
+  #  WHEN {% parameter timeframe_picker %} = 'date_quarter' THEN
+        # CASE WHEN extract(month from ${order_date}) in (1, 2, 3) then text(extract(year from ${order_date})||'-Q1')
+        #     WHEN extract(month from ${order_date}) in (4, 5, 6) then text(extract(year from ${order_date})||'-Q2')
+        #     WHEN extract(month from ${order_date}) in (7, 8, 9) then text(extract(year from ${order_date})||'-Q3')
+        #     WHEN extract(month from ${order_date}) in (10, 11, 12) then text(extract(year from ${order_date})||'-Q4')
+        #     END
+  # (TO_CHAR(DATE_TRUNC('month', DATE_TRUNC('quarter', ${order_date} )), 'YYYY-Q'))
+
+
+  dimension: quarter1 { # this is the one I want
+    hidden: yes
+    type: string
+    sql: (TO_CHAR(DATE_TRUNC('month', DATE_TRUNC('quarter', ${order_date} )), 'YYYY-Q')) ;;
+  }
+
+  dimension: week1 {
+    hidden: yes
+    type: string
+    sql: (TO_CHAR(DATE_TRUNC('month', DATE_TRUNC('week', ${order_date})), 'YYYY-WW')) ;;
+  }
+
+  dimension: quarter3 { # first day of quarter
+    hidden: yes
+    type: string
+    sql: DATE_TRUNC('quarter', ${order_date}) ;;
+  }
+
+  # dimension: quarter4 { # doesn't work, only year is accurate
+  #   type: string
+  #   sql: TO_DATE(${order_date}, 'YYYY-Q') ;;
+  # }
+
+
+
   dimension: dynamic_pivot {
     hidden: yes
     # label: "Slice Dimension"
@@ -54,17 +115,6 @@ view: all_orders {
     CASE
     WHEN {% parameter pivot_picker %} = 'sales_channel' THEN ${sales_channel}
     WHEN {% parameter pivot_picker %} = 'world_region' THEN ${world_region}
-    END ;;
-  }
-
-  dimension: dynamic_timeframe {
-    type: string
-    sql:
-    CASE
-    WHEN {% parameter timeframe_picker %} = 'date_date' THEN TO_DATE(${order_date}, 'YYYY-MM-DD')
-    WHEN {% parameter timeframe_picker %} = 'date_week' THEN TO_DATE(${order_week}, 'YYYY-MM-DD')
-    WHEN {% parameter timeframe_picker %} = 'date_month' THEN TO_DATE(${order_month}, 'YYYY-MM')
-    --WHEN {% parameter timeframe_picker %} = 'date_quarter' THEN TO_DATE(${order_quarter}, 'YYYY-qtr')
     END ;;
   }
 
