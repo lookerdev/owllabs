@@ -49,12 +49,6 @@ view: meeting_records {
     sql: ${TABLE}.deviceuuid ;;
   }
 
-  dimension: location {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.location ;;
-  }
-
   dimension: npinnedaoiedits {
     hidden: yes
     label: "Number of Pinned AOI Edits"

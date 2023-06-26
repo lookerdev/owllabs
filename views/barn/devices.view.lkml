@@ -126,12 +126,6 @@ view: devices {
     sql: ${TABLE}.device_last_ip_address ;;
   }
 
-  dimension: last_location {
-    description: "Device most recent meeting location, captured from most recent check-in"
-    type: string
-    sql: ${TABLE}.device_last_location ;;
-  }
-
   dimension: macaddress {
     label: "MAC Address"
     type: string
