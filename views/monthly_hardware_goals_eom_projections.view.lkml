@@ -78,6 +78,12 @@ view: monthly_hardware_goals_eom_projections {
     sql: ${TABLE}.mo3_shipped ;;
   }
 
+  dimension: owlbar_shipped {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.owlbar_shipped ;;
+  }
+
   dimension: all_owls_shipped {
     hidden: yes
     type: number
@@ -87,7 +93,7 @@ view: monthly_hardware_goals_eom_projections {
   dimension: all_hardware_shipped {
     hidden: yes
     type: number
-    sql: ${mop_shipped} + ${hq_shipped} + ${wbo_shipped} + ${mo3_shipped} ;;
+    sql: ${mop_shipped} + ${hq_shipped} + ${wbo_shipped} + ${mo3_shipped} + ${owlbar_shipped} ;;
   }
 
   # dimension: order_month_first_day {
@@ -126,6 +132,12 @@ view: monthly_hardware_goals_eom_projections {
     sql: ${TABLE}.mo3_ordered ;;
   }
 
+  dimension: owlbar_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.owlbar_ordered ;;
+  }
+
   dimension: all_owls_ordered {
     hidden: yes
     type: number
@@ -135,7 +147,7 @@ view: monthly_hardware_goals_eom_projections {
   dimension: all_hardware_ordered {
     hidden: yes
     type: number
-    sql: ${mop_ordered} + ${hq_ordered} + ${wbo_ordered} + ${mo3_ordered} ;;
+    sql: ${mop_ordered} + ${hq_ordered} + ${wbo_ordered} + ${mo3_ordered} + ${owlbar_ordered} ;;
   }
 
   dimension: hq_goal {
@@ -148,6 +160,12 @@ view: monthly_hardware_goals_eom_projections {
     hidden: yes
     type: number
     sql: ${TABLE}.wbo_goal ;;
+  }
+
+  dimension: owlbar_goal {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.owlbar_goal ;;
   }
 
   dimension: all_owls_goal {
@@ -186,6 +204,14 @@ view: monthly_hardware_goals_eom_projections {
     sql: ${wbo_shipped}/nullif(${wbo_goal},0) ;;
   }
 
+  dimension: percent_of_goal_owlbar {
+    hidden: yes
+    type: number
+    # value_format: "0\%"
+    value_format_name: percent_0
+    sql: ${owlbar_shipped}/nullif(${owlbar_goal},0) ;;
+  }
+
   dimension: percent_of_goal_all_hardware {
     hidden: yes
     type: number
@@ -215,6 +241,15 @@ view: monthly_hardware_goals_eom_projections {
     type: sum
     sql: ${wbo_shipped} ;;
     html: {{ rendered_value }} || {{ percent_of_goal_wbo._rendered_value }} of goal ;;
+  }
+
+  measure: sum_owlbar_shipped {
+    label: "Owl Bars Fulfilled MTD"
+    description: "Number of Owl Bars shipped this month to date"
+    group_label: "MTD Fulfillments"
+    type: sum
+    sql: ${owlbar_shipped} ;;
+    html: {{ rendered_value }} || {{ percent_of_goal_owlbar._rendered_value }} of goal ;;
   }
 
   # measure: sum_mop_shipped {
@@ -276,6 +311,15 @@ view: monthly_hardware_goals_eom_projections {
     # html: {{ rendered_value }} || {{ percent_of_goal_wbo._rendered_value }} of goal ;;
   }
 
+  measure: sum_owlbar_ordered {
+    label: "Owl Bars Ordered MTD"
+    description: "Number of Owl Bars ordered this month to date"
+    group_label: "MTD Orders"
+    type: sum
+    sql: ${owlbar_ordered} ;;
+    # html: {{ rendered_value }} || {{ percent_of_goal_wbo._rendered_value }} of goal ;;
+  }
+
   measure: sum_all_owls_ordered {
     # hidden: yes
     label: "All Owls Ordered MTD"
@@ -322,6 +366,13 @@ view: monthly_hardware_goals_eom_projections {
     sql: ${wbo_goal} ;;
   }
 
+  measure: sum_owlbar_goal {
+    label: "Owl Bar Fulfillment Goal"
+    group_label: "Sales Goals"
+    type: sum
+    sql: ${owlbar_goal} ;;
+  }
+
   measure: sum_all_owls_goal {
     # hidden: yes
     label: "All Owls Fulfillment Goal"
@@ -356,6 +407,15 @@ view: monthly_hardware_goals_eom_projections {
     type: number
     sql: sum(${wbo_goal}) - sum(${wbo_shipped}) ;;
     html: {{ rendered_value }} remaining of {{ wbo_goal._rendered_value }} ;;
+  }
+
+  measure: owlbar_goal_remaining {
+    label: "Owl Bar Goal Remaining"
+    description: "Number of Owl Bars that need to be shipped to meet this month's goal"
+    group_label: "Goal Remaining"
+    type: number
+    sql: sum(${owlbar_goal}) - sum(${owlbar_shipped}) ;;
+    html: {{ rendered_value }} remaining of {{ owlbar_goal._rendered_value }} ;;
   }
 
   measure: all_owls_goal_remaining {
@@ -394,6 +454,15 @@ view: monthly_hardware_goals_eom_projections {
     type: number
     value_format: "#,##0"
     sql: (sum(${wbo_shipped}) / /*days in month so far*/ (DATE_PART(DAYOFYEAR,CURRENT_DATE) - (DATE_PART(DAYOFYEAR,${month_start}) - 1))) * /*total days in month*/ ((DATE_PART(DAYOFYEAR,${month_end}) - DATE_PART(DAYOFYEAR,${month_start})) + 1) ;;
+  }
+
+  measure: eom_fulfillment_projection_owlbar {
+    label: "Owl Bar EOM Fulfillment Projection"
+    description: "Predicted number of Owl Bars fulfilled by end of month"
+    group_label: "EOM Fulfillment Projections"
+    type: number
+    value_format: "#,##0"
+    sql: (sum(${owlbar_shipped}) / /*days in month so far*/ (DATE_PART(DAYOFYEAR,CURRENT_DATE) - (DATE_PART(DAYOFYEAR,${month_start}) - 1))) * /*total days in month*/ ((DATE_PART(DAYOFYEAR,${month_end}) - DATE_PART(DAYOFYEAR,${month_start})) + 1) ;;
   }
 
   measure: eom_fulfillment_projection_all_owls {
@@ -436,6 +505,15 @@ view: monthly_hardware_goals_eom_projections {
     sql: (sum(${wbo_ordered}) / /*days in month so far*/ (DATE_PART(DAYOFYEAR,CURRENT_DATE) - (DATE_PART(DAYOFYEAR,${month_start}) - 1))) * /*total days in month*/ ((DATE_PART(DAYOFYEAR,${month_end}) - DATE_PART(DAYOFYEAR,${month_start})) + 1) ;;
   }
 
+  measure: eom_order_projection_owlbar {
+    label: "Owl Bar EOM Order Projection"
+    description: "Predicted number of Owl Bars ordered by end of month"
+    group_label: "EOM Order Projections"
+    type: number
+    value_format: "#,##0"
+    sql: (sum(${owlbar_ordered}) / /*days in month so far*/ (DATE_PART(DAYOFYEAR,CURRENT_DATE) - (DATE_PART(DAYOFYEAR,${month_start}) - 1))) * /*total days in month*/ ((DATE_PART(DAYOFYEAR,${month_end}) - DATE_PART(DAYOFYEAR,${month_start})) + 1) ;;
+  }
+
   measure: eom_order_projection_all_owls {
     # hidden: yes
     label: "All Owls EOM Order Projection"
@@ -474,6 +552,14 @@ view: monthly_hardware_goals_eom_projections {
     type: number
     value_format_name: percent_0
     sql: ((sum(${wbo_shipped}) / /*days in month so far*/ (DATE_PART(DAYOFYEAR,CURRENT_DATE) - (DATE_PART(DAYOFYEAR,${month_start}) - 1))) * /*total days in month*/ ((DATE_PART(DAYOFYEAR,${month_end}) - DATE_PART(DAYOFYEAR,${month_start})) + 1)) / sum(${wbo_goal}) ;;
+  }
+
+  measure: percent_eom_to_goal_owlbar {
+    label: "Owl Bar EOM Fulfillment Projection % of Goal"
+    group_label: "EOM Fulfillment Projections % of Goal"
+    type: number
+    value_format_name: percent_0
+    sql: ((sum(${owlbar_shipped}) / /*days in month so far*/ (DATE_PART(DAYOFYEAR,CURRENT_DATE) - (DATE_PART(DAYOFYEAR,${month_start}) - 1))) * /*total days in month*/ ((DATE_PART(DAYOFYEAR,${month_end}) - DATE_PART(DAYOFYEAR,${month_start})) + 1)) / nullif(sum(${owlbar_goal}),0) ;;
   }
 
   measure: percent_eom_to_goal_all_owls {
