@@ -1,7 +1,7 @@
 connection: "redshift"
 
-include: "/views/nps_surveys.view.lkml"
 
+include: "/views/nps/*.view.lkml"
 
 
 
@@ -12,3 +12,7 @@ explore: nps_surveys {
     filters: [nps_surveys.survey_iteration: "Initial"] # filter defaults to remove test responses
   }
 }
+
+# explore: survey_data_nps {
+#   label: "NPS - Salesforce"
+# }
