@@ -530,7 +530,7 @@ view: all_fulfillments {
     group_label: "Hardware"
     type: sum
     sql: ${owlbar_quantity_shipped} ;;
-    drill_fields: [sales_channel, world_region, order_number, fulfillment_number, shipping_address_company, sku, sum_og_quantity_shipped]
+    drill_fields: [sales_channel, world_region, order_number, fulfillment_number, shipping_address_company, sku, sum_owlbar_quantity_shipped]
   }
 
   measure: sum_owlcare_quantity_shipped {
