@@ -1,6 +1,4 @@
 connection: "redshift"
-
-
 include: "/views/nps/*.view.lkml"
 
 
@@ -13,6 +11,6 @@ explore: nps_surveys {
   }
 }
 
-# explore: survey_data_nps {
-#   label: "NPS - Salesforce"
-# }
+explore: survey_data_nps {
+  label: "NPS - Salesforce (Under Development)"
+}
