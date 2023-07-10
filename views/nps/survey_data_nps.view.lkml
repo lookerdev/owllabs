@@ -210,9 +210,59 @@ view: survey_data_nps {
   # }
 
   dimension: self_selected_products_c {
-    label: "Self-Selected Products"
+    label: "Self-Selected Products List"
+    description: "List of all devices customer claims to own."
+    group_label: "Self-Selected Products"
     type: string
     sql: ${TABLE}.self_selected_products_c ;;
+  }
+
+  dimension: self_selected_mop {
+    label: "Self-Selected: Meeting Owl Pro"
+    description: "Identifies if customer selected that they own a MOP."
+    group_label: "Self-Selected Products"
+    type: yesno
+    sql: ${TABLE}.self_selected_mop ;;
+  }
+
+  dimension: self_selected_mo3 {
+    label: "Self-Selected: Meeting Owl 3"
+    description: "Identifies if customer selected that they own an MO3."
+    group_label: "Self-Selected Products"
+    type: yesno
+    sql: ${TABLE}.self_selected_mo3 ;;
+  }
+
+  dimension: self_selected_owlbar {
+    label: "Self-Selected: Owl Bar"
+    description: "Identifies if customer selected that they own an Owl Bar."
+    group_label: "Self-Selected Products"
+    type: yesno
+    sql: ${TABLE}.self_selected_owlbar ;;
+  }
+
+  dimension: self_selected_wbo {
+    label: "Self-Selected: Whiteboard Owl"
+    description: "Identifies if customer selected that they own a WBO."
+    group_label: "Self-Selected Products"
+    type: yesno
+    sql: ${TABLE}.self_selected_wbo ;;
+  }
+
+  dimension: self_selected_mhq {
+    label: "Self-Selected: Meeting HQ"
+    description: "Identifies if customer selected that they own an MHQ."
+    group_label: "Self-Selected Products"
+    type: yesno
+    sql: ${TABLE}.self_selected_mhq ;;
+  }
+
+  dimension: self_selected_mic {
+    label: "Self-Selected: Extension Mic"
+    description: "Identifies if customer selected that they own an Extension Mic."
+    group_label: "Self-Selected Products"
+    type: yesno
+    sql: ${TABLE}.self_selected_mic ;;
   }
 
   # dimension: slack_channel_c {
