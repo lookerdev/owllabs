@@ -1,7 +1,7 @@
 view: survey_data_nps {
   label: "NPS - Salesforce"
   sql_table_name: salesforce.survey_data_nps ;;
-  drill_fields: [id]
+  drill_fields: [id, nps_score_c]
 
 
   dimension: id {
@@ -9,6 +9,11 @@ view: survey_data_nps {
     label: "Response ID"
     type: string
     sql: ${TABLE}.id ;;
+    link: {
+      label: "View Salesforce Response"
+      url: "https://owllabs.lightning.force.com/lightning/r/Survey_Data__c/{{ value }}/view"
+      # icon_url: "http://google.com/favicon.ico"
+    }
   }
 
   dimension: account_c {
@@ -113,6 +118,7 @@ view: survey_data_nps {
   }
 
   # dimension: link_to_response_c {
+  #   label: "Link to GetFeedback Response"
   #   type: string
   #   sql: ${TABLE}.link_to_response_c ;;
   # }
@@ -264,6 +270,7 @@ view: survey_data_nps {
     type: yesno
     sql: ${TABLE}.self_selected_mic ;;
   }
+
 
   # dimension: slack_channel_c {
   #   type: string
