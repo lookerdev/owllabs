@@ -10,9 +10,9 @@ view: survey_data_nps {
     type: string
     sql: ${TABLE}.id ;;
     link: {
-      label: "View Salesforce Response"
+      label: "Salesforce Response"
       url: "https://owllabs.lightning.force.com/lightning/r/Survey_Data__c/{{ value }}/view"
-      # icon_url: "http://google.com/favicon.ico"
+      icon_url: "https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://salesforce.com&size=16"
     }
   }
 
@@ -80,10 +80,10 @@ view: survey_data_nps {
   #   sql: ${TABLE}.internal_response_c ;;
   # }
 
-  dimension: isdeleted {
-    type: yesno
-    sql: ${TABLE}.isdeleted ;;
-  }
+  # dimension: isdeleted {
+  #   type: yesno
+  #   sql: ${TABLE}.isdeleted ;;
+  # }
 
   # dimension: jira_key_c {
   #   type: string
@@ -270,6 +270,81 @@ view: survey_data_nps {
     type: yesno
     sql: ${TABLE}.self_selected_mic ;;
   }
+
+
+
+  # parameter: device_picker {
+  #   # label: "Date Granularity"
+  #   # type: unquoted
+  #   type: string
+  #   # default_value: "date_month"
+  #   allowed_value: {
+  #     value: "Meeting Owl 3"
+  #   }
+  #   allowed_value: {
+  #     value: "Owl Bar"
+  #   }
+  #   allowed_value: {
+  #     value: "Whiteboard Owl"
+  #   }
+  #   # allowed_value: {
+  #   #   value: "date_date"
+  #   #   label: "Date"
+  #   # }
+  #   # allowed_value: {
+  #   #   value: "date_date"
+  #   #   label: "Date"
+  #   # }
+  #   # allowed_value: {
+  #   #   value: "date_date"
+  #   #   label: "Date"
+  #   # }
+  # }
+
+  # dimension: device_filter {
+  #   type: string
+  #   sql:
+  #   CASE
+  #   WHEN ${self_selected_products_c} like {% parameter device_picker %} then {% parameter device_picker %}
+  #   END ;;
+  # }
+
+
+
+
+  # parameter: pivot_picker {
+  #   hidden: yes
+  #   # label: "Slice Dimension"
+  #   type: string
+  #   default_value: "sales_channel"
+  #   allowed_value: {
+  #     value: "sales_channel"
+  #     label: "Sales Channel"
+  #   }
+  #   allowed_value: {
+  #     value: "world_region"
+  #     label: "World Region"
+  #   }
+  # }
+
+  # dimension: dynamic_pivot {
+  #   hidden: yes
+  #   # label: "Slice Dimension"
+  #   description: "Use with Slice Dimension parameter"
+  #   type: string
+  #   sql:
+  #   CASE
+  #   WHEN {% parameter pivot_picker %} = 'sales_channel' THEN ${sales_channel}
+  #   WHEN {% parameter pivot_picker %} = 'world_region' THEN ${world_region}
+  #   END ;;
+  # }
+
+
+
+
+
+
+
 
 
   # dimension: slack_channel_c {
