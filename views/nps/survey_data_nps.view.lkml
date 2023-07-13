@@ -65,7 +65,7 @@ view: survey_data_nps {
     label: "First Registration"
     type: time
     timeframes: [raw, date, week, month, quarter, year]
-    sql: ${TABLE}.first_registration_date_c ;;
+    sql: ${TABLE}.lq_first_registration_date_c ;;
   }
 
   dimension: if_you_could_wave_a_magic_wand_c {
@@ -114,7 +114,7 @@ view: survey_data_nps {
     label: "Most Recent Registration"
     type: time
     timeframes: [raw, date, week, month, quarter, year]
-    sql: ${TABLE}.last_registration_date_c ;;
+    sql: ${TABLE}.lq_last_registration_date_c ;;
   }
 
   # dimension: link_to_response_c {
@@ -124,7 +124,7 @@ view: survey_data_nps {
   # }
 
   dimension: lq_count_of_devices_c {
-    label: "# Total Devices"
+    label: "# Registered Devices"
     group_label: "Registered Devices"
     type: number
     sql: ${TABLE}.lq_count_of_devices_c ;;
