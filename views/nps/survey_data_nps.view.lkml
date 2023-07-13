@@ -437,11 +437,4 @@ view: survey_data_nps {
     type: count
     # drill_fields: [device, company_name]
     }
-
-
-
-
-
-
-
 }
