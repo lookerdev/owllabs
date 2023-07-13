@@ -277,7 +277,9 @@ view: survey_data_nps {
   # }
 
   dimension_group: survey_completion_time_c {
-    hidden: yes
+    # hidden: yes
+    label: "Survey Completed"
+    description: "Date survey was completed & submitted. This is blank for 1-click email respondents who don't click through the other survey questions and hit Complete."
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
     sql: ${TABLE}.survey_completion_time_c ;;
@@ -288,15 +290,16 @@ view: survey_data_nps {
   #   sql: ${TABLE}.survey_name_c ;;
   # }
 
-  dimension_group: survey_response_date_c {
-    label: "Survey Start"
-    type: time
-    timeframes: [raw, date, week, month, quarter, year]
-    sql: ${TABLE}.survey_response_date_c ;;
-  }
+  # dimension_group: survey_response_date_c { # same as survey_response_date_c but excludes timestamp
+  #   hidden: yes
+  #   type: time
+  #   timeframes: [raw, date, week, month, quarter, year]
+  #   sql: ${TABLE}.survey_response_date_c ;;
+  # }
 
   dimension_group: survey_response_time_c {
-    hidden: yes
+    label: "Survey Start"
+    description: "Date GetFeedback recorded an initial survey click & respondent began the response."
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
     sql: ${TABLE}.survey_response_time_c ;;
@@ -315,6 +318,7 @@ view: survey_data_nps {
 
   dimension_group: time_survey_triggered_c {
     label: "Survey Sent"
+    description: "Date survey sent via GetFeedback"
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
     sql: ${TABLE}.time_survey_triggered_c ;;
