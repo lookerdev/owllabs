@@ -11,6 +11,6 @@ explore: nps_surveys {
   }
 }
 
-explore: survey_data_nps {
+explore: salesforce_nps {
   label: "NPS - Salesforce (Under Development)"
 }

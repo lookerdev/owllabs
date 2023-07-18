@@ -1,4 +1,4 @@
-view: survey_data_nps {
+view: salesforce_nps {
   label: "NPS - Salesforce"
   sql_table_name: salesforce.survey_data_nps ;;
   drill_fields: [id, nps_score_c]
