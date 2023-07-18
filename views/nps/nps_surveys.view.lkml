@@ -1,3 +1,5 @@
+# Qualtrics/gSheet data
+
 view: nps_surveys {
   label: "NPS Surveys"
   sql_table_name: nps.nps_surveys ;;
