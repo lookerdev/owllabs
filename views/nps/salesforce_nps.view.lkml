@@ -1,7 +1,7 @@
 view: salesforce_nps {
   label: "NPS - Salesforce"
   sql_table_name: salesforce.survey_data_nps ;;
-  drill_fields: [id, nps_score_c]
+  drill_fields: [id, nps_score_c, comments_c, if_you_could_wave_a_magic_wand_c, email_c, self_selected_products_c, survey_response_time_c_date, survey_completion_time_c_date]
 
 
   dimension: id {
