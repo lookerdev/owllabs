@@ -1,7 +1,7 @@
 view: salesforce_nps {
   label: "NPS - Salesforce"
   sql_table_name: salesforce.survey_data_nps_v ;;
-  drill_fields: [id, account_c, nps_score_c, comments_c, if_you_could_wave_a_magic_wand_c, email_c, self_selected_products_c, survey_response_time_c_date, survey_completion_time_c_date]
+  drill_fields: [id, account_c, contact_c, nps_score_c, comments_c, if_you_could_wave_a_magic_wand_c, email_c, self_selected_products_c, survey_response_time_c_date, survey_completion_time_c_date]
 
 
   dimension: id {
@@ -20,6 +20,7 @@ view: salesforce_nps {
   dimension: account_c {
     label: "Account ID"
     description: "Salesforce ID for responder's company. Click the link to view the Account page in Salesforce"
+    # group_label: "Responder Info"
     type: string
     sql: ${TABLE}.account_c ;;
     link: {
@@ -28,7 +29,6 @@ view: salesforce_nps {
       icon_url: "https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://salesforce.com&size=16"
     }
   }
-
 
   # dimension: browser_c {
   #   type: string
@@ -53,7 +53,7 @@ view: salesforce_nps {
   dimension: comments_c {
     label: "NPS Score Reason"
     description: "Why responder gave the score they did."
-    # description: "Response to survey question 3 or 4, depending on  'It looks like we could do better. Why did you give that score?'4) 'Why did you give us that score?'"
+    # group_label: "Survey Reponses"
     type: string
     sql: ${TABLE}.comments_c ;;
   }
@@ -61,6 +61,7 @@ view: salesforce_nps {
   dimension: company_size_c {
     label: "Company Size"
     description: "Number of employees at company."
+    # group_label: "Responder Info"
     # suggestable: yes
     type: string
     sql: ${TABLE}.company_size_c ;;
@@ -69,6 +70,7 @@ view: salesforce_nps {
   dimension: contact_c {
     label: "Contact ID"
     description: "Salesforce ID for responder's information. Click the link to view the Contact page in Salesforce"
+    # group_label: "Responder Info"
     type: string
     sql: ${TABLE}.contact_c ;;
     link: {
@@ -80,6 +82,7 @@ view: salesforce_nps {
 
   dimension: email_c {
     label: "Email Address"
+    # group_label: "Responder Info"
     type: string
     sql: ${TABLE}.email_c ;;
   }
@@ -93,12 +96,14 @@ view: salesforce_nps {
 
   dimension: industry {
     description: "Salesforce company type designation"
+    # group_label: "Responder Info"
     type: string
     sql: ${TABLE}.industry ;;
   }
 
   dimension: industry_group_c {
     label: "Industry Group"
+    # group_label: "Responder Info"
     description: "Salesforce umbrella grouping of related industries"
     type: string
     sql: ${TABLE}.industry_group_c ;;
@@ -106,6 +111,7 @@ view: salesforce_nps {
 
   dimension: if_you_could_wave_a_magic_wand_c {
     label: "Magic Wand"
+    # group_label: "Survey Reponses"
     type: string
     sql: ${TABLE}.if_you_could_wave_a_magic_wand_c ;;
   }
@@ -221,9 +227,17 @@ view: salesforce_nps {
   # }
 
   dimension: nps_score_c {
-    label: "NPS Score"
+    label: "NPS Survey Score"
+    # group_label: "Survey Reponses"
     type: number
     sql: ${TABLE}.nps_score_c ;;
+  }
+
+  dimension: numberofemployees {
+    label: "Number of Employees"
+    # group_label: "Company Info"
+    type: number
+    sql: ${TABLE}.numberofemployees ;;
   }
 
   # dimension: observation_type_c {
