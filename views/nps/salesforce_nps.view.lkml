@@ -1,7 +1,7 @@
 view: salesforce_nps {
   label: "NPS - Salesforce"
-  sql_table_name: salesforce.survey_data_nps ;;
-  drill_fields: [id, nps_score_c, comments_c, if_you_could_wave_a_magic_wand_c, email_c, self_selected_products_c, survey_response_time_c_date, survey_completion_time_c_date]
+  sql_table_name: salesforce.survey_data_nps_v ;;
+  drill_fields: [id, account_c, nps_score_c, comments_c, if_you_could_wave_a_magic_wand_c, email_c, self_selected_products_c, survey_response_time_c_date, survey_completion_time_c_date]
 
 
   dimension: id {
@@ -20,7 +20,13 @@ view: salesforce_nps {
     label: "Account ID"
     type: string
     sql: ${TABLE}.account_c ;;
+    link: {
+      label: "Salesforce Account"
+      url: "https://owllabs.lightning.force.com/lightning/r/Account/{{ value }}/view"
+      icon_url: "https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://salesforce.com&size=16"
+    }
   }
+
 
   # dimension: browser_c {
   #   type: string
@@ -49,6 +55,13 @@ view: salesforce_nps {
     sql: ${TABLE}.comments_c ;;
   }
 
+  dimension: company_size_c {
+    label: "Company Size"
+    description: "Number of employees at company."
+    type: string
+    sql: ${TABLE}.company_size_c ;;
+  }
+
   dimension: contact_c {
     label: "Contact ID"
     type: string
@@ -66,6 +79,19 @@ view: salesforce_nps {
     type: time
     timeframes: [raw, date, week, month, quarter, year]
     sql: ${TABLE}.lq_first_registration_date_c ;;
+  }
+
+  dimension: industry {
+    description: "Salesforce company type designation"
+    type: string
+    sql: ${TABLE}.industry ;;
+  }
+
+  dimension: industry_group_c {
+    label: "Industry Group"
+    description: "Salesforce umbrella grouping of related industries"
+    type: string
+    sql: ${TABLE}.industry_group_c ;;
   }
 
   dimension: if_you_could_wave_a_magic_wand_c {
@@ -323,6 +349,7 @@ view: salesforce_nps {
     timeframes: [raw, time, date, week, month, quarter, year]
     sql: ${TABLE}.time_survey_triggered_c ;;
   }
+
 
 
 
