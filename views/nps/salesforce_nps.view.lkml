@@ -7,6 +7,7 @@ view: salesforce_nps {
   dimension: id {
     primary_key: yes
     label: "Response ID"
+    description: "Salesforce ID for this reponse. Click the link to view the Reponse page in Salesforce"
     type: string
     sql: ${TABLE}.id ;;
     link: {
@@ -18,6 +19,7 @@ view: salesforce_nps {
 
   dimension: account_c {
     label: "Account ID"
+    description: "Salesforce ID for responder's company. Click the link to view the Account page in Salesforce"
     type: string
     sql: ${TABLE}.account_c ;;
     link: {
@@ -50,6 +52,7 @@ view: salesforce_nps {
 
   dimension: comments_c {
     label: "NPS Score Reason"
+    description: "Why responder gave the score they did."
     # description: "Response to survey question 3 or 4, depending on  'It looks like we could do better. Why did you give that score?'4) 'Why did you give us that score?'"
     type: string
     sql: ${TABLE}.comments_c ;;
@@ -64,8 +67,14 @@ view: salesforce_nps {
 
   dimension: contact_c {
     label: "Contact ID"
+    description: "Salesforce ID for responder's information. Click the link to view the Contact page in Salesforce"
     type: string
     sql: ${TABLE}.contact_c ;;
+    link: {
+      label: "Salesforce Contact"
+      url: "https://owllabs.lightning.force.com/lightning/r/Contact/{{ value }}/view"
+      icon_url: "https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://salesforce.com&size=16"
+    }
   }
 
   dimension: email_c {
