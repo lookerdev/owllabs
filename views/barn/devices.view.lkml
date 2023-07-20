@@ -104,6 +104,7 @@ view: devices {
 
   dimension: hardware_serial {
     label: "Hardware Serial Number"
+    case_sensitive: no
     type: string
     sql: ${TABLE}.device_hardware_serial_number ;;
   }
