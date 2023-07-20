@@ -61,6 +61,7 @@ view: salesforce_nps {
   dimension: company_size_c {
     label: "Company Size"
     description: "Number of employees at company."
+    # suggestable: yes
     type: string
     sql: ${TABLE}.company_size_c ;;
   }
