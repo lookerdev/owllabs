@@ -366,6 +366,12 @@ view: salesforce_nps {
     sql: ${TABLE}.survey_trigger_c ;;
   }
 
+  dimension: survey_trigger_notes_c {
+    label: "Survey Iteration Notes"
+    type: string
+    sql: ${TABLE}.survey_trigger_notes_c ;;
+  }
+
   dimension_group: time_survey_triggered_c {
     label: "Survey Sent"
     description: "Date survey sent via GetFeedback"
