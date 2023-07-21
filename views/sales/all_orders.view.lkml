@@ -147,6 +147,7 @@ view: all_orders {
 
   dimension: sku_name_group {
     label: "SKU Name"
+    case_sensitive: no
     type: string
     sql: case when ${sku} = 'ACC100-1000' then 'Owl Lock Adapter'
               when ${sku} in ('ACC100-2000','ACC100-2000-CA','ACC100-2001') then 'USB Extension Cable (16 Feet/5M)'
