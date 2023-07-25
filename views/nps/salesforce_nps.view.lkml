@@ -363,8 +363,10 @@ view: salesforce_nps {
   dimension: survey_trigger_c {
     label: "Survey Iteration"
     type: string
-    sql: ${TABLE}.survey_trigger_c ;;
+    sql: CASE WHEN ${TABLE}.survey_trigger_c = 'One-Off NPS' THEN 'Initial NPS'
+              ELSE ${TABLE}.survey_trigger_c END ;; # combines all initally triggered one-off sends as part of "Inital"
   }
+
 
   dimension: survey_trigger_notes_c {
     label: "Survey Iteration Notes"
