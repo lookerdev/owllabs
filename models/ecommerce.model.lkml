@@ -19,6 +19,11 @@ explore: all_orders {
   sql_always_where: ${all_orders.sku} not in ('TEST2','TEST3') ;;
 }
 
+explore: all_orders2 {
+  hidden: yes
+}
+
+
 explore: all_fulfillments {
   description: "Shipment data from Shopify, Amazon, Sourcenext, and historical distributor Starin. Does not include Salesforce opportunitites. By default includes SKUs that don't count toward revenue (replacement units, Owls For Good), which can be filtered out using Revenue SKU dimension. Excludes test SKUs."
   sql_always_where: ${all_fulfillments.sku} not in ('TEST2','TEST3') ;;
