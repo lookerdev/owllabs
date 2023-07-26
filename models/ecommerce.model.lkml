@@ -38,7 +38,8 @@ explore: shopify_fulfillments_line_items_view {
 }
 
 explore: distributor_sellthrough {
-  description: "IN DEVELOPMENT - Sellthrough fulfillment data gathered from distributor reports."
+  hidden: yes
+  description: "IN DEVELOPMENT - Sellthrough fulfillment data accumulated in Salesforce from distributor reports."
 }
 
 explore: monthly_hardware_goals_eom_projections {
