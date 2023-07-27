@@ -2,7 +2,7 @@
 
 
 view: all_orders2 {
-  label: "All Orders 2.0 - In Dev"
+  # label: "All Orders 2.0 - In Dev"
   sql_table_name: sales.all_orders2 ;;
 
 
@@ -44,15 +44,15 @@ view: all_orders2 {
     sql: ${TABLE}.companyname ;;
   }
 
-  dimension: cseg_owlproductline {
-    type: string
-    sql: ${TABLE}.cseg_owlproductline ;;
-  }
+  # dimension: cseg_owlproductline {
+  #   type: string
+  #   sql: ${TABLE}.cseg_owlproductline ;;
+  # }
 
-  dimension: cseg_owlrevcategory {
-    type: string
-    sql: ${TABLE}.cseg_owlrevcategory ;;
-  }
+  # dimension: cseg_owlrevcategory {
+  #   type: string
+  #   sql: ${TABLE}.cseg_owlrevcategory ;;
+  # }
 
   dimension: currency {
     type: string
@@ -60,13 +60,14 @@ view: all_orders2 {
   }
 
   dimension: custbodysalesforce_opp_id {
+    label: "Salesforce Opportunity ID"
     type: string
     sql: ${TABLE}.custbodysalesforce_opp_id ;;
-  }
-
-  dimension: custitem_owl_item_type {
-    type: number
-    sql: ${TABLE}.custitem_owl_item_type ;;
+    # link: {
+    #   label: "Salesforce Opportunity"
+    #   # this is wrong - url: "https://owllabs.lightning.force.com/lightning/r/Survey_Data__c/{{ value }}/view"
+    #   icon_url: "https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://salesforce.com&size=16"
+    # }
   }
 
   dimension: entity_internalid {
@@ -75,13 +76,16 @@ view: all_orders2 {
   }
 
   dimension: exchangerate {
+    hidden: yes
     type: number
     sql: ${TABLE}.exchangerate ;;
   }
 
   dimension: internalid {
+    label: "Netsuite Internal ID"
     type: string
     sql: ${TABLE}.internalid ;;
+    # link: { add link to netsuite SO }
   }
 
   dimension: item_type {
@@ -89,8 +93,22 @@ view: all_orders2 {
     sql: ${TABLE}.item_type ;;
   }
 
-  dimension: order_date {
-    type: string
+  # dimension: order_date {
+  #   type: string
+  #   sql: ${TABLE}. ;;
+  # }
+
+  dimension_group: order {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      day_of_week,
+      month,
+      quarter,
+      year
+    ]
     sql: ${TABLE}.order_date ;;
   }
 
@@ -178,18 +196,26 @@ view: all_orders2 {
 
 
   measure: count {
+    hidden: yes
     type: count
     drill_fields: [salesrep_name, sku_name, companyname, subsidiary_name]
   }
 
   measure: total_amount {
+    hidden: yes
     type: sum
     sql: ${amount} ;;
     }
 
   measure: average_amount {
+    hidden: yes
     type: average
     sql: ${amount} ;;
     }
+
+  measure: sum_quantity {
+    type: sum
+    sql: ${quantity} ;;
+  }
 
 }

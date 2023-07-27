@@ -15,18 +15,17 @@ include: "/views/sales/*.view.lkml"
 
 
 explore: all_orders {
-  description: "Order data from Shopify, Amazon, Sourcenext, and historical distributor Starin. Does not include Salesforce opportunitites. By default includes SKUs that don't count toward revenue (replacement units, Owls For Good), which can be filtered out using Revenue SKU dimension. Excludes test SKUs."
-  sql_always_where: ${all_orders.sku} not in ('TEST2','TEST3') ;;
+  description: "Order data from Shopify, Amazon, Sourcenext, and historical distributor Starin. Does not include Salesforce opportunitites. By default includes SKUs that don't count toward revenue (replacement units, Owls For Good), which can be filtered out using Revenue SKU dimension."
 }
 
 explore: all_orders2 {
+  label: "All Orders 2.0 - Under Dev"
   hidden: yes
 }
 
 
 explore: all_fulfillments {
-  description: "Shipment data from Shopify, Amazon, Sourcenext, and historical distributor Starin. Does not include Salesforce opportunitites. By default includes SKUs that don't count toward revenue (replacement units, Owls For Good), which can be filtered out using Revenue SKU dimension. Excludes test SKUs."
-  sql_always_where: ${all_fulfillments.sku} not in ('TEST2','TEST3') ;;
+  description: "Shipment data from Shopify, Amazon, Sourcenext, and historical distributor Starin. Does not include Salesforce opportunitites. By default includes SKUs that don't count toward revenue (replacement units, Owls For Good), which can be filtered out using Revenue SKU dimension."
 }
 
 
