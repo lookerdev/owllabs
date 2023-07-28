@@ -273,7 +273,7 @@ view: meeting_records {
   dimension: paireddevicetypes {
     label: "Paired Device Types"
     group_label: "Paired Devices"
-    description: "Types of secondary devices paired via Owl Net in meeting."
+    description: "List of unique types of secondary devices paired via Owl Net in meeting, in the order they were paired. It's possible for the same device types to be listed in different orders, depending on the order in which they paired to the primary in a meeting."
     type: string
     sql: ${TABLE}.paireddevicetypes ;;
   }
