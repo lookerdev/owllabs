@@ -1,9 +1,40 @@
 # # UNPIVOTED ALL ORDERS
 
-
 view: all_orders2 {
   # label: "All Orders 2.0 - In Dev"
   sql_table_name: sales.all_orders2 ;;
+  drill_fields: [order_date, order_number, sales_channel, billingaddress_worldregion, sku, sum_quantity]
+
+
+  parameter: timeframe_picker {
+    label: "Date Granularity"
+    # type: unquoted
+    type: string
+    default_value: "date_month"
+    allowed_value: {
+      value: "date_date"
+      label: "Date"
+    }
+    allowed_value: {
+      value: "date_week"
+      label: "Week"
+    }
+    allowed_value: {
+      value: "date_month"
+      label: "Month"
+    }
+  }
+
+
+  dimension: dynamic_timeframe {
+    type: string
+    sql:
+    CASE
+    WHEN {% parameter timeframe_picker %} = 'date_date' THEN TO_DATE(${order_date}, 'YYYY-MM-DD')
+    WHEN {% parameter timeframe_picker %} = 'date_week' THEN TO_DATE(${order_week}, 'YYYY-MM-DD')
+    WHEN {% parameter timeframe_picker %} = 'date_month' THEN TO_DATE(${order_month}, 'YYYY-MM')
+    END ;;
+  }
 
 
   dimension: row_num {
@@ -35,6 +66,7 @@ view: all_orders2 {
   }
 
   dimension: billingaddress_worldregion {
+    label: "World Region"
     type: string
     sql: ${TABLE}.billingaddress_worldregion ;;
   }
@@ -44,15 +76,19 @@ view: all_orders2 {
     sql: ${TABLE}.companyname ;;
   }
 
-  # dimension: cseg_owlproductline {
-  #   type: string
-  #   sql: ${TABLE}.cseg_owlproductline ;;
-  # }
+  dimension: sku_category {
+    label: "SKU Category"
+    # description: "Hardware, Accessories, Subscription, etc"
+    type: string
+    sql: ${TABLE}.sku_category ;;
+  }
 
-  # dimension: cseg_owlrevcategory {
-  #   type: string
-  #   sql: ${TABLE}.cseg_owlrevcategory ;;
-  # }
+  dimension: sku_product_family {
+    label: "SKU Product Family"
+    # description: "groups skus into larger device categories"
+    type: string
+    sql: ${TABLE}.sku_product_family ;;
+  }
 
   dimension: currency {
     type: string
@@ -70,10 +106,10 @@ view: all_orders2 {
     # }
   }
 
-  dimension: entity_internalid {
-    type: string
-    sql: ${TABLE}.entity_internalid ;;
-  }
+  # dimension: entity_internalid {
+  #   type: string
+  #   sql: ${TABLE}.entity_internalid ;;
+  # }
 
   dimension: exchangerate {
     hidden: yes
@@ -113,6 +149,7 @@ view: all_orders2 {
   }
 
   dimension: order_number {
+    # label: "Netsuite Sales Order Number"
     type: string
     sql: ${TABLE}.order_number ;;
   }
@@ -122,15 +159,15 @@ view: all_orders2 {
     sql: ${TABLE}.quantity ;;
   }
 
-  dimension: quantitybilled {
-    type: number
-    sql: ${TABLE}.quantitybilled ;;
-  }
+  # dimension: quantitybilled {
+  #   type: number
+  #   sql: ${TABLE}.quantitybilled ;;
+  # }
 
-  dimension: quantityfulfilled {
-    type: number
-    sql: ${TABLE}.quantityfulfilled ;;
-  }
+  # dimension: quantityfulfilled {
+  #   type: number
+  #   sql: ${TABLE}.quantityfulfilled ;;
+  # }
 
   dimension: sales_channel {
     type: string
