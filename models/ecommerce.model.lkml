@@ -19,8 +19,14 @@ explore: all_orders {
 }
 
 explore: all_orders2 {
+  view_name: dim_calendar
   label: "All Orders 2.0 - Under Dev"
   hidden: yes
+  join: all_orders2 {
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${dim_calendar.date_date} = ${all_orders2.order_date} ;;
+  }
 }
 
 
