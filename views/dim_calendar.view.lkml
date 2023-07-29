@@ -4,6 +4,72 @@ view: dim_calendar {
   sql_table_name: public.dim_calendar ;;
   drill_fields: [id]
 
+
+
+
+  # https://help.looker.com/hc/en-us/articles/360001288468-Dynamic-Timeframes-for-Dimension-Groups
+  parameter: timeframe_picker {
+    label: "Date Granularity"
+    # type: unquoted
+    type: string
+    default_value: "date_month"
+    allowed_value: {
+      value: "date_date"
+      label: "Date"
+    }
+    allowed_value: {
+      value: "date_week"
+      label: "Week"
+    }
+    allowed_value: {
+      value: "date_month"
+      label: "Month"
+    }
+  }
+
+  dimension: dynamic_timeframe {
+    type: string
+    sql:
+    CASE
+    WHEN {% parameter timeframe_picker %} = 'date_date' THEN TO_DATE(${date_date}, 'YYYY-MM-DD')
+    WHEN {% parameter timeframe_picker %} = 'date_week' THEN TO_DATE(${date_week}, 'YYYY-MM-DD')
+    WHEN {% parameter timeframe_picker %} = 'date_month' THEN TO_DATE(${date_month}, 'YYYY-MM')
+    END ;;
+  }
+
+
+  # parameter: timeframe_picker {
+  #   label: "Date Granularity"
+  #   type: string
+  #   allowed_value: { value: "Date" }
+  #   allowed_value: { value: "Week" }
+  #   allowed_value: { value: "Month" }
+  #   default_value: "Date"
+  # }
+
+  # dimension: dynamic_timeframe {
+  #   type: string
+  #   sql:
+  #   CASE
+  #   WHEN {% parameter timeframe_picker %} = 'Date' THEN TO_DATE(${dim_calendar.date_date}, 'YYYY-MM-DD')
+  #   WHEN {% parameter timeframe_picker %} = 'Week' THEN TO_DATE(${dim_calendar.date_week}, 'YYYY-MM-WW')
+  #   WHEN {% parameter timeframe_picker %} = 'Month' THEN TO_DATE(${dim_calendar.date_month}, 'YYYY-MM')
+  #   END ;;
+  # }
+
+  # dimension: dynamic_timeframe {
+  #   type: string
+  #   sql:
+  #   CASE
+  #   WHEN {% parameter timeframe_picker %} = 'Date' THEN ${date_date}
+  #   WHEN {% parameter timeframe_picker %} = 'Week' THEN ${date_week}
+  #   WHEN {% parameter timeframe_picker %} = 'Month' THEN ${date_month}
+  #   END ;;
+  # }
+
+
+
+
   dimension: id {
     primary_key: yes
     hidden: yes
@@ -107,68 +173,6 @@ view: dim_calendar {
     type: number
     sql: ${TABLE}.year ;;
   }
-
-  # https://help.looker.com/hc/en-us/articles/360001288468-Dynamic-Timeframes-for-Dimension-Groups
-
-
-  parameter: timeframe_picker {
-    label: "Date Granularity"
-    # type: unquoted
-    type: string
-    default_value: "date_month"
-    allowed_value: {
-      value: "date_date"
-      label: "Date"
-    }
-    allowed_value: {
-      value: "date_week"
-      label: "Week"
-    }
-    allowed_value: {
-      value: "date_month"
-      label: "Month"
-    }
-  }
-
-  dimension: dynamic_timeframe {
-    type: string
-    sql:
-    CASE
-    WHEN {% parameter timeframe_picker %} = 'date_date' THEN TO_DATE(${date_date}, 'YYYY-MM-DD')
-    WHEN {% parameter timeframe_picker %} = 'date_week' THEN TO_DATE(${date_week}, 'YYYY-MM-DD')
-    WHEN {% parameter timeframe_picker %} = 'date_month' THEN TO_DATE(${date_month}, 'YYYY-MM')
-    END ;;
-  }
-
-
-  # parameter: timeframe_picker {
-  #   label: "Date Granularity"
-  #   type: string
-  #   allowed_value: { value: "Date" }
-  #   allowed_value: { value: "Week" }
-  #   allowed_value: { value: "Month" }
-  #   default_value: "Date"
-  # }
-
-  # dimension: dynamic_timeframe {
-  #   type: string
-  #   sql:
-  #   CASE
-  #   WHEN {% parameter timeframe_picker %} = 'Date' THEN TO_DATE(${dim_calendar.date_date}, 'YYYY-MM-DD')
-  #   WHEN {% parameter timeframe_picker %} = 'Week' THEN TO_DATE(${dim_calendar.date_week}, 'YYYY-MM-WW')
-  #   WHEN {% parameter timeframe_picker %} = 'Month' THEN TO_DATE(${dim_calendar.date_month}, 'YYYY-MM')
-  #   END ;;
-  # }
-
-  # dimension: dynamic_timeframe {
-  #   type: string
-  #   sql:
-  #   CASE
-  #   WHEN {% parameter timeframe_picker %} = 'Date' THEN ${date_date}
-  #   WHEN {% parameter timeframe_picker %} = 'Week' THEN ${date_week}
-  #   WHEN {% parameter timeframe_picker %} = 'Month' THEN ${date_month}
-  #   END ;;
-  # }
 
 
 # MEASURES
