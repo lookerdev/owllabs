@@ -88,7 +88,7 @@ view: salesforce_nps {
   }
 
   dimension_group: first_registration_date_c {
-    label: "First Registration"
+    label: "First Device Registration"
     type: time
     timeframes: [raw, date, week, month, quarter, year]
     sql: ${TABLE}.lq_first_registration_date_c ;;
@@ -153,7 +153,7 @@ view: salesforce_nps {
   # }
 
   dimension_group: last_registration_date_c {
-    label: "Most Recent Registration"
+    label: "Most Recent Device Registration"
     type: time
     timeframes: [raw, date, week, month, quarter, year]
     sql: ${TABLE}.lq_last_registration_date_c ;;
@@ -167,56 +167,56 @@ view: salesforce_nps {
 
   dimension: lq_count_of_devices_c {
     label: "# Registered Devices"
-    group_label: "Registered Devices"
+    group_label: "Responder's Registered Devices"
     type: number
     sql: ${TABLE}.lq_count_of_devices_c ;;
   }
 
   dimension: lq_count_of_mhq_registered_c {
     label: "# Registered MHQ"
-    group_label: "Registered Devices"
+    group_label: "Responder's Registered Devices"
     type: number
     sql: ${TABLE}.lq_count_of_mhq_registered_c ;;
   }
 
   dimension: lq_count_of_mo3_registered_c {
     label: "# Registered MO3"
-    group_label: "Registered Devices"
+    group_label: "Responder's Registered Devices"
     type: number
     sql: ${TABLE}.lq_count_of_mo3_registered_c ;;
   }
 
   dimension: lq_count_of_moo_registered_c {
     label: "# Registered MO"
-    group_label: "Registered Devices"
+    group_label: "Responder's Registered Devices"
     type: number
     sql: ${TABLE}.lq_count_of_moo_registered_c ;;
   }
 
   dimension: lq_count_of_mop_registered_c {
     label: "# Registered MOP"
-    group_label: "Registered Devices"
+    group_label: "Responder's Registered Devices"
     type: number
     sql: ${TABLE}.lq_count_of_mop_registered_c ;;
   }
 
   dimension: lq_count_of_obar_registered_c {
     label: "# Registered Owl Bar"
-    group_label: "Registered Devices"
+    group_label: "Responder's Registered Devices"
     type: number
     sql: ${TABLE}.lq_count_of_obar_registered_c ;;
   }
 
   dimension: lq_count_of_wbo_registered_c {
     label: "# Registered WBO"
-    group_label: "Registered Devices"
+    group_label: "Responder's Registered Devices"
     type: number
     sql: ${TABLE}.lq_count_of_wbo_registered_c ;;
   }
 
   dimension: lq_expansion_mic_usage_c {
     label: "Expansion Mic Used"
-    group_label: "Registered Devices"
+    group_label: "Responder's Registered Devices"
     type: yesno
     sql: ${TABLE}.lq_expansion_mic_usage_c ;;
   }
@@ -331,7 +331,7 @@ view: salesforce_nps {
 
   dimension_group: survey_completion_time_c {
     # hidden: yes
-    label: "Survey Completed"
+    label: "Survey Complete"
     description: "Date survey was completed & submitted. This is blank for 1-click email respondents who don't click through the other survey questions and hit Complete"
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
@@ -382,7 +382,7 @@ view: salesforce_nps {
   }
 
   dimension_group: time_survey_triggered_c {
-    label: "Survey Sent"
+    label: "Survey Send"
     description: "Date survey sent via GetFeedback"
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
@@ -407,7 +407,7 @@ view: salesforce_nps {
   dimension: nps_bucket {
     label: "Net Promoter Category"
     description: "Promoter: score of 9 or 10, Passive: score or 7 or 8, Detractor: score of 0-6"
-    # group_label: "Net Promoter Category"
+    group_label: "Salesforce Metadata"
     type: string
     sql: case when ${nps_score_c} in (9,10) then 'Promoter'
               when ${nps_score_c} in (7,8) then 'Passive'
