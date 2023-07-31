@@ -1,5 +1,5 @@
 view: salesforce_nps {
-  label: "NPS - Salesforce"
+  label: "Salesforce NPS Responses"
   sql_table_name: salesforce.survey_data_nps_v ;;
   drill_fields: [id, account_c, contact_c, nps_score_c, comments_c, if_you_could_wave_a_magic_wand_c, email_c, self_selected_products_c, survey_response_time_c_date, survey_completion_time_c_date]
 
@@ -8,6 +8,7 @@ view: salesforce_nps {
     primary_key: yes
     label: "Response ID"
     description: "Salesforce ID for this reponse. Click the link to view the Reponse page in Salesforce"
+    group_label: "Salesforce Metadata"
     type: string
     sql: ${TABLE}.id ;;
     link: {
@@ -20,8 +21,7 @@ view: salesforce_nps {
   dimension: account_c {
     label: "Account ID"
     description: "Salesforce ID for responder's company. Click the link to view the Account page in Salesforce"
-    # group_label: "Responder Info"
-    type: string
+    group_label: "Salesforce Metadata"
     sql: ${TABLE}.account_c ;;
     link: {
       label: "Salesforce Account"
@@ -53,7 +53,7 @@ view: salesforce_nps {
   dimension: comments_c {
     label: "NPS Score Reason"
     description: "Why responder gave the score they did."
-    # group_label: "Survey Reponses"
+    group_label: "Survey Reponses"
     type: string
     sql: ${TABLE}.comments_c ;;
   }
@@ -61,7 +61,7 @@ view: salesforce_nps {
   dimension: company_size_c {
     label: "Company Size"
     description: "Number of employees at company."
-    # group_label: "Responder Info"
+    group_label: "Responder Info"
     # suggestable: yes
     type: string
     sql: ${TABLE}.company_size_c ;;
@@ -70,7 +70,7 @@ view: salesforce_nps {
   dimension: contact_c {
     label: "Contact ID"
     description: "Salesforce ID for responder's information. Click the link to view the Contact page in Salesforce"
-    # group_label: "Responder Info"
+    group_label: "Salesforce Metadata"
     type: string
     sql: ${TABLE}.contact_c ;;
     link: {
@@ -82,7 +82,7 @@ view: salesforce_nps {
 
   dimension: email_c {
     label: "Email Address"
-    # group_label: "Responder Info"
+    group_label: "Responder Info"
     type: string
     sql: ${TABLE}.email_c ;;
   }
@@ -96,22 +96,22 @@ view: salesforce_nps {
 
   dimension: industry {
     description: "Salesforce company type designation"
-    # group_label: "Responder Info"
+    group_label: "Responder Info"
     type: string
     sql: ${TABLE}.industry ;;
   }
 
   dimension: industry_group_c {
     label: "Industry Group"
-    # group_label: "Responder Info"
     description: "Salesforce umbrella grouping of related industries"
+    group_label: "Responder Info"
     type: string
     sql: ${TABLE}.industry_group_c ;;
   }
 
   dimension: if_you_could_wave_a_magic_wand_c {
     label: "Magic Wand"
-    # group_label: "Survey Reponses"
+    group_label: "Survey Reponses"
     type: string
     sql: ${TABLE}.if_you_could_wave_a_magic_wand_c ;;
   }
@@ -221,21 +221,24 @@ view: salesforce_nps {
     sql: ${TABLE}.lq_expansion_mic_usage_c ;;
   }
 
-  # dimension: name {
-  #   type: string
-  #   sql: ${TABLE}.name ;;
-  # }
+  dimension: survey_data_number {
+    label: "Salesforce Survey Data Number"
+    description: "Number for this specific repsonse in Salesforce. Related to - but different from - Response ID"
+    group_label: "Salesforce Metadata"
+    type: string
+    sql: ${TABLE}.name ;;
+  }
 
   dimension: nps_score_c {
     label: "NPS Survey Score"
-    # group_label: "Survey Reponses"
+    group_label: "Survey Reponses"
     type: number
     sql: ${TABLE}.nps_score_c ;;
   }
 
   dimension: numberofemployees {
     label: "Number of Employees"
-    # group_label: "Company Info"
+    group_label: "Responder Info"
     type: number
     sql: ${TABLE}.numberofemployees ;;
   }
@@ -267,7 +270,7 @@ view: salesforce_nps {
 
   dimension: self_selected_products_c {
     label: "Self-Selected Products List"
-    description: "List of all devices customer claims to own."
+    description: "List of all devices customer claims to own"
     group_label: "Self-Selected Products"
     type: string
     sql: ${TABLE}.self_selected_products_c ;;
@@ -275,7 +278,7 @@ view: salesforce_nps {
 
   dimension: self_selected_mop {
     label: "Self-Selected: Meeting Owl Pro"
-    description: "Identifies if customer selected that they own a MOP."
+    description: "Identifies if customer selected that they own a MOP"
     group_label: "Self-Selected Products"
     type: yesno
     sql: ${TABLE}.self_selected_mop ;;
@@ -283,7 +286,7 @@ view: salesforce_nps {
 
   dimension: self_selected_mo3 {
     label: "Self-Selected: Meeting Owl 3"
-    description: "Identifies if customer selected that they own an MO3."
+    description: "Identifies if customer selected that they own an MO3"
     group_label: "Self-Selected Products"
     type: yesno
     sql: ${TABLE}.self_selected_mo3 ;;
@@ -291,7 +294,7 @@ view: salesforce_nps {
 
   dimension: self_selected_owlbar {
     label: "Self-Selected: Owl Bar"
-    description: "Identifies if customer selected that they own an Owl Bar."
+    description: "Identifies if customer selected that they own an Owl Bar"
     group_label: "Self-Selected Products"
     type: yesno
     sql: ${TABLE}.self_selected_owlbar ;;
@@ -299,7 +302,7 @@ view: salesforce_nps {
 
   dimension: self_selected_wbo {
     label: "Self-Selected: Whiteboard Owl"
-    description: "Identifies if customer selected that they own a WBO."
+    description: "Identifies if customer selected that they own a WBO"
     group_label: "Self-Selected Products"
     type: yesno
     sql: ${TABLE}.self_selected_wbo ;;
@@ -307,7 +310,7 @@ view: salesforce_nps {
 
   dimension: self_selected_mhq {
     label: "Self-Selected: Meeting HQ"
-    description: "Identifies if customer selected that they own an MHQ."
+    description: "Identifies if customer selected that they own an MHQ"
     group_label: "Self-Selected Products"
     type: yesno
     sql: ${TABLE}.self_selected_mhq ;;
@@ -315,7 +318,7 @@ view: salesforce_nps {
 
   dimension: self_selected_mic {
     label: "Self-Selected: Extension Mic"
-    description: "Identifies if customer selected that they own an Extension Mic."
+    description: "Identifies if customer selected that they own an Extension Mic"
     group_label: "Self-Selected Products"
     type: yesno
     sql: ${TABLE}.self_selected_mic ;;
@@ -329,7 +332,7 @@ view: salesforce_nps {
   dimension_group: survey_completion_time_c {
     # hidden: yes
     label: "Survey Completed"
-    description: "Date survey was completed & submitted. This is blank for 1-click email respondents who don't click through the other survey questions and hit Complete."
+    description: "Date survey was completed & submitted. This is blank for 1-click email respondents who don't click through the other survey questions and hit Complete"
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
     sql: ${TABLE}.survey_completion_time_c ;;
@@ -349,7 +352,7 @@ view: salesforce_nps {
 
   dimension_group: survey_response_time_c {
     label: "Survey Start"
-    description: "Date GetFeedback recorded an initial survey click & respondent began the response."
+    description: "Date GetFeedback recorded an initial survey click & respondent began the response"
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
     sql: ${TABLE}.survey_response_time_c ;;
@@ -361,7 +364,9 @@ view: salesforce_nps {
   # }
 
   dimension: survey_trigger_c {
-    label: "Survey Iteration"
+    label: "Survey Trigger"
+    description: "The reason a survey was sent. Previously 'Survey Iteration'"
+    group_label: "Salesforce Metadata"
     type: string
     sql: CASE WHEN ${TABLE}.survey_trigger_c = 'One-Off NPS' THEN 'Initial NPS'
               ELSE ${TABLE}.survey_trigger_c END ;; # combines all initally triggered one-off sends as part of "Inital"
@@ -369,7 +374,9 @@ view: salesforce_nps {
 
 
   dimension: survey_trigger_notes_c {
-    label: "Survey Iteration Notes"
+    label: "Survey Trigger Notes"
+    description: "Details about the what triggered the survey send"
+    group_label: "Salesforce Metadata"
     type: string
     sql: ${TABLE}.survey_trigger_notes_c ;;
   }
