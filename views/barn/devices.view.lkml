@@ -97,10 +97,11 @@ view: devices {
     sql: coalesce(${alias}, ${device_name}) ;;
   }
 
-  # dimension: dsku {
-  #   type: string
-  #   sql: ${TABLE}.dsku ;;
-  # }
+  dimension: dsku {
+    label: "dSKU"
+    type: string
+    sql: ${TABLE}.dsku ;;
+  }
 
   dimension: hardware_serial {
     label: "Hardware Serial Number"
@@ -115,10 +116,11 @@ view: devices {
     sql: ${TABLE}.device_hardware_version ;;
   }
 
-  # dimension: inventorysku {
-  #   type: string
-  #   sql: ${TABLE}.inventorysku ;;
-  # }
+  dimension: inventorysku {
+    label: "Inventory SKU"
+    type: string
+    sql: ${TABLE}.inventorysku ;;
+  }
 
   dimension: lastip {
     label: "Last IP Address"
@@ -207,6 +209,23 @@ view: devices {
     label: "Status"
     type: string
     sql: ${TABLE}.device_status_text ;;
+    # html:
+    # {% if value == 'New' %}
+    # <p style="color: lightgrey">{{ rendered_value }}</p>
+    # {% elsif value == 'Offline' %}
+    # <p style="color: lightgrey">{{ rendered_value }}</p>
+    # {% elsif value == 'Active' %}
+    # <p style="color: green">{{ rendered_value }}</p>
+    # {% elsif value == 'Requires Update' %}
+    # <p style="color: red">{{ rendered_value }}</p>
+    # {% elsif value == 'Updating' %}
+    # <p style="color: orange">{{ rendered_value }}</p>
+    # {% elsif value == 'Downloading Update' %}
+    # <p style="color: orange">{{ rendered_value }}</p>
+    # {% else %}
+    # <p style="color: black; background-color: orange; font-size:100%; text-align:center">{{ rendered_value }}</p>
+    # {% endif %}
+    # ;;
   }
 
   dimension: record_source {
@@ -236,6 +255,12 @@ view: devices {
     hidden: yes
     type: number
     sql: ${TABLE}.settings_timestamp ;;
+  }
+
+  dimension: warrantyexpirationdate {
+    label: "Warranty Expiration Date"
+    type: date
+    sql: ${TABLE}.warrantyexpirationdate ;;
   }
 
   dimension: bruinlastconnectto {
@@ -508,6 +533,16 @@ view: devices {
     sql: ${deviceuuid} ;;
     drill_fields: [device_id, deviceuuid, device_name, product_name]
   }
+
+
+  # measure: map_count_devices {
+  #   # hidden: yes
+  #   label: "Count of Devices"
+  #   description: "Count of unique deviceuuids"
+  #   type: count_distinct
+  #   sql: ${deviceuuid} ;;
+  #   drill_fields: [lastgeo_country_shortname, device_registrations.company_domain, map_count_devices]
+  # }
 
   # dimension: 6mth_average_local_talk_time_minutes {
   #   hidden: yes
