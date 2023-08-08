@@ -103,70 +103,56 @@ view: salesforce_nps {
     sql: ${TABLE}.lq_last_registration_date_c ;;
   }
 
-  # dimension: last_queried_products_surveyed_c {
-  #   type: string
-  #   sql: ${TABLE}.last_queried_products_surveyed_c  ;;
-  # }
+  dimension: last_queried_products_surveyed_c {
+    hidden: yes
+    label: "Last Queried Products Surveyed"
+    description: "Products registered for this email address via most recent query"
+    group_label: "Last Queried Products"
+    type: string
+    sql: ${TABLE}.last_queried_products_surveyed_c  ;;
+  }
 
-  # dimension: last_queried_mop {
-  #   sql: CASE WHEN ${TABLE}.last_queried_products_surveyed_c LIKE '%Meeting Owl Pro%' THEN TRUE ELSE FALSE END  ;;
-  # }
+  dimension: last_queried_mop {
+    hidden: yes
+    group_label: "Last Queried Products"
+    type: yesno
+    sql: CASE WHEN ${TABLE}.last_queried_products_surveyed_c LIKE '%Meeting Owl Pro%' THEN TRUE ELSE FALSE END  ;;
+  }
 
-#   nps."Self_selected_Products__c" LIKE '%%Meeting Owl Pro%%'  AS self_selected_mop,
-# CASE WHEN nps."Self_selected_Products__c" LIKE '%%Meeting Owl 3%%' THEN TRUE ELSE FALSE END AS self_selected_mo3,
-# CASE WHEN nps."Self_selected_Products__c" LIKE '%%Owl Bar%%' THEN TRUE ELSE FALSE END AS self_selected_owlbar,
-# CASE WHEN nps."Self_selected_Products__c" LIKE '%%Whiteboard Owl%%' THEN TRUE ELSE FALSE END AS self_selected_wbo,
-# CASE WHEN nps."Self_selected_Products__c" LIKE '%%Meeting HQ%%' THEN TRUE ELSE FALSE END AS self_selected_mhq,
-# CASE WHEN nps."Self_selected_Products__c" LIKE '%%Expansion Mic%%' THEN TRUE ELSE FALSE END AS self_selected_mic,
+  dimension: last_queried_mo3 {
+    hidden: yes
+    group_label: "Last Queried Products"
+    type: yesno
+    sql: CASE WHEN ${TABLE}.last_queried_products_surveyed_c LIKE '%Meeting Owl 3%' THEN TRUE ELSE FALSE END  ;;
+  }
 
-  # dimension: self_selected_ {
-  #   label: "Self-Selected: Meeting Owl Pro"
-  #   description: "Identifies if customer selected that they own a MOP"
-  #   group_label: "Self-Selected Products"
-  #   type: yesno
-  #   sql: ${TABLE}.self_selected_mop ;;
-  # }
+  dimension: last_queried_owlbar {
+    hidden: yes
+    group_label: "Last Queried Products"
+    type: yesno
+    sql: CASE WHEN ${TABLE}.last_queried_products_surveyed_c LIKE '%Owl Bar%' THEN TRUE ELSE FALSE END  ;;
+  }
 
-  # dimension: self_selected_mo3 {
-  #   label: "Self-Selected: Meeting Owl 3"
-  #   description: "Identifies if customer selected that they own an MO3"
-  #   group_label: "Self-Selected Products"
-  #   type: yesno
-  #   sql: ${TABLE}.self_selected_mo3 ;;
-  # }
+  dimension: last_queried_wbo {
+    hidden: yes
+    group_label: "Last Queried Products"
+    type: yesno
+    sql: CASE WHEN ${TABLE}.last_queried_products_surveyed_c LIKE '%Whiteboard Owl%' THEN TRUE ELSE FALSE END  ;;
+  }
 
-  # dimension: self_selected_owlbar {
-  #   label: "Self-Selected: Owl Bar"
-  #   description: "Identifies if customer selected that they own an Owl Bar"
-  #   group_label: "Self-Selected Products"
-  #   type: yesno
-  #   sql: ${TABLE}.self_selected_owlbar ;;
-  # }
+  dimension: last_queried_mhq {
+    hidden: yes
+    group_label: "Last Queried Products"
+    type: yesno
+    sql: CASE WHEN ${TABLE}.last_queried_products_surveyed_c LIKE '%Meeting HQ%' THEN TRUE ELSE FALSE END  ;;
+  }
 
-  # dimension: self_selected_wbo {
-  #   label: "Self-Selected: Whiteboard Owl"
-  #   description: "Identifies if customer selected that they own a WBO"
-  #   group_label: "Self-Selected Products"
-  #   type: yesno
-  #   sql: ${TABLE}.self_selected_wbo ;;
-  # }
-
-  # dimension: self_selected_mhq {
-  #   label: "Self-Selected: Meeting HQ"
-  #   description: "Identifies if customer selected that they own an MHQ"
-  #   group_label: "Self-Selected Products"
-  #   type: yesno
-  #   sql: ${TABLE}.self_selected_mhq ;;
-  # }
-
-  # dimension: self_selected_mic {
-  #   label: "Self-Selected: Extension Mic"
-  #   description: "Identifies if customer selected that they own an Extension Mic"
-  #   group_label: "Self-Selected Products"
-  #   type: yesno
-  #   sql: ${TABLE}.self_selected_mic ;;
-  # }
-
+  dimension: last_queried_mic {
+    hidden: yes
+    group_label: "Last Queried Products"
+    type: yesno
+    sql: CASE WHEN ${TABLE}.last_queried_products_surveyed_c LIKE '%Expansion Mic%' THEN TRUE ELSE FALSE END  ;;
+  }
 
 
   dimension: lq_count_of_devices_c {
@@ -310,6 +296,12 @@ view: salesforce_nps {
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
     sql: ${TABLE}.survey_completion_time_c ;;
+  }
+
+  dimension: survey_completion_date_null {
+    label: "Does Survey Have a Completion Date?"
+    type: yesno
+    sql: CASE WHEN ${survey_completion_time_c_date} IS NULL THEN False ELSE True END ;;
   }
 
   dimension_group: survey_response_time_c {
