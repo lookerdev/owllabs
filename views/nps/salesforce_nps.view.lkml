@@ -30,26 +30,6 @@ view: salesforce_nps {
     }
   }
 
-  # dimension: browser_c {
-  #   type: string
-  #   sql: ${TABLE}.browser_c ;;
-  # }
-
-  # dimension: case_c {
-  #   type: string
-  #   sql: ${TABLE}.case_c ;;
-  # }
-
-  # dimension: case_origin_c {
-  #   type: string
-  #   sql: ${TABLE}.case_origin_c ;;
-  # }
-
-  # dimension: ces_comment_sentiment_c {
-  #   type: string
-  #   sql: ${TABLE}.ces_comment_sentiment_c ;;
-  # }
-
   dimension: comments_c {
     label: "NPS Score Reason"
     description: "Why responder gave the score they did."
@@ -116,42 +96,6 @@ view: salesforce_nps {
     sql: ${TABLE}.if_you_could_wave_a_magic_wand_c ;;
   }
 
-  # dimension: internal_response_c {
-  #   label: "test response"
-  #   type: yesno
-  #   sql: ${TABLE}.internal_response_c ;;
-  # }
-
-  # dimension: isdeleted {
-  #   type: yesno
-  #   sql: ${TABLE}.isdeleted ;;
-  # }
-
-  # dimension: jira_key_c {
-  #   type: string
-  #   sql: ${TABLE}.jira_key_c ;;
-  # }
-
-  # dimension: knowledge_article_c {
-  #   type: string
-  #   sql: ${TABLE}.knowledge_article_c ;;
-  # }
-
-  # dimension: knowledge_public_url_c {
-  #   type: string
-  #   sql: ${TABLE}.knowledge_public_url_c ;;
-  # }
-
-  # dimension: language_c {
-  #   type: string
-  #   sql: ${TABLE}.language_c ;;
-  # }
-
-  # dimension: language_code_c {
-  #   type: string
-  #   sql: ${TABLE}.language_code_c ;;
-  # }
-
   dimension_group: last_registration_date_c {
     label: "Most Recent Device Registration"
     type: time
@@ -159,11 +103,71 @@ view: salesforce_nps {
     sql: ${TABLE}.lq_last_registration_date_c ;;
   }
 
-  # dimension: link_to_response_c {
-  #   label: "Link to GetFeedback Response"
+  # dimension: last_queried_products_surveyed_c {
   #   type: string
-  #   sql: ${TABLE}.link_to_response_c ;;
+  #   sql: ${TABLE}.last_queried_products_surveyed_c  ;;
   # }
+
+  # dimension: last_queried_mop {
+  #   sql: CASE WHEN ${TABLE}.last_queried_products_surveyed_c LIKE '%Meeting Owl Pro%' THEN TRUE ELSE FALSE END  ;;
+  # }
+
+#   nps."Self_selected_Products__c" LIKE '%%Meeting Owl Pro%%'  AS self_selected_mop,
+# CASE WHEN nps."Self_selected_Products__c" LIKE '%%Meeting Owl 3%%' THEN TRUE ELSE FALSE END AS self_selected_mo3,
+# CASE WHEN nps."Self_selected_Products__c" LIKE '%%Owl Bar%%' THEN TRUE ELSE FALSE END AS self_selected_owlbar,
+# CASE WHEN nps."Self_selected_Products__c" LIKE '%%Whiteboard Owl%%' THEN TRUE ELSE FALSE END AS self_selected_wbo,
+# CASE WHEN nps."Self_selected_Products__c" LIKE '%%Meeting HQ%%' THEN TRUE ELSE FALSE END AS self_selected_mhq,
+# CASE WHEN nps."Self_selected_Products__c" LIKE '%%Expansion Mic%%' THEN TRUE ELSE FALSE END AS self_selected_mic,
+
+  # dimension: self_selected_ {
+  #   label: "Self-Selected: Meeting Owl Pro"
+  #   description: "Identifies if customer selected that they own a MOP"
+  #   group_label: "Self-Selected Products"
+  #   type: yesno
+  #   sql: ${TABLE}.self_selected_mop ;;
+  # }
+
+  # dimension: self_selected_mo3 {
+  #   label: "Self-Selected: Meeting Owl 3"
+  #   description: "Identifies if customer selected that they own an MO3"
+  #   group_label: "Self-Selected Products"
+  #   type: yesno
+  #   sql: ${TABLE}.self_selected_mo3 ;;
+  # }
+
+  # dimension: self_selected_owlbar {
+  #   label: "Self-Selected: Owl Bar"
+  #   description: "Identifies if customer selected that they own an Owl Bar"
+  #   group_label: "Self-Selected Products"
+  #   type: yesno
+  #   sql: ${TABLE}.self_selected_owlbar ;;
+  # }
+
+  # dimension: self_selected_wbo {
+  #   label: "Self-Selected: Whiteboard Owl"
+  #   description: "Identifies if customer selected that they own a WBO"
+  #   group_label: "Self-Selected Products"
+  #   type: yesno
+  #   sql: ${TABLE}.self_selected_wbo ;;
+  # }
+
+  # dimension: self_selected_mhq {
+  #   label: "Self-Selected: Meeting HQ"
+  #   description: "Identifies if customer selected that they own an MHQ"
+  #   group_label: "Self-Selected Products"
+  #   type: yesno
+  #   sql: ${TABLE}.self_selected_mhq ;;
+  # }
+
+  # dimension: self_selected_mic {
+  #   label: "Self-Selected: Extension Mic"
+  #   description: "Identifies if customer selected that they own an Extension Mic"
+  #   group_label: "Self-Selected Products"
+  #   type: yesno
+  #   sql: ${TABLE}.self_selected_mic ;;
+  # }
+
+
 
   dimension: lq_count_of_devices_c {
     label: "# Registered Devices"
@@ -243,31 +247,6 @@ view: salesforce_nps {
     sql: ${TABLE}.numberofemployees ;;
   }
 
-  # dimension: observation_type_c {
-  #   type: string
-  #   sql: ${TABLE}.observation_type_c ;;
-  # }
-
-  # dimension: owl_labs_app_c {
-  #   type: string
-  #   sql: ${TABLE}.owl_labs_app_c ;;
-  # }
-
-  # dimension: ownerid {
-  #   type: string
-  #   sql: ${TABLE}.ownerid ;;
-  # }
-
-  # dimension: platform_c {
-  #   type: string
-  #   sql: ${TABLE}.platform_c ;;
-  # }
-
-  # dimension: recordtypeid {
-  #   type: string
-  #   sql: ${TABLE}.recordtypeid ;;
-  # }
-
   dimension: self_selected_products_c {
     label: "Self-Selected Products List"
     description: "List of all devices customer claims to own"
@@ -324,11 +303,6 @@ view: salesforce_nps {
     sql: ${TABLE}.self_selected_mic ;;
   }
 
-  # dimension: slack_channel_c {
-  #   type: string
-  #   sql: ${TABLE}.slack_channel_c ;;
-  # }
-
   dimension_group: survey_completion_time_c {
     # hidden: yes
     label: "Survey Complete"
@@ -338,18 +312,6 @@ view: salesforce_nps {
     sql: ${TABLE}.survey_completion_time_c ;;
   }
 
-  # dimension: survey_name_c {
-  #   type: string
-  #   sql: ${TABLE}.survey_name_c ;;
-  # }
-
-  # dimension_group: survey_response_date_c { # same as survey_response_date_c but excludes timestamp
-  #   hidden: yes
-  #   type: time
-  #   timeframes: [raw, date, week, month, quarter, year]
-  #   sql: ${TABLE}.survey_response_date_c ;;
-  # }
-
   dimension_group: survey_response_time_c {
     label: "Survey Start"
     description: "Date GetFeedback recorded an initial survey click & respondent began the response"
@@ -358,20 +320,23 @@ view: salesforce_nps {
     sql: ${TABLE}.survey_response_time_c ;;
   }
 
-  # dimension: survey_source_c {
-  #   type: string
-  #   sql: ${TABLE}.survey_source_c ;;
-  # }
-
-  dimension: survey_trigger_c {
-    label: "Survey Trigger"
-    description: "The reason a survey was sent. Previously 'Survey Iteration'"
+  dimension: survey_iteration {
+    label: "Survey Iteration"
+    description: "The tiemframe for which a survey was sent"
     group_label: "Salesforce Metadata"
     type: string
     sql: CASE WHEN ${TABLE}.survey_trigger_c = 'One-Off NPS' THEN 'Initial NPS'
+              WHEN ${TABLE}.survey_trigger_c = 'Re-Triggered New Registration NPS' THEN 'Initial NPS'
               ELSE ${TABLE}.survey_trigger_c END ;; # combines all initally triggered one-off sends as part of "Inital"
   }
 
+  dimension: survey_trigger_c {
+    label: "Survey Trigger"
+    description: "The reason a survey was sent."
+    group_label: "Salesforce Metadata"
+    type: string
+    sql: ${TABLE}.survey_trigger_c ;;
+  }
 
   dimension: survey_trigger_notes_c {
     label: "Survey Trigger Notes"
@@ -414,6 +379,118 @@ view: salesforce_nps {
               when ${nps_score_c} in (0,1,2,3,4,5,6) then 'Detractor'
               else null end;;
   }
+
+
+  # dimension: browser_c {
+  #   type: string
+  #   sql: ${TABLE}.browser_c ;;
+  # }
+
+  # dimension: case_c {
+  #   type: string
+  #   sql: ${TABLE}.case_c ;;
+  # }
+
+  # dimension: case_origin_c {
+  #   type: string
+  #   sql: ${TABLE}.case_origin_c ;;
+  # }
+
+  # dimension: ces_comment_sentiment_c {
+  #   type: string
+  #   sql: ${TABLE}.ces_comment_sentiment_c ;;
+  # }
+
+  # dimension: internal_response_c {
+  #   label: "test response"
+  #   type: yesno
+  #   sql: ${TABLE}.internal_response_c ;;
+  # }
+
+  # dimension: isdeleted {
+  #   type: yesno
+  #   sql: ${TABLE}.isdeleted ;;
+  # }
+
+  # dimension: jira_key_c {
+  #   type: string
+  #   sql: ${TABLE}.jira_key_c ;;
+  # }
+
+  # dimension: knowledge_article_c {
+  #   type: string
+  #   sql: ${TABLE}.knowledge_article_c ;;
+  # }
+
+  # dimension: knowledge_public_url_c {
+  #   type: string
+  #   sql: ${TABLE}.knowledge_public_url_c ;;
+  # }
+
+  # dimension: language_c {
+  #   type: string
+  #   sql: ${TABLE}.language_c ;;
+  # }
+
+  # dimension: language_code_c {
+  #   type: string
+  #   sql: ${TABLE}.language_code_c ;;
+  # }
+
+  # dimension: link_to_response_c {
+  #   label: "Link to GetFeedback Response"
+  #   type: string
+  #   sql: ${TABLE}.link_to_response_c ;;
+  # }
+
+  # dimension: observation_type_c {
+  #   type: string
+  #   sql: ${TABLE}.observation_type_c ;;
+  # }
+
+  # dimension: owl_labs_app_c {
+  #   type: string
+  #   sql: ${TABLE}.owl_labs_app_c ;;
+  # }
+
+  # dimension: ownerid {
+  #   type: string
+  #   sql: ${TABLE}.ownerid ;;
+  # }
+
+  # dimension: platform_c {
+  #   type: string
+  #   sql: ${TABLE}.platform_c ;;
+  # }
+
+  # dimension: recordtypeid {
+  #   type: string
+  #   sql: ${TABLE}.recordtypeid ;;
+  # }
+
+  # dimension: slack_channel_c {
+  #   type: string
+  #   sql: ${TABLE}.slack_channel_c ;;
+  # }
+
+  # dimension: survey_name_c {
+  #   type: string
+  #   sql: ${TABLE}.survey_name_c ;;
+  # }
+
+  # dimension_group: survey_response_date_c { # same as survey_response_date_c but excludes timestamp
+  #   hidden: yes
+  #   type: time
+  #   timeframes: [raw, date, week, month, quarter, year]
+  #   sql: ${TABLE}.survey_response_date_c ;;
+  # }
+
+  # dimension: survey_source_c {
+  #   type: string
+  #   sql: ${TABLE}.survey_source_c ;;
+  # }
+
+
 
 ## MEASURES
 
