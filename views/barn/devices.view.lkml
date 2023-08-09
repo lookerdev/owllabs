@@ -110,11 +110,26 @@ view: devices {
     sql: ${TABLE}.device_hardware_serial_number ;;
   }
 
+  dimension: hardwareserial_weeknum {
+    label: "Hardware Serial Week Number"
+    group_label: "Hardware Serial Number Components"
+    type: number
+    sql: ${TABLE}.hardwareserial_weeknum ;;
+  }
+
+  dimension: hardwareserial_year {
+    label: "Hardware Serial Year"
+    group_label: "Hardware Serial Number Components"
+    type: number
+    sql: CASE WHEN ${TABLE}.hardwareserial_year IS NOT NULL THEN CONCAT('20',${TABLE}.hardwareserial_year) ELSE ${TABLE}.hardwareserial_year END ;;
+  }
+
   dimension: hardware_version {
     label: "Hardware Version"
     type: string
     sql: ${TABLE}.device_hardware_version ;;
   }
+
 
   dimension: inventorysku {
     label: "Inventory SKU"
