@@ -1,5 +1,5 @@
 connection: "redshift"
-label: "E-Commerce"
+label: "Sales"
 # label: "Sales Data"
 
 include: "/views/dim_calendar.view.lkml"
