@@ -2,8 +2,20 @@
 
 view: all_orders2 {
   # label: "All Orders 2.0 - In Dev"
-  sql_table_name: sales.all_orders2 ;;
   drill_fields: [order_date, order_number, sales_channel, billingaddress_worldregion, sku, sum_quantity]
+  # sql_table_name: sales.all_orders2 ;;
+  derived_table: {
+    sql: SELECT *
+         FROM public.dim_calendar dc
+         LEFT JOIN sales.all_orders2 ao
+          ON dc."date" = ao.order_date::date
+         WHERE "date" BETWEEN '2017-01-01' AND CURRENT_DATE
+          AND {% condition sales_channel %} ao.sales_channel {% endcondition %}
+          AND {% condition sku_category %} ao.sku_category {% endcondition %}
+          AND {% condition sku_product_family %} ao.sku_product_family {% endcondition %}
+ ;;
+  }
+
 
 
   parameter: timeframe_picker {
@@ -55,10 +67,11 @@ view: all_orders2 {
     sql: ${TABLE}.amount_usd ;;
   }
 
-  # dimension: asin {
-  #   type: string
-  #   sql: ${TABLE}.asin ;;
-  # }
+  dimension: asin {
+    label: "Amazon ASIN"
+    type: string
+    sql: ${TABLE}.asin ;;
+  }
 
   dimension: billingaddress_country {
     type: string
@@ -81,6 +94,7 @@ view: all_orders2 {
     # description: "Hardware, Accessories, Subscription, etc"
     type: string
     sql: ${TABLE}.sku_category ;;
+    case_sensitive: no
   }
 
   dimension: sku_product_family {
@@ -88,6 +102,7 @@ view: all_orders2 {
     # description: "groups skus into larger device categories"
     type: string
     sql: ${TABLE}.sku_product_family ;;
+    case_sensitive: no
   }
 
   dimension: currency {
@@ -152,6 +167,7 @@ view: all_orders2 {
     # label: "Netsuite Sales Order Number"
     type: string
     sql: ${TABLE}.order_number ;;
+    case_sensitive: no
   }
 
   dimension: quantity {
@@ -172,6 +188,7 @@ view: all_orders2 {
   dimension: sales_channel {
     type: string
     sql: ${TABLE}.sales_channel ;;
+    case_sensitive: no
   }
 
   dimension: salesrep_name {
@@ -187,16 +204,19 @@ view: all_orders2 {
   dimension: shopify_order_number {
     type: string
     sql: ${TABLE}.shopify_order_number ;;
+    case_sensitive: no
   }
 
   dimension: sku {
     type: string
     sql: ${TABLE}.sku ;;
+    case_sensitive: no
   }
 
   dimension: sku_name {
     type: string
     sql: ${TABLE}.sku_name ;;
+    case_sensitive: no
   }
 
   dimension: source {
