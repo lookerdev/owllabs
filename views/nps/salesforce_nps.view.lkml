@@ -299,6 +299,7 @@ view: salesforce_nps {
   }
 
   dimension: survey_completion_date_null {
+    hidden: yes
     label: "Does Survey Have a Completion Date?"
     type: yesno
     sql: CASE WHEN ${survey_completion_time_c_date} IS NULL THEN False ELSE True END ;;
