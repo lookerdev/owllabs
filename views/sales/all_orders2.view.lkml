@@ -5,47 +5,106 @@ view: all_orders2 {
   drill_fields: [order_date, order_number, sales_channel, billingaddress_worldregion, sku, sum_quantity]
   # sql_table_name: sales.all_orders2 ;;
   derived_table: {
-    sql: SELECT *
-         FROM public.dim_calendar dc
-         LEFT JOIN sales.all_orders2 ao
+    # sql: SELECT dc."date", ao.*
+    #     FROM public.dim_calendar dc
+    #     LEFT JOIN sales.all_orders2 ao
+    #       ON dc."date" = ao.order_date::date
+    #     WHERE "date" BETWEEN '2017-01-01' AND CURRENT_DATE
+    #       AND {% condition sales_channel %} ao.sales_channel {% endcondition %}
+    #       AND {% condition sku_category %} ao.sku_category {% endcondition %}
+    #       AND {% condition sku_product_family %} ao.sku_product_family {% endcondition %}
+    #       ;;
+    sql: SELECT dc."date", ao.*
+        FROM public.dim_calendar dc
+        LEFT JOIN sales.all_orders2 ao
           ON dc."date" = ao.order_date::date
-         WHERE "date" BETWEEN '2017-01-01' AND CURRENT_DATE
           AND {% condition sales_channel %} ao.sales_channel {% endcondition %}
           AND {% condition sku_category %} ao.sku_category {% endcondition %}
           AND {% condition sku_product_family %} ao.sku_product_family {% endcondition %}
- ;;
+        WHERE dc."date" BETWEEN '2017-01-01' AND CURRENT_DATE
+        ;;
   }
 
 
+
+  # parameter: timeframe_picker {
+  #   label: "Date Granularity"
+  #   # type: unquoted
+  #   type: string
+  #   default_value: "date_month"
+  #   allowed_value: {
+  #     value: "date_date"
+  #     label: "Date"
+  #   }
+  #   allowed_value: {
+  #     value: "date_week"
+  #     label: "Week"
+  #   }
+  #   allowed_value: {
+  #     value: "date_month"
+  #     label: "Month"
+  #   }
+  # }
+
+
+  # dimension: dynamic_timeframe {
+  #   type: string
+  #   sql:
+  #   CASE
+  #   WHEN {% parameter timeframe_picker %} = 'date_date' THEN TO_DATE(${order_date}, 'YYYY-MM-DD')
+  #   WHEN {% parameter timeframe_picker %} = 'date_week' THEN TO_DATE(${order_week}, 'YYYY-MM-DD')
+  #   WHEN {% parameter timeframe_picker %} = 'date_month' THEN TO_DATE(${order_month}, 'YYYY-MM')
+  #   END ;;
+  # }
 
   parameter: timeframe_picker {
     label: "Date Granularity"
-    # type: unquoted
     type: string
-    default_value: "date_month"
+    # default_value: "date_month"
     allowed_value: {
-      value: "date_date"
+      value: "date"
       label: "Date"
     }
     allowed_value: {
-      value: "date_week"
+      value: "week"
       label: "Week"
     }
     allowed_value: {
-      value: "date_month"
+      value: "month"
       label: "Month"
+    }
+    allowed_value: {
+      value: "quarter"
+      label: "Quarter"
     }
   }
 
+  # # https://blog.searce.com/dynamic-time-granularity-in-looker-8ec4af52eb56
+  # dimension: dynamic_timeframe {
+  #   label_from_parameter: timeframe_picker
+  #   type: date
+  #   sql:
+  #   CASE
+  #   WHEN {% parameter timeframe_picker %} = 'date' THEN date_trunc('day', ${order_date})::date
+  #   WHEN {% parameter timeframe_picker %} = 'week' THEN date_trunc('week', ${order_date})::date
+  #   WHEN {% parameter timeframe_picker %} = 'month' THEN date_trunc('month', ${order_date})::date
+  #   WHEN {% parameter timeframe_picker %} = 'quarter' THEN date_trunc('quarter', ${order_date})::date
+  #   ELSE date_trunc('day', ${order_date})::date
+  #   END ;;
+  # }
 
+  # https://blog.montrealanalytics.com/limit-5-create-a-dynamic-field-in-looker-d9e6b15be666
   dimension: dynamic_timeframe {
-    type: string
+    label_from_parameter: timeframe_picker
+    type: date
     sql:
-    CASE
-    WHEN {% parameter timeframe_picker %} = 'date_date' THEN TO_DATE(${order_date}, 'YYYY-MM-DD')
-    WHEN {% parameter timeframe_picker %} = 'date_week' THEN TO_DATE(${order_week}, 'YYYY-MM-DD')
-    WHEN {% parameter timeframe_picker %} = 'date_month' THEN TO_DATE(${order_month}, 'YYYY-MM')
-    END ;;
+      {% if timeframe_picker._parameter_value == "date" %} ${order_date}
+      {% elsif timeframe_picker._parameter_value == "week" %} ${order_week}
+      {% elsif timeframe_picker._parameter_value == "month" %} ${order_month}
+      {% elsif timeframe_picker._parameter_value == "quarter" %} ${order_quarter}
+      {% else %} ${order_date}
+      {% endif %}
+      ;;
   }
 
 
@@ -144,11 +203,6 @@ view: all_orders2 {
     sql: ${TABLE}.item_type ;;
   }
 
-  # dimension: order_date {
-  #   type: string
-  #   sql: ${TABLE}. ;;
-  # }
-
   dimension_group: order {
     type: time
     timeframes: [
@@ -160,7 +214,9 @@ view: all_orders2 {
       quarter,
       year
     ]
-    sql: ${TABLE}.order_date ;;
+    # sql: ${TABLE}.order_date ;;
+    sql: ${TABLE}.date ;;
+    # allow_fill: yes
   }
 
   dimension: order_number {
@@ -173,6 +229,7 @@ view: all_orders2 {
   dimension: quantity {
     type: number
     sql: ${TABLE}.quantity ;;
+    # sql: coalesce(${TABLE}.quantity, 0) ;;
   }
 
   # dimension: quantitybilled {
@@ -273,6 +330,7 @@ view: all_orders2 {
   measure: sum_quantity {
     type: sum
     sql: ${quantity} ;;
+    # sql: coalesce(${quantity}, 0) ;;
   }
 
 }

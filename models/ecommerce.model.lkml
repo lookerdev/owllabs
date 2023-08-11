@@ -30,10 +30,10 @@ explore: all_orders {
 # }
 
 
-explore: all_orders2 {
-  label: "All Orders 2.0 - Under Development"
-  hidden: yes
-}
+# explore: all_orders2 {
+#   label: "All Orders 2.0 - Under Development"
+#   hidden: yes
+# }
 
 
 explore: all_fulfillments {
