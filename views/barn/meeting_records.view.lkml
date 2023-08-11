@@ -268,6 +268,7 @@ view: meeting_records {
     description: "List of secondary devices paired via OwlNet in meeting."
     type: string
     sql: ${TABLE}.paireddevices ;;
+    case_sensitive: no
   }
 
   dimension: paireddevicetypes {
@@ -276,6 +277,7 @@ view: meeting_records {
     description: "List of unique types of secondary devices paired via Owl Net in meeting, in the order they were paired. It's possible for the same device types to be listed in different orders, depending on the order in which they paired to the primary in a meeting."
     type: string
     sql: ${TABLE}.paireddevicetypes ;;
+    case_sensitive: no
   }
 
 
