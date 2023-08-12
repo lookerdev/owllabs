@@ -70,8 +70,8 @@ view: devices_owl_connnect_usage {
 
   # https://community.looker.com/lookml-5/creating-a-type-count-measure-for-non-primary-keys-1163
   measure: count_firstpairedasany {
-    label: "Count of Devices with 1st Paired Meeting"
-    description: "Total number of Device IDs that have had a paired meeting as primary or secondary device"
+    label: "Count of Devices Ever Paired"
+    description: "Total number of devices that have had at least one paired meeting as primary or secondary device"
     type: count
     filters: [firstpairedasany: "-NULL"]
   }
