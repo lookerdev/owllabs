@@ -12,17 +12,17 @@ view: dim_calendar {
     label: "Date Granularity"
     # type: unquoted
     type: string
-    default_value: "date_month"
+    # default_value: "date_month"
     allowed_value: {
-      value: "date_date"
+      value: "date"
       label: "Date"
     }
     allowed_value: {
-      value: "date_week"
+      value: "week"
       label: "Week"
     }
     allowed_value: {
-      value: "date_month"
+      value: "month"
       label: "Month"
     }
   }
@@ -31,9 +31,9 @@ view: dim_calendar {
     type: string
     sql:
     CASE
-    WHEN {% parameter timeframe_picker %} = 'date_date' THEN TO_DATE(${date_date}, 'YYYY-MM-DD')
-    WHEN {% parameter timeframe_picker %} = 'date_week' THEN TO_DATE(${date_week}, 'YYYY-MM-DD')
-    WHEN {% parameter timeframe_picker %} = 'date_month' THEN TO_DATE(${date_month}, 'YYYY-MM')
+    WHEN {% parameter timeframe_picker %} = 'date' THEN TO_DATE(${date_date}, 'YYYY-MM-DD')
+    WHEN {% parameter timeframe_picker %} = 'week' THEN TO_DATE(${date_week}, 'YYYY-MM-DD')
+    WHEN {% parameter timeframe_picker %} = 'month' THEN TO_DATE(${date_month}, 'YYYY-MM')
     END ;;
   }
 
