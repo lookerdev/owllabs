@@ -8,57 +8,32 @@ view: all_fulfillments {
     label: "Date Granularity"
     # type: unquoted
     type: string
-    default_value: "date_month"
+    # default_value: "date_month"
     allowed_value: {
-      value: "date_date"
+      value: "date"
       label: "Date"
     }
     allowed_value: {
-      value: "date_week"
+      value: "week"
       label: "Week"
     }
     allowed_value: {
-      value: "date_month"
+      value: "month"
       label: "Month"
     }
   }
 
-  parameter: pivot_picker {
-    hidden: yes
-    # label: "Slice Dimension"
-    type: string
-    default_value: "sales_channel"
-    allowed_value: {
-      value: "sales_channel"
-      label: "Sales Channel"
-    }
-    allowed_value: {
-      value: "world_region"
-      label: "World Region"
-    }
-  }
+
 
 ## DIMENSIONS
-
-  dimension: dynamic_pivot {
-    hidden: yes
-    # label: "Slice Dimension"
-    description: "Use with Slice Dimension parameter"
-    type: string
-    sql:
-    CASE
-    WHEN {% parameter pivot_picker %} = 'sales_channel' THEN ${sales_channel}
-    WHEN {% parameter pivot_picker %} = 'world_region' THEN ${world_region}
-    END ;;
-  }
 
   dimension: dynamic_timeframe {
     type: string
     sql:
     CASE
-    WHEN {% parameter timeframe_picker %} = 'date_date' THEN TO_DATE(${fulfillment_date}, 'YYYY-MM-DD')
-    WHEN {% parameter timeframe_picker %} = 'date_week' THEN TO_DATE(${fulfillment_week}, 'YYYY-MM-DD')
-    WHEN {% parameter timeframe_picker %} = 'date_month' THEN TO_DATE(${fulfillment_month}, 'YYYY-MM')
+    WHEN {% parameter timeframe_picker %} = 'date' THEN TO_DATE(${fulfillment_date}, 'YYYY-MM-DD')
+    WHEN {% parameter timeframe_picker %} = 'week' THEN TO_DATE(${fulfillment_week}, 'YYYY-MM-DD')
+    WHEN {% parameter timeframe_picker %} = 'month' THEN TO_DATE(${fulfillment_month}, 'YYYY-MM')
     END ;;
   }
 
