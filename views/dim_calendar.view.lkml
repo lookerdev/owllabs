@@ -38,38 +38,6 @@ view: dim_calendar {
   }
 
 
-  # parameter: timeframe_picker {
-  #   label: "Date Granularity"
-  #   type: string
-  #   allowed_value: { value: "Date" }
-  #   allowed_value: { value: "Week" }
-  #   allowed_value: { value: "Month" }
-  #   default_value: "Date"
-  # }
-
-  # dimension: dynamic_timeframe {
-  #   type: string
-  #   sql:
-  #   CASE
-  #   WHEN {% parameter timeframe_picker %} = 'Date' THEN TO_DATE(${dim_calendar.date_date}, 'YYYY-MM-DD')
-  #   WHEN {% parameter timeframe_picker %} = 'Week' THEN TO_DATE(${dim_calendar.date_week}, 'YYYY-MM-WW')
-  #   WHEN {% parameter timeframe_picker %} = 'Month' THEN TO_DATE(${dim_calendar.date_month}, 'YYYY-MM')
-  #   END ;;
-  # }
-
-  # dimension: dynamic_timeframe {
-  #   type: string
-  #   sql:
-  #   CASE
-  #   WHEN {% parameter timeframe_picker %} = 'Date' THEN ${date_date}
-  #   WHEN {% parameter timeframe_picker %} = 'Week' THEN ${date_week}
-  #   WHEN {% parameter timeframe_picker %} = 'Month' THEN ${date_month}
-  #   END ;;
-  # }
-
-
-
-
   dimension: id {
     primary_key: yes
     hidden: yes
