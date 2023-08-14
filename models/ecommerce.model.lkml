@@ -18,10 +18,28 @@ explore: all_orders {
   description: "Order data from Shopify, Amazon, Sourcenext, and historical distributor Starin. Does not include Salesforce opportunitites. By default includes SKUs that don't count toward revenue (replacement units, Owls For Good), which can be filtered out using Revenue SKU dimension."
 }
 
-
 explore: all_fulfillments {
   description: "Shipment data from Shopify, Amazon, Sourcenext, and historical distributor Starin. Does not include Salesforce opportunitites. By default includes SKUs that don't count toward revenue (replacement units, Owls For Good), which can be filtered out using Revenue SKU dimension."
 }
+
+
+# explore: all_orders2 {
+#   view_name: dim_calendar
+#   label: "All Orders 2.0 - Under Development"
+#   hidden: yes
+#   join: all_orders2 {
+#     type: left_outer
+#     relationship: one_to_many
+#     sql_on: ${dim_calendar.date_date} = ${all_orders2.order_date} ;;
+#   }
+# }
+
+
+explore: all_orders2 {
+  label: "All Orders 2.0 - Under Development"
+  hidden: yes
+}
+
 
 
 explore: shopify_orders_line_items_view {
