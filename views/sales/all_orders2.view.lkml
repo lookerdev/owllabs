@@ -19,8 +19,10 @@ view: all_orders2 {
         LEFT JOIN sales.all_orders2 ao
           ON dc."date" = ao.order_date::date
           AND {% condition sales_channel %} ao.sales_channel {% endcondition %}
+          AND {% condition billingaddress_worldregion %} ao.billingaddress_worldregion {% endcondition %}
           AND {% condition sku_category %} ao.sku_category {% endcondition %}
           AND {% condition sku_product_family %} ao.sku_product_family {% endcondition %}
+          AND {% condition order_date %} ao.order_date {% endcondition %}
         WHERE dc."date" BETWEEN '2017-01-01' AND CURRENT_DATE
         ;;
   }
@@ -30,7 +32,6 @@ view: all_orders2 {
   parameter: timeframe_picker {
     label: "Date Granularity"
     type: string
-    # default_value: "date_month"
     allowed_value: {
       value: "date"
       label: "Date"
@@ -48,20 +49,6 @@ view: all_orders2 {
       label: "Quarter"
     }
   }
-
-  # # https://blog.searce.com/dynamic-time-granularity-in-looker-8ec4af52eb56
-  # dimension: dynamic_timeframe {
-  #   label_from_parameter: timeframe_picker
-  #   type: date
-  #   sql:
-  #   CASE
-  #   WHEN {% parameter timeframe_picker %} = 'date' THEN date_trunc('day', ${order_date})::date
-  #   WHEN {% parameter timeframe_picker %} = 'week' THEN date_trunc('week', ${order_date})::date
-  #   WHEN {% parameter timeframe_picker %} = 'month' THEN date_trunc('month', ${order_date})::date
-  #   WHEN {% parameter timeframe_picker %} = 'quarter' THEN date_trunc('quarter', ${order_date})::date
-  #   ELSE date_trunc('day', ${order_date})::date
-  #   END ;;
-  # }
 
   # https://blog.montrealanalytics.com/limit-5-create-a-dynamic-field-in-looker-d9e6b15be666
   dimension: dynamic_timeframe {
@@ -198,8 +185,8 @@ view: all_orders2 {
 
   dimension: quantity {
     type: number
-    sql: ${TABLE}.quantity ;;
-    # sql: coalesce(${TABLE}.quantity, 0) ;;
+    # sql: ${TABLE}.quantity ;;
+    sql: coalesce(${TABLE}.quantity, 0) ;;
   }
 
   # dimension: quantitybilled {
