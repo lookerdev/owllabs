@@ -121,6 +121,7 @@ view: salesforce_nps {
 
   dimension: last_queried_mo3 {
     hidden: yes
+    label: "Last Queried Meeting Owl 3"
     group_label: "Last Queried Products"
     type: yesno
     sql: CASE WHEN ${TABLE}.last_queried_products_surveyed_c LIKE '%Meeting Owl 3%' THEN TRUE ELSE FALSE END  ;;
