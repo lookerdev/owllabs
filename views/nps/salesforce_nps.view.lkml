@@ -104,7 +104,7 @@ view: salesforce_nps {
   }
 
   dimension: last_queried_products_surveyed_c {
-    hidden: yes
+    # hidden: yes
     label: "Last Queried Products Surveyed"
     description: "Products registered for this email address via most recent query"
     group_label: "Last Queried Products"
@@ -113,10 +113,11 @@ view: salesforce_nps {
   }
 
   dimension: last_queried_mop {
-    hidden: yes
+    # hidden: yes
     group_label: "Last Queried Products"
     type: yesno
     sql: CASE WHEN ${TABLE}.last_queried_products_surveyed_c LIKE '%Meeting Owl Pro%' THEN TRUE ELSE FALSE END  ;;
+    # sql: CASE WHEN ${lq_count_of_mop_registered_c} > 0 THEN TRUE ELSE FALSE END ;;
   }
 
   dimension: last_queried_mo3 {
@@ -125,34 +126,39 @@ view: salesforce_nps {
     group_label: "Last Queried Products"
     type: yesno
     sql: CASE WHEN ${TABLE}.last_queried_products_surveyed_c LIKE '%Meeting Owl 3%' THEN TRUE ELSE FALSE END  ;;
+    # sql: CASE WHEN ${lq_count_of_mo3_registered_c} > 0 THEN TRUE ELSE FALSE END ;;
   }
 
   dimension: last_queried_owlbar {
-    hidden: yes
+    # hidden: yes
     group_label: "Last Queried Products"
     type: yesno
     sql: CASE WHEN ${TABLE}.last_queried_products_surveyed_c LIKE '%Owl Bar%' THEN TRUE ELSE FALSE END  ;;
+    # sql: CASE WHEN ${lq_count_of_obar_registered_c} > 0 THEN TRUE ELSE FALSE END ;;
   }
 
   dimension: last_queried_wbo {
-    hidden: yes
+    # hidden: yes
     group_label: "Last Queried Products"
     type: yesno
     sql: CASE WHEN ${TABLE}.last_queried_products_surveyed_c LIKE '%Whiteboard Owl%' THEN TRUE ELSE FALSE END  ;;
+    # sql: CASE WHEN ${lq_count_of_wbo_registered_c} > 0 THEN TRUE ELSE FALSE END ;;
   }
 
   dimension: last_queried_mhq {
-    hidden: yes
+    # hidden: yes
     group_label: "Last Queried Products"
     type: yesno
     sql: CASE WHEN ${TABLE}.last_queried_products_surveyed_c LIKE '%Meeting HQ%' THEN TRUE ELSE FALSE END  ;;
+    # sql: CASE WHEN ${lq_count_of_mhq_registered_c} > 0 THEN TRUE ELSE FALSE END ;;
   }
 
   dimension: last_queried_mic {
-    hidden: yes
+    # hidden: yes
     group_label: "Last Queried Products"
     type: yesno
     sql: CASE WHEN ${TABLE}.last_queried_products_surveyed_c LIKE '%Expansion Mic%' THEN TRUE ELSE FALSE END  ;;
+    # sql: CASE WHEN ${lq_expansion_mic_usage_c} > 0 THEN TRUE ELSE FALSE END ;;
   }
 
 
@@ -347,6 +353,41 @@ view: salesforce_nps {
     timeframes: [raw, time, date, week, month, quarter, year]
     sql: ${TABLE}.time_survey_triggered_c ;;
   }
+
+
+  # dimension: country {
+  #   hidden: yes
+  #   description: "Account billing country"
+  #   # group_label: "Salesforce Metadata"
+  #   type: string
+  #   sql: ${TABLE}.billingcountry ;;
+  # }
+
+  # dimension: world_region {
+  #   # group_label: "Salesforce Metadata"
+  #   type: string
+  #   sql: ${TABLE}.billingworldregion ;;
+  # }
+
+  # dimension: sales_channel {
+  #   # description: "Based on most recent Account Opportunity"
+  #   # group_label: "Salesforce Metadata"
+  #   type: string
+  #   sql: ${TABLE}.most_recent_opportunity_saleschannel ;;
+  # }
+
+  # dimension: opportunity_id {
+  #   hidden: yes
+  #   description: "Most recent Account Opportunity ID"
+  #   # group_label: "Salesforce Metadata"
+  #   type: string
+  #   sql: ${TABLE}.most_recent_opportunity_id ;;
+  # }
+
+
+
+
+
 
 
 
