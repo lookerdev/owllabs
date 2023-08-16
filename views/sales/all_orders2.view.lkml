@@ -24,6 +24,7 @@ view: all_orders2 {
           AND {% condition sku_product_family %} ao.sku_product_family {% endcondition %}
           AND {% condition order_date %} ao.order_date {% endcondition %}
         WHERE dc."date" BETWEEN '2017-01-01' AND CURRENT_DATE
+        --AND ao.sales_channel <> 'Amazon'
         ;;
   }
 
