@@ -33,6 +33,7 @@ view: all_orders {
     WHEN {% parameter timeframe_picker %} = 'date' THEN TO_DATE(${order_date}, 'YYYY-MM-DD')
     WHEN {% parameter timeframe_picker %} = 'week' THEN TO_DATE(${order_week}, 'YYYY-MM-DD')
     WHEN {% parameter timeframe_picker %} = 'month' THEN TO_DATE(${order_month}, 'YYYY-MM')
+    ElSE TO_DATE(${order_date}, 'YYYY-MM-DD')
     END ;;
   }
 

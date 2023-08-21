@@ -34,6 +34,7 @@ view: all_fulfillments {
     WHEN {% parameter timeframe_picker %} = 'date' THEN TO_DATE(${fulfillment_date}, 'YYYY-MM-DD')
     WHEN {% parameter timeframe_picker %} = 'week' THEN TO_DATE(${fulfillment_week}, 'YYYY-MM-DD')
     WHEN {% parameter timeframe_picker %} = 'month' THEN TO_DATE(${fulfillment_month}, 'YYYY-MM')
+    ElSE TO_DATE(${fulfillment_date}, 'YYYY-MM-DD')
     END ;;
   }
 

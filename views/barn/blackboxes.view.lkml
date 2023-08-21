@@ -209,7 +209,9 @@ sql_table_name: owlbarn.blackboxes ;;
   }
 
   dimension: rawdata {
+    hidden: yes
     label: "rawData"
+    description: "JSON from device checkin"
     type: string
     sql: ${TABLE}.rawdata ;;
   }
@@ -223,6 +225,7 @@ sql_table_name: owlbarn.blackboxes ;;
 
   dimension_group: updatedat {
     label: "Updated"
+    description: "Record last updated"
     type: time
     timeframes: [
       raw,
@@ -235,6 +238,16 @@ sql_table_name: owlbarn.blackboxes ;;
     ]
     sql: ${TABLE}.updatedat ;;
   }
+
+
+# split fields into their corresponding sections
+  ## FeatureFlagSettings/Feature Flags
+
+  ## BruinInfo
+
+  ## BlackBox
+
+  ## Settings
 
 
 # MEASURES
