@@ -2,7 +2,7 @@
 
 view: all_orders2 {
   # label: "All Orders 2.0 - In Dev"
-  drill_fields: [order_date, order_number, sales_channel, billingaddress_worldregion, sku, sum_quantity]
+  drill_fields: [order_date, order_number, shopify_order_number, sales_channel, billingaddress_worldregion, sku, sum_quantity]
   # sql_table_name: sales.all_orders2 ;;
   derived_table: {
     # sql: SELECT dc."date", ao.*
