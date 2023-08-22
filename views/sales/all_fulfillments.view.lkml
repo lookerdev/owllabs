@@ -8,7 +8,7 @@ view: all_fulfillments {
     label: "Date Granularity"
     # type: unquoted
     type: string
-    # default_value: "date_month"
+    # default_value: "date"
     allowed_value: {
       value: "date"
       label: "Date"
