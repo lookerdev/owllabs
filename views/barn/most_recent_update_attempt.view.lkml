@@ -1,6 +1,6 @@
 view: most_recent_update_attempt {
   label: "Device Most Recent Software Update Attempt"
-  sql_table_name: public.most_recent_update_attempt ;;
+  sql_table_name: owlbarn_views.most_recent_update_attempt_v ;;
   # drill_fields: [id]
 
   dimension: id {
