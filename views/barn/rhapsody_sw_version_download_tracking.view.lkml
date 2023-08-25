@@ -10,7 +10,7 @@ view: rhapsody_sw_version_download_tracking {
         dd.software_release_version_number,
         dd.software_release_version,
         dd.createdat
-        from owlbarn_views.deviceupdatesdownloads_v dd
+        from owlbarn_views.deviceupdatedownloads_v dd
         where dd.software_release_version_number < 5000020 /*sw rev we care about*/
         and dd.software_release_version_number > 1000000 /*filters out uat versions*/
         ),
@@ -22,7 +22,7 @@ view: rhapsody_sw_version_download_tracking {
         dd.software_release_version_number,
         dd.software_release_version,
         dd.createdat
-        from owlbarn_views.deviceupdatesdownloads_v dd
+        from owlbarn_views.deviceupdatedownloads_v dd
         where dd.software_release_version_number >= 5000020 /*sw rev we care about (rhapsody) - 5.0.0.20 */
         and dd.software_release_version_number < 8888888 /*filters out uat versions*/
         )
