@@ -294,11 +294,10 @@ view: salesforce_nps {
   }
 
   dimension_group: survey_completion_time_c {
-    # hidden: yes
     label: "Survey Complete"
-    description: "Date survey was completed & submitted. This is blank for 1-click email respondents who don't click through the other survey questions and hit Complete"
+    description: "Date survey was completed & submitted. This is blank for 1-click email responses and responses that don't click through all survey questions and hit Complete"
     type: time
-    timeframes: [raw, time, date, week, month, quarter, year]
+    timeframes: [raw,date, week, month, quarter, year]
     sql: ${TABLE}.survey_completion_time_c ;;
   }
 
@@ -313,7 +312,7 @@ view: salesforce_nps {
     label: "Survey Start"
     description: "Date GetFeedback recorded an initial survey click & respondent began the response"
     type: time
-    timeframes: [raw, time, date, week, month, quarter, year]
+    timeframes: [raw, date, week, month, quarter, year]
     sql: ${TABLE}.survey_response_time_c ;;
   }
 
@@ -362,14 +361,14 @@ view: salesforce_nps {
 
   dimension: world_region {
     description: "Based on Account billing country"
-    # group_label: "Salesforce Metadata"
+    group_label: "Responder Info"
     type: string
     sql: ${TABLE}.billingworldregion ;;
   }
 
   dimension: sales_channel {
     description: "Based on most recent Account Opportunity"
-    # group_label: "Salesforce Metadata"
+    group_label: "Responder Info"
     type: string
     sql: ${TABLE}.most_recent_opportunity_saleschannel ;;
   }
