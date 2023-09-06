@@ -246,7 +246,7 @@ view: salesforce_nps {
   }
 
   dimension: self_selected_mop {
-    label: "Self-Selected: Meeting Owl Pro"
+    label: "Self-Selected: MOP"
     description: "Identifies if customer selected that they own a MOP"
     group_label: "Self-Selected Products"
     type: yesno
@@ -254,12 +254,22 @@ view: salesforce_nps {
   }
 
   dimension: self_selected_mo3 {
-    label: "Self-Selected: Meeting Owl 3"
+    label: "Self-Selected: MO3"
     description: "Identifies if customer selected that they own an MO3"
     group_label: "Self-Selected Products"
     type: yesno
     sql: ${TABLE}.self_selected_mo3 ;;
   }
+
+
+  dimension: self_selected_mop_mo3 {
+    label: "Self-Selected: MOP and/or MO3"
+    description: "Identifies if customer selected that they own an MO3"
+    group_label: "Self-Selected Products"
+    type: yesno
+    sql: ${TABLE}.self_selected_mop or ${TABLE}.self_selected_mo3 ;;
+  }
+
 
   dimension: self_selected_owlbar {
     label: "Self-Selected: Owl Bar"
@@ -270,7 +280,7 @@ view: salesforce_nps {
   }
 
   dimension: self_selected_wbo {
-    label: "Self-Selected: Whiteboard Owl"
+    label: "Self-Selected: WBO"
     description: "Identifies if customer selected that they own a WBO"
     group_label: "Self-Selected Products"
     type: yesno
@@ -278,7 +288,7 @@ view: salesforce_nps {
   }
 
   dimension: self_selected_mhq {
-    label: "Self-Selected: Meeting HQ"
+    label: "Self-Selected: MHQ"
     description: "Identifies if customer selected that they own an MHQ"
     group_label: "Self-Selected Products"
     type: yesno
