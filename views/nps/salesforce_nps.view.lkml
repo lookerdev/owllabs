@@ -115,7 +115,6 @@ view: salesforce_nps {
   }
 
   dimension: last_queried_mop {
-    # hidden: yes
     label: "Responder Registered MOP?"
     group_label: "Responder's Registered Devices"
     type: yesno
@@ -124,7 +123,6 @@ view: salesforce_nps {
   }
 
   dimension: last_queried_mo3 {
-    # hidden: yes
     label: "Responder Registered MO3?"
     group_label: "Responder's Registered Devices"
     type: yesno
@@ -132,8 +130,18 @@ view: salesforce_nps {
     sql: CASE WHEN ${lq_count_of_mo3_registered_c} > 0 THEN TRUE ELSE FALSE END ;;
   }
 
+  dimension: last_queried_mop_mo3 {
+    label: "Responder Registered MOP and/or MO3?"
+    group_label: "Responder's Registered Devices"
+    type: yesno
+    # sql: CASE WHEN ${TABLE}.last_queried_products_surveyed_c LIKE '%Meeting Owl 3%' THEN TRUE ELSE FALSE END  ;;
+    sql: CASE WHEN ${lq_count_of_mop_registered_c} > 0 THEN TRUE
+              WHEN ${lq_count_of_mo3_registered_c} > 0 THEN TRUE
+              ELSE FALSE
+              END ;;
+  }
+
   dimension: last_queried_owlbar {
-    # hidden: yes
     label: "Responder Registered Owl Bar?"
     group_label: "Responder's Registered Devices"
     type: yesno
@@ -269,7 +277,6 @@ view: salesforce_nps {
     type: yesno
     sql: ${TABLE}.self_selected_mop or ${TABLE}.self_selected_mo3 ;;
   }
-
 
   dimension: self_selected_owlbar {
     label: "Self-Selected: Owl Bar"
