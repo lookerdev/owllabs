@@ -91,7 +91,7 @@ view: all_orders {
     sql: case when ${order_day_of_week} in ('Saturday','Sunday') then 'Weekend'
               else 'Weekday'
               end ;;
-    }
+  }
 
   dimension: order_number {
     type: string
@@ -328,16 +328,22 @@ view: all_orders {
     sql: ${TABLE}.owlbar_quantity_ordered ;;
   }
 
+  dimension: eagle_quantity_ordered {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.eagle_quantity_ordered ;;
+  }
+
   dimension: owls_quantity_ordered {
     hidden: yes
     type: number
-    sql: ${og_quantity_ordered} + ${pro_quantity_ordered} + ${mo3_quantity_ordered} ;;
+    sql: ${og_quantity_ordered} + ${pro_quantity_ordered} + ${mo3_quantity_ordered} + ${eagle_quantity_ordered} ;;
   }
 
   dimension: hardware_quantity_ordered {
     hidden: yes
     type: number
-    sql: ${og_quantity_ordered} + ${pro_quantity_ordered} + ${wbo_quantity_ordered} + ${hq_quantity_ordered} + ${mo3_quantity_ordered} + ${owlbar_quantity_ordered} ;;
+    sql: ${og_quantity_ordered} + ${pro_quantity_ordered} + ${wbo_quantity_ordered} + ${hq_quantity_ordered} + ${mo3_quantity_ordered} + ${owlbar_quantity_ordered} + ${eagle_quantity_ordered} ;;
   }
 
 
@@ -590,9 +596,17 @@ view: all_orders {
     drill_fields: [sales_channel, world_region, order_number, billing_address_company, sku, sum_owlbar_quantity_ordered]
   }
 
+  measure: sum_eagle_quantity_ordered {
+    label: "Eagle Quantity Ordered"
+    group_label: "Hardware"
+    type: sum
+    sql: ${eagle_quantity_ordered} ;;
+    drill_fields: [sales_channel, world_region, order_number, billing_address_company, sku, sum_owlbar_quantity_ordered]
+  }
+
   measure: sum_owls_quantity_ordered {
     label: "All Owls Quantity Ordered"
-    description: "Combination of OG, MOP, and MO3 units"
+    description: "Combination of OG, MOP, MO3 and Eagle units"
     group_label: "Hardware"
     type: sum
     sql: ${owls_quantity_ordered} ;;
@@ -805,5 +819,5 @@ view: all_orders {
     type: number
     value_format: "$#,##0"
     sql: ${ceilingmount_subtotal}+${hardcase_subtotal}+${mic_subtotal}+${markers_subtotal}+${lockadapter_subtotal}+${softcase_subtotal}+${stand_subtotal}+${tablemount_subtotal}+${tripod_subtotal}+${usbconversioncable_subtotal} ;;
-    }
+  }
 }
