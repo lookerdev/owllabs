@@ -314,6 +314,12 @@ view: all_fulfillments {
     sql: ${TABLE}.softcase_quantity_shipped ;;
   }
 
+  dimension: eagle_quantity_shipped {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.eagle_quantity_shipped ;;
+  }
+
   dimension: stand_quantity_shipped {
     hidden: yes
     type: number
@@ -612,6 +618,14 @@ view: all_fulfillments {
     group_label: "Hardware"
     type: sum
     sql: ${wbo_quantity_shipped} ;;
+    drill_fields: [sales_channel, world_region, order_number, fulfillment_number, shipping_address_company, sku, sum_wbo_quantity_shipped]
+  }
+
+  measure: sum_eagle_quantity_shipped {
+    label: "Eagle Quantity Shipped"
+    group_label: "Hardware"
+    type: sum
+    sql: ${eagle_quantity_shipped} ;;
     drill_fields: [sales_channel, world_region, order_number, fulfillment_number, shipping_address_company, sku, sum_wbo_quantity_shipped]
   }
 
