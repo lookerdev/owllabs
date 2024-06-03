@@ -371,7 +371,7 @@ view: all_fulfillments {
   dimension: owls_quantity_shipped {
     hidden: yes
     type: number
-    sql: ${og_quantity_shipped} + ${pro_quantity_shipped} + ${mo3_quantity_shipped} ;;
+    sql: ${og_quantity_shipped} + ${pro_quantity_shipped} + ${mo3_quantity_shipped} + ${eagle_quantity_shipped} ;;
   }
 
   dimension: hardware_quantity_shipped {
