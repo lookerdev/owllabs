@@ -622,11 +622,11 @@ view: all_fulfillments {
   }
 
   measure: sum_eagle_quantity_shipped {
-    label: "Eagle Quantity Shipped"
+    label: "MO4+ Quantity Shipped"
     group_label: "Hardware"
     type: sum
     sql: ${eagle_quantity_shipped} ;;
-    drill_fields: [sales_channel, world_region, order_number, fulfillment_number, shipping_address_company, sku, sum_wbo_quantity_shipped]
+    drill_fields: [sales_channel, world_region, order_number, fulfillment_number, shipping_address_company, sku, sum_eagle_quantity_shipped]
   }
 
   measure: sum_wbtags_quantity_shipped {
