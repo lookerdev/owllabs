@@ -597,11 +597,11 @@ view: all_orders {
   }
 
   measure: sum_eagle_quantity_ordered {
-    label: "Eagle Quantity Ordered"
+    label: "MO4+ Quantity Ordered"
     group_label: "Hardware"
     type: sum
     sql: ${eagle_quantity_ordered} ;;
-    drill_fields: [sales_channel, world_region, order_number, billing_address_company, sku, sum_owlbar_quantity_ordered]
+    drill_fields: [sales_channel, world_region, order_number, billing_address_company, sku, sum_eagle_quantity_ordered]
   }
 
   measure: sum_owls_quantity_ordered {
