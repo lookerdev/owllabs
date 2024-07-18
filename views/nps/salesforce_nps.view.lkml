@@ -253,12 +253,21 @@ view: salesforce_nps {
     sql: ${TABLE}.self_selected_products_c ;;
   }
 
+  dimension: self_selected_mo4plus {
+    label: "Self-Selected: MO4+"
+    description: "Identified if customer selected that they own MO4+"
+    group_label: "Self-Selected Products"
+    type:  yesno
+    sql:  ${TABLE}.self_selected_products_c LIKE '%Meeting Owl 4+%'
+ ;;
+  }
+
   dimension: self_selected_mop {
     label: "Self-Selected: MOP"
     description: "Identifies if customer selected that they own a MOP"
     group_label: "Self-Selected Products"
     type: yesno
-    sql: ${TABLE}.self_selected_mop ;;
+    sql:  ${TABLE}.self_selected_products_c LIKE '%Meeting Owl Pro%';;
   }
 
   dimension: self_selected_mo3 {
@@ -266,7 +275,7 @@ view: salesforce_nps {
     description: "Identifies if customer selected that they own an MO3"
     group_label: "Self-Selected Products"
     type: yesno
-    sql: ${TABLE}.self_selected_mo3 ;;
+    sql:  ${TABLE}.self_selected_products_c LIKE '%Meeting Owl 3%';;
   }
 
 
@@ -275,7 +284,7 @@ view: salesforce_nps {
     description: "Identifies if customer selected that they own an MO3"
     group_label: "Self-Selected Products"
     type: yesno
-    sql: ${TABLE}.self_selected_mop or ${TABLE}.self_selected_mo3 ;;
+    sql:  ${TABLE}.self_selected_products_c LIKE '%Meeting Owl 3%' or sql:  ${TABLE}.self_selected_products_c LIKE '%Meeting Owl Pro%' ;;
   }
 
   dimension: self_selected_owlbar {
@@ -283,7 +292,7 @@ view: salesforce_nps {
     description: "Identifies if customer selected that they own an Owl Bar"
     group_label: "Self-Selected Products"
     type: yesno
-    sql: ${TABLE}.self_selected_owlbar ;;
+    sql:  ${TABLE}.self_selected_products_c LIKE '%Owl Bar%' ;;
   }
 
   dimension: self_selected_wbo {
@@ -291,7 +300,7 @@ view: salesforce_nps {
     description: "Identifies if customer selected that they own a WBO"
     group_label: "Self-Selected Products"
     type: yesno
-    sql: ${TABLE}.self_selected_wbo ;;
+    sql:  ${TABLE}.self_selected_products_c LIKE '%Whiteboard Owl%' ;;
   }
 
   dimension: self_selected_mhq {
@@ -299,7 +308,7 @@ view: salesforce_nps {
     description: "Identifies if customer selected that they own an MHQ"
     group_label: "Self-Selected Products"
     type: yesno
-    sql: ${TABLE}.self_selected_mhq ;;
+    sql:  ${TABLE}.self_selected_products_c LIKE '%Meeting HQ%';;
   }
 
   dimension: self_selected_mic {
@@ -307,7 +316,7 @@ view: salesforce_nps {
     description: "Identifies if customer selected that they own an Extension Mic"
     group_label: "Self-Selected Products"
     type: yesno
-    sql: ${TABLE}.self_selected_mic ;;
+    sql:  ${TABLE}.self_selected_products_c LIKE '%Expansion Mic%' ;;
   }
 
   dimension_group: survey_completion_time_c {
