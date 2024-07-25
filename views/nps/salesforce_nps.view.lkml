@@ -409,12 +409,6 @@ view: salesforce_nps {
 
 
 
-
-
-
-
-
-
   dimension: nps_bucket_int {
     hidden: yes
     label: "Net Promoter Category Integer"
@@ -437,6 +431,394 @@ view: salesforce_nps {
               when ${nps_score_c} in (0,1,2,3,4,5,6) then 'Detractor'
               else null end;;
   }
+
+#Comment Categorization#
+
+
+  dimension: comments_category_appended {
+    label: "Comment Categories Combined"
+    type: string
+    group_label: "Categorization"
+    sql:
+    CONCAT(CONCAT(CONCAT(CONCAT(CONCAT(CONCAT(CONCAT(CONCAT(CONCAT(CONCAT(
+
+            CASE
+            WHEN
+            comments_c LIKE '%audio%' OR
+            comments_c LIKE '%speaker%' OR
+            comments_c LIKE '%mic%' OR
+            comments_c LIKE '%microphone%' OR
+            comments_c LIKE '%hear%' OR
+            comments_c LIKE '%Microphone%' OR
+            comments_c LIKE '%echo%' OR
+            comments_c LIKE '%dropouts%' OR
+            comments_c LIKE '%audio quality%' OR
+            comments_c LIKE '%sound quality%' OR
+            comments_c LIKE '%audio issues%' OR
+            comments_c LIKE '%intelligble%' OR
+            comments_c LIKE '%sound%'
+
+      THEN 'AudioQuality '
+      ELSE ''
+      END,
+
+
+      CASE
+      WHEN
+      comments_c LIKE '%camera%' OR
+      comments_c LIKE '%video%' OR
+      comments_c LIKE '%resolution%' OR
+      comments_c LIKE '%pixel%' OR
+      comments_c LIKE '%HD%' OR
+      comments_c LIKE '%4K%' OR
+      comments_c LIKE '%grainy%' OR
+      comments_c LIKE '%blurry%' OR
+      comments_c LIKE '%blur%' OR
+      comments_c LIKE '%blurred%' OR
+      comments_c LIKE '%low light%' OR
+      comments_c LIKE '%fuzzy%' OR
+      comments_c LIKE '%flicker%' OR
+      comments_c LIKE '%flickered%'
+      THEN 'VideoQuality '
+      ELSE ''
+      END),
+
+      CASE
+      WHEN
+      comments_c LIKE '%app%' OR
+      comments_c LIKE '%mobile app%' OR
+      comments_c LIKE '%desktop app%' OR
+      comments_c LIKE '%application%' OR
+      comments_c LIKE '%phone%'
+
+      THEN 'App '
+      ELSE ''
+      END),
+
+      CASE
+      WHEN
+      comments_c LIKE '%setup%' OR
+      comments_c LIKE '%plug%' OR
+      comments_c LIKE '%register%' OR
+      comments_c LIKE '%registration%'
+
+      THEN 'Setup '
+      ELSE ''
+      END),
+
+      CASE
+      WHEN
+      comments_c LIKE '%connectivity%' OR
+      comments_c LIKE '%connection%' OR
+      comments_c LIKE '%network%' OR
+      comments_c LIKE '%wifi%'
+
+
+      THEN 'Connectivity '
+      ELSE ''
+      END),
+
+
+      CASE
+      WHEN
+      comments_c LIKE '%firmware%' OR
+      comments_c LIKE '%update%' OR
+      comments_c LIKE '%OTA%' OR
+      comments_c LIKE '%software%' OR
+      comments_c LIKE '%outdated%' OR
+      comments_c LIKE '%installer%'
+
+
+      THEN 'SoftwareUpdate '
+      ELSE ''
+      END),
+
+      CASE
+      WHEN
+      comments_c LIKE '%pair%' OR
+      comments_c LIKE '%re-pair%' OR
+      comments_c LIKE '%paired%' OR
+      comments_c LIKE '%pairing%' OR
+      comments_c LIKE '%sync%' OR
+      comments_c LIKE '%syncing%' OR
+      comments_c LIKE '%connect%'
+
+
+      THEN 'OwlConnect '
+      ELSE ''
+      END),
+
+
+
+      CASE
+      WHEN
+      comments_c LIKE '%stability%' OR
+      comments_c LIKE '%crash%' OR
+      comments_c LIKE '%freeze%' OR
+      comments_c LIKE '%unstable%' OR
+      comments_c LIKE '%reboot%' OR
+      comments_c LIKE '%reboots%' OR
+      comments_c LIKE '%unresponsive%' OR
+      comments_c LIKE '%stable%' OR
+      comments_c LIKE '%unstable%' OR
+      comments_c LIKE '%restarting%' OR
+      comments_c LIKE '%restart%'
+
+
+      THEN 'Stability '
+      ELSE ''
+      END),
+
+      CASE
+      WHEN
+      comments_c LIKE '%track%' OR
+      comments_c LIKE '%focus%' OR
+      comments_c LIKE '%jumpy%' OR
+      comments_c LIKE '%dizzy%' OR
+      comments_c LIKE '%frame%' OR
+      comments_c ~* '\\b(head|heads)\\b' OR
+      comments_c LIKE '%find people%'
+
+
+      THEN 'AttentionSystem '
+      ELSE ''
+      END),
+
+
+      CASE
+      WHEN
+      comments_c LIKE '%glitch%' OR
+      comments_c LIKE '%glitches%' OR
+      comments_c LIKE '%glitchy%'
+
+      THEN 'Glitches '
+      ELSE ''
+      END),
+
+      CASE
+      WHEN
+      comments_c LIKE '%compatibility%' OR
+      comments_c LIKE '%compatible%' OR
+      comments_c LIKE '%not working with%'
+
+      THEN 'Compatibility '
+      ELSE ''
+      END)
+
+
+
+
+      ;;
+  }
+
+  dimension: comments_category_audio {
+    label: "Audio Comments?"
+    type: string
+    group_label: "Categorization"
+    sql:
+    CASE
+    WHEN
+    comments_c LIKE '%audio%' OR
+    comments_c LIKE '%speaker%' OR
+    comments_c LIKE '%mic%' OR
+    comments_c LIKE '%microphone%' OR
+    comments_c LIKE '%hear%' OR
+    comments_c LIKE '%Microphone%' OR
+    comments_c LIKE '%echo%' OR
+    comments_c LIKE '%dropouts%' OR
+    comments_c LIKE '%audio quality%' OR
+    comments_c LIKE '%sound quality%' OR
+    comments_c LIKE '%audio issues%' OR
+    comments_c LIKE '%intelligble%' OR
+    comments_c LIKE '%sound%'
+    THEN 'Yes'
+    ELSE 'No'
+    END;;
+  }
+
+  dimension: comments_category_video {
+    label: "Video Comments?"
+    group_label: "Categorization"
+    type: string
+    sql:
+    CASE
+    WHEN
+      comments_c LIKE '%camera%' OR
+      comments_c LIKE '%video%' OR
+      comments_c LIKE '%resolution%' OR
+      comments_c LIKE '%pixel%' OR
+      comments_c LIKE '%HD%' OR
+      comments_c LIKE '%4K%' OR
+      comments_c LIKE '%grainy%' OR
+      comments_c LIKE '%blurry%' OR
+      comments_c LIKE '%blur%' OR
+      comments_c LIKE '%blurred%' OR
+      comments_c LIKE '%low light%' OR
+      comments_c LIKE '%fuzzy%' OR
+      comments_c LIKE '%flicker%' OR
+      comments_c LIKE '%flickered%'
+    THEN 'Yes'
+    ELSE 'No'
+    END;;
+  }
+
+  dimension: comments_category_app {
+    label: "App Comments?"
+    group_label: "Categorization"
+    type: string
+    sql:
+    CASE
+     WHEN
+        comments_c LIKE '%app%' OR
+      comments_c LIKE '%mobile app%' OR
+      comments_c LIKE '%desktop app%' OR
+      comments_c LIKE '%application%' OR
+      comments_c LIKE '%phone%'
+      THEN 'Yes'
+      ELSE 'No'
+      END;;}
+
+  dimension: comments_category_setup {
+    label: "Setup Comments?"
+    group_label: "Categorization"
+    type: string
+    sql:
+    CASE
+     WHEN
+      comments_c LIKE '%setup%' OR
+       comments_c LIKE '%plug%' OR
+       comments_c LIKE '%register%' OR
+       comments_c LIKE '%registration%'
+      THEN 'Yes'
+      ELSE 'No'
+      END;;}
+
+  dimension: comments_category_connectivity {
+    label: "Connectivity Comments?"
+    group_label: "Categorization"
+    type: string
+    sql:
+    CASE
+     WHEN
+      comments_c LIKE '%connectivity%' OR
+      comments_c LIKE '%connection%' OR
+      comments_c LIKE '%network%' OR
+      comments_c LIKE '%wifi%'
+      THEN 'Yes'
+      ELSE 'No'
+      END;;}
+
+  dimension: comments_category_softwareupdates {
+    label: "Software Update Comments?"
+    group_label: "Categorization"
+    type: string
+    sql:
+    CASE
+     WHEN
+      comments_c LIKE '%firmware%' OR
+      comments_c LIKE '%update%' OR
+      comments_c LIKE '%OTA%' OR
+      comments_c LIKE '%software%' OR
+      comments_c LIKE '%outdated%' OR
+      comments_c LIKE '%installer%'
+      THEN 'Yes'
+      ELSE 'No'
+      END;;}
+
+  dimension: comments_category_owlconnect {
+    label: "Owl Connect Comments?"
+    group_label: "Categorization"
+    type: string
+    sql:
+    CASE
+     WHEN
+       comments_c LIKE '%pair%' OR
+       comments_c LIKE '%re-pair%' OR
+       comments_c LIKE '%paired%' OR
+       comments_c LIKE '%pairing%' OR
+       comments_c LIKE '%sync%' OR
+       comments_c LIKE '%syncing%' OR
+       comments_c LIKE '%connect%'
+      THEN 'Yes'
+      ELSE 'No'
+      END;;}
+
+  dimension: comments_category_attnsystem {
+    label: "Attention System Comments?"
+    group_label: "Categorization"
+    type: string
+    sql:
+    CASE
+     WHEN
+        comments_c LIKE '%track%' OR
+        comments_c LIKE '%focus%' OR
+        comments_c LIKE '%jumpy%' OR
+        comments_c LIKE '%dizzy%' OR
+        comments_c LIKE '%frame%' OR
+        comments_c ~* '\\b(head|heads)\\b' OR
+        comments_c LIKE '%find people%'
+      THEN 'Yes'
+      ELSE 'No'
+      END;;}
+
+  dimension: comments_category_stability {
+    label: "Stability Comments?"
+    group_label: "Categorization"
+    type: string
+    sql:
+    CASE
+     WHEN
+      comments_c LIKE '%stability%' OR
+      comments_c LIKE '%crash%' OR
+      comments_c LIKE '%freeze%' OR
+      comments_c LIKE '%unstable%' OR
+      comments_c LIKE '%reboot%' OR
+      comments_c LIKE '%reboots%' OR
+      comments_c LIKE '%unresponsive%' OR
+      comments_c LIKE '%stable%' OR
+      comments_c LIKE '%unstable%' OR
+      comments_c LIKE '%restarting%' OR
+      comments_c LIKE '%restart%' OR
+      comments_c LIKE '%pair%' OR
+       comments_c LIKE '%re-pair%' OR
+       comments_c LIKE '%paired%' OR
+       comments_c LIKE '%pairing%' OR
+       comments_c LIKE '%sync%' OR
+       comments_c LIKE '%syncing%' OR
+       comments_c LIKE '%connect%'
+      THEN 'Yes'
+      ELSE 'No'
+      END;;}
+
+  dimension: comments_category_glitches {
+    label: "Glitches Comments?"
+    group_label: "Categorization"
+    type: string
+    sql:
+    CASE
+     WHEN
+       comments_c LIKE '%glitch%' OR
+      comments_c LIKE '%glitches%' OR
+      comments_c LIKE '%glitchy%'
+      THEN 'Yes'
+      ELSE 'No'
+      END;;}
+
+  dimension: comments_category_compatibility {
+        label: "Compatibility Comments?"
+        group_label: "Categorization"
+        type: string
+        sql:
+            CASE
+             WHEN
+              comments_c LIKE '%compatibility%' OR
+              comments_c LIKE '%compatible%' OR
+              comments_c LIKE '%not working with%'
+              THEN 'Yes'
+              ELSE 'No'
+              END;;}
+
+
 
 
   # dimension: browser_c {
@@ -561,9 +943,10 @@ view: salesforce_nps {
   }
 
   measure: count {
-    label: "Count of Surveys"
+    label: "Count of Survey Responses"
     description: "Total count of survey Response IDs"
     type: count
     # drill_fields: [device, company_name]
     }
+
 }
