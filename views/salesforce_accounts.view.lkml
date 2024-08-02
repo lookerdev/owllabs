@@ -30,6 +30,7 @@ view: salesforce_accounts {
   }
 
   dimension: industry_group {
+    hidden: yes
     label: "Deprecated Industry Group"
     # description: "Previou picklist field. High-level/broad grouping of Industry"
     type: string
