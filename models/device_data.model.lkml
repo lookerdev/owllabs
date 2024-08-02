@@ -21,6 +21,7 @@ explore: devices {
     relationship: many_to_one
     sql_on: lower(${device_registrations.sf_accounts_join_key}) = lower(${salesforce_accounts.device_registrations_join_key});;
   }
+
   join: shopify_orders_serial_numbers {
     type: left_outer
     relationship: one_to_one
