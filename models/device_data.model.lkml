@@ -108,7 +108,7 @@ explore: barn_channels {
 
 
 explore: blackboxes {
-  hidden: yes
+  hidden: no
   # label: "Blackboxes - Under Construction"
   description: "Blackbox snapshot from devices' most recent check-ins"
   join: devices {
