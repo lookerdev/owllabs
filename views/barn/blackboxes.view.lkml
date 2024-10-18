@@ -42,6 +42,12 @@ sql_table_name: owlbarn.blackboxes ;;
     sql: ${TABLE}.nappstarts ;;
   }
 
+  dimension: nPowerUp_nAppStarts_diff {
+    label: "nPowerUp_nAppStarts_diff"
+    type: number
+    sql: ${nappstarts}-${npowerup} ;;
+  }
+
   dimension: nbadornosignalowlnetdisconnects {
     label: "nBadOrNoSignalOwlNetDisconnects"
     description: "Number of times Pairs disconnected from OwlNet due to bad or no signal causing consecutive ping failures."
