@@ -106,7 +106,7 @@ explore: barn_channels {
   }
 }
 
-
+## Added 10-17-24 based on request from Babs/Courtney B. Need to review relationships and old comments from Aryn with Matt
 explore: blackboxes {
   hidden: no
   # label: "Blackboxes - Under Construction"
@@ -121,5 +121,17 @@ explore: blackboxes {
     type: left_outer
     relationship: many_to_one
     sql_on: ${devices.channel_id} = ${barn_channels.channel_id} ;;
+  }
+
+  join: device_registrations {
+    type: left_outer
+    relationship: many_to_many # this will change once I remove the funky registration dupes
+    sql_on: ${meeting_records.deviceuuid} = ${device_registrations.deviceuuid} ;;
+  }
+
+  join: meeting_records {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${meeting_records.deviceuuid} = ${devices.deviceuuid} ;;
   }
 }
