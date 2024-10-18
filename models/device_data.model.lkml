@@ -106,20 +106,33 @@ explore: barn_channels {
   }
 }
 
+## Added 10-17-24 based on request from Babs/Courtney B. Need to review relationships and old comments from Aryn with Matt
 
 explore: blackboxes {
-  hidden: yes
+  hidden: no
   # label: "Blackboxes - Under Construction"
   description: "Blackbox snapshot from devices' most recent check-ins"
   join: devices {
     type: left_outer
-    # relationship: one_to_one # current state is many_to_one since there are 68 deviceuuids with more than one record, but should be one_to_one
-    relationship: many_to_one
+   # Aryn originally left this as many_to_one since there were 68 deviceuuids with more than one record, but Weihai confirmed it should be one_to_one 10-18-24
+    relationship: one_to_one
     sql_on: ${blackboxes.deviceuuid} = ${devices.deviceuuid} ;;
   }
   join: barn_channels {
     type: left_outer
     relationship: many_to_one
     sql_on: ${devices.channel_id} = ${barn_channels.channel_id} ;;
+  }
+
+  join: device_registrations {
+    type: left_outer
+    relationship: one_to_one # Aryn originally left this as many_to_one due to funky registration dupes, Weihai confirmed one_to_one shoudl be correct 10-18-24
+    sql_on: ${meeting_records.deviceuuid} = ${device_registrations.deviceuuid} ;;
+  }
+
+  join: meeting_records {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${meeting_records.deviceuuid} = ${devices.deviceuuid} ;;
   }
 }

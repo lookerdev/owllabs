@@ -116,7 +116,7 @@ explore: shopify_orders_fulfillments {
 }
 
 explore: netsuite_fulfillments_line_items {
-  hidden:  yes
+  hidden:  no
 }
 
 # this needs to be improved!!
