@@ -24,24 +24,19 @@ view: salesforce_accounts {
   }
 
   dimension: industry {
-    # description: "Granular company categorization"
     type: string
     sql: ${TABLE}.industry ;;
   }
 
-  dimension: industry_group {
-    hidden: yes
-    label: "Deprecated Industry Group"
-    # description: "Previou picklist field. High-level/broad grouping of Industry"
+
+  dimension: sub_industry {
     type: string
-    sql: coalesce(${TABLE}.industry_group, 'Unknown') ;;
+    sql: ${TABLE}.sub_industry;;
   }
 
-  dimension: industry_recordgroup  {
-    label: "Industry Group"
+  dimension: industry_group {
     type: string
-    sql: ${TABLE}.industry_recordgroup ;;
-
+    sql: ${TABLE}.industry_group;;
   }
 
   dimension: company_size {
