@@ -109,8 +109,9 @@ explore: barn_channels {
 ## Added 10-17-24 based on request from Babs/Courtney B. Need to review relationships and old comments from Aryn with Matt
 
 explore: blackboxes {
+  label: "Blackboxes"
   hidden: no
-  # label: "Blackboxes - Under Construction"
+  # label: "Blackboxes - Under Construction - NOW OLD 10-31-24"
   description: "Blackbox snapshot from devices' most recent check-ins"
   join: devices {
     type: left_outer

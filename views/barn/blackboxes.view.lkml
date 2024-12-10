@@ -20,7 +20,7 @@ sql_table_name: owlbarn.blackboxes ;;
       quarter,
       year
     ]
-    sql: ${TABLE}.createdat ;;
+    sql: ${TABLE}.createdAt ;;
   }
 
   dimension: deviceuuid {
