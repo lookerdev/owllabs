@@ -463,7 +463,7 @@ view: meeting_records {
 
 # % paired meetings
   measure: count_paired_meetings {
-    hidden: yes
+    hidden: no
     filters: [waspaired: "Yes"]
     type: count_distinct
     sql: ${id} ;;
@@ -476,6 +476,8 @@ view: meeting_records {
     value_format: "0.0%"
     sql: ${count_paired_meetings} * 1.0 / nullif(${count_meetings},0) ;;
   }
+
+
 
   measure: avg_meetings_per_day_per_device {
     # hidden: yes
