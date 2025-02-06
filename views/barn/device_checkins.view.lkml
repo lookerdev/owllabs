@@ -1,6 +1,6 @@
 view: device_checkins {
   label: "Device Check-ins"
-  sql_table_name: public.device_checkins ;;
+  sql_table_name: owlbarn_views.device_checkins ;;
 
 # Dimensions
   dimension: id {

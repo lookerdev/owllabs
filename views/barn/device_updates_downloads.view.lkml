@@ -1,6 +1,6 @@
 view: device_updates_downloads {
   label: "Device Update Downloads"
-  sql_table_name: owlbarn.deviceupdatedownloads ;;
+  sql_table_name: owlbarn_views.deviceupdatedownloads_v ;;
   drill_fields: [id]
 
 
