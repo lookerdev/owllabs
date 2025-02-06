@@ -1,5 +1,5 @@
 view: blackboxes {
-sql_table_name: owlbarn.blackboxes ;;
+sql_table_name: owlbarn_views.blackboxes ;;
   drill_fields: [id]
 
   dimension: id {
