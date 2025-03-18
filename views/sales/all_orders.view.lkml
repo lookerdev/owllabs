@@ -641,7 +641,7 @@ view: all_orders {
   }
 
   measure: avg_mop_ordered_per_day {
-    hidden: yes
+
     label: "MOP Avg. Daily Orders"
     group_label: "Avg. Daily Rate"
     type: number
@@ -650,7 +650,6 @@ view: all_orders {
   }
 
   measure: avg_mo3_ordered_per_day {
-    hidden: yes
     label: "MO3 Avg. Daily Orders"
     group_label: "Avg. Daily Rate"
     type: number
@@ -658,8 +657,16 @@ view: all_orders {
     sql: sum(${mo3_quantity_ordered}) * 1.0 / count(distinct ${order_date}) ;;
   }
 
+  measure: avg_mo4_ordered_per_day {
+    label: "MO4 Avg. Daily Orders"
+    group_label: "Avg. Daily Rate"
+    type: number
+    value_format: "0.#"
+    sql: sum(${eagle_quantity_ordered}) * 1.0 / count(distinct ${order_date}) ;;
+  }
+
   measure: avg_owlbar_ordered_per_day {
-    hidden: yes
+
     label: "Owl Bar Avg. Daily Orders"
     group_label: "Avg. Daily Rate"
     type: number
@@ -668,7 +675,7 @@ view: all_orders {
   }
 
   measure: avg_mic_ordered_per_day {
-    hidden: yes
+
     label: "Mic Avg. Daily Orders"
     group_label: "Avg. Daily Rate"
     type: number
@@ -677,7 +684,7 @@ view: all_orders {
   }
 
   measure: avg_hq_ordered_per_day {
-    hidden: yes
+
     label: "MHQ Avg. Daily Orders"
     group_label: "Avg. Daily Rate"
     type: number
@@ -686,7 +693,6 @@ view: all_orders {
   }
 
   measure: avg_wbo_ordered_per_day {
-    hidden: yes
     label: "WBO Avg. Daily Orders"
     group_label: "Avg. Daily Rate"
     type: number
