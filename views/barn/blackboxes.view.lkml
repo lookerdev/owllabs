@@ -181,6 +181,45 @@ sql_table_name: owlbarn_views.blackboxes ;;
     sql: ${TABLE}.ntotalstreamingpairingsurrenders ;;
   }
 
+
+  dimension: volDnButtonPresses {
+    label: "Volume Down Presses"
+    group_label: "Button Stats"
+    description: "Count of Presses to volume down button during meeting"
+    type:  string
+    sql: ${TABLE}.vol_down_presses ;;
+
+  }
+
+  dimension: volUpButtonPresses {
+    label: "Volume Up Presses"
+    group_label: "Button Stats"
+    description: "Count of Presses to volume up button during meeting"
+    type:  string
+    sql: ${TABLE}.vol_up_presses ;;
+
+  }
+
+  dimension: muteButtonPresses {
+    label: "Mute Presses"
+    group_label: "Button Stats"
+    description: "Count of Presses to mute button during meeting"
+    type:  string
+    sql: ${TABLE}.mute_presses ;;
+
+  }
+
+
+  dimension: multiButtonPresses {
+    label: "Multi Button Presses"
+    group_label: "Button Stats"
+    description: "Count of Presses to multi button during meeting"
+    type:  string
+    sql: ${TABLE}.multib_presses ;;
+
+  }
+
+
   dimension: nuptimeminutes {
     label: "nUpTimeMinutes"
     description: "Time program runs."

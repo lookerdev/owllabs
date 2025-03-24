@@ -275,12 +275,48 @@ view: meeting_records {
     label: "Paired Device Types"
     group_label: "Paired Devices"
     description: "List of unique types of secondary devices paired via Owl Net in meeting, in the order they were paired. It's possible for the same device types to be listed in different orders, depending on the order in which they paired to the primary in a meeting."
-    type: string
+    type: number
     sql: ${TABLE}.paireddevicetypes ;;
     case_sensitive: no
   }
 
 
+dimension: volDnButtonPresses {
+  label: "Volume Down Presses"
+  group_label: "Button Stats"
+  description: "Count of Presses to volume down button during meeting"
+  type:  string
+  sql: ${TABLE}.vol_down_presses ;;
+
+}
+
+  dimension: volUpButtonPresses {
+    label: "Volume Up Presses"
+    group_label: "Button Stats"
+    description: "Count of Presses to volume up button during meeting"
+    type:  string
+    sql: ${TABLE}.vol_up_presses ;;
+
+  }
+
+  dimension: muteButtonPresses {
+    label: "Mute Presses"
+    group_label: "Button Stats"
+    description: "Count of Presses to mute button during meeting"
+    type:  string
+    sql: ${TABLE}.mute_presses ;;
+
+  }
+
+
+  dimension: multiButtonPresses {
+    label: "Multi Button Presses"
+    group_label: "Button Stats"
+    description: "Count of Presses to multi button during meeting"
+    type:  string
+    sql: ${TABLE}.multib_presses ;;
+
+  }
 
 
 # TO BE ADDED LATER
@@ -380,6 +416,7 @@ view: meeting_records {
     sql: sum(${durationseconds_per_meeting}) / 3600.0 ;;
     value_format: "0.0" #adds 1 decimal place
   }
+
 
 # averages
   measure: avg_hours_per_device{
