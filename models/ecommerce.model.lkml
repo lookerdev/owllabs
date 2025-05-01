@@ -1,5 +1,5 @@
 connection: "redshift"
-label: "E-Commerce"
+label: "Deprecated - E-Commerce"
 # label: "Sales Data"
 
 include: "/views/dim_calendar.view.lkml"
@@ -15,10 +15,12 @@ include: "/views/sales/*.view.lkml"
 
 
 explore: all_orders {
+  label: "Deprecated - Orders"
   description: "Order data from Shopify, Amazon, Sourcenext, and historical distributor Starin. Does not include Salesforce opportunitites. By default includes SKUs that don't count toward revenue (replacement units, Owls For Good), which can be filtered out using Revenue SKU dimension."
 }
 
 explore: all_fulfillments {
+  label: "Deprecated - Fulfillments"
   description: "Shipment data from Shopify, Amazon, Sourcenext, and historical distributor Starin. Does not include Salesforce opportunitites. By default includes SKUs that don't count toward revenue (replacement units, Owls For Good), which can be filtered out using Revenue SKU dimension."
 }
 
@@ -43,13 +45,13 @@ explore: all_orders2 {
 
 
 explore: shopify_orders_line_items_view {
-  label: "Shopify Orders"
+  label: "Deprecated - Shopify Orders"
   description: "Shopify order data including line-item detail. By default includes SKUs that don't count toward revenue (replacement units, Owls For Good), which can be filtered out using Revenue SKU dimension. Excludes test SKUs."
   sql_always_where: ${shopify_orders_line_items_view.sku} not in ('TEST2','TEST3') ;;
 }
 
 explore: shopify_fulfillments_line_items_view {
-  label: "Shopify Fulfillments"
+  label: "Deprecated - Shopify Fulfillments"
   description: "Shopify fulfillments data including line-item detail. By default includes SKUs that don't count toward revenue (replacement units, Owls For Good), which can be filtered out using Revenue SKU dimension. Excludes test SKUs."
   sql_always_where: ${shopify_fulfillments_line_items_view.sku} not in ('TEST2','TEST3') ;;
 }
@@ -60,7 +62,7 @@ explore: distributor_sellthrough {
 }
 
 explore: monthly_hardware_goals_eom_projections {
-  label: "Monthly Sales Goals & EOM Projections"
+  label: "Deprecated - Monthly Sales Goals & EOM Projections"
   description: "Compare MTD fulfillments against Operating Plan goals and projects total order and fulfillment numbers for end of month. EOM projections do not factor in pipeline activity from Sales team."
 }
 
@@ -95,7 +97,7 @@ explore: monthly_hardware_goals_eom_projections {
 #   }
 # }
 
-explore: shopify_orders_fulfillments {
+explore: deprecated_shopify_orders_fulfillments {
   hidden: yes
   label: "[ARCHIVED] Shopify Orders & Fulfillments"
   description: "Sales data from Shopify. By default includes SKUs that don't count toward revenue (replacement units, Owls For Good), which can be filtered out using Revenue SKU dimension. Excludes test SKUs."
@@ -116,6 +118,7 @@ explore: shopify_orders_fulfillments {
 }
 
 explore: netsuite_fulfillments_line_items {
+  label: "Deprecated - NetSuite Fulfillments Line Items"
   hidden:  no
 }
 
