@@ -383,6 +383,7 @@ dimension:manualSeconds {
 
 dimension:autoFocusActivations {
     label: "Auto Focus Activations"
+    hidden: yes
     group_label: "Modes Usage"
     type: number
     sql: ${TABLE}.auto_focus_activations ;;}
@@ -831,8 +832,8 @@ measure: sumAutoFocusActivations {
     value_format: "0.0%"}
 
   measure:GroupActivationsMeeting {
-    label: "Group Activations per Meeting"
-    group_label: "% Modes Activations per Meeting"
+    label: "% Group Activations per Meeting"
+    group_label: "Modes Activations per Meeting"
     type: number
     sql: ${sumGroupActivations} * 1.0 / nullif(${count_meetings},0) ;;
     value_format: "0.0%"}
