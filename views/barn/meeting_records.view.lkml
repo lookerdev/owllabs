@@ -808,42 +808,42 @@ measure: sumAutoFocusActivations {
     group_label: "Modes Activations per Meeting"
     type: number
     sql: ${sumAutoFocusActivations} * 1.0 / nullif(${count_meetings},0) ;;
-    value_format: "0.0%"}
+    value_format: "0.00%"}
 
   measure:panoramaActivationsperMeeting {
     label: "% Panorama Activations per Meeting"
     group_label: "Modes Activations per Meeting"
     type: number
     sql: ${sumPanoramaActivations} * 1.0 / nullif(${count_meetings},0) ;;
-    value_format: "0.0%"}
+    value_format: "0.00%"}
 
   measure: GridActivationsperMeeting {
     label: "% Grid Activations per Meeting"
     group_label: "Modes Activations per Meeting"
     type: number
     sql: ${sumgridActivations} * 1.0 / nullif(${count_meetings},0) ;;
-    value_format: "0.0%"}
+    value_format: "0.00%"}
 
   measure:WhiteboardActivationsperMeeting {
     label: "% Whiteboard Activations per Meeting"
     group_label: "Modes Activations per Meeting"
     type: number
     sql: ${sumWhiteboardActivations} * 1.0 / nullif(${count_meetings},0) ;;
-    value_format: "0.0%"}
+    value_format: "0.00%"}
 
   measure:GroupActivationsMeeting {
     label: "% Group Activations per Meeting"
     group_label: "Modes Activations per Meeting"
     type: number
     sql: ${sumGroupActivations} * 1.0 / nullif(${count_meetings},0) ;;
-    value_format: "0.0%"}
+    value_format: "0.00%"}
 
   measure:SpeakerActivationsperMeeting {
     label: "% Speaker Activations per Meeting"
     group_label: "Modes Activations per Meeting"
     type: number
     sql: ${sumSpeakerActivations} * 1.0 / nullif(${count_meetings},0) ;;
-    value_format: "0.0%"}
+    value_format: "0.00%"}
 
 
   measure:manualActivationsperMeeting {
@@ -851,7 +851,7 @@ measure: sumAutoFocusActivations {
     group_label: "Modes Activations per Meeting"
     type: number
     sql: ${sumManualActivations} * 1.0 / nullif(${count_meetings},0) ;;
-    value_format: "0.0%"}
+    value_format: "0.00%"}
 
 
 
