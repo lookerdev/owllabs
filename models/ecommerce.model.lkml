@@ -97,7 +97,7 @@ explore: monthly_hardware_goals_eom_projections {
 #   }
 # }
 
-explore: deprecated_shopify_orders_fulfillments {
+explore: shopify_orders_fulfillments {
   hidden: yes
   label: "[ARCHIVED] Shopify Orders & Fulfillments"
   description: "Sales data from Shopify. By default includes SKUs that don't count toward revenue (replacement units, Owls For Good), which can be filtered out using Revenue SKU dimension. Excludes test SKUs."
