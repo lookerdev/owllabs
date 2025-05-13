@@ -325,9 +325,9 @@ dimension: volDnButtonPresses {
 #modes dimensions
 
   dimension: autoFocusSeconds {
-    label: "Auto Focus Seconds"
+    label: "Auto Focus Mode: Seconds"
     hidden:  yes
-    group_label: "Modes Usage"
+    group_label: "Auto Focus Mode Usage"
     type: number
     sql: ${TABLE}.auto_focus_seconds ;;
   }
@@ -335,7 +335,7 @@ dimension: volDnButtonPresses {
 
 dimension:panoramaSeconds {
     hidden:  yes
-    label: "Panorama Seconds"
+    label: "Panorama Mode: Seconds"
     group_label: "Modes Usage"
     type: number
     sql: ${TABLE}.panorama_seconds ;;}
@@ -343,7 +343,7 @@ dimension:panoramaSeconds {
 
 dimension:gridSeconds {
     hidden:  yes
-    label: "Grid Seconds"
+    label: "Grid Mode: Seconds"
     group_label: "Modes Usage"
     type: number
     sql: ${TABLE}.grid_seconds ;;}
@@ -351,7 +351,7 @@ dimension:gridSeconds {
 
 dimension:whiteboardSeconds {
   hidden:  yes
-    label: "Whiteboard Seconds"
+    label: "Whiteboard Mode: Seconds"
     group_label: "Modes Usage"
     type: number
     sql: ${TABLE}.whiteboard_seconds ;;
@@ -359,7 +359,7 @@ dimension:whiteboardSeconds {
 
 dimension:groupSeconds {
   hidden:  yes
-    label: "Group Seconds"
+    label: "Group Mode: Seconds"
     group_label: "Modes Usage"
     type: number
     sql: ${TABLE}.group_seconds ;;}
@@ -367,7 +367,7 @@ dimension:groupSeconds {
 
 dimension:speakerSeconds {
   hidden:  yes
-    label: "Speaker Seconds"
+    label: "Speaker Mode: Seconds"
     group_label: "Modes Usage"
     type: number
     sql: ${TABLE}.speaker_seconds ;;}
@@ -375,23 +375,23 @@ dimension:speakerSeconds {
 
 dimension:manualSeconds {
   hidden:  yes
-    label: "Manual Seconds"
+    label: "Manual Mode: Seconds"
     group_label: "Modes Usage"
     type: number
     sql: ${TABLE}.manual_seconds ;;}
 
 
 dimension:autoFocusActivations {
-    label: "Auto Focus Activations"
+    label: "Auto Focus Mode: Activations"
     hidden: yes
-    group_label: "Modes Usage"
+    group_label: "Auto Focus Mode Usage"
     type: number
     sql: ${TABLE}.auto_focus_activations ;;}
 
 
 dimension:panoramaActivations {
   hidden:  yes
-    label: "Panorama Activations"
+    label: "Panorama Mode: Activations"
     group_label: "Modes Usage"
     type: number
     sql: ${TABLE}.panorama_activations ;;}
@@ -399,7 +399,7 @@ dimension:panoramaActivations {
 
 dimension:gridActivations {
   hidden:  yes
-    label: "Grid Activations"
+    label: "Grid Mode: Activations"
     group_label: "Modes Usage"
     type: number
     sql: ${TABLE}.grid_activations ;;}
@@ -407,7 +407,7 @@ dimension:gridActivations {
 
 dimension:whiteboardActivations {
   hidden:  yes
-    label: "Whiteboard Activtations"
+    label: "Whiteboard Mode: Activtations"
     group_label: "Modes Usage"
     type: number
     sql: ${TABLE}.whiteboard_activations ;;}
@@ -415,7 +415,7 @@ dimension:whiteboardActivations {
 
 dimension:groupActivations {
   hidden:  yes
-    label: "Group Activations"
+    label: "Group Mode: Activations"
     group_label: "Modes Usage"
     type: number
     sql: ${TABLE}.group_activations ;;}
@@ -423,7 +423,7 @@ dimension:groupActivations {
 
 dimension:speakerActivations {
     hidden:  yes
-    label: "Speaker Activations"
+    label: "Speaker Mode: Activations"
     group_label: "Modes Usage"
     type: number
     sql: ${TABLE}.speaker_activations ;;}
@@ -431,7 +431,7 @@ dimension:speakerActivations {
 
 dimension:manualActivations {
      hidden:  yes
-    label: "Manual Activations"
+    label: "Manual Mode: Activations"
     group_label: "Modes Usage"
     type: number
     sql: ${TABLE}.manual_activations ;;}
@@ -523,7 +523,7 @@ dimension:manualActivations {
 
   measure: sum_autoFocusSeconds {
     hidden: yes
-    label: "Auto Focus Seconds"
+    label: "Auto Focus Mode: Seconds"
     group_label: "Modes Duration: Seconds"
     description: "Seconds in Auto Focus Mode"
     type: sum
@@ -531,7 +531,7 @@ dimension:manualActivations {
   }
 
    measure: autoFocusMinutes {
-    label: "Auto Focus Minutes"
+    label: "Auto Focus Mode: Minutes"
     group_label: "Modes Duration: Minutes"
     description: "Minutes in Auto Focus Mode"
     type: number
@@ -541,7 +541,7 @@ dimension:manualActivations {
   }
 
   measure: autoFocusPercentofTotal {
-    label: "Auto Focus Minutes % of Total Meeting Duration"
+    label: "Auto Focus Mode: % of Total Meeting Duration"
     group_label: "Modes % of Duration"
     description: "Auto Focus Minutes as Percent of Toal Meeting Minutes"
     type: number
@@ -553,7 +553,7 @@ dimension:manualActivations {
 
   measure: sum_panorama_seconds {
     hidden: yes
-    label: "Panorma Seconds"
+    label: "Panorma Mode: Seconds"
     group_label: "Modes Duration: Seconds"
     description: "Seconds in Panorama Mode"
     type: sum
@@ -561,7 +561,7 @@ dimension:manualActivations {
   }
 
   measure: panoramaMinutes {
-    label: "Panorama Minutes"
+    label: "Panorama Mode: Minutes"
     group_label: "Modes Duration: Minutes"
     description: "Minutes in Panorama Mode"
     type: number
@@ -571,7 +571,7 @@ dimension:manualActivations {
   }
 
   measure: panoramaPercentofTotal {
-    label: "Panorama Mode % of Total Meeting Duration"
+    label: "Panorama Mode: % of Total Meeting Duration"
     group_label: "Modes % of Duration"
     description: "Panorama Minutes as Percent of Toal Meeting Minutes"
     type: number
@@ -583,7 +583,7 @@ dimension:manualActivations {
 
   measure: sum_gridSeconds {
     hidden: yes
-    label: "Grid Seconds"
+    label: "Grid Mode: Seconds"
     group_label: "Modes Duration: Seconds"
     description: "Seconds in grid Mode"
     type: sum
@@ -591,7 +591,7 @@ dimension:manualActivations {
   }
 
   measure: gridMinutes {
-    label: "Grid Minutes"
+    label: "Grid Mode: Minutes"
     group_label: "Modes Duration: Minutes"
     description: "Minutes in Grid Mode"
     type: number
@@ -602,7 +602,7 @@ dimension:manualActivations {
 
 
   measure: gridPercentofTotal {
-    label: "Grid Mode % of Total Meeting Duration"
+    label: "Grid Mode: % of Total Meeting Duration"
     group_label: "Modes % of Duration"
     description: "Grid Minutes as Percent of Toal Meeting Minutes"
     type: number
@@ -613,7 +613,7 @@ dimension:manualActivations {
 
   measure: sum_WhiteboardSeconds {
     hidden: yes
-    label: "Whiteboard Seconds"
+    label: "Whiteboard Mode: Seconds"
     group_label: "Modes Duration: Seconds"
     description: "Seconds in Whiteboard Mode"
     type: sum
@@ -621,7 +621,7 @@ dimension:manualActivations {
   }
 
   measure: whiteboardMinutes {
-    label: "Whiteboard Minutes"
+    label: "Whiteboard Mode: Minutes"
     group_label: "Modes Duration: Minutes"
     description: "Minutes in Whiteboard Mode"
     type: number
@@ -632,7 +632,7 @@ dimension:manualActivations {
 
 
   measure: whiteboardPercentofTotal {
-    label: "Whiteboard Mode % of Total Meeting Duration"
+    label: "Whiteboard Mode: % of Total Meeting Duration"
     group_label: "Modes % of Duration"
     description: "Whiteboard Minutes as Percent of Toal Meeting Minutes"
     type: number
@@ -645,7 +645,7 @@ dimension:manualActivations {
 
   measure: sum_groupSeconds {
     hidden: yes
-    label: "Group Seconds"
+    label: "Group Mode: Seconds"
     group_label: "Modes Duration: Seconds"
     description: "Seconds in Group Mode"
     type: sum
@@ -653,7 +653,7 @@ dimension:manualActivations {
   }
 
   measure: groupMinutes {
-    label: "Group Minutes"
+    label: "Group Mode: Minutes"
     group_label: "Modes Duration: Minutes"
     description: "Minutes in Group Mode"
     type: number
@@ -664,7 +664,7 @@ dimension:manualActivations {
 
 
   measure: groupPercentofTotal {
-    label: "Group Mode % of Total Meeting Duration"
+    label: "Group Mode: % of Total Meeting Duration"
     group_label: "Modes % of Duration"
     description: "Group Minutes as Percent of Toal Meeting Minutes"
     type: number
@@ -677,7 +677,7 @@ dimension:manualActivations {
 
   measure: sum_SpeakerSeconds {
     hidden: yes
-    label: "Speaker Seconds"
+    label: "Speaker Mode: Seconds"
     group_label: "Modes Duration: Seconds"
     description: "Seconds in Speaker Mode"
     type: sum
@@ -685,7 +685,7 @@ dimension:manualActivations {
   }
 
   measure: speakerMinutes {
-    label: "Speaker Minutes"
+    label: "Speaker Mode: Minutes"
     group_label: "Modes Duration: Minutes"
     description: "Minutes in Speaker Mode"
     type: number
@@ -695,7 +695,7 @@ dimension:manualActivations {
   }
 
   measure: speakerPercentofTotal {
-    label: "Speaker Mode % of Total Meeting Duration"
+    label: "Speaker Mode: % of Total Meeting Duration"
     group_label: "Modes % of Duration"
     description: "Whiteboard Minutes as Percent of Toal Meeting Minutes"
     type: number
@@ -706,7 +706,7 @@ dimension:manualActivations {
 
   measure: sum_manualSeconds {
     hidden: yes
-    label: "Manual Seconds"
+    label: "Manual Mode: Seconds"
     group_label: "Modes Duration: Seconds"
     description: "Seconds in Manual Mode"
     type: sum
@@ -714,7 +714,7 @@ dimension:manualActivations {
   }
 
   measure: manualMinutes {
-    label: "Manual Minutes"
+    label: "Manual Mode: Minutes"
     group_label: "Modes Duration: Minutes"
     description: "Minutes in Manual Mode"
     type: number
@@ -724,7 +724,7 @@ dimension:manualActivations {
   }
 
   measure: manualPercentofTotal {
-    label: "Manual Mode % of Total Meeting Duration"
+    label: "Manual Mode: % of Total Meeting Duration"
     group_label: "Modes % of Duration"
     description: "Manual Minutes as Percent of Toal Meeting Minutes"
     type: number
@@ -738,7 +738,7 @@ dimension:manualActivations {
 #mode activations
 
 measure: sumAutoFocusActivations {
-  label: "Auto Focus Activations"
+  label: "Auto Focus Mode: Activations"
   group_label: "Modes Activations"
   description: "Number of activations for Auto Focus Mode"
   type:  sum
@@ -747,7 +747,7 @@ measure: sumAutoFocusActivations {
 }
 
   measure: sumPanoramaActivations {
-    label: "Panorama Activations"
+    label: "Panorama Mode: Activations"
     group_label: "Modes Activations"
     description: "Number of activations for Panorama Mode"
     type:  sum
@@ -756,7 +756,7 @@ measure: sumAutoFocusActivations {
   }
 
   measure: sumgridActivations {
-    label: "Grid Activations"
+    label: "Grid Mode: Activations"
     group_label: "Modes Activations"
     description: "Number of activations for Grid Mode"
     type:  sum
@@ -765,7 +765,7 @@ measure: sumAutoFocusActivations {
   }
 
   measure: sumWhiteboardActivations {
-    label: "Whiteboard Activations"
+    label: "Whiteboard Mode: Activations"
     group_label: "Modes Activations"
     description: "Number of activations for Whiteboard Mode"
     type:  sum
@@ -774,7 +774,7 @@ measure: sumAutoFocusActivations {
   }
 
   measure: sumGroupActivations {
-    label: "Group Activations"
+    label: "Group Mode: Activations"
     group_label: "Modes Activations"
     description: "Number of activations for Group Mode"
     type:  sum
@@ -783,7 +783,7 @@ measure: sumAutoFocusActivations {
   }
 
   measure: sumSpeakerActivations {
-    label: "Speaker Activations"
+    label: "Speaker Mode: Activations"
     group_label: "Modes Activations"
     description: "Number of activations for Speaker Mode"
     type:  sum
@@ -792,7 +792,7 @@ measure: sumAutoFocusActivations {
   }
 
   measure: sumManualActivations {
-    label: "Manual Activations"
+    label: "Manual Mode: Activations"
     group_label: "Modes Activations"
     description: "Number of activations for Manual Mode"
     type:  sum
@@ -804,42 +804,42 @@ measure: sumAutoFocusActivations {
 # mode activations per peeting
 
   measure:AutoFocusActivationsperMeeting {
-    label: "% Auto Focus Activations per Meeting"
+    label: "Auto Focus Mode: % Activations per Meeting"
     group_label: "Modes Activations per Meeting"
     type: number
     sql: ${sumAutoFocusActivations} * 1.0 / nullif(${count_meetings},0) ;;
     value_format: "0.00%"}
 
   measure:panoramaActivationsperMeeting {
-    label: "% Panorama Activations per Meeting"
+    label: "Panorama Mode: % Activations per Meeting"
     group_label: "Modes Activations per Meeting"
     type: number
     sql: ${sumPanoramaActivations} * 1.0 / nullif(${count_meetings},0) ;;
     value_format: "0.00%"}
 
   measure: GridActivationsperMeeting {
-    label: "% Grid Activations per Meeting"
+    label: "Grid Mode: % Activations per Meeting"
     group_label: "Modes Activations per Meeting"
     type: number
     sql: ${sumgridActivations} * 1.0 / nullif(${count_meetings},0) ;;
     value_format: "0.00%"}
 
   measure:WhiteboardActivationsperMeeting {
-    label: "% Whiteboard Activations per Meeting"
+    label: "Whiteboard Mode: % Activations per Meeting"
     group_label: "Modes Activations per Meeting"
     type: number
     sql: ${sumWhiteboardActivations} * 1.0 / nullif(${count_meetings},0) ;;
     value_format: "0.00%"}
 
   measure:GroupActivationsMeeting {
-    label: "% Group Activations per Meeting"
+    label: "Group Mode: % Activations per Meeting"
     group_label: "Modes Activations per Meeting"
     type: number
     sql: ${sumGroupActivations} * 1.0 / nullif(${count_meetings},0) ;;
     value_format: "0.00%"}
 
   measure:SpeakerActivationsperMeeting {
-    label: "% Speaker Activations per Meeting"
+    label: "Speaker Mode: % Activations per Meeting"
     group_label: "Modes Activations per Meeting"
     type: number
     sql: ${sumSpeakerActivations} * 1.0 / nullif(${count_meetings},0) ;;
@@ -847,7 +847,7 @@ measure: sumAutoFocusActivations {
 
 
   measure:manualActivationsperMeeting {
-    label: "% Manual Activations per Meeting"
+    label: "Manual Mode: % Activations per Meeting"
     group_label: "Modes Activations per Meeting"
     type: number
     sql: ${sumManualActivations} * 1.0 / nullif(${count_meetings},0) ;;
@@ -859,42 +859,42 @@ measure: sumAutoFocusActivations {
 
 
   measure:AutoFocusActivationsperDevice {
-    label: "Average Auto Focus Activations per Device"
+    label: "Auto Focus Mode: Average Auto Focus Activations per Device"
     group_label: "Modes Activations per Device"
     type: number
     sql: ${sumAutoFocusActivations} * 1.0 /count(distinct ${deviceuuid}) ;;
     value_format: "0.0"}
 
   measure:panoramaActivationsperDevice {
-    label: "Average Panorama Activations per Device"
+    label: "Panorama Mode: Average Activations per Device"
     group_label: "Modes Activations per Device"
     type: number
     sql: ${sumPanoramaActivations} * 1.0 / count(distinct ${deviceuuid}) ;;
     value_format: "0.0"}
 
   measure: GridActivationsperDevice {
-    label: "Average Grid Activations per Device"
+    label: "Grid Mode: Average Activations per Device"
     group_label: "Modes Activations per Device"
     type: number
     sql: ${sumgridActivations} * 1.0 /count(distinct ${deviceuuid}) ;;
     value_format: "0.0"}
 
   measure:WhiteboardActivationsperDevice {
-    label: "Average Whiteboard Activations per Device"
+    label: "Whiteboard Mode: Average Activations per Device"
     group_label: "Modes Activations per Device"
     type: number
     sql: ${sumWhiteboardActivations} * 1.0 / count(distinct ${deviceuuid}) ;;
     value_format: "0.0"}
 
   measure:GroupActivationsDevice {
-    label: "Average Group Activations per Device"
+    label: "Group Mode: Average Activations per Device"
     group_label: "Modes Activations per Device"
     type: number
     sql: ${sumGroupActivations} * 1.0 / count(distinct ${deviceuuid}) ;;
     value_format: "0.0"}
 
   measure:SpeakerActivationsperDevice {
-    label: "Average Speaker Activations per Device"
+    label: "Speaker Mode: Average Activations per Device"
     group_label: "Modes Activations per Device"
     type: number
     sql: ${sumSpeakerActivations} * 1.0 /count(distinct ${deviceuuid}) ;;
@@ -902,7 +902,7 @@ measure: sumAutoFocusActivations {
 
 
   measure:manualActivationsperDevice {
-    label:"Average Manual Activations per Device"
+    label:"Manual Mode: Average Activations per Device"
     group_label: "Modes Activations per Device"
     type: number
     sql: ${sumManualActivations} * 1.0 / count(distinct ${deviceuuid}) ;;
