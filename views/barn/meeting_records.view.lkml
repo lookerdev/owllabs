@@ -3,6 +3,8 @@ view: meeting_records {
   sql_table_name: owlbarn_views.meeting_records ;;
   drill_fields: [id]
 
+
+
 # Dimensions
   dimension: id {
     primary_key: yes
