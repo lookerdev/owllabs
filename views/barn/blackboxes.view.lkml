@@ -182,7 +182,10 @@ sql_table_name: owlbarn_views.blackboxes ;;
   }
 
 
+#button stats dimensions
+
   dimension: volDnButtonPresses {
+    hidden:  yes
     label: "Volume Down Presses"
     group_label: "Button Stats"
     description: "Count of Presses to volume down button during meeting"
@@ -192,6 +195,7 @@ sql_table_name: owlbarn_views.blackboxes ;;
   }
 
   dimension: volUpButtonPresses {
+     hidden:  yes
     label: "Volume Up Presses"
     group_label: "Button Stats"
     description: "Count of Presses to volume up button during meeting"
@@ -201,6 +205,7 @@ sql_table_name: owlbarn_views.blackboxes ;;
   }
 
   dimension: muteButtonPresses {
+     hidden:  yes
     label: "Mute Presses"
     group_label: "Button Stats"
     description: "Count of Presses to mute button during meeting"
@@ -211,6 +216,7 @@ sql_table_name: owlbarn_views.blackboxes ;;
 
 
   dimension: multiButtonPresses {
+     hidden:  yes
     label: "Multi Button Presses"
     group_label: "Button Stats"
     description: "Count of Presses to multi button during meeting"
@@ -218,6 +224,8 @@ sql_table_name: owlbarn_views.blackboxes ;;
     sql: ${TABLE}.multib_presses ;;
 
   }
+
+  # other dimensions
 
 
   dimension: nuptimeminutes {
@@ -302,6 +310,77 @@ sql_table_name: owlbarn_views.blackboxes ;;
     type: count
     drill_fields: [id]
   }
+
+
+  #button stats measures
+
+  measure: sum_volDnButtonPresses {
+    label: "Volume Down Presses"
+    group_label: "Button Stats"
+    description: "Count of Presses to volume down button during meeting"
+    type:  sum
+    sql: ${TABLE}.vol_down_presses ;;
+
+  }
+
+  measure: sum_volUpButtonPresses {
+    label: "Volume Up Presses"
+    group_label: "Button Stats"
+    description: "Count of Presses to volume up button during meeting"
+    type:  sum
+    sql: ${TABLE}.vol_up_presses ;;
+
+  }
+
+  measure: sum_muteButtonPresses {
+    label: "Mute Presses"
+    group_label: "Button Stats"
+    description: "Count of Presses to mute button during meeting"
+    type:  sum
+    sql: ${TABLE}.mute_presses ;;
+
+  }
+
+
+  measure: sum_multiButtonPresses {
+    label: "Multi Button Presses"
+    group_label: "Button Stats"
+    description: "Count of Presses to multi button during meeting"
+    type:  sum
+    sql: ${TABLE}.multib_presses ;;
+
+  }
+
+
+  #button stats per meeting
+
+  measure: perdevice_volDnButtonPresses {
+    label: "Volume Down Button Presses per Device"
+    group_label: "Button Stats per Device"
+    type: number
+    sql: ${sum_volDnButtonPresses} * 1.0 / nullif(${devices.device_count},0) ;;
+    value_format: "0.00"}
+
+  measure: perdevice_volUpButtonPresses {
+    label: "Volume Up Button Presses per Device"
+    group_label: "Button Stats per Device"
+    type: number
+    sql: ${sum_volUpButtonPresses} * 1.0 / nullif(${devices.device_count},0) ;;
+    value_format: "0.00"}
+
+  measure: perdevice_muteButtonPresses {
+    label: "Mute Button Presses per Device"
+    group_label: "Button Stats per Device"
+    type: number
+    sql: ${sum_muteButtonPresses} * 1.0 / nullif(${devices.device_count},0) ;;
+    value_format: "0.00"}
+
+  measure: perdevice_multiButtonPresses {
+    label: "Multi Button Presses per Device"
+    group_label: "Button Stats per Device"
+    type: number
+    sql: ${sum_multiButtonPresses} * 1.0 / nullif(${devices.device_count},0) ;;
+    value_format: "0.00"}
 
   # measure: total_nappstarts {
   #   type: sum
