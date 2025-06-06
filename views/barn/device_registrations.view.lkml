@@ -52,6 +52,7 @@ view: device_registrations {
     label: "Registered DeviceUUID"
     type: string
     sql: ${TABLE}.deviceuuid ;;
+    drill_fields: [devices.device_url]
   }
 
   dimension: email {
@@ -173,7 +174,7 @@ view: device_registrations {
   # measure: count {
   #   label: "Count of Registrations"
   #   type: count
-  #   drill_fields: [product_name, company_name, user_name]
+  #   drill_fields: [product_name, company_name, user_name, devices.device_url]
   # }
 
   measure: count_companies {
@@ -194,6 +195,7 @@ view: device_registrations {
     label: "Count of Registered Devices"
     type: count_distinct
     sql: ${deviceuuid} ;;
+    drill_fields: [devices.device_url, deviceuuid, device_hardware_serial_number]
   }
 
   measure: avg_owls_per_company {

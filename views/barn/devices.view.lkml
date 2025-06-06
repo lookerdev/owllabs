@@ -1,6 +1,6 @@
 view: devices {
   sql_table_name: owlbarn_views.devices_v ;;
-  drill_fields: [device_id]
+  drill_fields: [device_id, device_url]
 
 # Dimensions
 
@@ -83,6 +83,16 @@ view: devices {
     description: "Unique identifier for each device"
     type: string
     sql: ${TABLE}.deviceuuid ;;
+    drill_fields: [device_url]
+  }
+
+
+  dimension: device_url {
+    label: "Barn Device URL"
+    description: "URL to record in Barn"
+    type: string
+    sql:'https://barn.owllabs.com/device/'||${TABLE}."deviceuuid" ;;
+    html: <a href="{{value}}" target="_blank">Barn Device URL</a>;;
   }
 
   dimension: device_name {
@@ -546,7 +556,7 @@ view: devices {
     description: "Count of unique deviceuuids"
     type: count_distinct
     sql: ${deviceuuid} ;;
-    drill_fields: [device_id, deviceuuid, device_name, product_name]
+    drill_fields: [device_id, deviceuuid, device_name, product_name, device_url]
   }
 
 
