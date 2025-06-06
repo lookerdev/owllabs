@@ -6,6 +6,8 @@ include: "/views/shopify_orders_serial_numbers.view.lkml"
 
 
 
+
+
 explore: devices {
   # from: devices_extend # https://cloud.google.com/looker/docs/reference/param-explore-from?version=22.16&lookml=new
   from: devices_extend
