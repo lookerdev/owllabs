@@ -108,6 +108,8 @@ view: meeting_records {
       raw,
       time,
       date,
+      day_of_week,
+      day_of_week_index,
       week,
       month,
       month_name,

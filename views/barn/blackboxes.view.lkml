@@ -359,28 +359,28 @@ sql_table_name: owlbarn_views.blackboxes ;;
     group_label: "Button Stats per Device"
     type: number
     sql: ${sum_volDnButtonPresses} * 1.0 / nullif(${devices.device_count},0) ;;
-    value_format: "0.00"}
+    value_format: "0"}
 
   measure: perdevice_volUpButtonPresses {
     label: "Volume Up Button Presses per Device"
     group_label: "Button Stats per Device"
     type: number
     sql: ${sum_volUpButtonPresses} * 1.0 / nullif(${devices.device_count},0) ;;
-    value_format: "0.00"}
+    value_format: "0"}
 
   measure: perdevice_muteButtonPresses {
     label: "Mute Button Presses per Device"
     group_label: "Button Stats per Device"
     type: number
     sql: ${sum_muteButtonPresses} * 1.0 / nullif(${devices.device_count},0) ;;
-    value_format: "0.00"}
+    value_format: "0"}
 
   measure: perdevice_multiButtonPresses {
     label: "Multi Button Presses per Device"
     group_label: "Button Stats per Device"
     type: number
     sql: ${sum_multiButtonPresses} * 1.0 / nullif(${devices.device_count},0) ;;
-    value_format: "0.00"}
+    value_format: "0"}
 
   # measure: total_nappstarts {
   #   type: sum
