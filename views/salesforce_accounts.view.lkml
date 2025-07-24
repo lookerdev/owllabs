@@ -10,6 +10,14 @@ view: salesforce_accounts {
     sql: ${TABLE}.id ;;
   }
 
+  dimension: account_url {
+    label: "Account URL"
+    description: "URL to Account Record in Salesforce"
+    type: string
+    sql:'https://owllabs.lightning.force.com/lightning/r/Account/'||${TABLE}."id"||'/view';;
+    html: <a href="{{value}}" target="_blank">Salesforce Account URL</a>;;
+  }
+
   dimension: company_name {
     # description: "Salesforce Account "
     type: string
